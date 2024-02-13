@@ -1,0 +1,36 @@
+.men {
+  position: relative;
+  margin: 5rem;
+  border-radius: 16px;
+}
+
+.background-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 16px;
+  /* background-image: url("./assets/men.png"); */
+  /* opacity: 0.5; */
+  background-image: linear-gradient(
+      to right,
+      rgba(255, 255, 255, 1),
+      rgba(0, 0, 0, 0)
+    ),
+    url("./assets/men.png");
+  background-size: cover;
+}
+
+.content {
+  position: relative;
+  z-index: 4;
+}
+
+.active {
+  color: #646464;
+}
+
+.active-nav {
+  color: #db251a;
+}
