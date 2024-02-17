@@ -34,3 +34,37 @@
 .active-nav {
   color: #db251a;
 }
+
+/* YourCarouselStyles.css */
+.carousel-container {
+  display: flex;
+  overflow: hidden;
+  width: 100%;
+}
+
+.carousel {
+  display: flex;
+  animation: scrollRight 20s linear infinite;
+}
+
+.carousel-left {
+  animation: scrollLeft 20s linear infinite;
+}
+
+@keyframes scrollRight {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+@keyframes scrollLeft {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(0%);
+  }
+}
