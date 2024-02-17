@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Check from "../assets/check.png";
 import LayerDetails from "../assets/image 17.png";
 import line from "../assets/line.png";
@@ -10,7 +10,14 @@ import First from "../assets/Frame 53023.png";
 import Box from "../components/Box";
 import Box1 from "../assets/box1.png";
 
-const LocalLoan = () => {
+const LocalLoan = ({ setShowAfterFooter }) => {
+  useEffect(() => {
+    // Set the state to show AfterFooter when the component mounts
+    setShowAfterFooter(true);
+
+    // Clear the state when the component unmounts
+    return () => setShowAfterFooter(false);
+  }, []);
   return (
     <div className="px-20 py-10 bg-[#F4F4F4]">
       <span className="relative">

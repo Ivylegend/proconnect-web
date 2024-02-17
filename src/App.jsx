@@ -10,8 +10,11 @@ import {
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import AfterFooter from "./components/AfterFooter";
+import { useState } from "react";
 
 function App() {
+  const [showAfterFooter, setShowAfterFooter] = useState(false);
+
   return (
     <>
       <BrowserRouter>
@@ -19,12 +22,18 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/corporate-profile" element={<CorporateProfile />} />
-          <Route path="/global-loan" element={<GlobalLoan />} />
-          <Route path="/local-loan" element={<LocalLoan />} />
+          <Route
+            path="/global-loan"
+            element={<GlobalLoan setShowAfterFooter={setShowAfterFooter} />}
+          />
+          <Route
+            path="/local-loan"
+            element={<LocalLoan setShowAfterFooter={setShowAfterFooter} />}
+          />
           <Route path="/global-resolution" element={<RevolutionCommunity />} />
         </Routes>
         <Footer />
-        <AfterFooter />
+        {showAfterFooter && <AfterFooter />}
       </BrowserRouter>
     </>
   );

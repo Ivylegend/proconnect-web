@@ -1,9 +1,12 @@
-import React from 'react'
+import React from "react";
+import Tabs from "../components/Tabs";
 
 const RevolutionCommunity = () => {
   return (
-    <div>RevolutionCommunity</div>
-  )
-}
+    <div className="px-20 py-10">
+      <Tabs />
+    </div>
+  );
+};
 
-export default RevolutionCommunity
+export default RevolutionCommunity;

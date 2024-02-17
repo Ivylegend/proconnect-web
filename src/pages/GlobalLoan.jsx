@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Check from "../assets/check.png";
 import LayerDetails from "../assets/image 17.png";
 import Visa from "../assets/image 20.png";
@@ -8,7 +8,14 @@ import Book from "../assets/Frame 53023 (1).png";
 import Law from "../assets/Frame 53023 (2).png";
 import First from "../assets/Frame 53023.png";
 
-const GlobalLoan = () => {
+const GlobalLoan = ({ setShowAfterFooter }) => {
+  useEffect(() => {
+    // Set the state to show AfterFooter when the component mounts
+    setShowAfterFooter(true);
+
+    // Clear the state when the component unmounts
+    return () => setShowAfterFooter(false);
+  }, []);
   return (
     <div className="px-20 py-10 bg-[#F4F4F4]">
       <span className="relative mb-16">

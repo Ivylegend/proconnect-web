@@ -7,11 +7,13 @@ import Frame1 from "../assets/Frame 473.png";
 import Frame2 from "../assets/Frame 475.png";
 import Button from "../components/small-components/Button";
 import Hero from "../components/Hero";
+import Partners from "../components/Partners";
 
 const Home = () => {
   return (
     <div>
       <Hero />
+      <Partners />
       <TextImage
         picture={aiLaptop}
         header={"PRODUCT"}
