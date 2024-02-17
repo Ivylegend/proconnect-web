@@ -3,7 +3,7 @@ import Tabs from "../components/Tabs";
 
 const RevolutionCommunity = () => {
   return (
-    <div className="px-20 py-10">
+    <div className="p-10 lg:px-20 lg:py-10">
       <Tabs />
     </div>
   );

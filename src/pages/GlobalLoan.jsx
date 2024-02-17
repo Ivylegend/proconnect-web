@@ -16,16 +16,17 @@ const GlobalLoan = ({ setShowAfterFooter }) => {
     // Clear the state when the component unmounts
     return () => setShowAfterFooter(false);
   }, []);
+
   return (
-    <div className="px-20 py-10 bg-[#F4F4F4]">
+    <div className="p-10 md:px-20 md:py-10 bg-[#F4F4F4]">
       <span className="relative mb-16">
         <h2 className="text-center font-bold text-4xl">
           There are 3 layers to our Global Education Loan Services
         </h2>
-        <img className="absolute right-20 top-10" src={line} alt="" />
+        <img className="absolute md:right-20 lg:top-10" src={line} alt="" />
       </span>
-      <div className="w-full my-16 bg-white flex rounded-3xl p-8">
-        <div className="w-full sm:w-1/2 flex flex-col gap-8 items-start">
+      <div className="w-full my-16 bg-white flex gap-8 lg:gap-0 flex-col lg:flex-row rounded-3xl p-8">
+        <div className="w-full lg:w-1/2 flex flex-col gap-8 items-start">
           <img src={First} alt="" />
           <p className="font-bold text-2xl">LOAN PROCESSING LAYER DETAILS</p>
           <span className="flex items-center gap-4">
@@ -55,13 +56,13 @@ const GlobalLoan = ({ setShowAfterFooter }) => {
             </p>
           </span>
         </div>
-        <div className="w-full sm:w-1/2 flex items-start">
+        <div className="w-full lg:w-1/2 hidden sm:flex items-center justify-center lg:justify-normal lg:items-start">
           <img src={LayerDetails} alt="" />
         </div>
       </div>
 
-      <div className="w-full my-16 bg-white flex rounded-3xl flex-row-reverse p-8">
-        <div className="w-full sm:w-1/2 flex flex-col gap-8 items-start">
+      <div className="w-full my-16 bg-white flex gap-8 lg:gap-0 flex-col rounded-3xl lg:flex-row-reverse p-8">
+        <div className="w-full lg:w-1/2 flex flex-col gap-8 items-start">
           <img src={Book} alt="" />
           <p className="font-bold text-2xl">
             ADMISSION PROCESSING LAYER DETAILS
@@ -103,13 +104,13 @@ const GlobalLoan = ({ setShowAfterFooter }) => {
             </p>
           </span>
         </div>
-        <div className="w-full sm:w-1/2 flex items-start">
+        <div className="w-full lg:w-1/2 hidden sm:flex items-center justify-center lg:justify-normal lg:items-start">
           <img src={inscription} alt="" />
         </div>
       </div>
 
-      <div className="w-full my-16 bg-white flex rounded-3xl p-8">
-        <div className="w-full sm:w-1/2 flex flex-col gap-8 items-start">
+      <div className="w-full my-16 bg-white flex gap-8 lg:gap-0 flex-col lg:flex-row rounded-3xl p-8">
+        <div className="w-full lg:w-1/2 flex flex-col gap-8 items-start">
           <img src={Law} alt="" />
           <p className="font-bold text-2xl">VISA PROCESSING LAYER DETAILS</p>
           <span className="flex items-center gap-4">
@@ -143,7 +144,7 @@ const GlobalLoan = ({ setShowAfterFooter }) => {
             </p>
           </span>
         </div>
-        <div className="w-full sm:w-1/2 flex items-start">
+        <div className="w-full lg:w-1/2 hidden sm:flex items-center justify-center lg:justify-normal lg:items-start">
           <img src={Visa} alt="" />
         </div>
       </div>

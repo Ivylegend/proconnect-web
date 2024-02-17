@@ -14,7 +14,7 @@ const TabsInner = ({
   include6,
 }) => {
   return (
-    <div className="flex gap-8 justify-center items-start">
+    <div className="flex flex-col sm:flex-row gap-8 justify-center items-start">
       <TabComponent
         title={title}
         price={price}

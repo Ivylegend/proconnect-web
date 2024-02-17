@@ -83,9 +83,9 @@ const socialIcons = [
 
 const Footer = () => {
   return (
-    <div className="p-20 flex flex-col gap-40">
-      <div className="flex justify-between items-start">
-        <div className="flex w-[30%] items-start justify-start flex-col gap-4">
+    <div className="p-10 md:p-20 flex flex-col gap-20 md:gap-40">
+      <div className="flex gap-4 md:gap-0 flex-col md:flex-row justify-between items-start">
+        <div className="flex w-full md:w-[30%] items-start justify-start flex-col gap-4">
           <img src={Logo} alt="pcp-logo" />
           <p className="text-left font-semibold">
             ProconnectPAY is an African Edu-FinTech Company that works with
@@ -130,7 +130,7 @@ const Footer = () => {
           </ul>
         </div>
       </div>
-      <div className="flex justify-between">
+      <div className="flex flex-col items-center gap-4 md:gap-0 justify-center md:flex-row md:justify-between">
         <p>@ 2024 Proconnectpay . All rights reserved</p>
         <div className="flex gap-5">
           {socialIcons.map((icon, index) => {

@@ -3,7 +3,7 @@ import Box1 from "../assets/box1.png";
 
 const Box = ({icon, title, text}) => {
   return (
-    <div className="flex items-center h-28 gap-4 rounded-lg p-4 bg-white">
+    <div className="flex items-center md:h-28 gap-4 rounded-lg p-4 bg-white">
       <div>
         <img src={icon} alt="" />
       </div>

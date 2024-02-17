@@ -6,7 +6,7 @@ const TabComponent = ({ title, price, include1, include2, include3 }) => {
   return (
     <div className="border-[#646464] border rounded-xl p-8 relative">
       <p className="text-2xl font-bold">{title}</p>
-      <img src={CurveArrow} alt="" className="absolute right-6" />
+      <img src={CurveArrow} alt="" className="absolute w-1/4 lg:w-1/3 right-6" />
       <p className="text-4xl font-bold my-10">{price}</p>
       <p className="text-red-500 text-xl font-normal mb-5">What's Included</p>
       <div className="flex items-center gap-4 my-6">

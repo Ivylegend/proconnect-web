@@ -19,17 +19,17 @@ const LocalLoan = ({ setShowAfterFooter }) => {
     return () => setShowAfterFooter(false);
   }, []);
   return (
-    <div className="px-20 py-10 bg-[#F4F4F4]">
+    <div className="p-10 md:px-20 md:py-10 bg-[#F4F4F4]">
       <span className="relative">
-        <h2 className="text-center font-bold text-4xl mb-8">
+        <h2 className="text-center font-bold text-4xl lg:mb-8">
           There are 3 layers to our Local Undergraduate Loan Services
         </h2>
-        <img className="absolute right-20 top-10" src={line} alt="" />
+        <img className="absolute md:right-20 lg:top-10" src={line} alt="" />
       </span>
 
       {/* FIRST */}
-      <div className="w-full my-16 gap-8 bg-white flex rounded-3xl p-8">
-        <div className="w-full sm:w-1/2 flex flex-col gap-8 items-start">
+      <div className="w-full my-16 bg-white flex gap-8 lg:gap-0 flex-col lg:flex-row rounded-3xl p-8">
+        <div className="w-full lg:w-1/2 flex flex-col gap-8 items-start">
           <img src={First} alt="" />
           <p className="font-bold text-2xl">LOAN PROCESSING LAYER DETAILS</p>
           <span className="flex items-center gap-4">
@@ -62,14 +62,14 @@ const LocalLoan = ({ setShowAfterFooter }) => {
             </p>
           </span>
         </div>
-        <div className="w-full sm:w-1/2 flex items-start">
+        <div className="w-full lg:w-1/2 hidden sm:flex items-center justify-center lg:justify-normal lg:items-start">
           <img src={LayerDetails} alt="" />
         </div>
       </div>
 
       {/* SECOND */}
-      <div className="w-full my-16 flex bg-white rounded-3xl flex-row-reverse p-8 items-center gap-8">
-        <div className="w-full sm:w-1/2 flex flex-col gap-8 items-start">
+      <div className="w-full my-16 bg-white flex gap-8 lg:gap-0 flex-col lg:flex-row-reverse rounded-3xl p-8">
+        <div className="w-full lg:w-1/2 flex flex-col gap-8 items-start">
           <img src={Book} alt="" />
           <p className="font-bold text-2xl">
             ADMISSION PROCESSING LAYER DETAILS
@@ -110,14 +110,14 @@ const LocalLoan = ({ setShowAfterFooter }) => {
             </p>
           </span>
         </div>
-        <div className="w-full sm:w-1/2 flex items-start">
+        <div className="w-full lg:w-1/2 hidden sm:flex items-center justify-center lg:justify-normal lg:items-start">
           <img src={Macbook} alt="" />
         </div>
       </div>
 
       {/* THIRD */}
-      <div className="w-full my-16 gap-8 flex rounded-3xl bg-white p-8">
-        <div className="w-full sm:w-1/2 flex flex-col gap-8 items-start">
+      <div className="w-full my-16 bg-white flex gap-8 lg:gap-0 flex-col lg:flex-row rounded-3xl p-8">
+        <div className="w-full lg:w-1/2 flex flex-col gap-8 items-start">
           <img src={Law} alt="" />
           <p className="font-bold text-2xl">GLOBAL UNDERGRADUATE COMMUNITY</p>
           <p className="text-xl leading-8">
@@ -128,17 +128,17 @@ const LocalLoan = ({ setShowAfterFooter }) => {
             and local opportunities.
           </p>
         </div>
-        <div className="w-full sm:w-1/2 flex items-start">
+        <div className="w-full lg:w-1/2 hidden sm:flex items-center justify-center lg:justify-normal lg:items-start">
           <img src={people} alt="" />
         </div>
       </div>
 
       <div>
-        <p className="text-2xl font-normal w-1/2 mb-16">
+        <p className="text-2xl font-normal lg:w-1/2 mb-16">
           Find the Value-Added Services we provide to Undergraduate Members in
           our Global Undergraduate Community
         </p>
-        <div className="flex justify-between gap-16">
+        <div className="flex flex-col lg:flex-row justify-between gap-8 lg:gap-16">
           <div className="flex flex-col gap-8">
             <Box
               icon={Box1}

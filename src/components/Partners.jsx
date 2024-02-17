@@ -25,7 +25,7 @@ const Partners = () => {
   const doublePartnerUnis = [...partnerUnis, ...partnerUnis];
 
   return (
-    <div className="px-20 py-10">
+    <div className="px-10 lg:px-20 py-10">
       <p className="font-bold text-4xl text-center mb-16">Our Global and Local Partners</p>
       <div className="flex flex-col gap-16">
         <div className="carousel-container">

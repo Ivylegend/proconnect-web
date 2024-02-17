@@ -65,7 +65,7 @@ const Home = () => {
       />
       <div className="men">
         <div className="background-image"></div>
-        <div className="content flex flex-col gap-8 items-start p-20 w-[45%]">
+        <div className="content p-8 flex flex-col gap-8 items-start lg:p-20 lg:w-[50%] xl:w-[45%]">
           <h2 className="text-4xl font-bold leading-normal">
             We are BIG on Mentoring and Academic Excellence
           </h2>

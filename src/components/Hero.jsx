@@ -7,9 +7,9 @@ import goals from "../assets/goals.png";
 
 const Hero = () => {
   return (
-    <div className="p-20 mb-24 flex gap-24 justify-between items-center">
-      <div className="w-2/5 flex flex-col gap-10">
-        <h2 className="font-semibold text-4xl">
+    <div className="flex flex-col p-10 lg:p-20 mb-8 md:mb-24 lg:flex-row gap-24 justify-between items-center">
+      <div className="w-full lg:w-2/5 flex flex-col gap-6 sm:gap-10">
+        <h2 className="font-semibold text-2xl sm:text-4xl">
           <span className="text-[#db251A]">Welcome to </span>
           <span className="relative">
             <span className="text-[#1E4580]">Proconnect</span>
@@ -17,7 +17,7 @@ const Hero = () => {
             <img src={Line} alt="" className="absolute right-0" />
           </span>
         </h2>
-        <h1 className="font-bold text-[56px] leading-tight">
+        <h1 className="font-bold text-[42px] sm:text-[56px] leading-tight">
           Africa's First EduFintechCo.
         </h1>
         <p className="text-[#646464] font-normal leading-normal text-xl">
@@ -35,7 +35,7 @@ const Hero = () => {
         </div>
       </div>
 
-      <div className="flex flex-col gap-16">
+      <div className="hidden md:flex flex-col gap-16">
         <div className="flex gap-18">
           <img
             src={Girl}
