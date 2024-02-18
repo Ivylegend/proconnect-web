@@ -68,7 +68,7 @@ const LocalLoan = ({ setShowAfterFooter }) => {
       </div>
 
       {/* SECOND */}
-      <div className="w-full my-16 bg-white flex gap-8 lg:gap-0 flex-col lg:flex-row-reverse rounded-3xl p-8">
+      <div className="w-full my-16 bg-white flex gap-8 lg:gap-0 flex-col lg:flex-row-reverse items-center rounded-3xl p-8">
         <div className="w-full lg:w-1/2 flex flex-col gap-8 items-start">
           <img src={Book} alt="" />
           <p className="font-bold text-2xl">

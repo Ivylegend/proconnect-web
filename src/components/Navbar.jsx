@@ -1,7 +1,7 @@
 import { NavLink } from "react-router-dom";
 import Logo from "../assets/nav-logo.png";
 import { BiMenu } from "react-icons/bi";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const navItems = [
   {
@@ -28,13 +28,33 @@ const navItems = [
 
 const Navbar = () => {
   const [toggle, setToggle] = useState(false);
+  const [scrolling, setScrolling] = useState(false);
 
   const handleMenu = () => {
     setToggle((prev) => !prev);
   };
 
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 0) {
+        setScrolling(true);
+      } else {
+        setScrolling(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
   return (
-    <div className="px-10 lg:px-16 py-5 flex items-center justify-between bg-[#F4F4F4]">
+    <div
+      className={`px-10 lg:px-16 py-5 flex items-center justify-between bg-[#F4F4F4] ${
+        scrolling ? "sticky top-0 shadow-md bg-white z-30" : ""
+      }`}
+    >
       <div className="flex items-center gap-12">
         <img src={Logo} alt="" />
         <div className="hidden lg:flex gap-6 font-bold">
@@ -57,7 +77,7 @@ const Navbar = () => {
         <button className="rounded-lg font-medium flex items-center gap-4 justify-center bg-[#DB251A] text-white py-3 px-6 cursor-pointer">
           Get Started
         </button>
-        <BiMenu onClick={handleMenu} />
+        <BiMenu className="lg:hidden" onClick={handleMenu} />
       </div>
 
       {/* MOBILE NAVBAR */}

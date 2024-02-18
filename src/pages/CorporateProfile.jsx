@@ -33,7 +33,7 @@ const CorporateProfile = () => {
       </div>
 
       {/* SECOND */}
-      <div className={"flex flex-col lg:flex-row my-12 lg:my-0 lg:p-20 gap-20 items-center"}>
+      <div className={"flex flex-col lg:flex-row-reverse my-12 lg:my-0 lg:p-20 gap-20 items-center"}>
         <div className="w-full lg:w-1/2 flex flex-col items-start gap-8">
           <p className="">
             <img src={mission} alt="mission-logo" />

@@ -22,6 +22,7 @@ const Home = () => {
           "Leverage our personalized AI to refine your resume, craft your personalized statement of purpose, and get your school application in front of 5,000 Universities and Colleges Globally"
         }
         showButton={true}
+        classdyn={"flex-row"}
       />
       <TextImage
         picture={aiLaptop}
@@ -41,10 +42,12 @@ const Home = () => {
           "Through our Global Education Community, we are raising the next generation of economic super-stars that will drive the economic prosperity across the developed and developing economies."
         }
         showButton={true}
+        classdyn={"flex-row"}
       />
       <TextImage
         picture={Frame1}
         title={"Local Undergraduate Loan Calculator"}
+        classdyn={"flex-row"}
       />
       <TextImage
         picture={Frame2}
@@ -52,11 +55,7 @@ const Home = () => {
           <span className="flex items-start justify-start">
             Gl
             <span className="flex items-start justify-end">
-              <img
-                src={globe}
-                alt="globe"
-                className="object-contain"
-              />
+              <img src={globe} alt="globe" className="object-contain" />
             </span>
             bal Education Loan Calculator
           </span>

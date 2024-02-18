@@ -4,11 +4,36 @@ import Girl from "../assets/girl.png";
 import bulb from "../assets/bulb.png";
 import family from "../assets/family.png";
 import goals from "../assets/goals.png";
+import { motion } from "framer-motion";
 
 const Hero = () => {
+  const containerVariants = {
+    hidden: { opacity: 1 },
+    visible: { opacity: 1, transition: { duration: 1 } },
+  };
+
+  const divOneVariants = {
+    hidden: { x: "-100%" },
+    visible: { x: 0, transition: { type: "spring", stiffness: 80 } },
+  };
+
+  const divTwoVariants = {
+    hidden: { x: "100%" },
+    visible: { x: 0, transition: { type: "spring", stiffness: 80 } },
+  };
+
   return (
-    <div className="flex flex-col p-10 lg:p-20 mb-8 md:mb-24 lg:flex-row gap-24 justify-between items-center">
-      <div className="w-full lg:w-2/5 flex flex-col gap-6 sm:gap-10">
+    <motion.div
+      className="flex flex-col p-10 lg:p-20 mb-8 md:mb-24 lg:flex-row gap-24 justify-between items-center"
+      variants={containerVariants}
+      initial="hidden"
+      animate="visible"
+    >
+      {/* DIV ONE */}
+      <motion.div
+        className="w-full lg:w-2/5 flex flex-col gap-6 sm:gap-10"
+        variants={divOneVariants}
+      >
         <h2 className="font-semibold text-2xl sm:text-4xl">
           <span className="text-[#db251A]">Welcome to </span>
           <span className="relative">
@@ -33,9 +58,13 @@ const Hero = () => {
             Contact Sales
           </button>
         </div>
-      </div>
+      </motion.div>
 
-      <div className="hidden md:flex flex-col gap-16">
+      {/* DIV TWO */}
+      <motion.div
+        className="hidden md:flex flex-col gap-16"
+        variants={divTwoVariants}
+      >
         <div className="flex gap-18">
           <img
             src={Girl}
@@ -60,8 +89,8 @@ const Hero = () => {
             className="flex object-contain relative top-0 right-6"
           />
         </div>
-      </div>
-    </div>
+      </motion.div>
+    </motion.div>
   );
 };
 
