@@ -7,7 +7,7 @@ const TextImage = ({ picture, title, header, text, classdyn, showButton }) => {
 
   const containerVariants = {
     hidden: { opacity: 0, y: 50 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.8 } },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
   };
 
   useEffect(() => {
@@ -30,7 +30,7 @@ const TextImage = ({ picture, title, header, text, classdyn, showButton }) => {
   return (
     <motion.div
       id="textImage"
-      className={`flex px-10 py-20 lg:p-20 gap-10 lg:gap-20 items-center flex-col lg:${classdyn}`}
+      className={`flex px-10 py-10 md:py-20 lg:p-20 gap-10 lg:gap-20 items-center flex-col lg:${classdyn}`}
       variants={containerVariants}
       initial="hidden"
       animate={controls}

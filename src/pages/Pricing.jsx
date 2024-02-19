@@ -7,6 +7,7 @@ import zambia from "../assets/twemoji_flag-zambia.png";
 import uganda from "../assets/twemoji_flag-uganda.png";
 import rwanda from "../assets/twemoji_flag-rwanda.png";
 import malawi from "../assets/twemoji_flag-malawi.png";
+import blueLine from "../assets/blue-line.png";
 
 const TABLE_HEADERS = ["Countries", "Loan Amounts"];
 const TABLE_BODY = [
@@ -55,11 +56,11 @@ const TABLE_BODY = [
 const Pricing = () => {
   return (
     <div className="px-10 lg:px-20 lg:py-10 flex flex-col items-center justify-center">
-      <span className="relative">
-        <p className="font-bold text-center text-3xl text-[#323232] my-8">
+      <span className="relative my-12">
+        <p className="font-bold text-center text-3xl text-[#323232]">
           Membership Pricing in Other International Currencies
         </p>
-        <img src="" alt="" />
+        <img src={blueLine} alt="line" className="hidden sm:flex absolute right-0 top-10" />
       </span>
       <div>
         <table className="w-full border border-[#1E4580] rounded-2xl overflow-hidden">

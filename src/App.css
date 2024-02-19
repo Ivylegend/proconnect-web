@@ -22,6 +22,26 @@
   background-size: cover;
 }
 
+.background-image1{
+  background-image: url('./assets/Capa-1.png');
+  position: absolute;
+  top: 100px;
+  left: -100px;
+  width: 100%;
+  height: 100%;
+  background-repeat: no-repeat;
+}
+
+.background-image2{
+  background-image: url('./assets/Capa-2.png');
+  position: absolute;
+  top: 0;
+  right: -350px;
+  width: 100%;
+  height: 100%;
+  background-repeat: no-repeat;
+}
+
 .content {
   position: relative;
   z-index: 4;
@@ -93,5 +113,9 @@
 @media screen and (max-width: 870px) {
   .men {
     margin: 2rem;
+  }
+
+  .background-image2{
+    right: 0;
   }
 }
