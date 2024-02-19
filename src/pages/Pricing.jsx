@@ -54,9 +54,9 @@ const TABLE_BODY = [
 
 const Pricing = () => {
   return (
-    <div className="px-20 py-10 flex flex-col items-center justify-center">
+    <div className="px-10 lg:px-20 lg:py-10 flex flex-col items-center justify-center">
       <span className="relative">
-        <p className="font-bold text-3xl text-[#323232] my-8">
+        <p className="font-bold text-center text-3xl text-[#323232] my-8">
           Membership Pricing in Other International Currencies
         </p>
         <img src="" alt="" />
@@ -87,7 +87,7 @@ const Pricing = () => {
           <tbody className="border border-[#1E4580]">
             {TABLE_BODY.map((body, index) => (
               <tr key={index}>
-                <td className="flex p-4 pr-24 gap-2 items-center text-left">
+                <td className="flex p-4 pr-8 md:pr-24 gap-2 items-center text-left">
                   <img src={body.flag} alt={body.flag} />
                   <p className="font-bold text-xl text-[#1E4580]">
                     {body.country}

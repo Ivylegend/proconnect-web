@@ -85,7 +85,7 @@ const Navbar = () => {
         <div
           className={`mobile-nav ${
             toggle ? "slide-in" : "slide-out"
-          } lg:hidden flex-col absolute top-0 left-0 p-12 z-10 h-full bg-white w-3/4 sm:w-1/2 gap-6 font-bold`}
+          } lg:hidden flex-col fixed top-0 left-0 p-12 z-10 h-[100vh] bg-white w-3/4 sm:w-1/2 gap-6 font-bold`}
         >
           {navItems.map((navItem) => {
             return (

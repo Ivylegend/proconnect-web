@@ -3,8 +3,8 @@ import Check from "../assets/check.png";
 
 const PrivacyPolicy = () => {
   return (
-    <div className="py-10 px-20 bg-[#F4F4F4]">
-      <div className="w-[70%] mx-auto">
+    <div className="py-10 md:px-20 bg-[#F4F4F4]">
+      <div className="w-full lg:w-[70%] mx-auto px-10 md:p-0">
         <p className="text-center text-[32px] font-bold leading-normal">
           <span className="text-[#1E4580]">Proconnect</span>
           <span className="text-[#DB251A]">Pay</span>{" "}
@@ -20,7 +20,7 @@ const PrivacyPolicy = () => {
         </p>
       </div>
 
-      <div className="bg-white rounded-2xl px-16 py-8 flex flex-col gap-5 w-full">
+      <div className="bg-white rounded-none md:rounded-2xl px-8 md:px-16 py-8 flex flex-col gap-5 w-full">
         {/* ONE */}
         <div className="flex flex-col gap-4">
           <p className="font-bold text-[#323232] text-[24px]">

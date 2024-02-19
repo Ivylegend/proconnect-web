@@ -44,8 +44,8 @@ const ContactInfo = [
 
 const Contact = () => {
   return (
-    <div className="pl-20 py-10 flex gap-8">
-      <div className="w-1/2">
+    <div className="px-10 md:pl-20 py-10 flex gap-8">
+      <div className="w-full md:w-1/2">
         <p className="font-bold text-3xl mb-6">Contact Information</p>
 
         {ContactInfo.map((info) => {
@@ -67,7 +67,7 @@ const Contact = () => {
         })}
       </div>
 
-      <div className="w-1/2">
+      <div className="hidden md:flex md:w-1/2">
         <img className="h-full object-cover" src={contactImg} alt="" />
       </div>
     </div>

@@ -7,8 +7,8 @@ const Interest = () => {
   };
 
   return (
-    <div className="pl-20 py-10 flex gap-8">
-      <div className="w-1/2">
+    <div className="px-10 sm:px-20 lg:pl-20 py-10 flex gap-8">
+      <div className="w-full lg:w-1/2">
         <p className="font-bold text-xl text-center mb-12">
           REGISTRATION FORM FOR INTERESTED CUSTOMERS
         </p>
@@ -93,7 +93,7 @@ const Interest = () => {
           </div>
           <div className="flex items-center gap-2 my-4">
             <input type="checkbox" value="" />
-            <p className="text-center text-[#1E4580] font-medium">
+            <p className="text-left lg:text-center text-[#1E4580] font-medium">
               Keep me up to date with more information about this products,
               services and offer
             </p>
@@ -108,7 +108,7 @@ const Interest = () => {
           </button>
         </form>
       </div>
-      <div className="w-1/2">
+      <div className="hidden lg:flex lg:w-1/2">
         <img className="h-full object-cover" src={InterestImg} alt="" />
       </div>
     </div>
