@@ -51,7 +51,7 @@ const Navbar = () => {
 
   return (
     <div
-      className={`px-10 lg:px-16 py-5 flex items-center justify-between bg-[#F4F4F4] ${
+      className={`px-10 lg:px-16 py-5 flex items-center justify-between bg-[#ffff] ${
         scrolling ? "sticky top-0 shadow-md bg-white z-30" : ""
       }`}
     >
@@ -64,7 +64,7 @@ const Navbar = () => {
                 to={navItem.url}
                 key={navItem.name}
                 className={({ isActive }) => {
-                  return isActive ? "active-nav" : "active";
+                  return isActive ? "active-nav" : "active hover:text-red-500";
                 }}
               >
                 {navItem.name}
@@ -93,7 +93,7 @@ const Navbar = () => {
                 to={navItem.url}
                 key={navItem.name}
                 className={({ isActive }) => {
-                  return isActive ? "active-nav" : "active";
+                  return isActive ? "active-nav" : "active hover:text-red-500";
                 }}
                 onClick={handleMenu}
               >

@@ -43,7 +43,7 @@ const Hero = () => {
           </span>
         </h2>
         <h1 className="font-bold text-[42px] sm:text-[56px] leading-tight">
-          Africa's First EduFintechCo.
+          Africa's First <br /> EduFintechCo.
         </h1>
         <p className="text-[#646464] font-normal leading-normal text-xl">
           We provide seamless long-term Education Financing to DEMOCRATIZE

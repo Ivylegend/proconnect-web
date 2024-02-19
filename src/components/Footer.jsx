@@ -12,7 +12,7 @@ import SocialIcons6 from "../assets/Social icons6.png";
 
 const buisnessLinks = [
   {
-    url: "",
+    url: "/pricing",
     name: "Pricing",
   },
   {
@@ -20,19 +20,19 @@ const buisnessLinks = [
     name: "List of Supported Schools",
   },
   {
-    url: "",
+    url: "/interest",
     name: "Signify your interest",
   },
   {
-    url: "",
+    url: "/local-loan",
     name: "Local loan",
   },
   {
-    url: "",
+    url: "/global-loan",
     name: "Global Loan",
   },
   {
-    url: "",
+    url: "/privacy-policy",
     name: "Privacy Policy",
   },
   {

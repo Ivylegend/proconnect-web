@@ -5,13 +5,46 @@ import mission from "../assets/mission.png";
 import frame1 from "../assets/pictureFrame1.png";
 import frame2 from "../assets/pictureFrame2.png";
 import frame3 from "../assets/pictureFrame3.png";
+import { motion } from "framer-motion";
+import { useInView } from "react-intersection-observer";
 
 const CorporateProfile = () => {
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: { opacity: 1, transition: { duration: 1 } },
+  };
+
+  const divOneVariants = {
+    hidden: { x: "-100%" },
+    visible: { x: 0, transition: { type: "spring", stiffness: 80 } },
+  };
+
+  const divTwoVariants = {
+    hidden: { x: "100%" },
+    visible: { x: 0, transition: { type: "spring", stiffness: 80 } },
+  };
+
+  const [ref, inView] = useInView({
+    triggerOnce: true,
+  });
+
   return (
     <div className="p-10 lg:p-20">
       {/* FIRST */}
-      <div className={"flex flex-col lg:flex-row lg:p-20 my-12 lg:my-0 gap-20 items-center"}>
-        <div className="w-full lg:w-1/2 flex flex-col items-start gap-8">
+      <motion.div
+        className={
+          "flex flex-col lg:flex-row lg:p-20 my-12 lg:my-0 gap-20 items-center"
+        }
+        variants={containerVariants}
+        initial="hidden"
+        animate="visible"
+        ref={ref}
+      >
+        {/* ONE */}
+        <motion.div
+          variants={divOneVariants}
+          className="w-full lg:w-1/2 flex flex-col items-start gap-8"
+        >
           <p className="">
             <img src={Description} alt="description-logo" />
           </p>
@@ -26,15 +59,30 @@ const CorporateProfile = () => {
             spectrum of the educational value-chain LOCALLY, CONTINENTALLY AND
             GLOBALLY.
           </p>
-        </div>
-        <div className="w-full flex items-center justify-center lg:w-1/2">
+        </motion.div>
+        {/* TWO */}
+        <motion.div
+          variants={divTwoVariants}
+          className="w-full flex items-center justify-center lg:w-1/2"
+        >
           <img src={frame1} alt="frame-logo" />
-        </div>
-      </div>
+        </motion.div>
+      </motion.div>
 
       {/* SECOND */}
-      <div className={"flex flex-col lg:flex-row-reverse my-12 lg:my-0 lg:p-20 gap-20 items-center"}>
-        <div className="w-full lg:w-1/2 flex flex-col items-start gap-8">
+      <motion.div
+        className={
+          "flex flex-col lg:flex-row-reverse my-12 lg:my-0 lg:p-20 gap-20 items-center"
+        }
+        variants={containerVariants}
+        initial="hidden"
+        animate="visible"
+      >
+        {/* ONE */}
+        <motion.div
+          variants={divOneVariants}
+          className="w-full lg:w-1/2 flex flex-col items-start gap-8"
+        >
           <p className="">
             <img src={mission} alt="mission-logo" />
           </p>
@@ -46,15 +94,30 @@ const CorporateProfile = () => {
             valuable commercially relevant education for the African Continent
             BRIGHTEST HOPE
           </p>
-        </div>
-        <div className="w-full flex items-center justify-center lg:w-1/2">
+        </motion.div>
+        {/* TWO */}
+        <motion.div
+          variants={divTwoVariants}
+          className="w-full flex items-center justify-center lg:w-1/2"
+        >
           <img src={frame2} alt="frame-logo" />
-        </div>
-      </div>
+        </motion.div>
+      </motion.div>
 
       {/* THIRD */}
-      <div className={"flex flex-col lg:flex-row my-12 lg:my-0 lg:p-20 gap-20 items-center"}>
-        <div className="w-full lg:w-1/2 flex flex-col items-start gap-8">
+      <motion.div
+        className={
+          "flex flex-col lg:flex-row my-12 lg:my-0 lg:p-20 gap-20 items-center"
+        }
+        variants={containerVariants}
+        initial="hidden"
+        animate="visible"
+      >
+        {/* ONE */}
+        <motion.div
+          variants={divOneVariants}
+          className="w-full lg:w-1/2 flex flex-col items-start gap-8"
+        >
           <p className="">
             <img src={vision} alt="vision-logo" />
           </p>
@@ -66,11 +129,15 @@ const CorporateProfile = () => {
             supports high-potential Candidates to access Local and Global
             Education Financing
           </p>
-        </div>
-        <div className="w-full flex items-center justify-center lg:w-1/2">
+        </motion.div>
+        {/* TWO */}
+        <motion.div
+          variants={divTwoVariants}
+          className="w-full flex items-center justify-center lg:w-1/2"
+        >
           <img src={frame3} alt="frame-logo" />
-        </div>
-      </div>
+        </motion.div>
+      </motion.div>
     </div>
   );
 };

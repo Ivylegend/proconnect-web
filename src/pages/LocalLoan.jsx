@@ -9,6 +9,15 @@ import Law from "../assets/Frame 53023 (2).png";
 import First from "../assets/Frame 53023.png";
 import Box from "../components/Box";
 import Box1 from "../assets/box1.png";
+import Century from "../assets/21st-century.png";
+import Accumulate from "../assets/accumulate.png";
+import BackUp from "../assets/back-up.png";
+import CareerPath from "../assets/career-path.png";
+import Connect from "../assets/connect.png";
+import Grade from "../assets/grade.png";
+import Guide from "../assets/guide.png";
+import MonthlyChat from "../assets/monthly-chat.png";
+import Power from "../assets/power.png";
 
 const LocalLoan = ({ setShowAfterFooter }) => {
   useEffect(() => {
@@ -148,12 +157,12 @@ const LocalLoan = ({ setShowAfterFooter }) => {
               }
             />
             <Box
-              icon={Box1}
+              icon={CareerPath}
               title={"Defining a Career PATH: Clarity of Purpose"}
               text={"Remotely guide them to clearly define a Career PATH"}
             />
             <Box
-              icon={Box1}
+              icon={Accumulate}
               title={
                 "Accumulated 2-years’ worth of Professional Work Experience"
               }
@@ -162,14 +171,14 @@ const LocalLoan = ({ setShowAfterFooter }) => {
               }
             />
             <Box
-              icon={Box1}
+              icon={Grade}
               title={"Graduate Entry Level Mock Examination"}
               text={
                 "Community Members get prepped to write MOCK GMAT/GRE Examinations"
               }
             />
             <Box
-              icon={Box1}
+              icon={Power}
               title={"The POWER of Technology and the eLDaNiC Portal"}
               text={
                 "We get to deliver and deploy this VALUE remotely leveraging on TECHNOLOGY."
@@ -180,33 +189,33 @@ const LocalLoan = ({ setShowAfterFooter }) => {
           {/* SECOND HALF */}
           <div className="flex flex-col gap-8">
             <Box
-              icon={Box1}
+              icon={BackUp}
               title={"Back-up to Regular Education"}
               text={
                 "Remotely develop one-technical or non-technical tech skill"
               }
             />
             <Box
-              icon={Box1}
+              icon={Century}
               title={"Instilling 21st Century Employability Soft Skills"}
               text={"Remotely groom them through our Job Readiness Program"}
             />
             <Box
-              icon={Box1}
+              icon={Guide}
               title={"Guiding LIGHT to a Professional Career Mentor"}
               text={
                 "Remotely coach them on how to identify and approach a mentor in line with their chosen career path"
               }
             />
             <Box
-              icon={Box1}
+              icon={MonthlyChat}
               title={"Monthly Fireside Chat with Accomplished Professionals"}
               text={
                 "Access to Monthly Fireside Mentoring Chat delivered REMOTELY by well-accomplished graduates and individuals"
               }
             />
             <Box
-              icon={Box1}
+              icon={Connect}
               title={
                 "Connecting potential Employers-Employees through Job Fairs and Exhibitions"
               }

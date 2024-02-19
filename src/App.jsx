@@ -11,6 +11,10 @@ import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import AfterFooter from "./components/AfterFooter";
 import { useState } from "react";
+import Contact from "./pages/Contact";
+import Pricing from "./pages/Pricing";
+import PrivacyPolicy from "./pages/PrivacyPolicy";
+import Interest from "./pages/Interest";
 
 function App() {
   const [showAfterFooter, setShowAfterFooter] = useState(false);
@@ -31,6 +35,10 @@ function App() {
             element={<LocalLoan setShowAfterFooter={setShowAfterFooter} />}
           />
           <Route path="/global-resolution" element={<RevolutionCommunity />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/pricing" element={<Pricing />} />
+          <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+          <Route path="/interest" element={<Interest />} />
         </Routes>
         <Footer />
         {showAfterFooter && <AfterFooter />}
