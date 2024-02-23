@@ -43,14 +43,14 @@ const Tabs = () => {
               <TabsInner
                 title={"Join Our Global Education Community"}
                 title2={"Join Our Local Education Community"}
-                price={"# 300,000"}
+                price={"₦ 300,000"}
                 include1={"Loan Processing"}
                 include2={"Admission Processing to the US or Canada"}
                 include3={"Visa Processing Support"}
                 include4={"Admission Processing"}
                 include5={"Loan and Non-Loan Finance Option Processing"}
                 include6={"Access to Global Undergraduate Community"}
-                price2={"# 280,000"}
+                price2={"₦ 280,000"}
               />
             </div>
           )}

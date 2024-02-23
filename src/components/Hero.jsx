@@ -5,6 +5,8 @@ import bulb from "../assets/bulb.png";
 import family from "../assets/family.png";
 import goals from "../assets/goals.png";
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
+// import ParticleBackground from "./ParticleBackground";
 
 const Hero = () => {
   const containerVariants = {
@@ -34,7 +36,7 @@ const Hero = () => {
         className="w-full lg:w-2/5 flex flex-col gap-6 sm:gap-10"
         variants={divOneVariants}
       >
-        <h2 className="font-semibold text-2xl sm:text-4xl">
+        <h2 className="font-semibold text-2xl sm:text-4xl whitespace-nowrap">
           <span className="text-[#db251A]">Welcome to </span>
           <span className="relative">
             <span className="text-[#1E4580]">Proconnect</span>
@@ -51,11 +53,11 @@ const Hero = () => {
           high-potential African Students/Candidates
         </p>
         <div className="flex gap-4">
-          <button className="w-1/2 rounded-lg h-14 hover:bg-transparent hover:text-[#db251A] border-2 hover:border-red-500 font-medium flex items-center justify-center bg-[#DB251A] text-white py-2 px-4 cursor-pointer">
-            Get Started
+          <button className="w-1/2 rounded-lg h-14 hover:bg-transparent hover:text-[#db251A] border-2 hover:border-red-500 font-medium flex items-center justify-center bg-[#DB251A] text-white py-2 px-4 transition-all">
+            <Link to="/">Get Started</Link>
           </button>
-          <button className="w-1/2 flex border-2 h-14 justify-center font-medium text-[#db251A] border-red-500 items-center rounded-lg px-4 py-2 cursor-pointer hover:bg-[#db251A] hover:text-white">
-            Contact Sales
+          <button className="w-1/2 flex border-2 h-14 justify-center font-medium text-[#db251A] border-red-500 items-center rounded-lg px-4 py-2 cursor-pointer hover:bg-[#db251A] hover:text-white transition-all">
+            <Link to="/">Contact Sales</Link>
           </button>
         </div>
       </motion.div>

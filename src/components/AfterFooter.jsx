@@ -3,7 +3,7 @@ import React from "react";
 const AfterFooter = () => {
   return (
     <div className="p-10 md:p-20 border-t border-black">
-      <p className="text leading-9 font-bold text-xl">
+      <p className="text leading-9 font-normal text-xl">
         <span className="text-[#DB251A]">
           PUBLIC STATEMENT ON COMMITMENT TO TRANSPARENCY AT ALL TIMES:
         </span>{" "}

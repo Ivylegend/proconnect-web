@@ -18,6 +18,7 @@ import Grade from "../assets/grade.png";
 import Guide from "../assets/guide.png";
 import MonthlyChat from "../assets/monthly-chat.png";
 import Power from "../assets/power.png";
+import aiLaptop from "../assets/laptop.png";
 
 const LocalLoan = ({ setShowAfterFooter }) => {
   useEffect(() => {
@@ -120,7 +121,7 @@ const LocalLoan = ({ setShowAfterFooter }) => {
           </span>
         </div>
         <div className="w-full lg:w-1/2 hidden sm:flex items-center justify-center lg:justify-normal lg:items-start">
-          <img src={Macbook} alt="" />
+          <img src={aiLaptop} alt="laptop-img" className="rotating-laptop" />
         </div>
       </div>
 
@@ -143,9 +144,12 @@ const LocalLoan = ({ setShowAfterFooter }) => {
       </div>
 
       <div>
-        <p className="text-2xl font-normal lg:w-1/2 mb-16">
-          Find the Value-Added Services we provide to Undergraduate Members in
-          our Global Undergraduate Community
+        <p className="text-2xl font-bold mb-16">
+          <span className="text-[#1E4580]">
+            Find the Value-Added Services we provide to{" "}
+            <br className="hidden lg:block" /> Undergraduate Members in our
+          </span>{" "}
+          <span className="text-[#db251A]">Global Undergraduate Community</span>
         </p>
         <div className="flex flex-col lg:flex-row justify-between gap-8 lg:gap-16">
           <div className="flex flex-col gap-8">

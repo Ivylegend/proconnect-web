@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Logo from "../assets/pcp-logo-1.png";
 import Buisness from "../assets/company.png";
@@ -82,6 +82,20 @@ const socialIcons = [
 ];
 
 const Footer = () => {
+  const [currentYear, setCurrentYear] = useState(new Date().getFullYear());
+
+  useEffect(() => {
+    const updateYear = () => {
+      setCurrentYear(new Date().getFullYear());
+    };
+
+    // Update the year every minute to account for midnight changes
+    const intervalId = setInterval(updateYear, 60000);
+
+    // Clean up the interval when the component is unmounted
+    return () => clearInterval(intervalId);
+  }, []);
+
   return (
     <div className="p-10 md:p-20 flex flex-col gap-20 md:gap-40">
       <div className="flex gap-4 md:gap-0 flex-col md:flex-row justify-between items-start">
@@ -90,7 +104,10 @@ const Footer = () => {
           <p className="text-left font-semibold">
             ProconnectPAY is an African Edu-FinTech Company that works with
             other financial institutions to drive adoption of Education-oriented
-            Loans ProconnectPAY is legally registered in Nigeria and the United
+            Loans.
+          </p>
+          <p className="text-left font-semibold">
+            ProconnectPAY is legally registered in Nigeria and the United
             States. RC Number in Nigeria is{" "}
             <span className="text-[#1E4580]">
               1884617 (Proconnect Tech Solutions Limited) ,
@@ -109,7 +126,7 @@ const Footer = () => {
             {buisnessLinks.map((footerLink, index) => {
               return (
                 <Link to={footerLink.url}>
-                  <li className="font-bold">{footerLink.name}</li>
+                  <li className="font-bold hover:text-[#db251A]">{footerLink.name}</li>
                 </Link>
               );
             })}
@@ -123,15 +140,18 @@ const Footer = () => {
             {locationLinks.map((locationLink, index) => {
               return (
                 <Link key={index} to={locationLink.url}>
-                  <li className="font-bold">{locationLink.name}</li>
+                  <li className="font-bold hover:text-[#db251A]">{locationLink.name}</li>
                 </Link>
               );
             })}
           </ul>
         </div>
       </div>
+
       <div className="flex flex-col items-center gap-4 md:gap-0 justify-center md:flex-row md:justify-between">
-        <p>@ 2024 Proconnectpay . All rights reserved</p>
+        <p className="text-[#0F172A] font-medium">
+          @ {currentYear} Proconnectpay . All rights reserved
+        </p>
         <div className="flex gap-5">
           {socialIcons.map((icon, index) => {
             return (

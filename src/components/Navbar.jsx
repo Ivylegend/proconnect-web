@@ -1,4 +1,4 @@
-import { NavLink } from "react-router-dom";
+import { Link, NavLink, useLocation } from "react-router-dom";
 import Logo from "../assets/nav-logo.png";
 import { BiMenu } from "react-icons/bi";
 import { useEffect, useState } from "react";
@@ -29,6 +29,7 @@ const navItems = [
 const Navbar = () => {
   const [toggle, setToggle] = useState(false);
   const [scrolling, setScrolling] = useState(false);
+  const location = useLocation();
 
   const handleMenu = () => {
     setToggle((prev) => !prev);
@@ -48,6 +49,10 @@ const Navbar = () => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
+
+  useEffect(() => {
+    window.scrollTo(0, 0); // Scroll to top whenever the route changes
+  }, [location.pathname]);
 
   return (
     <div
@@ -74,10 +79,10 @@ const Navbar = () => {
         </div>
       </div>
       <div className="flex items-center gap-8">
-        <button className="rounded-lg font-medium flex items-center gap-4 justify-center bg-[#DB251A] text-white py-3 px-6 cursor-pointer">
-          Get Started
+        <button className="rounded-lg font-medium flex items-center gap-4 justify-center bg-[#DB251A] text-white py-3 px-6 cursor-pointer hover:bg-white hover:text-[#db251A] hover:border-[#db251A] hover:border transition-colors">
+          <Link to="/">Get Started</Link>
         </button>
-        <BiMenu className="lg:hidden" onClick={handleMenu} />
+        <BiMenu className="lg:hidden cursor-pointer" onClick={handleMenu} />
       </div>
 
       {/* MOBILE NAVBAR */}

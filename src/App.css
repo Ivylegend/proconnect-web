@@ -22,8 +22,8 @@
   background-size: cover;
 }
 
-.background-image1{
-  background-image: url('./assets/Capa-1.png');
+.background-image1 {
+  background-image: url("./assets/Capa-1.png");
   position: absolute;
   top: 100px;
   left: -100px;
@@ -32,8 +32,8 @@
   background-repeat: no-repeat;
 }
 
-.background-image2{
-  background-image: url('./assets/Capa-2.png');
+.background-image2 {
+  background-image: url("./assets/Capa-2.png");
   position: absolute;
   top: 0;
   right: -350px;
@@ -109,13 +109,31 @@
   opacity: 0;
 }
 
+@keyframes rotateLeftRight {
+  0%,
+  100% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(-15deg);
+  }
+  50%,
+  75% {
+    transform: rotate(15deg);
+  }
+}
+
+.rotating-laptop {
+  animation: rotateLeftRight 6s linear infinite;
+  animation-delay: 3s; /* Delay after every full cycle */
+}
 
 @media screen and (max-width: 870px) {
   .men {
     margin: 2rem;
   }
 
-  .background-image2{
+  .background-image2 {
     right: 0;
   }
 }
