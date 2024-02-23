@@ -88,9 +88,11 @@ const Navbar = () => {
       {/* MOBILE NAVBAR */}
       {toggle && (
         <div
-          className={`mobile-nav ${
-            toggle ? "slide-in" : "slide-out"
-          } lg:hidden flex-col fixed top-0 left-0 p-12 z-10 h-[100vh] bg-white w-3/4 sm:w-1/2 gap-6 font-bold`}
+          className={`${
+            toggle
+              ? "mobile-nav slide-in w-3/4 sm:w-1/2 flex-col shadow-xl fixed top-0 left-0 p-12 z-10 h-[100vh] bg-white gap-6 "
+              : "slide-out"
+          } lg:hidden font-bold`}
         >
           {navItems.map((navItem) => {
             return (
