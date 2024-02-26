@@ -16,31 +16,34 @@ const SupportedSchools = () => {
       </span>
 
       {/* SELECT FIELD */}
-      <label htmlFor="" className="my-4">
-        Select your Preferred Category
-      </label>
-      <select
-        name=""
-        id=""
-        className="w-[340px] lg:w-[500px] border border-black gap-4 bg-white shadow-xl font-medium text-black p-4 rounded-xl"
-      >
-        <option value="" className="my-4 text-black font-medium">
-          Canadian Schools
-        </option>
-        <option value="" className="my-4 text-black font-medium">
-          US Schools
-        </option>
-        <option value="" className="my-4 text-black font-medium">
-          Nigerian Schools
-        </option>
-        <option value="" className="my-4 text-black font-medium">
-          Professional Bodies
-        </option>
-      </select>
-
-      <div>
-        
+      <div className="flex flex-col items-start">
+        <label
+          htmlFor=""
+          className="my-4 text-[#646464] font-medium text-lg text-left"
+        >
+          Select your Preferred Category
+        </label>
+        <select
+          name=""
+          id=""
+          className="w-[340px] lg:w-[500px] border border-black gap-4 bg-white shadow-xl font-medium text-black p-4 rounded-xl"
+        >
+          <option value="" className="my-4 text-black font-medium">
+            Canadian Schools
+          </option>
+          <option value="" className="my-4 text-black font-medium">
+            US Schools
+          </option>
+          <option value="" className="my-4 text-black font-medium">
+            Nigerian Schools
+          </option>
+          <option value="" className="my-4 text-black font-medium">
+            Professional Bodies
+          </option>
+        </select>
       </div>
+
+      <div></div>
     </div>
   );
 };

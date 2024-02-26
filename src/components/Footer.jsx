@@ -123,10 +123,12 @@ const Footer = () => {
             <img src={Buisness} alt="buisness" /> BUISNESS
           </p>
           <ul className="flex gap-5 flex-col">
-            {buisnessLinks.map((footerLink, index) => {
+            {buisnessLinks.map((footerLink) => {
               return (
-                <Link to={footerLink.url}>
-                  <li className="font-bold hover:text-[#db251A]">{footerLink.name}</li>
+                <Link to={footerLink.url} key={footerLink.url}>
+                  <li className="font-bold hover:text-[#db251A]">
+                    {footerLink.name}
+                  </li>
                 </Link>
               );
             })}
@@ -137,10 +139,12 @@ const Footer = () => {
             <img src={Location} alt="location" /> LOCATIONS
           </p>
           <ul className="flex gap-5 flex-col">
-            {locationLinks.map((locationLink, index) => {
+            {locationLinks.map((locationLink) => {
               return (
-                <Link key={index} to={locationLink.url}>
-                  <li className="font-bold hover:text-[#db251A]">{locationLink.name}</li>
+                <Link key={locationLink.name} to={locationLink.url}>
+                  <li className="font-bold hover:text-[#db251A]">
+                    {locationLink.name}
+                  </li>
                 </Link>
               );
             })}

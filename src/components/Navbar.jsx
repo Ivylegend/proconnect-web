@@ -1,7 +1,7 @@
 import { Link, NavLink, useLocation } from "react-router-dom";
 import Logo from "../assets/nav-logo.png";
 import { BiMenu } from "react-icons/bi";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 
 const navItems = [
   {
@@ -30,6 +30,24 @@ const Navbar = () => {
   const [toggle, setToggle] = useState(false);
   const [scrolling, setScrolling] = useState(false);
   const location = useLocation();
+  const navbarRef = React.createRef(null);
+
+  const handleClickOutside = (event) => {
+    if (navbarRef.current && !navbarRef.current.contains(event.target)) {
+      // Clicked outside the navbar, so close it
+      setToggle(false);
+    }
+  };
+
+  useEffect(() => {
+    // Attach the event listener when the component mounts
+    document.addEventListener("click", handleClickOutside);
+
+    // Clean up the event listener when the component unmounts
+    return () => {
+      document.removeEventListener("click", handleClickOutside);
+    };
+  }, []); // Empty dependency array ensures that the effect runs only once
 
   const handleMenu = () => {
     setToggle((prev) => !prev);
@@ -86,12 +104,16 @@ const Navbar = () => {
             Get Started
           </button>
         </Link>
-        <BiMenu className="lg:hidden cursor-pointer" onClick={handleMenu} />
+        <BiMenu
+          className="lg:hidden w-6 h-6 cursor-pointer"
+          onClick={handleMenu}
+        />
       </div>
 
       {/* MOBILE NAVBAR */}
       {toggle && (
         <div
+          ref={navbarRef}
           className={`${
             toggle
               ? "mobile-nav slide-in w-3/4 sm:w-1/2 flex-col shadow-xl fixed top-0 left-0 p-12 z-10 h-[100vh] bg-white gap-6 "
