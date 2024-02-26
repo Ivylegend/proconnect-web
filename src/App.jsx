@@ -15,6 +15,7 @@ import Contact from "./pages/Contact";
 import Pricing from "./pages/Pricing";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import Interest from "./pages/Interest";
+import SupportedSchools from "./pages/SupportedSchools";
 
 function App() {
   const [showAfterFooter, setShowAfterFooter] = useState(false);
@@ -39,6 +40,7 @@ function App() {
           <Route path="/pricing" element={<Pricing />} />
           <Route path="/privacy-policy" element={<PrivacyPolicy />} />
           <Route path="/interest" element={<Interest />} />
+          <Route path="/supported-schools" element={<SupportedSchools />} />
         </Routes>
         <Footer />
         {showAfterFooter && <AfterFooter />}

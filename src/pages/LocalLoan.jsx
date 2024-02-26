@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import Check from "../assets/check.png";
-import LayerDetails from "../assets/image 17.png";
+import LayerDetails from "../assets/local-loan.png";
 import line from "../assets/line.png";
 import people from "../assets/people.png";
 import Macbook from "../assets/Macbook.png";
@@ -38,7 +38,7 @@ const LocalLoan = ({ setShowAfterFooter }) => {
       </span>
 
       {/* FIRST */}
-      <div className="w-full my-16 bg-white flex gap-8 lg:gap-0 flex-col lg:flex-row rounded-3xl p-8">
+      <div className="w-full my-16 bg-white flex gap-8 lg:gap-8 flex-col lg:flex-row rounded-3xl p-8">
         <div className="w-full lg:w-1/2 flex flex-col gap-8 items-start">
           <img src={First} alt="" />
           <p className="font-bold text-2xl">LOAN PROCESSING LAYER DETAILS</p>
@@ -73,12 +73,12 @@ const LocalLoan = ({ setShowAfterFooter }) => {
           </span>
         </div>
         <div className="w-full lg:w-1/2 hidden sm:flex items-center justify-center lg:justify-normal lg:items-start">
-          <img src={LayerDetails} alt="" />
+          <img src={LayerDetails} alt="local-loan img" />
         </div>
       </div>
 
       {/* SECOND */}
-      <div className="w-full my-16 bg-white flex gap-8 lg:gap-0 flex-col lg:flex-row-reverse items-center rounded-3xl p-8">
+      <div className="w-full my-16 bg-white flex gap-8 lg:gap-8 flex-col lg:flex-row-reverse items-center rounded-3xl p-8">
         <div className="w-full lg:w-1/2 flex flex-col gap-8 items-start">
           <img src={Book} alt="" />
           <p className="font-bold text-2xl">
@@ -126,7 +126,7 @@ const LocalLoan = ({ setShowAfterFooter }) => {
       </div>
 
       {/* THIRD */}
-      <div className="w-full my-16 bg-white flex gap-8 lg:gap-0 flex-col lg:flex-row rounded-3xl p-8">
+      <div className="w-full my-16 bg-white flex gap-8 lg:gap-8 flex-col lg:flex-row rounded-3xl p-8">
         <div className="w-full lg:w-1/2 flex flex-col gap-8 items-start">
           <img src={Law} alt="" />
           <p className="font-bold text-2xl">GLOBAL UNDERGRADUATE COMMUNITY</p>

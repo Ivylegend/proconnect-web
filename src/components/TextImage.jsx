@@ -40,7 +40,7 @@ const TextImage = ({ picture, title, header, text, classdyn, showButton }) => {
         <p className="font-bold text-xl">{header}</p>
         <h2 className="text-4xl font-bold leading-normal">{title}</h2>
         <p className="text-xl">{text}</p>
-        {showButton && <Button btnText={"Get Started"} />}
+        {showButton && <Button btnText={"Get Started"} linkTo={"/interest"} />}
       </div>
       {/* DIV TWO */}
       <div className="w-full flex items-center justify-center lg:w-1/2">

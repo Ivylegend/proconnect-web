@@ -27,7 +27,7 @@ const AfterFooter = () => {
         we do not lie, fabricate, or falsify information to mislead our
         candidates and prospective customers. This statement is a commitment to
         our timeless value of integrity and forthrightness. Kindly note that we
-        have a STRICT NO-REFUND POLICY in ProconnectPAY.
+        have a <span className="font-bold">STRICT NO-REFUND POLICY in ProconnectPAY.</span> 
       </p>
     </div>
   );

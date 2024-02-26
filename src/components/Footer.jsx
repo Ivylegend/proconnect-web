@@ -13,10 +13,10 @@ import SocialIcons6 from "../assets/Social icons6.png";
 const buisnessLinks = [
   {
     url: "/pricing",
-    name: "Pricing",
+    name: "Service Fee Pricing",
   },
   {
-    url: "",
+    url: "/supported-schools",
     name: "List of Supported Schools",
   },
   {
@@ -74,10 +74,10 @@ const locationLinks = [
 
 const socialIcons = [
   { name: SocialIcons1, url: "" },
-  { name: SocialIcons2, url: "" },
-  { name: SocialIcons3, url: "" },
+  // { name: SocialIcons2, url: "" },
+  { name: SocialIcons3, url: "https://twitter.com/ProconnectPAY" },
   { name: SocialIcons4, url: "" },
-  { name: SocialIcons5, url: "" },
+  { name: SocialIcons5, url: "https://ng.linkedin.com/company/proconnectpay" },
   { name: SocialIcons6, url: "" },
 ];
 
@@ -155,7 +155,7 @@ const Footer = () => {
         <div className="flex gap-5">
           {socialIcons.map((icon, index) => {
             return (
-              <Link key={index} to={icon.url}>
+              <Link key={index} to={icon.url} target="_blank">
                 <img src={icon.name} alt="icon" />
               </Link>
             );

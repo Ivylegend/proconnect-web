@@ -61,7 +61,9 @@ const Navbar = () => {
       }`}
     >
       <div className="flex items-center gap-12">
-        <img src={Logo} alt="" />
+        <Link to="/">
+          <img src={Logo} alt="logo" />
+        </Link>
         <div className="hidden lg:flex gap-6 font-bold">
           {navItems.map((navItem) => {
             return (
@@ -79,9 +81,11 @@ const Navbar = () => {
         </div>
       </div>
       <div className="flex items-center gap-8">
-        <button className="rounded-lg font-medium flex items-center gap-4 justify-center bg-[#DB251A] text-white py-3 px-6 cursor-pointer hover:bg-white hover:text-[#db251A] hover:border-[#db251A] hover:border transition-colors">
-          <Link to="/">Get Started</Link>
-        </button>
+        <Link to="/interest">
+          <button className="rounded-lg font-medium flex items-center gap-4 justify-center bg-[#DB251A] text-white py-3 px-6 cursor-pointer hover:bg-white hover:text-[#db251A] hover:border-[#db251A] hover:border transition-colors">
+            Get Started
+          </button>
+        </Link>
         <BiMenu className="lg:hidden cursor-pointer" onClick={handleMenu} />
       </div>
 

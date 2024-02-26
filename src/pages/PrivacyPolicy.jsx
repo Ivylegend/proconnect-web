@@ -7,7 +7,7 @@ const PrivacyPolicy = () => {
       <div className="w-full lg:w-[70%] mx-auto px-10 md:p-0">
         <p className="text-center text-[32px] font-bold leading-normal">
           <span className="text-[#1E4580]">Proconnect</span>
-          <span className="text-[#DB251A]">Pay</span>{" "}
+          <span className="text-[#DB251A]">PAY</span>{" "}
           <span className="text-[#323232]">Privacy Policy</span>
         </p>
         <p className="leading-normal font-bold text-center my-6">

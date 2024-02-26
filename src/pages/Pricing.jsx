@@ -58,12 +58,18 @@ const Pricing = () => {
     <div className="px-10 lg:px-20 lg:py-10 flex flex-col items-center justify-center">
       <span className="relative my-12">
         <p className="font-bold text-center text-3xl text-[#323232]">
-          Membership Pricing in Other International Currencies
+          Service Fee Pricing in{" "}
+          <span className="text-[#DB251A]">Other International Currencies</span>
         </p>
-        <img src={blueLine} alt="line" className="hidden sm:flex absolute right-0 top-10" />
+        <img
+          src={blueLine}
+          alt="line"
+          className="hidden sm:flex absolute right-0 top-10"
+        />
       </span>
-      <div>
-        <table className="w-full border border-[#1E4580] rounded-2xl overflow-hidden">
+
+      <div className="border-2 border-[#1E4580] rounded-2xl">
+        <table className="w-full lg:w-[800px] border border-[#1E4580] rounded-2xl overflow-hidden">
           {/* TABLE HEAD */}
           <thead className="bg-[#1E4580]">
             <tr className="">

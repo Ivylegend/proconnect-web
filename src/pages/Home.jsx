@@ -95,7 +95,7 @@ const Home = () => {
             We foster personal and professional learning and development to
             enable our community access to great opportunities post-graduation.
           </p>
-          <Button btnText={"Join Community"} />
+          <Button btnText={"Join Community"} linkTo={"/global-resolution"} />
         </div>
       </div>
     </div>

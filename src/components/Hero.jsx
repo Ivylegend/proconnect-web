@@ -40,7 +40,7 @@ const Hero = () => {
           <span className="text-[#db251A]">Welcome to </span>
           <span className="relative">
             <span className="text-[#1E4580]">Proconnect</span>
-            <span className="text-[#db251A]">Pay</span>
+            <span className="text-[#db251A]">PAY</span>
             <img src={Line} alt="" className="absolute right-0" />
           </span>
         </h2>
@@ -54,10 +54,10 @@ const Hero = () => {
         </p>
         <div className="flex gap-4">
           <button className="w-1/2 rounded-lg h-14 hover:bg-transparent hover:text-[#db251A] border-2 hover:border-red-500 font-medium flex items-center justify-center bg-[#DB251A] text-white py-2 px-4 transition-all">
-            <Link to="/">Get Started</Link>
+            <Link to="/interest">Get Started</Link>
           </button>
           <button className="w-1/2 flex border-2 h-14 justify-center font-medium text-[#db251A] border-red-500 items-center rounded-lg px-4 py-2 cursor-pointer hover:bg-[#db251A] hover:text-white transition-all">
-            <Link to="/">Contact Sales</Link>
+            <Link to="/contact">Contact Sales</Link>
           </button>
         </div>
       </motion.div>
