@@ -100,16 +100,16 @@
 }
 
 .slide-in {
-  -webkit-animation: slide-in 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
-  animation: slide-in 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+  -webkit-animation: slide-in 0.5s ease-in-out;
+  animation: slide-in 0.5s ease-in-out;
   max-height: 100vh;
   opacity: 1;
 }
 
 @-webkit-keyframes slide-in {
   0% {
-    -webkit-transform: translateX(-25%);
-    transform: translateX(-25%);
+    -webkit-transform: translateX(-100%);
+    transform: translateX(-100%);
   }
   100% {
     -webkit-transform: translateX(0);
@@ -119,8 +119,8 @@
 
 @keyframes slide-in {
   0% {
-    -webkit-transform: translateX(-25%);
-    transform: translateX(-25%);
+    -webkit-transform: translateX(-100%);
+    transform: translateX(-100%);
   }
   100% {
     -webkit-transform: translateX(0);
@@ -129,16 +129,16 @@
 }
 
 .slide-out {
-  -webkit-animation: slide-out 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
-  animation: slide-out 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
-  max-height: 0;
-  opacity: 0;
+  -webkit-animation: slide-out 0.5s ease-in-out;
+  animation: slide-out 0.5s ease-in-out;
+  max-height: 100vh;
+  opacity: 1;
 }
 
 @-webkit-keyframes slide-out {
   0% {
-    -webkit-transform: translateX(0);
-    transform: translateX(0);
+    -webkit-transform: translateX(0%);
+    transform: translateX(0%);
   }
   100% {
     -webkit-transform: translateX(-100%);
@@ -148,8 +148,8 @@
 
 @keyframes slide-out {
   0% {
-    -webkit-transform: translateX(0);
-    transform: translateX(0);
+    -webkit-transform: translateX(0%);
+    transform: translateX(0%);
   }
   100% {
     -webkit-transform: translateX(-100%);

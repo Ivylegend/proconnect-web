@@ -29,16 +29,16 @@ const LocalLoan = ({ setShowAfterFooter }) => {
     return () => setShowAfterFooter(false);
   }, []);
   return (
-    <div className="p-10 md:px-20 md:py-10 bg-[#F4F4F4]">
-      <span className="relative">
+    <div className="md:px-20 md:py-10 bg-[#F4F4F4]">
+      <span className="p-10 relative md:p-0">
         <h2 className="text-center font-bold text-4xl lg:mb-8">
           There are 3 layers to our Local Undergraduate Loan Services
         </h2>
-        <img className="absolute md:right-20 lg:top-10" src={line} alt="" />
+        <img className="absolute md:right-20 lg:top-10" src={line} alt="line" />
       </span>
 
       {/* FIRST */}
-      <div className="w-full my-16 bg-white flex gap-8 lg:gap-8 flex-col lg:flex-row rounded-3xl p-8">
+      <div className="w-full my-16 bg-white flex gap-8 lg:gap-8 flex-col lg:flex-row md:rounded-3xl p-8">
         <div className="w-full lg:w-1/2 flex flex-col gap-8 items-start">
           <img src={First} alt="" />
           <p className="font-bold text-2xl">LOAN PROCESSING LAYER DETAILS</p>
@@ -78,7 +78,7 @@ const LocalLoan = ({ setShowAfterFooter }) => {
       </div>
 
       {/* SECOND */}
-      <div className="w-full my-16 bg-white flex gap-8 lg:gap-8 flex-col lg:flex-row-reverse items-center rounded-3xl p-8">
+      <div className="w-full my-16 bg-white flex gap-8 lg:gap-8 flex-col lg:flex-row-reverse items-center md:rounded-3xl p-8">
         <div className="w-full lg:w-1/2 flex flex-col gap-8 items-start">
           <span className="flex flex-end justify-end w-full">
             <img src={Book} alt="" className="flex-end" />
@@ -128,7 +128,7 @@ const LocalLoan = ({ setShowAfterFooter }) => {
       </div>
 
       {/* THIRD */}
-      <div className="w-full my-16 bg-white flex gap-8 lg:gap-8 flex-col lg:flex-row rounded-3xl p-8">
+      <div className="w-full my-16 bg-white flex gap-8 lg:gap-8 flex-col lg:flex-row md:rounded-3xl p-8">
         <div className="w-full lg:w-1/2 flex flex-col gap-8 items-start">
           <img src={Law} alt="" />
           <p className="font-bold text-2xl">GLOBAL UNDERGRADUATE COMMUNITY</p>
@@ -145,7 +145,7 @@ const LocalLoan = ({ setShowAfterFooter }) => {
         </div>
       </div>
 
-      <div>
+      <div className="p-10">
         <p className="text-2xl font-bold mb-16">
           <span className="text-[#1E4580]">
             Find the Value-Added Services we provide to{" "}

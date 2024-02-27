@@ -9,7 +9,6 @@ import Law from "../assets/Frame 53023 (2).png";
 import First from "../assets/Frame 53023.png";
 import Macbook from "../assets/Macbook.png";
 
-
 const GlobalLoan = ({ setShowAfterFooter }) => {
   useEffect(() => {
     // Set the state to show AfterFooter when the component mounts
@@ -20,16 +19,16 @@ const GlobalLoan = ({ setShowAfterFooter }) => {
   }, []);
 
   return (
-    <div className="p-10 md:px-20 md:py-10 bg-[#F4F4F4]">
-      <span className="relative mb-16">
+    <div className="py-10 md:px-20 bg-[#F4F4F4]">
+      <span className="p-10 my-8 relative md:p-0">
         <h2 className="text-center font-bold text-4xl">
           There are 3 layers to our Global Education Loan Services
         </h2>
-        <img className="absolute md:right-20 lg:top-10" src={line} alt="" />
+        <img className="absolute md:right-20 lg:top-10" src={line} alt="line" />
       </span>
 
       {/* FIRST */}
-      <div className="w-full my-16 bg-white flex gap-8 lg:gap-8 flex-col lg:flex-row rounded-3xl p-8">
+      <div className="w-full my-16 bg-white flex gap-8 lg:gap-8 flex-col lg:flex-row md:rounded-3xl p-8">
         <div className="w-full lg:w-1/2 flex flex-col gap-8 items-start">
           <img src={First} alt="" />
           <p className="font-bold text-2xl">LOAN PROCESSING LAYER DETAILS</p>
@@ -66,7 +65,7 @@ const GlobalLoan = ({ setShowAfterFooter }) => {
       </div>
 
       {/* SECOND */}
-      <div className="w-full my-16 bg-white flex gap-8 lg:gap-8 flex-col rounded-3xl lg:flex-row-reverse md:items-center p-8">
+      <div className="w-full my-16 bg-white flex gap-8 lg:gap-8 flex-col lg:flex-row-reverse items-center md:rounded-3xl p-8">
         <div className="w-full lg:w-1/2 flex flex-col gap-8 items-start">
           <img src={Book} alt="icon" />
           <p className="font-bold text-2xl">
@@ -115,7 +114,7 @@ const GlobalLoan = ({ setShowAfterFooter }) => {
       </div>
 
       {/* THIRD */}
-      <div className="w-full my-16 bg-white flex gap-8 lg:gap-8 flex-col lg:flex-row rounded-3xl p-8">
+      <div className="w-full my-16 bg-white flex gap-8 lg:gap-8 flex-col lg:flex-row md:rounded-3xl p-8">
         <div className="w-full lg:w-1/2 flex flex-col gap-8 items-start">
           <img src={Law} alt="" />
           <p className="font-bold text-2xl">VISA PROCESSING LAYER DETAILS</p>
