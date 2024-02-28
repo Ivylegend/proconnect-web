@@ -1,12 +1,14 @@
+import React from "react";
+import Hero from "../components/Hero";
+import Partners from "../components/Partners";
 import TextImage from "../components/TextImage";
+import Button from "../components/small-components/Button";
+
 import Macbook from "../assets/Macbook.png";
 import aiLaptop from "../assets/laptop.png";
 import people from "../assets/people.png";
 import Frame1 from "../assets/Frame 473.png";
 import Frame2 from "../assets/Frame 475.png";
-import Button from "../components/small-components/Button";
-import Hero from "../components/Hero";
-import Partners from "../components/Partners";
 import globe from "../assets/globe.png";
 import education from "../assets/education.png";
 
@@ -28,7 +30,11 @@ const Home = () => {
       <TextImage
         picture={aiLaptop}
         header={"PRODUCT"}
-        title={"Admission and Financing Processing AI"}
+        title={
+          <span>
+            Admission and Financing <br /> Processing AI
+          </span>
+        }
         text={
           "With our AI Admission and Financing Assistant, we match African Students to highly rated private universities to study commercially relevant courses across the African Continent"
         }

@@ -30,29 +30,29 @@ const GlobalLoan = ({ setShowAfterFooter }) => {
       {/* FIRST */}
       <div className="w-full my-16 bg-white flex gap-8 lg:gap-8 flex-col lg:flex-row md:rounded-3xl p-8">
         <div className="w-full lg:w-1/2 flex flex-col gap-8 items-start">
-          <img src={First} alt="" />
+          <img src={First} alt="icon" />
           <p className="font-bold text-2xl">LOAN PROCESSING LAYER DETAILS</p>
           <span className="flex items-center gap-4">
-            <img src={Check} alt="" />
+            <img src={Check} alt="check icon" />
             <p>We provide 100k USD in International Student Loans</p>
           </span>
           <span className="flex items-center gap-4">
-            <img src={Check} alt="" />
+            <img src={Check} alt="check icon" />
             <p>Interest Rate is between 12.74% - 15.99% per Annum</p>
           </span>
           <span className="flex items-center gap-4">
-            <img src={Check} alt="" />
+            <img src={Check} alt="check icon" />
             <p>Loan can be repaid in Ten (10) Years (Optional)</p>
           </span>
           <span className="flex items-center gap-4">
-            <img src={Check} alt="" />
+            <img src={Check} alt="check icon" />
             <p>
               Loan pays for your Tuition, Cost of Living, Health Insurance, and
               Reimbursable Flight Ticket
             </p>
           </span>
           <span className="flex items-center gap-4">
-            <img src={Check} alt="" />
+            <img src={Check} alt="check icon" />
             <p>
               You do not need a Collateral or Guarantor to become ELIGIBLE for
               our Financing
@@ -60,7 +60,7 @@ const GlobalLoan = ({ setShowAfterFooter }) => {
           </span>
         </div>
         <div className="w-full lg:w-1/2 hidden sm:flex items-center justify-center lg:justify-normal lg:items-start">
-          <img src={LayerDetails} alt="" />
+          <img src={LayerDetails} alt="layer-img" />
         </div>
       </div>
 
@@ -72,28 +72,28 @@ const GlobalLoan = ({ setShowAfterFooter }) => {
             ADMISSION PROCESSING LAYER DETAILS
           </p>
           <span className="flex items-center gap-4">
-            <img src={Check} alt="" />
+            <img src={Check} alt="check icon" />
             <p>
               We get to recommend 2 schools to you based on your preference of
               Country
             </p>
           </span>
           <span className="flex items-center gap-4">
-            <img src={Check} alt="" />
+            <img src={Check} alt="check icon" />
             <p>
               We get to recommend courses through our Academic Counselling
               Session
             </p>
           </span>
           <span className="flex items-center gap-4">
-            <img src={Check} alt="" />
+            <img src={Check} alt="check icon" />
             <p>
               Our Human Intelligence Team and Software get to process your
               Admission by submitting your school application
             </p>
           </span>
           <span className="flex items-center gap-4">
-            <img src={Check} alt="" />
+            <img src={Check} alt="check icon" />
             <p>
               Our personalized A.I Human Intelligence Software guides you on
               Refining your Resume and Crafting your Statement of Purpose in
@@ -101,7 +101,7 @@ const GlobalLoan = ({ setShowAfterFooter }) => {
             </p>
           </span>
           <span className="flex items-center gap-4">
-            <img src={Check} alt="" />
+            <img src={Check} alt="check icon" />
             <p>
               Our Global Human Intelligence Portal processes your ADMISSION to
               your preferred country and recommended SCHOOL
@@ -116,33 +116,33 @@ const GlobalLoan = ({ setShowAfterFooter }) => {
       {/* THIRD */}
       <div className="w-full my-16 bg-white flex gap-8 lg:gap-8 flex-col lg:flex-row md:rounded-3xl p-8">
         <div className="w-full lg:w-1/2 flex flex-col gap-8 items-start">
-          <img src={Law} alt="" />
+          <img src={Law} alt="icon" />
           <p className="font-bold text-2xl">VISA PROCESSING LAYER DETAILS</p>
           <span className="flex items-center gap-4">
-            <img src={Check} alt="" />
+            <img src={Check} alt="check icon" />
             <p>We run mock sessions with our Visa Team</p>
           </span>
           <span className="flex items-center gap-4">
-            <img src={Check} alt="" />
+            <img src={Check} alt="check icon" />
             <p>
               Successful candidates are invited to share their success stories
             </p>
           </span>
           <span className="flex items-center gap-4">
-            <img src={Check} alt="" />
+            <img src={Check} alt="check icon" />
             <p>
               We host one-on-one sessions to guide you on your Visa Application
             </p>
           </span>
           <span className="flex items-center gap-4">
-            <img src={Check} alt="" />
+            <img src={Check} alt="check icon" />
             <p>
               We provide materials and templates that have guided successful
               candidates
             </p>
           </span>
           <span className="flex items-center gap-4">
-            <img src={Check} alt="" />
+            <img src={Check} alt="check icon" />
             <p>
               We endorse candidates as high-potential candidates having gone
               through our Global Mentoring Program
@@ -150,7 +150,7 @@ const GlobalLoan = ({ setShowAfterFooter }) => {
           </span>
         </div>
         <div className="w-full lg:w-1/2 hidden sm:flex items-center justify-center lg:justify-normal lg:items-start">
-          <img src={Visa} alt="" />
+          <img src={Visa} alt="visa card" />
         </div>
       </div>
     </div>

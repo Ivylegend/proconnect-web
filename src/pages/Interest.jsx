@@ -109,7 +109,11 @@ const Interest = () => {
         </form>
       </div>
       <div className="hidden lg:flex lg:w-1/2">
-        <img className="h-full object-cover" src={InterestImg} alt="" />
+        <img
+          className="h-full object-cover"
+          src={InterestImg}
+          alt="interest image"
+        />
       </div>
     </div>
   );

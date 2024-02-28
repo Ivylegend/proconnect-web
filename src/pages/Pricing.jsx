@@ -94,13 +94,13 @@ const Pricing = () => {
           <tbody className="border border-[#1E4580]">
             {TABLE_BODY.map((body, index) => (
               <tr key={index}>
-                <td className="flex p-4 pr-8 md:pr-24 gap-2 items-center text-left">
+                <td className="flex my-4 md:my-0 p-4 pr-8 md:pr-24 gap-2 items-center text-left">
                   <img src={body.flag} alt={body.flag} />
                   <p className="font-bold text-xl text-[#1E4580]">
                     {body.country}
                   </p>
                 </td>
-                <td className="text-left bg-[#D8D8D8] border-l border-[#1E4580] px-4 font-bold text-xl text-[#1E4580]">
+                <td className="text-left my-4 md:my-0 bg-[#D8D8D8] border-l border-[#1E4580] px-4 font-bold text-xl text-[#1E4580]">
                   {body.amount}
                 </td>
               </tr>

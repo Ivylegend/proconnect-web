@@ -7,7 +7,7 @@ const Button = ({ btnText, linkTo }) => {
     <Link to={linkTo}>
       <button className="rounded-lg font-medium flex items-center gap-4 justify-center bg-[#DB251A] text-white py-2 px-3 cursor-pointer">
         {btnText}
-        <img src={ArrowRight} alt="" />
+        <img src={ArrowRight} alt="arrow-right" />
       </button>
     </Link>
   );

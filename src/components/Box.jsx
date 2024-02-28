@@ -5,7 +5,7 @@ const Box = ({icon, title, text}) => {
   return (
     <div className="flex items-center md:h-28 gap-4 rounded-lg p-4 bg-white">
       <div className="min-w-[50px] object-cover min-h-[50px] rounded-full">
-        <img src={icon} alt="" className="w-full h-full object-cover" />
+        <img src={icon} alt={icon} className="w-full h-full object-cover" />
       </div>
       <div>
         <p className="font-semibold">{title}</p>

@@ -41,7 +41,7 @@ const Hero = () => {
           <span className="relative">
             <span className="text-[#1E4580]">Proconnect</span>
             <span className="text-[#db251A]">PAY</span>
-            <img src={Line} alt="" className="absolute right-0" />
+            <img src={Line} alt="line" className="absolute right-0" />
           </span>
         </h2>
         <h1 className="font-bold text-[42px] sm:text-[56px] leading-tight">
@@ -70,24 +70,24 @@ const Hero = () => {
         <div className="flex gap-18">
           <img
             src={Girl}
-            alt=""
+            alt="girl"
             className="flex relative top-20 left-10 object-contain"
           />
           <img
             src={bulb}
-            alt=""
+            alt="bulb"
             className="flex object-contain relative top-0 right-[-100px]"
           />
         </div>
         <div className="flex gap-18">
           <img
             src={family}
-            alt=""
+            alt="family"
             className="flex object-contain relative top-20 left-[-80px]"
           />
           <img
             src={goals}
-            alt=""
+            alt="goals"
             className="flex object-contain relative top-0 right-6"
           />
         </div>

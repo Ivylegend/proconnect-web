@@ -40,32 +40,32 @@ const LocalLoan = ({ setShowAfterFooter }) => {
       {/* FIRST */}
       <div className="w-full my-16 bg-white flex gap-8 lg:gap-8 flex-col lg:flex-row md:rounded-3xl p-8">
         <div className="w-full lg:w-1/2 flex flex-col gap-8 items-start">
-          <img src={First} alt="" />
+          <img src={First} alt="icon" />
           <p className="font-bold text-2xl">LOAN PROCESSING LAYER DETAILS</p>
           <span className="flex items-center gap-4">
-            <img src={Check} alt="" />
+            <img src={Check} alt="check image" />
             <p>Interest Rate is between 20% - 35% per Annum</p>
           </span>
           <span className="flex items-center gap-4">
-            <img src={Check} alt="" />
+            <img src={Check} alt="check image" />
             <p>Loan can be repaid in Ten (10) Years (Optional)</p>
           </span>
           <span className="flex items-center gap-4">
-            <img src={Check} alt="" />
+            <img src={Check} alt="check image" />
             <p>
               We provide 10 Million Naira in Private University Education
               Student Loans
             </p>
           </span>
           <span className="flex items-center gap-4">
-            <img src={Check} alt="" />
+            <img src={Check} alt="check image" />
             <p>
               You do not need a Collateral or Guarantor to become ELIGIBLE for
               our Financing
             </p>
           </span>
           <span className="flex items-center gap-4">
-            <img src={Check} alt="" />
+            <img src={Check} alt="check image" />
             <p>
               Loan pays for your Tuition, Cost of Living, HealthInsurance,
               Laptop, Phone, Internship, and Personal/Mental Development
@@ -81,41 +81,41 @@ const LocalLoan = ({ setShowAfterFooter }) => {
       <div className="w-full my-16 bg-white flex gap-8 lg:gap-8 flex-col lg:flex-row-reverse items-center md:rounded-3xl p-8">
         <div className="w-full lg:w-1/2 flex flex-col gap-8 items-start">
           <span className="flex flex-end justify-end w-full">
-            <img src={Book} alt="" className="flex-end" />
+            <img src={Book} alt="icon" className="flex-end" />
           </span>
           <p className="font-bold text-2xl">
             ADMISSION PROCESSING LAYER DETAILS
           </p>
           <span className="flex items-center gap-4">
-            <img src={Check} alt="" />
+            <img src={Check} alt="check image" />
             <p>
               We get to recommend courses through our AcademicCounselling
               Session
             </p>
           </span>
           <span className="flex items-center gap-4">
-            <img src={Check} alt="" />
+            <img src={Check} alt="check image" />
             <p>
               University Admission Letter and JAMB Admission Letteris issued
               through the eLDaNiC Portal
             </p>
           </span>
           <span className="flex items-center gap-4">
-            <img src={Check} alt="" />
+            <img src={Check} alt="check image" />
             <p>
               Simplified Admission Processing on the eLDaNiC portal that
               connects to all NUC Accredited Private Universities
             </p>
           </span>
           <span className="flex items-center gap-4">
-            <img src={Check} alt="" />
+            <img src={Check} alt="check image" />
             <p>
               You do not need a Collateral or Guarantor to become ELIGIBLE for
               our Financing
             </p>
           </span>
           <span className="flex items-center gap-4">
-            <img src={Check} alt="" />
+            <img src={Check} alt="check image" />
             <p>
               Loan pays for your Tuition, Cost of Living, HealthInsurance,
               Laptop, Phone, Internship, and Personal/Mental Development
@@ -123,14 +123,14 @@ const LocalLoan = ({ setShowAfterFooter }) => {
           </span>
         </div>
         <div className="w-full lg:w-1/2 hidden sm:flex items-center justify-center lg:justify-normal lg:items-start">
-          <img src={aiLaptop} alt="laptop-img" className="rotating-laptop" />
+          <img src={aiLaptop} alt="laptop image" className="rotating-laptop" />
         </div>
       </div>
 
       {/* THIRD */}
       <div className="w-full my-16 bg-white flex gap-8 lg:gap-8 flex-col lg:flex-row md:rounded-3xl p-8">
         <div className="w-full lg:w-1/2 flex flex-col gap-8 items-start">
-          <img src={Law} alt="" />
+          <img src={Law} alt="icon" />
           <p className="font-bold text-2xl">GLOBAL UNDERGRADUATE COMMUNITY</p>
           <p className="text-xl leading-8">
             What ProconnectPAY has created will allow Nigerian Students below 21
@@ -141,7 +141,7 @@ const LocalLoan = ({ setShowAfterFooter }) => {
           </p>
         </div>
         <div className="w-full lg:w-1/2 hidden sm:flex items-center justify-center lg:justify-normal lg:items-start">
-          <img src={people} alt="" />
+          <img src={people} alt="people" />
         </div>
       </div>
 

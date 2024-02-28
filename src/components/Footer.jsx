@@ -36,8 +36,8 @@ const buisnessLinks = [
     name: "Privacy Policy",
   },
   {
-    url: "",
-    name: "Terms and Condition",
+    url: "/global-loan#terms-conditions",
+    name: "Terms and Conditions",
   },
 ];
 
@@ -74,7 +74,6 @@ const locationLinks = [
 
 const socialIcons = [
   { name: SocialIcons1, url: "" },
-  // { name: SocialIcons2, url: "" },
   { name: SocialIcons3, url: "https://twitter.com/ProconnectPAY" },
   { name: SocialIcons4, url: "" },
   { name: SocialIcons5, url: "https://ng.linkedin.com/company/proconnectpay" },
@@ -89,10 +88,8 @@ const Footer = () => {
       setCurrentYear(new Date().getFullYear());
     };
 
-    // Update the year every minute to account for midnight changes
     const intervalId = setInterval(updateYear, 60000);
 
-    // Clean up the interval when the component is unmounted
     return () => clearInterval(intervalId);
   }, []);
 
@@ -100,7 +97,7 @@ const Footer = () => {
     <div className="p-10 md:p-20 flex flex-col gap-20 md:gap-40">
       <div className="flex gap-4 md:gap-0 flex-col md:flex-row justify-between items-start">
         <div className="flex w-full md:w-[30%] items-start justify-start flex-col gap-4">
-          <img src={Logo} alt="pcp-logo" />
+          <img src={Logo} alt="proconnect-logo" />
           <p className="text-left font-semibold">
             ProconnectPAY is an African Edu-FinTech Company that works with
             other financial institutions to drive adoption of Education-oriented
@@ -160,7 +157,7 @@ const Footer = () => {
           {socialIcons.map((icon, index) => {
             return (
               <Link key={index} to={icon.url} target="_blank">
-                <img src={icon.name} alt="icon" />
+                <img src={icon.name} alt={icon.name} />
               </Link>
             );
           })}

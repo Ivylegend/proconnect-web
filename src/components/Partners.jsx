@@ -31,14 +31,14 @@ const Partners = () => {
         <div className="carousel-container">
           <div className="carousel gap-16">
             {doublePartnerUnis.map((uni, index) => (
-              <img src={uni} alt="" key={index} />
+              <img src={uni} alt={uni} key={index} />
             ))}
           </div>
         </div>
         <div className="carousel-container gap-5">
           <div className="carousel gap-16 carousel-left">
             {doublePartnerUnis.map((uni, index) => (
-              <img src={uni} alt="" key={index} />
+              <img src={uni} alt={uni} key={index} />
             ))}
           </div>
         </div>

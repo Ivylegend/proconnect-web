@@ -32,7 +32,7 @@ const PrivacyPolicy = () => {
             not limited to:
           </p>
           <span className="flex items-center gap-2">
-            <img src={Check} alt="" />
+            <img src={Check} alt="check image" />
             <p className="font-normal text-sm text-[#323232]">
               Personal Information: Name, address, email address, phone number,
               Social Security Number, financial information, and other relevant
@@ -40,14 +40,14 @@ const PrivacyPolicy = () => {
             </p>
           </span>
           <span className="flex items-center gap-2">
-            <img src={Check} alt="" />
+            <img src={Check} alt="check image" />
             <p className="font-normal text-sm text-[#323232]">
               Educational Information: Academic records, enrollment status, and
               other information necessary for student financing services.
             </p>
           </span>
           <span className="flex items-center gap-2">
-            <img src={Check} alt="" />
+            <img src={Check} alt="check image" />
             <p className="font-normal text-sm text-[#323232]">
               Usage Information: Information about how you interact with our
               website, application, and services.
@@ -64,32 +64,32 @@ const PrivacyPolicy = () => {
             We use the information we collect for the following purposes:
           </p>
           <span className="flex items-center gap-2">
-            <img src={Check} alt="" />
+            <img src={Check} alt="check image" />
             <p className="font-normal text-sm text-[#323232]">
               To provide customer support and address inquiries.
             </p>
           </span>
           <span className="flex items-center gap-2">
-            <img src={Check} alt="" />
+            <img src={Check} alt="check image" />
             <p className="font-normal text-sm text-[#323232]">
               To communicate with you regarding your loan application and
               account.
             </p>
           </span>
           <span className="flex items-center gap-2">
-            <img src={Check} alt="" />
+            <img src={Check} alt="check image" />
             <p className="font-normal text-sm text-[#323232]">
               To provide customer support and address inquiries.
             </p>
           </span>
           <span className="flex items-center gap-2">
-            <img src={Check} alt="" />
+            <img src={Check} alt="check image" />
             <p className="font-normal text-sm text-[#323232]">
               To improve and personalize our services.{" "}
             </p>
           </span>
           <span className="flex items-center gap-2">
-            <img src={Check} alt="" />
+            <img src={Check} alt="check image" />
             <p className="font-normal text-sm text-[#323232]">
               To comply with legal and regulatory requirements.{" "}
             </p>
@@ -105,20 +105,20 @@ const PrivacyPolicy = () => {
             We may share your information with:
           </p>
           <span className="flex items-center gap-2">
-            <img src={Check} alt="" />
+            <img src={Check} alt="check image" />
             <p className="font-normal text-sm text-[#323232]">
               Financial institutions and service providers involved in the loan
               application and servicing process.
             </p>
           </span>
           <span className="flex items-center gap-2">
-            <img src={Check} alt="" />
+            <img src={Check} alt="check image" />
             <p className="font-normal text-sm text-[#323232]">
               Government authorities and regulatory bodies as required by law.
             </p>
           </span>
           <span className="flex items-center gap-2">
-            <img src={Check} alt="" />
+            <img src={Check} alt="check image" />
             <p className="font-normal text-sm text-[#323232]">
               Third-party service providers assisting us in operations,
               marketing, and analytics.
@@ -136,19 +136,19 @@ const PrivacyPolicy = () => {
             Choices! You have the right to:
           </p>
           <span className="flex items-center gap-2">
-            <img src={Check} alt="" />
+            <img src={Check} alt="check image" />
             <p className="font-normal text-sm text-[#323232]">
               Review and correct your personal information.
             </p>
           </span>
           <span className="flex items-center gap-2">
-            <img src={Check} alt="" />
+            <img src={Check} alt="check image" />
             <p className="font-normal text-sm text-[#323232]">
               Opt-out of promotional communications.
             </p>
           </span>
           <span className="flex items-center gap-2">
-            <img src={Check} alt="" />
+            <img src={Check} alt="check image" />
             <p className="font-normal text-sm text-[#323232]">
               Third-party service providers assisting us in operations,
               marketing, and analytics.
