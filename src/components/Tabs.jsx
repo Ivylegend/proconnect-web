@@ -51,6 +51,8 @@ const Tabs = () => {
                 include5={"Loan and Non-Loan Finance Option Processing"}
                 include6={"Access to Global Undergraduate Community"}
                 price2={"₦ 280,000"}
+                amount1={300000}
+                amount2={280000}
               />
             </div>
           )}
