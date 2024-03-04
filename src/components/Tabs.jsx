@@ -16,9 +16,9 @@ const Tabs = () => {
   const payWithPayStack = (amounts) => {
     const paystack = new PaystackPop();
     paystack.newTransaction({
-      key: "pk_test_8bf2b4700c3fcc36408da11bebbb7a1619c3f3ce",
+      key: "pk_test_4e91065eab545aef11ad2f25bb6637a2984023ea",
       amount: amounts * 100,
-      email: "admin@gmail.com",
+      email: "user@gmail.com",
       onSuccess(transaction) {
         handlePayment(formData);
         toast.success(`Payment successful ${transaction.reference}`);
