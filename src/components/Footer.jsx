@@ -43,31 +43,31 @@ const buisnessLinks = [
 
 const locationLinks = [
   {
-    url: "",
+    url: "/contact",
     name: "Global HQ US",
   },
   {
-    url: "",
+    url: "/contact",
     name: "Africa HQ Lagos",
   },
   {
-    url: "",
+    url: "/contact",
     name: "Accra Office",
   },
   {
-    url: "",
+    url: "/contact",
     name: "Kampala Office",
   },
   {
-    url: "",
+    url: "/contact",
     name: "Nairobi Office",
   },
   {
-    url: "",
+    url: "/contact",
     name: "Kigali Office",
   },
   {
-    url: "",
+    url: "/contact",
     name: "Toronto Office",
   },
 ];

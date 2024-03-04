@@ -1,12 +1,32 @@
 import { useState } from "react";
-import TabComponent from "./TabComponent";
-import TabsInner from "./TabsInner";
+import { toast } from "react-toastify";
+import PaystackPop from "@paystack/inline-js";
+import Check from "../assets/check.png";
+import CurveArrow from "../assets/curve-arrow.png";
 
 const Tabs = () => {
   const [activeTab, setActiveTab] = useState("tab1");
 
+  // const paystackApiKey = process.env.REACT_APP_PAYSTACK_API_KEY;
+
   const handleTabClick = (tab) => {
     setActiveTab(tab);
+  };
+
+  const payWithPayStack = (amounts) => {
+    const paystack = new PaystackPop();
+    paystack.newTransaction({
+      key: "pk_test_8bf2b4700c3fcc36408da11bebbb7a1619c3f3ce",
+      amount: amounts * 100,
+      email: "admin@gmail.com",
+      onSuccess(transaction) {
+        handlePayment(formData);
+        toast.success(`Payment successful ${transaction.reference}`);
+      },
+      onClose() {
+        toast.error("Payment canceled");
+      },
+    });
   };
 
   return (
@@ -39,21 +59,80 @@ const Tabs = () => {
           }`}
         >
           {activeTab === "tab1" && (
-            <div className="my-20">
-              <TabsInner
-                title={"Join Our Global Education Community"}
-                title2={"Join Our Local Education Community"}
-                price={"₦ 300,000"}
-                include1={"Loan Processing"}
-                include2={"Admission Processing to the US or Canada"}
-                include3={"Visa Processing Support"}
-                include4={"Admission Processing"}
-                include5={"Loan and Non-Loan Finance Option Processing"}
-                include6={"Access to Global Undergraduate Community"}
-                price2={"₦ 280,000"}
-                amount1={300000}
-                amount2={280000}
-              />
+            <div className="my-20 flex flex-col sm:flex-row gap-8 justify-center items-start">
+              {/* GLOBAL COMMUNITY */}
+              <div className="border-[#646464] border rounded-xl p-8 relative">
+                <p className="text-2xl font-bold">
+                  Join Our Global Education Community
+                </p>
+                <img
+                  src={CurveArrow}
+                  alt="curved arrow"
+                  className="absolute w-1/4 lg:w-1/3 right-6"
+                />
+                <p className="text-4xl font-bold my-10">₦ 300,000</p>
+                <p className="text-[#db251A] text-xl font-normal mb-5">
+                  What's Included
+                </p>
+                <div className="flex items-center gap-4 my-6">
+                  <img src={Check} alt="check image" />
+                  <p className="font-semibold">Loan Processing</p>
+                </div>
+                <div className="flex items-center gap-4 my-6">
+                  <img src={Check} alt="check image" />
+                  <p className="font-semibold">
+                    Admission Processing to the US or Canada
+                  </p>
+                </div>
+                <div className="flex items-center gap-4 my-6">
+                  <img src={Check} alt="check image" />
+                  <p className="font-semibold">Visa Processing Support</p>
+                </div>
+                <button
+                  onClick={() => payWithPayStack(300000)}
+                  className="w-full border h-14 font-bold mt-8 border-[#db251A] rounded-lg text-[#db251A] hover:bg-[#db251A] hover:text-white transition duration-300 ease-in-out flex items-center justify-center"
+                >
+                  Join Now
+                </button>
+              </div>
+
+              {/* LOCAL COMMUNITY */}
+              <div className="border-[#646464] border rounded-xl p-8 relative">
+                <p className="text-2xl font-bold">
+                  Join Our Local Education Community
+                </p>
+                <img
+                  src={CurveArrow}
+                  alt="curved arrow"
+                  className="absolute w-1/4 lg:w-1/3 right-6"
+                />
+                <p className="text-4xl font-bold my-10">₦ 280,000</p>
+                <p className="text-[#db251A] text-xl font-normal mb-5">
+                  What's Included
+                </p>
+                <div className="flex items-center gap-4 my-6">
+                  <img src={Check} alt="check image" />
+                  <p className="font-semibold">Admission Processing</p>
+                </div>
+                <div className="flex items-center gap-4 my-6">
+                  <img src={Check} alt="check image" />
+                  <p className="font-semibold">
+                    Loan and Non-Loan Finance Option Processing
+                  </p>
+                </div>
+                <div className="flex items-center gap-4 my-6">
+                  <img src={Check} alt="check image" />
+                  <p className="font-semibold">
+                    Access to Global Undergraduate Community
+                  </p>
+                </div>
+                <button
+                  onClick={() => payWithPayStack(280000)}
+                  className="w-full border h-14 font-bold mt-8 border-[#db251A] rounded-lg text-[#db251A] hover:bg-[#db251A] hover:text-white transition duration-300 ease-in-out flex items-center justify-center"
+                >
+                  Join Now
+                </button>
+              </div>
             </div>
           )}
         </div>
@@ -65,19 +144,75 @@ const Tabs = () => {
           }`}
         >
           {activeTab === "tab2" && (
-            <div className="my-20">
-              <TabsInner
-                title={"Join Our Global Education Community"}
-                title2={"Join Our Local Education Community"}
-                price={"$450usd"}
-                include1={"Loan Processing"}
-                include2={"Admission Processing to the US or Canada"}
-                include3={"Visa Processing Support"}
-                include4={"Admission Processing"}
-                include5={"Finance Option Processing"}
-                include6={"Global Undergraduate Community"}
-                price2={"$400usd"}
-              />
+            <div className="my-20 flex flex-col sm:flex-row gap-8 justify-center items-start">
+              {/* GLOBAL COMMUNITY */}
+              <div className="border-[#646464] border rounded-xl p-8 relative">
+                <p className="text-2xl font-bold">
+                  Join Our Global Education Community
+                </p>
+                <img
+                  src={CurveArrow}
+                  alt="curved arrow"
+                  className="absolute w-1/4 lg:w-1/3 right-6"
+                />
+                <p className="text-4xl font-bold my-10">$450usd</p>
+                <p className="text-[#db251A] text-xl font-normal mb-5">
+                  What's Included
+                </p>
+                <div className="flex items-center gap-4 my-6">
+                  <img src={Check} alt="check image" />
+                  <p className="font-semibold">Loan Processing</p>
+                </div>
+                <div className="flex items-center gap-4 my-6">
+                  <img src={Check} alt="check image" />
+                  <p className="font-semibold">
+                    Admission Processing to the US or Canada{" "}
+                  </p>
+                </div>
+                <div className="flex items-center gap-4 my-6">
+                  <img src={Check} alt="check image" />
+                  <p className="font-semibold">Visa Processing Support </p>
+                </div>
+                <a href="https://buy.stripe.com/test_cN27sWexSantg0g289">
+                  <button className="w-full border h-14 font-bold mt-8 border-[#db251A] rounded-lg text-[#db251A] hover:bg-[#db251A] hover:text-white transition duration-300 ease-in-out flex items-center justify-center">
+                    Join Now
+                  </button>
+                </a>
+              </div>
+              {/* LOCAL COMMUNITY */}
+              <div className="border-[#646464] border rounded-xl p-8 relative">
+                <p className="text-2xl font-bold">
+                  Join Our Local Education Community
+                </p>
+                <img
+                  src={CurveArrow}
+                  alt="curved arrow"
+                  className="absolute w-1/4 lg:w-1/3 right-6"
+                />
+                <p className="text-4xl font-bold my-10">$400usd</p>
+                <p className="text-[#db251A] text-xl font-normal mb-5">
+                  What's Included
+                </p>
+                <div className="flex items-center gap-4 my-6">
+                  <img src={Check} alt="check image" />
+                  <p className="font-semibold">Admission Processing</p>
+                </div>
+                <div className="flex items-center gap-4 my-6">
+                  <img src={Check} alt="check image" />
+                  <p className="font-semibold">Finance Option Processing</p>
+                </div>
+                <div className="flex items-center gap-4 my-6">
+                  <img src={Check} alt="check image" />
+                  <p className="font-semibold">
+                    Global Undergraduate Community
+                  </p>
+                </div>
+                <a href="https://buy.stripe.com/test_bIYfZsahC5394hy9AC">
+                  <button className="w-full border h-14 font-bold mt-8 border-[#db251A] rounded-lg text-[#db251A] hover:bg-[#db251A] hover:text-white transition duration-300 ease-in-out flex items-center justify-center">
+                    Join Now
+                  </button>
+                </a>
+              </div>
             </div>
           )}
         </div>
