@@ -173,7 +173,7 @@ const Tabs = () => {
                   <img src={Check} alt="check image" />
                   <p className="font-semibold">Visa Processing Support </p>
                 </div>
-                <a href="https://buy.stripe.com/test_cN27sWexSantg0g289">
+                <a href="https://buy.stripe.com/fZe9Cx9G30Z6fficMN">
                   <button className="w-full border h-14 font-bold mt-8 border-[#db251A] rounded-lg text-[#db251A] hover:bg-[#db251A] hover:text-white transition duration-300 ease-in-out flex items-center justify-center">
                     Join Now
                   </button>
@@ -207,7 +207,7 @@ const Tabs = () => {
                     Global Undergraduate Community
                   </p>
                 </div>
-                <a href="https://buy.stripe.com/test_bIYfZsahC5394hy9AC">
+                <a href="https://buy.stripe.com/dR6bKF5pN5fm3wA146">
                   <button className="w-full border h-14 font-bold mt-8 border-[#db251A] rounded-lg text-[#db251A] hover:bg-[#db251A] hover:text-white transition duration-300 ease-in-out flex items-center justify-center">
                     Join Now
                   </button>

@@ -51,14 +51,14 @@ const CorporateProfile = () => {
           <h2 className="text-4xl font-bold leading-normal">
             Company Description
           </h2>
-          <p className="text-xl leading-8">
+          <p className="text-xl leading-8 text-justify">
             <span className="text-[#1E4580] font-bold">Proconnect</span>
-            <span className="text-[#db251A] font-bold">PAY</span> is Africa’s First
-            EduFinTechCo. We are the Amazon of Education Financing in Africa.
-            ProconnectPAY works with Local and Global Financial Institutions to
-            provide Specialized and Affordable Financing Solutions focused on
-            Education. We work across the entire spectrum of the educational
-            value-chain LOCALLY, CONTINENTALLY AND GLOBALLY.
+            <span className="text-[#db251A] font-bold">PAY</span> is Africa’s
+            First EduFinTechCo. We are the Amazon of Education Financing in
+            Africa. ProconnectPAY works with Local and Global Financial
+            Institutions to provide Specialized and Affordable Financing
+            Solutions focused on Education. We work across the entire spectrum
+            of the educational value-chain LOCALLY, CONTINENTALLY AND GLOBALLY.
           </p>
         </motion.div>
         {/* TWO */}
@@ -90,7 +90,7 @@ const CorporateProfile = () => {
           <h2 className="text-4xl font-bold leading-normal">
             Mission Statement
           </h2>
-          <p className="text-xl leading-8">
+          <p className="text-xl leading-8 text-justify">
             We have a simple mission to democratize access to quality and
             valuable commercially relevant education for the African Continent
             BRIGHTEST HOPE
@@ -125,7 +125,7 @@ const CorporateProfile = () => {
           <h2 className="text-4xl font-bold leading-normal">
             Vision Statement
           </h2>
-          <p className="text-xl leading-8">
+          <p className="text-xl leading-8 text-justify">
             To be Africa’s Most Valuable Education Financing Partner that
             supports high-potential Candidates to access Local and Global
             Education Financing

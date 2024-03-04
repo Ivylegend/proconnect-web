@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import InterestImg from "../assets/interest-img.png";
+import ReusableModal from "../components/small-components/ReusableModal";
 
 const Interest = () => {
   const [fullName, setFullName] = useState("");
@@ -10,6 +11,7 @@ const Interest = () => {
   const [gender, setGender] = useState("");
   const [country, setCountry] = useState("");
   const [subscribe, setSubscribe] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   // State variables for form field validity
   const [fullNameValid, setFullNameValid] = useState(true);
@@ -23,6 +25,14 @@ const Interest = () => {
   const handleFormSubmit = (e) => {
     e.preventDefault();
 
+    validateFullName();
+    validateEnquiryFor();
+    validateProductInterested();
+    validateEmail();
+    validatePhoneNumber();
+    validateGender();
+    validateCountry();
+
     // Check form field validity before submitting
     if (
       fullNameValid &&
@@ -35,9 +45,14 @@ const Interest = () => {
     ) {
       // Submit the form
       console.log("Form submitted successfully");
+      setIsModalOpen(true);
     } else {
-      console.log("Form contains validation errors. Please fix them.");
+      alert("Form contains validation errors. Please fix them.");
     }
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
   };
 
   // Validation functions
@@ -64,7 +79,7 @@ const Interest = () => {
 
   const validatePhoneNumber = () => {
     // Implement your validation logic (basic phone number format check)
-    const phoneRegex = /^\d{10}$/;
+    const phoneRegex = /^\d+$/; // Allow one or more digits
     setPhoneNumberValid(phoneRegex.test(phoneNumber));
   };
 
@@ -77,14 +92,25 @@ const Interest = () => {
     // Implement your validation logic
     setCountryValid(country.trim() !== ""); // Example: Non-empty validation
   };
+
   return (
-    <div className="px-10 sm:px-20 lg:pl-20 py-10 flex gap-8">
+    <div className="px-10 relative sm:px-20 lg:pl-20 py-10 flex gap-8">
+      {/* Reusable modal */}
+      <div className="absolute mx-auto my-8 flex items-center z-40 justify-center w-full">
+        <ReusableModal
+          isOpen={isModalOpen}
+          onClose={closeModal}
+          message="Your Form has been successfully submitted!"
+        />
+      </div>
+
       <div className="w-full lg:w-1/2">
         <p className="font-bold text-xl text-center mb-12">
           REGISTRATION FORM FOR INTERESTED CUSTOMERS
         </p>
 
         <form onSubmit={handleFormSubmit}>
+          {/* FULL NAME */}
           <div className="mb-6 flex flex-col gap-3">
             <label htmlFor="fullName" className="text-[#646464] font-semibold">
               Full Name
@@ -100,72 +126,110 @@ const Interest = () => {
               }`}
             />
           </div>
+
+          {/* ENQUIRIES */}
           <div className="mb-6 flex flex-col gap-3">
             <label htmlFor="" className="text-[#646464] font-semibold">
               What are you making enquiries for
             </label>
             <input
               type="text"
-              className="w-full h-12 p-4 text-black rounded-lg border border-[##666666]"
-              name=""
-              id=""
+              id="enquires"
+              value={enquiryFor}
+              onChange={(e) => setEnquiryFor(e.target.value)}
+              onBlur={validateEnquiryFor}
+              className={`w-full h-12 p-4 text-black rounded-lg border ${
+                enquiryForValid ? "border-[#666666]" : "border-red-500"
+              }`}
             />
           </div>
+
+          {/* PRODUCT INTERESTED */}
           <div className="mb-6 flex flex-col gap-3">
             <label htmlFor="" className="text-[#646464] font-semibold">
               Product Interested In
             </label>
             <input
               type="text"
-              className="w-full h-12 p-4 text-black rounded-lg border border-[##666666]"
-              name=""
-              id=""
+              id="productInterested"
+              value={productInterested}
+              onChange={(e) => setProductInterested(e.target.value)}
+              onBlur={validateProductInterested}
+              className={`w-full h-12 p-4 text-black rounded-lg border ${
+                productInterestedValid ? "border-[#666666]" : "border-red-500"
+              }`}
             />
           </div>
+
+          {/* EMAIL ID */}
           <div className="mb-6 flex flex-col gap-3">
             <label htmlFor="" className="text-[#646464] font-semibold">
               Active Email ID
             </label>
             <input
-              type="text"
-              className="w-full h-12 p-4 text-black rounded-lg border border-[##666666]"
-              name=""
-              id=""
+              type="email"
+              id="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              onBlur={validateEmail}
+              className={`w-full h-12 p-4 text-black rounded-lg border ${
+                emailValid ? "border-[#666666]" : "border-red-500"
+              }`}
             />
           </div>
+
+          {/* PHONE NUMBER */}
           <div className="mb-6 flex flex-col gap-3">
             <label htmlFor="" className="text-[#646464] font-semibold">
               Active Phone Number
             </label>
             <input
               type="text"
-              className="w-full h-12 p-4 text-black rounded-lg border border-[##666666]"
-              name=""
-              id=""
+              id="phoneNumber"
+              value={phoneNumber}
+              onChange={(e) => setPhoneNumber(e.target.value)}
+              onBlur={validatePhoneNumber}
+              className={`w-full h-12 p-4 text-black rounded-lg border ${
+                phoneNumberValid ? "border-[#666666]" : "border-red-500"
+              }`}
             />
           </div>
+
+          {/* GENDER */}
           <div className="mb-6 flex flex-col gap-3">
             <label htmlFor="" className="text-[#646464] font-semibold">
               Gender
             </label>
             <input
               type="text"
-              className="w-full h-12 p-4 text-black rounded-lg border border-[##666666]"
-              name=""
-              id=""
+              id="gender"
+              value={gender}
+              onChange={(e) => setGender(e.target.value)}
+              onBlur={validateGender}
+              className={`w-full h-12 p-4 text-black rounded-lg border ${
+                genderValid ? "border-[#666666]" : "border-red-500"
+              }`}
             />
           </div>
+
+          {/* COUNTRY */}
           <div className="mb-8 flex flex-col gap-4">
             <label htmlFor="" className="text-[#646464] font-semibold">
               Country of Residence
             </label>
             <input
               type="text"
-              className="w-full h-12 p-4 text-black rounded-lg border border-[##666666]"
-              name=""
-              id=""
+              id="country"
+              value={country}
+              onChange={(e) => setCountry(e.target.value)}
+              onBlur={validateCountry}
+              className={`w-full h-12 p-4 text-black rounded-lg border ${
+                countryValid ? "border-[#666666]" : "border-red-500"
+              }`}
             />
           </div>
+
+          {/* SUBSCRIBE CHECKBOX */}
           <div className="flex items-center gap-2 my-4">
             <input
               type="checkbox"
@@ -178,10 +242,10 @@ const Interest = () => {
               services, and offers
             </p>
           </div>
-          <input type="submit" value="" />
+
+          {/* SUBMIT BUTTON */}
           <button
             type="submit"
-            // onClick={handleFormSubmit}
             className="bg-[#DB251A] font-medium text-white rounded-lg text-center w-full h-12"
           >
             Submit

@@ -1,5 +1,5 @@
 import { Link, NavLink, useLocation } from "react-router-dom";
-import Logo from "../assets/nav-logo.png";
+import Logo from "../assets/pcp-logo-1.png";
 import { BiMenu } from "react-icons/bi";
 import React, { useEffect, useState } from "react";
 
@@ -80,7 +80,7 @@ const Navbar = () => {
     >
       <div className="flex items-center gap-12">
         <Link to="/">
-          <img src={Logo} alt="logo" />
+          <img src={Logo} className="w-36 lg:w-44" alt="logo" />
         </Link>
         <div className="hidden lg:flex gap-6 font-bold">
           {navItems.map((navItem) => {

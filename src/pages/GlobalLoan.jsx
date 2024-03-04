@@ -8,6 +8,7 @@ import Book from "../assets/Frame 53023 (1).png";
 import Law from "../assets/Frame 53023 (2).png";
 import First from "../assets/Frame 53023.png";
 import Macbook from "../assets/Macbook.png";
+import { Link } from "react-router-dom";
 
 const GlobalLoan = ({ setShowAfterFooter }) => {
   useEffect(() => {
@@ -19,16 +20,20 @@ const GlobalLoan = ({ setShowAfterFooter }) => {
   }, []);
 
   return (
-    <div className="py-10 md:px-20 bg-[#F4F4F4]">
-      <span className="p-10 my-8 relative md:p-0">
-        <h2 className="text-center font-bold text-4xl">
+    <div className="py-4 sm:py-10 md:px-20 bg-[#F4F4F4]">
+      <span className="p-4 my-4 relative md:p-0">
+        <h2 className="text-center px-10 font-bold text-2xl sm:text-4xl">
           There are 3 layers to our Global Education Loan Services
         </h2>
-        <img className="absolute md:right-20 lg:top-10" src={line} alt="line" />
+        <img
+          className="absolute hidden sm:block md:right-20 lg:top-10"
+          src={line}
+          alt="line"
+        />
       </span>
 
       {/* FIRST */}
-      <div className="w-full my-16 bg-white flex gap-8 lg:gap-8 flex-col lg:flex-row md:rounded-3xl p-8">
+      <div className="w-full mt-4 mb-16 bg-white flex gap-8 lg:gap-8 flex-col lg:flex-row md:rounded-3xl p-8">
         <div className="w-full lg:w-1/2 flex flex-col gap-8 items-start">
           <img src={First} alt="icon" />
           <p className="font-bold text-2xl">LOAN PROCESSING LAYER DETAILS</p>
@@ -114,7 +119,7 @@ const GlobalLoan = ({ setShowAfterFooter }) => {
       </div>
 
       {/* THIRD */}
-      <div className="w-full my-16 bg-white flex gap-8 lg:gap-8 flex-col lg:flex-row md:rounded-3xl p-8">
+      <div className="w-full mt-16 my-8 bg-white flex gap-8 lg:gap-8 flex-col lg:flex-row md:rounded-3xl p-8">
         <div className="w-full lg:w-1/2 flex flex-col gap-8 items-start">
           <img src={Law} alt="icon" />
           <p className="font-bold text-2xl">VISA PROCESSING LAYER DETAILS</p>
@@ -153,6 +158,12 @@ const GlobalLoan = ({ setShowAfterFooter }) => {
           <img src={Visa} alt="visa card" />
         </div>
       </div>
+
+      <Link to="/interest" className="">
+        <button className="rounded-lg ml-8 mb-16 lg:m-0 font-medium flex items-center gap-4 justify-center bg-[#DB251A] text-white py-3 px-6 cursor-pointer hover:bg-white hover:text-[#db251A] hover:border-[#db251A] hover:border transition-colors">
+          Get Started
+        </button>
+      </Link>
     </div>
   );
 };

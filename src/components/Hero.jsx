@@ -1,7 +1,7 @@
 import React from "react";
 import Line from "../assets/line.png";
 import Girl from "../assets/girl.png";
-import bulb from "../assets/bulb.png";
+import bulb from "../assets/Ellipse.png";
 import family from "../assets/family.png";
 import goals from "../assets/goals.png";
 import { motion } from "framer-motion";
