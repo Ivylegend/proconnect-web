@@ -24,7 +24,7 @@ const LoanCalculator = () => {
             type="number"
             value={principal}
             onChange={(e) => setPrincipal(e.target.value)}
-            className="border p-3 text-black rounded-xl"
+            className="border w-[100px] sm:w-[200px] p-3 text-black rounded-xl"
           />
         </div>
         <div className="flex justify-between items-center gap-4">
@@ -35,7 +35,7 @@ const LoanCalculator = () => {
             type="text"
             placeholder="30%"
             disabled
-            className="border p-3 text-black rounded-xl"
+            className="border w-[100px] sm:w-[200px] p-3 text-black rounded-xl"
           />
         </div>
         <div className="flex justify-between items-center gap-4">
@@ -45,7 +45,7 @@ const LoanCalculator = () => {
           <input
             type="text"
             placeholder="12 MONTHS"
-            className="border p-3 text-black rounded-xl"
+            className="border w-[100px] sm:w-[200px] p-3 text-black rounded-xl"
             disabled
           />
         </div>
@@ -56,7 +56,7 @@ const LoanCalculator = () => {
           <input
             type="text"
             placeholder="60 MONTHS"
-            className="border p-3 text-black rounded-xl"
+            className="border w-[100px] sm:w-[200px] p-3 text-black rounded-xl"
             disabled
           />
         </div>
@@ -84,7 +84,7 @@ const LoanCalculator = () => {
             type="text"
             value={monthly}
             disabled
-            className="border p-3 text-black rounded-xl"
+            className="border w-[100px] sm:w-[200px] p-3 text-black rounded-xl"
           />
         </div>
         <div className="flex justify-between items-center gap-4">
@@ -95,7 +95,7 @@ const LoanCalculator = () => {
             type="text"
             value={monthly}
             disabled
-            className="border p-3 text-black rounded-xl"
+            className="border w-[100px] sm:w-[200px] p-3 text-black rounded-xl"
           />
         </div>
         <div className="flex justify-between items-center gap-4">
@@ -106,7 +106,7 @@ const LoanCalculator = () => {
             type="text"
             value={total}
             disabled
-            className="border p-3 text-black rounded-xl"
+            className="border w-[100px] sm:w-[200px] p-3 text-black rounded-xl"
           />
         </div>
         <div className="flex justify-between items-center gap-4">
@@ -118,7 +118,7 @@ const LoanCalculator = () => {
             placeholder=""
             value={result}
             disabled
-            className="border p-3 text-black rounded-xl"
+            className="border w-[100px] sm:w-[200px] p-3 text-black rounded-xl"
           />
         </div>
       </div>

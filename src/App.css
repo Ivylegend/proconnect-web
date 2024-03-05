@@ -200,9 +200,7 @@
 .calculator_div div input {
   border-radius: 12px;
   border: 1px solid rgba(102, 102, 102, 0.35);
-  padding: 10px;
   height: 56px;
-  width: 200px;
 }
 
 

@@ -129,7 +129,7 @@ const Home = () => {
                   type="number"
                   value={principal}
                   onChange={(e) => setPrincipal(e.target.value)}
-                  className="border p-3 text-black rounded-xl"
+                  className="border w-[100px] sm:w-[200px] p-3 text-black rounded-xl"
                 />
               </div>
               <div className="flex justify-between items-center gap-4">
@@ -140,7 +140,7 @@ const Home = () => {
                   type="text"
                   placeholder="30%"
                   disabled
-                  className="border p-3 text-black rounded-xl"
+                  className="border w-[100px] sm:w-[200px] p-3 text-black rounded-xl"
                 />
               </div>
               <div className="flex justify-between items-center gap-4">
@@ -150,7 +150,7 @@ const Home = () => {
                 <input
                   type="text"
                   placeholder="72 MONTHS"
-                  className="border p-3 text-black rounded-xl"
+                  className="border w-[100px] sm:w-[200px] p-3 text-black rounded-xl"
                 />
               </div>
             </div>
@@ -177,7 +177,7 @@ const Home = () => {
                   type="text"
                   value={monthlyone}
                   disabled
-                  className="border p-3 text-black rounded-xl"
+                  className="border w-[100px] sm:w-[200px] p-3 text-black rounded-xl"
                 />
               </div>
               <div className="flex justify-between items-center gap-4">
@@ -188,7 +188,7 @@ const Home = () => {
                   type="text"
                   value={monthlyTwo}
                   disabled
-                  className="border p-3 text-black rounded-xl"
+                  className="border w-[100px] sm:w-[200px] p-3 text-black rounded-xl"
                 />
               </div>
 
@@ -201,7 +201,7 @@ const Home = () => {
                   placeholder=""
                   value={total}
                   disabled
-                  className="border p-3 text-black rounded-xl"
+                  className="border w-[100px] sm:w-[200px] p-3 text-black rounded-xl"
                 />
               </div>
             </div>
