@@ -98,7 +98,7 @@ const Navbar = () => {
           })}
         </div>
       </div>
-      <div className="flex items-center gap-8">
+      <div className="flex items-center gap-4 sm:gap-8">
         <Link to="/interest">
           <button className="rounded-lg font-medium flex items-center gap-4 justify-center bg-[#DB251A] text-white py-3 px-6 cursor-pointer hover:bg-white hover:text-[#db251A] hover:border-[#db251A] hover:border transition-colors">
             Get Started
