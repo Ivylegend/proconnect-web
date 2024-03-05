@@ -176,6 +176,36 @@
   animation-delay: 3s; /* Delay after every full cycle */
 }
 
+.compute {
+  margin: 1rem 0;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.compute button {
+  padding: 20.544px 45.653px;
+  border-radius: 13.696px;
+  background: #db251a;
+  color: white;
+  border: none;
+}
+
+.calculator_div div {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.calculator_div div input {
+  border-radius: 12px;
+  border: 1px solid rgba(102, 102, 102, 0.35);
+  padding: 10px;
+  height: 56px;
+  width: 200px;
+}
+
+
 @media screen and (max-width: 870px) {
   .men {
     margin: 2rem;

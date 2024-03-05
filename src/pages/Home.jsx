@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Hero from "../components/Hero";
 import Partners from "../components/Partners";
 import TextImage from "../components/TextImage";
@@ -11,8 +11,26 @@ import Frame1 from "../assets/Frame 473.png";
 import Frame2 from "../assets/Frame 475.png";
 import globe from "../assets/globe.png";
 import education from "../assets/education.png";
+import LoanCalculator from "../components/Calculator";
 
 const Home = () => {
+  const [principal, setPrincipal] = useState("");
+  const [monthlyone, setMonthlyOne] = useState(null);
+  const [total, setTotal] = useState(null);
+  const [monthlyTwo, setMonthlyTwo] = useState(null);
+
+  const calculateReturn = () => {
+   const newPrincipal = principal * 0.3;
+   setMonthlyOne(newPrincipal / 12);
+   setMonthlyTwo(newPrincipal / 12);
+  };
+
+  const Reset = () => {
+    setMonthlyOne("");
+    setPrincipal("");
+    setTotal("");
+    setMonthlyTwo("");
+  };
   return (
     <div>
       <Hero />
@@ -53,44 +71,144 @@ const Home = () => {
       />
       <div className="relative overflow-hidden">
         <div className="background-image1"></div>
-        <TextImage
-          picture={Frame1}
-          title={
-            <span className="flex items-start justify-start relative">
-              <p>
-                Local <br /> Undergraduate Education <br /> Loan Calculator
-              </p>
-              <img
-                src={education}
-                alt="education"
-                className="absolute left-16 top-[-5px]"
-              />
-            </span>
-          }
-          classdyn={"flex-row"}
-        />
+        <div
+          id="textImage"
+          className="flex px-10 py-10 md:py-20 lg:p-20 gap-10 lg:gap-20 items-center flex-col lg:flex-row"
+        >
+          {/* DIV ONE */}
+          <div className="w-full lg:w-1/2 flex flex-col items-start gap-8">
+            <h2 className="text-4xl font-bold leading-normal">
+              <span className="flex items-start justify-start relative">
+                <p>
+                  Local <br /> Undergraduate Education <br /> Loan Calculator
+                </p>
+                <img
+                  src={education}
+                  alt="education"
+                  className="absolute left-16 top-[-5px]"
+                />
+              </span>
+            </h2>
+          </div>
+          {/* DIV TWO */}
+          <LoanCalculator />
+        </div>
       </div>
+
       <div className="relative overflow-hidden">
         <div className="background-image2"></div>
-        <TextImage
-          picture={Frame2}
-          title={
-            <span className="">
-              <span className="flex relative gap-8">
-                Gl
-                <img
-                  src={globe}
-                  alt="globe"
-                  className="absolute left-8 top-2"
-                />
-                bal
+        <div
+          id="textImage"
+          className="flex px-10 py-10 md:py-20 lg:p-20 gap-10 lg:gap-20 items-center flex-col lg:flex-row-reverse"
+        >
+          {/* DIV ONE */}
+          <div className="w-full lg:w-1/2 flex flex-col items-start gap-8">
+            <h2 className="text-4xl font-bold leading-normal">
+              <span className="">
+                <span className="flex relative gap-8">
+                  Gl
+                  <img
+                    src={globe}
+                    alt="globe"
+                    className="absolute left-8 top-2"
+                  />
+                  bal
+                </span>
+                Education Loan Calculator
               </span>
-              Education Loan Calculator
+            </h2>
+          </div>
+          {/* DIV TWO CALCULATOR DIV*/}
+          <div className="border bg-white z-20 border-black rounded-2xl p-3 max-w-2xl flex flex-col gap-8">
+            <div className="rounded-lg border-[0.4px] p-3 flex flex-col gap-4 bg-white">
+              <div className="flex justify-between items-center">
+                <p className="capitalize font-semibold text-sm">
+                  Amount of the loan
+                </p>
+                <input
+                  type="number"
+                  value={principal}
+                  onChange={(e) => setPrincipal(e.target.value)}
+                  className="border p-3 text-black rounded-xl"
+                />
+              </div>
+              <div className="flex justify-between items-center gap-4">
+                <p className="capitalize font-semibold text-sm">
+                  Annual Percentage Rate of Interest
+                </p>
+                <input
+                  type="text"
+                  placeholder="30%"
+                  disabled
+                  className="border p-3 text-black rounded-xl"
+                />
+              </div>
+              <div className="flex justify-between items-center gap-4">
+                <p className="font-semibold capitalize text-sm">
+                  Repayment Period in Months (120 months)
+                </p>
+                <input
+                  type="text"
+                  placeholder="72 MONTHS"
+                  className="border p-3 text-black rounded-xl"
+                />
+              </div>
+            </div>
+            <span className="flex items-center justify-end gap-4">
+              <button
+                onClick={Reset}
+                className="font-semibold py-3 px-6 rounded-xl border-2 text-[#db251a] border-[#db251a]"
+              >
+                RESET
+              </button>
+              <button
+                onClick={calculateReturn}
+                className="font-semibold py-3 px-6 rounded-xl border-2 bg-[#db251a] border-[#db251a] text-white"
+              >
+                COMPUTE
+              </button>
             </span>
-          }
-          classdyn={"flex-row-reverse"}
-        />
+            <div className="rounded-lg border-[0.4px] p-3 flex flex-col gap-4 bg-white">
+              <div className="flex justify-between items-center gap-4">
+                <p className="capitalize font-semibold text-sm">
+                  Your Monthly Payment (First Phase)
+                </p>
+                <input
+                  type="text"
+                  value={monthlyone}
+                  disabled
+                  className="border p-3 text-black rounded-xl"
+                />
+              </div>
+              <div className="flex justify-between items-center gap-4">
+                <p className="capitalize font-semibold text-sm">
+                  Your Monthly Payment (Second Phase)
+                </p>
+                <input
+                  type="text"
+                  value={monthlyTwo}
+                  disabled
+                  className="border p-3 text-black rounded-xl"
+                />
+              </div>
+
+              <div className="flex justify-between items-center gap-4">
+                <p className="capitalize font-semibold text-sm">
+                  Your Total Interest Payment Will Be
+                </p>
+                <input
+                  type="text"
+                  placeholder=""
+                  value={total}
+                  disabled
+                  className="border p-3 text-black rounded-xl"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
+
       <div className="men">
         <div className="background-image"></div>
         <div className="content p-8 flex flex-col gap-8 items-start lg:p-20 lg:w-[50%] xl:w-[45%]">
