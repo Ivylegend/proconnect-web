@@ -69,6 +69,14 @@ const GlobalLoan = ({ setShowAfterFooter }) => {
         </div>
       </div>
 
+      <div className="px-8">
+        <Link to="/interest" className="">
+          <button className="rounded-lg w-full mx-auto mb-16 lg:m-0 font-medium flex items-center gap-4 justify-center bg-[#DB251A] text-white py-3 px-6 cursor-pointer hover:bg-white hover:text-[#db251A] hover:border-[#db251A] hover:border transition-colors">
+            Get Started
+          </button>
+        </Link>
+      </div>
+
       {/* SECOND */}
       <div className="w-full my-16 bg-white flex gap-8 lg:gap-8 flex-col lg:flex-row-reverse items-center md:rounded-3xl p-8">
         <div className="w-full lg:w-1/2 flex flex-col gap-8 items-start">
@@ -118,6 +126,14 @@ const GlobalLoan = ({ setShowAfterFooter }) => {
         </div>
       </div>
 
+      <div className="px-8">
+        <Link to="/interest" className="">
+          <button className="rounded-lg w-full mx-auto mb-16 lg:m-0 font-medium flex items-center gap-4 justify-center bg-[#DB251A] text-white py-3 px-6 cursor-pointer hover:bg-white hover:text-[#db251A] hover:border-[#db251A] hover:border transition-colors">
+            Get Started
+          </button>
+        </Link>
+      </div>
+
       {/* THIRD */}
       <div className="w-full mt-16 my-8 bg-white flex gap-8 lg:gap-8 flex-col lg:flex-row md:rounded-3xl p-8">
         <div className="w-full lg:w-1/2 flex flex-col gap-8 items-start">
@@ -159,11 +175,13 @@ const GlobalLoan = ({ setShowAfterFooter }) => {
         </div>
       </div>
 
-      <Link to="/interest" className="">
-        <button className="rounded-lg ml-8 mb-16 lg:m-0 font-medium flex items-center gap-4 justify-center bg-[#DB251A] text-white py-3 px-6 cursor-pointer hover:bg-white hover:text-[#db251A] hover:border-[#db251A] hover:border transition-colors">
-          Get Started
-        </button>
-      </Link>
+      <div className="px-8">
+        <Link to="/interest" className="">
+          <button className="rounded-lg w-full mx-auto mb-16 lg:m-0 font-medium flex items-center gap-4 justify-center bg-[#DB251A] text-white py-3 px-6 cursor-pointer hover:bg-white hover:text-[#db251A] hover:border-[#db251A] hover:border transition-colors">
+            Get Started
+          </button>
+        </Link>
+      </div>
     </div>
   );
 };
