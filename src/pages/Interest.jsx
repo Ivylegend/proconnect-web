@@ -12,6 +12,7 @@ const Interest = () => {
   const [country, setCountry] = useState("");
   const [subscribe, setSubscribe] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [errors, setErrors] = useState(false);
 
   // State variables for form field validity
   const [fullNameValid, setFullNameValid] = useState(true);
@@ -20,7 +21,11 @@ const Interest = () => {
   const [emailValid, setEmailValid] = useState(true);
   const [phoneNumberValid, setPhoneNumberValid] = useState(true);
   const [genderValid, setGenderValid] = useState(true);
-  const [countryValid, setCountryValid] = useState(true);
+  const [countryValid, setCountryValid] = useState("");
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
@@ -46,13 +51,10 @@ const Interest = () => {
       // Submit the form
       console.log("Form submitted successfully");
       setIsModalOpen(true);
+      setErrors("");
     } else {
-      alert("Form contains validation errors. Please fix them.");
+      setErrors("Make sure to fill the form with the correct details");
     }
-  };
-
-  const closeModal = () => {
-    setIsModalOpen(false);
   };
 
   // Validation functions
@@ -96,13 +98,11 @@ const Interest = () => {
   return (
     <div className="px-10 relative sm:px-20 lg:pl-20 py-10 flex gap-8">
       {/* Reusable modal */}
-      <div className="absolute mx-auto my-8 flex items-center z-40 justify-center w-full">
-        <ReusableModal
-          isOpen={isModalOpen}
-          onClose={closeModal}
-          message="Your Form has been successfully submitted!"
-        />
-      </div>
+      <ReusableModal
+        isOpen={isModalOpen}
+        onClose={closeModal}
+        message="Form submitted successfully!"
+      />
 
       <div className="w-full lg:w-1/2">
         <p className="font-bold text-xl text-center mb-12">
@@ -121,6 +121,7 @@ const Interest = () => {
               value={fullName}
               onChange={(e) => setFullName(e.target.value)}
               onBlur={validateFullName}
+              required
               className={`w-full h-12 p-4 text-black rounded-lg border ${
                 fullNameValid ? "border-[#666666]" : "border-red-500"
               }`}
@@ -136,6 +137,7 @@ const Interest = () => {
               type="text"
               id="enquires"
               value={enquiryFor}
+              required
               onChange={(e) => setEnquiryFor(e.target.value)}
               onBlur={validateEnquiryFor}
               className={`w-full h-12 p-4 text-black rounded-lg border ${
@@ -155,6 +157,7 @@ const Interest = () => {
               value={productInterested}
               onChange={(e) => setProductInterested(e.target.value)}
               onBlur={validateProductInterested}
+              required
               className={`w-full h-12 p-4 text-black rounded-lg border ${
                 productInterestedValid ? "border-[#666666]" : "border-red-500"
               }`}
@@ -172,6 +175,7 @@ const Interest = () => {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               onBlur={validateEmail}
+              required
               className={`w-full h-12 p-4 text-black rounded-lg border ${
                 emailValid ? "border-[#666666]" : "border-red-500"
               }`}
@@ -187,6 +191,7 @@ const Interest = () => {
               type="text"
               id="phoneNumber"
               value={phoneNumber}
+              required
               onChange={(e) => setPhoneNumber(e.target.value)}
               onBlur={validatePhoneNumber}
               className={`w-full h-12 p-4 text-black rounded-lg border ${
@@ -204,6 +209,7 @@ const Interest = () => {
               type="text"
               id="gender"
               value={gender}
+              required
               onChange={(e) => setGender(e.target.value)}
               onBlur={validateGender}
               className={`w-full h-12 p-4 text-black rounded-lg border ${
@@ -221,6 +227,7 @@ const Interest = () => {
               type="text"
               id="country"
               value={country}
+              required
               onChange={(e) => setCountry(e.target.value)}
               onBlur={validateCountry}
               className={`w-full h-12 p-4 text-black rounded-lg border ${
@@ -242,6 +249,9 @@ const Interest = () => {
               services, and offers
             </p>
           </div>
+
+          {/* ERROR MESSAGE */}
+          <p className="text-red-500 mb-4">{errors}</p>
 
           {/* SUBMIT BUTTON */}
           <button
