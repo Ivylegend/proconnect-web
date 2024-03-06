@@ -7,30 +7,67 @@ import Button from "../components/small-components/Button";
 import Macbook from "../assets/Macbook.png";
 import aiLaptop from "../assets/laptop.png";
 import people from "../assets/people.png";
-import Frame1 from "../assets/Frame 473.png";
-import Frame2 from "../assets/Frame 475.png";
 import globe from "../assets/globe.png";
 import education from "../assets/education.png";
 import LoanCalculator from "../components/Calculator";
 
 const Home = () => {
   const [principal, setPrincipal] = useState("");
-  const [monthlyone, setMonthlyOne] = useState(null);
-  const [total, setTotal] = useState(null);
-  const [monthlyTwo, setMonthlyTwo] = useState(null);
+  const [result, setResult] = useState(null);
+  const [monthly, setMonthly] = useState(null);
+  const [monthly2, setMonthly2] = useState(null);
+  // const [total, setTotal] = useState(null);
 
   const calculateReturn = () => {
-   const newPrincipal = principal * 0.3;
-   setMonthlyOne(newPrincipal / 12);
-   setMonthlyTwo(newPrincipal / 12);
+    // Constants (for example purposes, you can replace these with your actual values)
+    const annualInterestRate = 0.3; // 30%
+    const repaymentPeriodPhase1Months = 11;
+    const repaymentPeriodPhase2Months = 61;
+
+    // Convert the principal to a number
+    const principalAmount = parseFloat(principal);
+
+    // Calculate interest for both phases
+    const interestPhase1 =
+      principalAmount * annualInterestRate * (repaymentPeriodPhase1Months / 12);
+    const interestPhase2 =
+      principalAmount * annualInterestRate * (repaymentPeriodPhase2Months / 12);
+
+    // Calculate total payment and monthly payment for both phases
+    const totalPaymentPhase1 = principalAmount + interestPhase1;
+    const monthlyPaymentPhase1 =
+      totalPaymentPhase1 / repaymentPeriodPhase1Months;
+
+    const totalPaymentPhase2 = principalAmount + interestPhase2;
+    const monthlyPaymentPhase2 =
+      totalPaymentPhase2 / repaymentPeriodPhase2Months;
+
+    // Format values
+    // const formattedTotal = formatCurrency(
+    //   totalPaymentPhase1 + totalPaymentPhase2
+    // );
+    const formattedMonthly = formatCurrency(monthlyPaymentPhase1);
+    const formattedMonthly2 = formatCurrency(monthlyPaymentPhase2);
+    const formattedResult = formatCurrency(interestPhase1 + interestPhase2);
+
+    // Set the state values
+    setMonthly(formattedMonthly);
+    setMonthly2(formattedMonthly2);
+    setResult(formattedResult);
+  };
+
+  const formatCurrency = (amount) => {
+    return `₦${amount.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, "$&,")}`;
   };
 
   const Reset = () => {
-    setMonthlyOne("");
+    setResult("");
     setPrincipal("");
-    setTotal("");
-    setMonthlyTwo("");
+    setResult("");
+    setMonthly("");
+    setMonthly2("");
   };
+
   return (
     <div>
       <Hero />
@@ -175,7 +212,7 @@ const Home = () => {
                 </p>
                 <input
                   type="text"
-                  value={monthlyone}
+                  value={monthly}
                   disabled
                   className="border w-[100px] sm:w-[200px] p-3 text-black rounded-xl"
                 />
@@ -186,7 +223,7 @@ const Home = () => {
                 </p>
                 <input
                   type="text"
-                  value={monthlyTwo}
+                  value={monthly2}
                   disabled
                   className="border w-[100px] sm:w-[200px] p-3 text-black rounded-xl"
                 />
@@ -199,7 +236,7 @@ const Home = () => {
                 <input
                   type="text"
                   placeholder=""
-                  value={total}
+                  value={result}
                   disabled
                   className="border w-[100px] sm:w-[200px] p-3 text-black rounded-xl"
                 />
