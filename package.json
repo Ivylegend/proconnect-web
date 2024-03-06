@@ -1,5 +1,6 @@
 {
   "name": "new-website",
+  "homepage": "https://proconnectpay.com",
   "private": true,
   "version": "0.0.0",
   "type": "module",
