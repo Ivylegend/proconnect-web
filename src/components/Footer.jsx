@@ -1,16 +1,16 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Logo from "../assets/pcp-logo-1.png";
-import Buisness from "../assets/company.png";
+import business from "../assets/company.png";
 import Location from "../assets/location.png";
 import SocialIcons1 from "../assets/Social icons1.png";
 import SocialIcons2 from "../assets/Social icons2.png";
 import SocialIcons3 from "../assets/Social icons3.png";
 import SocialIcons4 from "../assets/Social icons4.png";
 import SocialIcons5 from "../assets/Social icons5.png";
-import SocialIcons6 from "../assets/Social icons6.png";
+import SocialIcons6 from "../assets/youtube.png";
 
-const buisnessLinks = [
+const businessLinks = [
   {
     url: "/pricing",
     name: "Service Fee Pricing",
@@ -77,7 +77,7 @@ const socialIcons = [
   { name: SocialIcons3, url: "https://twitter.com/ProconnectPAY" },
   { name: SocialIcons4, url: "https://www.instagram.com/proconnectpay/" },
   { name: SocialIcons5, url: "https://ng.linkedin.com/company/proconnectpay" },
-  // { name: SocialIcons6, url: "" },
+  { name: SocialIcons6, url: "https://www.youtube.com/channel/UCsX-weJpSWORcMUAQ-g0HdA" },
 ];
 
 const Footer = () => {
@@ -117,10 +117,10 @@ const Footer = () => {
         </div>
         <div>
           <p className="text-lg font-medium capitalize my-6 flex items-center gap-2">
-            <img src={Buisness} alt="buisness" /> BUISNESS
+            <img src={business} alt="business" /> BUSINESS
           </p>
           <ul className="flex gap-5 flex-col">
-            {buisnessLinks.map((footerLink) => {
+            {businessLinks.map((footerLink) => {
               return (
                 <Link to={footerLink.url} key={footerLink.url}>
                   <li className="font-bold hover:text-[#db251A]">
