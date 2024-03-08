@@ -9,6 +9,7 @@ import SocialIcons3 from "../assets/Social icons3.png";
 import SocialIcons4 from "../assets/Social icons4.png";
 import SocialIcons5 from "../assets/Social icons5.png";
 import SocialIcons6 from "../assets/Social icons6.png";
+import SocialIcons7 from "../assets/Social icons7.png";
 
 const buisnessLinks = [
   {
@@ -77,6 +78,7 @@ const socialIcons = [
   { name: SocialIcons3, url: "https://twitter.com/ProconnectPAY" },
   { name: SocialIcons4, url: "https://www.instagram.com/proconnectpay/" },
   { name: SocialIcons5, url: "https://ng.linkedin.com/company/proconnectpay" },
+  { name: SocialIcons7, url: "https://www.youtube.com/channel/UCsX-weJpSWORcMUAQ-g0HdA" },
   // { name: SocialIcons6, url: "" },
 ];
 
@@ -117,7 +119,7 @@ const Footer = () => {
         </div>
         <div>
           <p className="text-lg font-medium capitalize my-6 flex items-center gap-2">
-            <img src={Buisness} alt="buisness" /> BUISNESS
+            <img src={Buisness} alt="business" /> BUSINESS
           </p>
           <ul className="flex gap-5 flex-col">
             {buisnessLinks.map((footerLink) => {
