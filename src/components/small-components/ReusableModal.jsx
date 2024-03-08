@@ -5,9 +5,12 @@ const ReusableModal = ({ isOpen, onClose, message }) => {
   return (
     <>
       {isOpen && (
-        <div className="modal-overlay fixed left-1/4 border rounded-md p-8 bg-white shadow-lg w-[350px]">
-          <div className="modal-content flex flex-col gap-8">
-            <span className="close-button cursor-pointer text-2xl" onClick={onClose}>
+        <div className="modal-overlay fixed left-0 top-0 z-40 bg-blue-100 bg-opacity-30 h-full flex items-center justify-center border p-8 shadow-lg w-full">
+          <div className="modal-content p-8 rounded-md flex flex-col gap-8 bg-white max-w-[350px]">
+            <span
+              className="close-button cursor-pointer text-2xl"
+              onClick={onClose}
+            >
               &times;
             </span>
             <p>{message}</p>

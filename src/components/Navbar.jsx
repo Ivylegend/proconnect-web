@@ -74,7 +74,7 @@ const Navbar = () => {
 
   return (
     <div
-      className={`px-10 lg:px-16 py-5 flex items-center justify-between bg-[#ffff] ${
+      className={`px-5 sm:px-10 lg:px-16 py-5 flex items-center justify-between bg-[#ffff] ${
         scrolling ? "sticky top-0 shadow-md bg-white z-30" : ""
       }`}
     >
