@@ -30,6 +30,7 @@ const Interest = () => {
   const handleFormSubmit = (e) => {
     e.preventDefault();
 
+    // Validate all form fields
     validateFullName();
     validateEnquiryFor();
     validateProductInterested();
@@ -48,27 +49,19 @@ const Interest = () => {
       genderValid &&
       countryValid
     ) {
-      // Submit the form
+      // Submit the form with actual form values
       var myHeaders = new Headers();
       myHeaders.append("Content-Type", "application/json");
 
       var raw = JSON.stringify({
-        // full_name: fullName,
-        // enquiryFor: enquiryFor,
-        // email: email,
-        // phone: phoneNumber,
-        // gender: gender,
-        // country: country,
-        // interested_in: productInterested,
-        // enquiry_on: enquiryFor,
-        full_name: "fullName",
-        enquiryFor: "enquiryFor",
-        email: "email",
-        phone: "phoneNumber",
-        gender: "gender",
-        country: "country",
-        interested_in: "productInterested",
-        enquiry_on: "enquiryFor",
+        full_name: fullName,
+        enquiryFor: enquiryFor,
+        email: email,
+        phone: phoneNumber,
+        gender: gender,
+        country: country,
+        interested_in: productInterested,
+        enquiry_on: enquiryFor,
       });
 
       var requestOptions = {
@@ -78,21 +71,23 @@ const Interest = () => {
         redirect: "follow",
       };
 
+      // Make the API call
       fetch("https://form.eldanic.com/api/contact/", requestOptions)
         .then((response) => response.json())
         .then((result) => {
           if (result.status === true) {
             console.log(result);
-            history("/");
           } else {
             console.log(result);
           }
         })
         .catch((error) => console.log("error", error));
+
       console.log("Form submitted successfully");
       setIsModalOpen(true);
       setErrors("");
     } else {
+      // If any field is not valid, display an error message
       setErrors("Make sure to fill the form with the correct details");
     }
   };
@@ -133,6 +128,11 @@ const Interest = () => {
   const validateCountry = () => {
     // Implement your validation logic
     setCountryValid(country.trim() !== ""); // Example: Non-empty validation
+  };
+
+  const handleInterest = (e) => {
+    setProductInterested(e.target.value);
+    console.log(productInterested);
   };
 
   return (
@@ -189,20 +189,28 @@ const Interest = () => {
 
           {/* PRODUCT INTERESTED */}
           <div className="mb-6 flex flex-col gap-3">
-            <label htmlFor="" className="text-[#646464] font-semibold">
+            <label
+              htmlFor="productInterested"
+              className="text-[#646464] font-semibold"
+            >
               Product Interested In <span className="text-red-600">*</span>
             </label>
-            <input
-              type="text"
+            <select
+              name="productInterested"
               id="productInterested"
               value={productInterested}
-              onChange={(e) => setProductInterested(e.target.value)}
+              onChange={handleInterest}
               onBlur={validateProductInterested}
-              required
-              className={`w-full h-12 p-4 text-black rounded-lg border ${
+              className={`w-full h-12 px-4 text-black rounded-lg border ${
                 productInterestedValid ? "border-[#666666]" : "border-red-500"
               }`}
-            />
+            >
+              <option value="">Select an option</option>
+              <option value="Global Education Loan">Local Education Loan</option>
+              <option value="Local Education Loan">
+                Global Education Loan
+              </option>
+            </select>
           </div>
 
           {/* EMAIL ID */}
