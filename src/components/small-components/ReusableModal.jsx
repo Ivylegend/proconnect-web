@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import Success from "../../assets/successful.png";
 
 const ReusableModal = ({ isOpen, onClose, message }) => {
   return (
@@ -13,6 +14,7 @@ const ReusableModal = ({ isOpen, onClose, message }) => {
             >
               &times;
             </span>
+            <img src={Success} alt="success" />
             <p>{message}</p>
           </div>
         </div>
