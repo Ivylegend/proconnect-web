@@ -14,6 +14,8 @@ import LoanCalculator from "../components/Calculator";
 const Home = () => {
   const [principal, setPrincipal] = useState("");
   const [result, setResult] = useState("");
+  const [total, setTotal] = useState("");
+  const [monthly, setMonthly] = useState("");
 
   const calculateReturn = () => {
     const annualInterestRate = 0.16; // 16%
@@ -21,11 +23,19 @@ const Home = () => {
     // Convert the principal to a number
     const principalAmount = parseFloat(principal);
 
+    const TotalPayment = principalAmount + principalAmount * annualInterestRate;
+
     const formattedResult = formatCurrency(
       principalAmount * annualInterestRate
     );
+    const formattedTotal = formatCurrency(
+      principalAmount + principalAmount * annualInterestRate
+    );
+    const formattedMonthly = formatCurrency(TotalPayment / 12);
 
     setResult(formattedResult);
+    setMonthly(formattedMonthly);
+    setTotal(formattedTotal);
   };
 
   const formatCurrency = (amount) => {
@@ -33,9 +43,11 @@ const Home = () => {
   };
 
   const Reset = () => {
-    setResult("");
-    setPrincipal("");
-    setResult("");
+    setResult(0);
+    setPrincipal(0);
+    setResult(0);
+    setMonthly(0);
+    setTotal(0);
   };
 
   return (
@@ -177,6 +189,30 @@ const Home = () => {
               </button>
             </span>
             <div className="rounded-lg border-[0.4px] p-3 flex flex-col gap-4 bg-white">
+              <div className="flex justify-between items-center gap-4">
+                <p className="capitalize font-semibold text-sm">
+                  Your Monthly Payment Will Be
+                </p>
+                <input
+                  type="text"
+                  placeholder=""
+                  value={monthly}
+                  disabled
+                  className="border w-[100px] sm:w-[200px] p-3 text-black rounded-xl"
+                />
+              </div>
+              <div className="flex justify-between items-center gap-4">
+                <p className="capitalize font-semibold text-sm">
+                  Your Total Payment Will Be
+                </p>
+                <input
+                  type="text"
+                  placeholder=""
+                  value={total}
+                  disabled
+                  className="border w-[100px] sm:w-[200px] p-3 text-black rounded-xl"
+                />
+              </div>
               <div className="flex justify-between items-center gap-4">
                 <p className="capitalize font-semibold text-sm">
                   Your Total Interest Payment Will Be
