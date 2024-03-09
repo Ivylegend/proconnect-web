@@ -21,7 +21,7 @@ const Interest = () => {
   const [emailValid, setEmailValid] = useState(true);
   const [phoneNumberValid, setPhoneNumberValid] = useState(true);
   const [genderValid, setGenderValid] = useState(true);
-  const [countryValid, setCountryValid] = useState("");
+  const [countryValid, setCountryValid] = useState(true);
 
   const closeModal = () => {
     setIsModalOpen(false);
@@ -49,6 +49,46 @@ const Interest = () => {
       countryValid
     ) {
       // Submit the form
+      var myHeaders = new Headers();
+      myHeaders.append("Content-Type", "application/json");
+
+      var raw = JSON.stringify({
+        // full_name: fullName,
+        // enquiryFor: enquiryFor,
+        // email: email,
+        // phone: phoneNumber,
+        // gender: gender,
+        // country: country,
+        // interested_in: productInterested,
+        // enquiry_on: enquiryFor,
+        full_name: "fullName",
+        enquiryFor: "enquiryFor",
+        email: "email",
+        phone: "phoneNumber",
+        gender: "gender",
+        country: "country",
+        interested_in: "productInterested",
+        enquiry_on: "enquiryFor",
+      });
+
+      var requestOptions = {
+        method: "POST",
+        headers: myHeaders,
+        body: raw,
+        redirect: "follow",
+      };
+
+      fetch("https://form.eldanic.com/api/contact/", requestOptions)
+        .then((response) => response.json())
+        .then((result) => {
+          if (result.status === true) {
+            console.log(result);
+            history("/");
+          } else {
+            console.log(result);
+          }
+        })
+        .catch((error) => console.log("error", error));
       console.log("Form submitted successfully");
       setIsModalOpen(true);
       setErrors("");

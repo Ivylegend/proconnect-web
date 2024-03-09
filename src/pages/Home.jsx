@@ -14,45 +14,17 @@ import LoanCalculator from "../components/Calculator";
 const Home = () => {
   const [principal, setPrincipal] = useState("");
   const [result, setResult] = useState(null);
-  const [monthly, setMonthly] = useState(null);
-  const [monthly2, setMonthly2] = useState(null);
-  // const [total, setTotal] = useState(null);
 
   const calculateReturn = () => {
-    // Constants (for example purposes, you can replace these with your actual values)
-    const annualInterestRate = 0.3; // 30%
-    const repaymentPeriodPhase1Months = 11;
-    const repaymentPeriodPhase2Months = 61;
+    const annualInterestRate = 0.16; // 16%
 
     // Convert the principal to a number
     const principalAmount = parseFloat(principal);
 
-    // Calculate interest for both phases
-    const interestPhase1 =
-      principalAmount * annualInterestRate * (repaymentPeriodPhase1Months / 12);
-    const interestPhase2 =
-      principalAmount * annualInterestRate * (repaymentPeriodPhase2Months / 12);
+    const formattedResult = formatCurrency(
+      principalAmount * annualInterestRate
+    );
 
-    // Calculate total payment and monthly payment for both phases
-    const totalPaymentPhase1 = principalAmount + interestPhase1;
-    const monthlyPaymentPhase1 =
-      totalPaymentPhase1 / repaymentPeriodPhase1Months;
-
-    const totalPaymentPhase2 = principalAmount + interestPhase2;
-    const monthlyPaymentPhase2 =
-      totalPaymentPhase2 / repaymentPeriodPhase2Months;
-
-    // Format values
-    // const formattedTotal = formatCurrency(
-    //   totalPaymentPhase1 + totalPaymentPhase2
-    // );
-    const formattedMonthly = formatCurrency(monthlyPaymentPhase1);
-    const formattedMonthly2 = formatCurrency(monthlyPaymentPhase2);
-    const formattedResult = formatCurrency(interestPhase1 + interestPhase2);
-
-    // Set the state values
-    setMonthly(formattedMonthly);
-    setMonthly2(formattedMonthly2);
     setResult(formattedResult);
   };
 
@@ -64,8 +36,6 @@ const Home = () => {
     setResult("");
     setPrincipal("");
     setResult("");
-    setMonthly("");
-    setMonthly2("");
   };
 
   return (
@@ -106,6 +76,7 @@ const Home = () => {
         showButton={true}
         classdyn={"flex-row"}
       />
+
       <div className="relative overflow-hidden">
         <div className="background-image1"></div>
         <div
@@ -175,7 +146,7 @@ const Home = () => {
                 </p>
                 <input
                   type="text"
-                  placeholder="30%"
+                  placeholder="16%"
                   disabled
                   className="border w-[100px] sm:w-[200px] p-3 text-black rounded-xl"
                 />
@@ -206,29 +177,6 @@ const Home = () => {
               </button>
             </span>
             <div className="rounded-lg border-[0.4px] p-3 flex flex-col gap-4 bg-white">
-              <div className="flex justify-between items-center gap-4">
-                <p className="capitalize font-semibold text-sm">
-                  Your Monthly Payment (First Phase)
-                </p>
-                <input
-                  type="text"
-                  value={monthly}
-                  disabled
-                  className="border w-[100px] sm:w-[200px] p-3 text-black rounded-xl"
-                />
-              </div>
-              <div className="flex justify-between items-center gap-4">
-                <p className="capitalize font-semibold text-sm">
-                  Your Monthly Payment (Second Phase)
-                </p>
-                <input
-                  type="text"
-                  value={monthly2}
-                  disabled
-                  className="border w-[100px] sm:w-[200px] p-3 text-black rounded-xl"
-                />
-              </div>
-
               <div className="flex justify-between items-center gap-4">
                 <p className="capitalize font-semibold text-sm">
                   Your Total Interest Payment Will Be
