@@ -2,10 +2,10 @@ import React, { useState } from "react";
 
 const LoanCalculator = () => {
   const [principal, setPrincipal] = useState("");
-  const [result, setResult] = useState(null);
-  const [total, setTotal] = useState(null);
-  const [monthly, setMonthly] = useState(null);
-  const [monthly2, setMonthly2] = useState(null);
+  const [result, setResult] = useState("");
+  const [total, setTotal] = useState("");
+  const [monthly, setMonthly] = useState("");
+  const [monthly2, setMonthly2] = useState("");
 
   const calculateReturn = () => {
     // Constants (for example purposes, you can replace these with your actual values)

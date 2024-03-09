@@ -13,7 +13,7 @@ import LoanCalculator from "../components/Calculator";
 
 const Home = () => {
   const [principal, setPrincipal] = useState("");
-  const [result, setResult] = useState(null);
+  const [result, setResult] = useState("");
 
   const calculateReturn = () => {
     const annualInterestRate = 0.16; // 16%
