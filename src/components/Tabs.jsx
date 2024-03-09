@@ -16,7 +16,7 @@ const Tabs = () => {
   const payWithPayStack = (amounts) => {
     const paystack = new PaystackPop();
     paystack.newTransaction({
-      key: "pk_test_4e91065eab545aef11ad2f25bb6637a2984023ea",
+      key: "pk_live_689cd76b33c137c295bfbf58e38d9205627b0ea6",
       amount: amounts * 100,
       email: "user@gmail.com",
       onSuccess(transaction) {

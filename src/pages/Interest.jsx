@@ -141,7 +141,7 @@ const Interest = () => {
       <ReusableModal
         isOpen={isModalOpen}
         onClose={closeModal}
-        message="Form submitted successfully!"
+        message="Your Information has been sent and you will get a response within 24 hours"
       />
 
       <div className="w-full lg:w-1/2">
@@ -153,7 +153,7 @@ const Interest = () => {
           {/* FULL NAME */}
           <div className="mb-6 flex flex-col gap-3">
             <label htmlFor="fullName" className="text-[#646464] font-semibold">
-              Full Name
+              Full Name <span className="text-red-600">*</span>
             </label>
             <input
               type="text"
@@ -171,7 +171,8 @@ const Interest = () => {
           {/* ENQUIRIES */}
           <div className="mb-6 flex flex-col gap-3">
             <label htmlFor="" className="text-[#646464] font-semibold">
-              What are you making enquiries for
+              Who are you making enquiries for{" "}
+              <span className="text-red-600">*</span>
             </label>
             <input
               type="text"
@@ -189,7 +190,7 @@ const Interest = () => {
           {/* PRODUCT INTERESTED */}
           <div className="mb-6 flex flex-col gap-3">
             <label htmlFor="" className="text-[#646464] font-semibold">
-              Product Interested In
+              Product Interested In <span className="text-red-600">*</span>
             </label>
             <input
               type="text"
@@ -207,7 +208,7 @@ const Interest = () => {
           {/* EMAIL ID */}
           <div className="mb-6 flex flex-col gap-3">
             <label htmlFor="" className="text-[#646464] font-semibold">
-              Active Email ID
+              Active Email ID <span className="text-red-600">*</span>
             </label>
             <input
               type="email"
@@ -225,7 +226,7 @@ const Interest = () => {
           {/* PHONE NUMBER */}
           <div className="mb-6 flex flex-col gap-3">
             <label htmlFor="" className="text-[#646464] font-semibold">
-              Active Phone Number
+              Active Phone Number <span className="text-red-600">*</span>
             </label>
             <input
               type="text"
@@ -243,7 +244,7 @@ const Interest = () => {
           {/* GENDER */}
           <div className="mb-6 flex flex-col gap-3">
             <label htmlFor="" className="text-[#646464] font-semibold">
-              Gender
+              Gender <span className="text-red-600">*</span>
             </label>
             <input
               type="text"
@@ -261,7 +262,7 @@ const Interest = () => {
           {/* COUNTRY */}
           <div className="mb-8 flex flex-col gap-4">
             <label htmlFor="" className="text-[#646464] font-semibold">
-              Country of Residence
+              Country of Residence <span className="text-red-600">*</span>
             </label>
             <input
               type="text"
@@ -284,7 +285,7 @@ const Interest = () => {
               checked={subscribe}
               onChange={() => setSubscribe(!subscribe)}
             />
-            <p className="text-left lg:text-center text-[#1E4580] font-medium">
+            <p className="text-left lg:text-center text-[#1E4580] font-medium text-sm">
               Keep me up to date with more information about this product,
               services, and offers
             </p>
