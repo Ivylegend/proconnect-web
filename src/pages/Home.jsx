@@ -18,20 +18,31 @@ const Home = () => {
   const [monthly, setMonthly] = useState("");
 
   const calculateReturn = () => {
-    const annualInterestRate = 0.16; // 16%
-    const loanPeriodInMonths = 120; // 120 months
+    const principalRegex = /^[0-9]+$/;
+    const isPrincipalValid = principalRegex.test(principal);
 
-    // Convert the principal to a number
+    if (!isPrincipalValid) {
+      console.error("Invalid principal amount");
+      return;
+    }
+
+    const annualInterestRate = 0.16;
+    const loanPeriodInMonths = 120;
     const principalAmount = parseFloat(principal);
 
-    const totalInterest = principalAmount * annualInterestRate;
-    const totalRepayment = principalAmount + totalInterest;
+    const monthlyInterestRate = annualInterestRate / 12;
+    const months = Math.min(parseInt(loanPeriodInMonths), loanPeriodInMonths);
+
+    const monthlyPayment =
+      (principalAmount * monthlyInterestRate) /
+      (1 - Math.pow(1 + monthlyInterestRate, -months));
+
+    const totalRepayment = monthlyPayment * months;
+    const totalInterest = totalRepayment - principalAmount;
 
     const formattedResult = formatCurrency(totalInterest);
     const formattedTotal = formatCurrency(totalRepayment);
-    const formattedMonthly = formatCurrency(
-      totalRepayment / loanPeriodInMonths
-    );
+    const formattedMonthly = formatCurrency(monthlyPayment);
 
     setResult(formattedResult);
     setMonthly(formattedMonthly);
@@ -169,6 +180,7 @@ const Home = () => {
                 </p>
                 <input
                   type="text"
+                  disabled
                   placeholder="120 MONTHS"
                   className="border w-[100px] sm:w-[200px] p-3 text-black rounded-xl"
                 />
