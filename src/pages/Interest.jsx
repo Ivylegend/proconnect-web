@@ -1,6 +1,9 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import InterestImg from "../assets/interest-img.png";
 import ReusableModal from "../components/small-components/ReusableModal";
+import Select from "react-select";
+import PhoneInput from "react-phone-input-2";
+import "react-phone-input-2/lib/style.css";
 
 const Interest = () => {
   const [fullName, setFullName] = useState("");
@@ -13,6 +16,7 @@ const Interest = () => {
   const [subscribe, setSubscribe] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [errors, setErrors] = useState(false);
+  const [countries, setCountries] = useState([]);
 
   // State variables for form field validity
   const [fullNameValid, setFullNameValid] = useState(true);
@@ -27,6 +31,61 @@ const Interest = () => {
     setIsModalOpen(false);
   };
 
+  const customStyles = {
+    control: (provided, state) => ({
+      ...provided,
+      border: state.isFocused ? "1px solid black" : "1px solid #666666",
+      borderRadius: state.isFocused ? "8px" : "8px",
+      boxShadow: state.isFocused ? "none" : "none",
+      padding: state.isFocused ? "6px" : "6px",
+    }),
+  };
+
+  const fetchCountries = async () => {
+    try {
+      const response = await fetch("https://restcountries.com/v3.1/all");
+      const data = await response.json();
+      return data.map((country) => ({
+        label: country.name.common,
+        value: country.name.common,
+      }));
+    } catch (error) {
+      console.error("Error fetching countries", error);
+      return [];
+    }
+  };
+
+  useEffect(() => {
+    const fetchCountriesData = async () => {
+      const countriesData = await fetchCountries();
+      setCountries(countriesData);
+    };
+
+    fetchCountriesData();
+  }, []);
+
+  const initialValues = {
+    contactno: "",
+    country_code: "",
+  };
+  const [referenceData, setReferenceData] = useState(initialValues);
+
+  // CHANGING PHONE NUMBER
+  const handleChange = (e, value, name) => {
+    console.log("value", value);
+    console.log("name", name);
+    if (name === "contactno") {
+      let splitMobile = e?.split(value?.dialCode);
+      setReferenceData({
+        ...referenceData,
+        country_code: value?.dialCode,
+        contactno: splitMobile?.[1] || "",
+      });
+    } else
+      setReferenceData({ ...referenceData, [e.target.name]: e.target.value });
+  };
+
+  // SUBMITTING FORM
   const handleFormSubmit = (e) => {
     e.preventDefault();
 
@@ -35,7 +94,6 @@ const Interest = () => {
     validateEnquiryFor();
     validateProductInterested();
     validateEmail();
-    validatePhoneNumber();
     validateGender();
     validateCountry();
 
@@ -45,7 +103,6 @@ const Interest = () => {
       enquiryForValid &&
       productInterestedValid &&
       emailValid &&
-      phoneNumberValid &&
       genderValid &&
       countryValid
     ) {
@@ -57,7 +114,7 @@ const Interest = () => {
         full_name: fullName,
         enquiryFor: enquiryFor,
         email: email,
-        phone: phoneNumber,
+        phone: `${referenceData.country_code}${referenceData.contactno}`, // Use referenceData for the phone number
         gender: gender,
         country: country,
         interested_in: productInterested,
@@ -115,8 +172,9 @@ const Interest = () => {
   };
 
   const validatePhoneNumber = () => {
-    // Implement your validation logic (basic phone number format check)
-    const phoneRegex = /^\d+$/; // Allow one or more digits
+    // Implement your validation logic for phone number
+    const phoneRegex = /^[0-9]{8,15}$/; // Adjust the regex according to your requirements
+
     setPhoneNumberValid(phoneRegex.test(phoneNumber));
   };
 
@@ -174,17 +232,21 @@ const Interest = () => {
               Who are you making enquiries for{" "}
               <span className="text-red-600">*</span>
             </label>
-            <input
-              type="text"
-              id="enquires"
+            <select
+              name="enquiryFor"
+              id="enquiryFor"
               value={enquiryFor}
-              required
               onChange={(e) => setEnquiryFor(e.target.value)}
               onBlur={validateEnquiryFor}
-              className={`w-full h-12 p-4 text-black rounded-lg border ${
+              className={`w-full h-12 px-4 text-black rounded-lg border ${
                 enquiryForValid ? "border-[#666666]" : "border-red-500"
               }`}
-            />
+            >
+              <option value="">Select an option</option>
+              <option value="myself">Myself</option>
+              <option value="child">My Child / Minor</option>
+              <option value="thirdParty">3rd Party Adult</option>
+            </select>
           </div>
 
           {/* PRODUCT INTERESTED */}
@@ -206,9 +268,19 @@ const Interest = () => {
               }`}
             >
               <option value="">Select an option</option>
-              <option value="Global Education Loan">Local Education Loan</option>
+              <option value="Global Education Loan">
+                Local Education Loan
+              </option>
               <option value="Local Education Loan">
                 Global Education Loan
+              </option>
+              <option value="MBA/MSC Pathway">MBA/MSC Pathway</option>
+              <option value="Transfer BSc">Transfer BSc Pathway</option>
+              <option value="Private University">
+                Private University Education Loan
+              </option>
+              <option value="Professional Examination">
+                Professional Examination / Testing Loan
               </option>
             </select>
           </div>
@@ -236,16 +308,31 @@ const Interest = () => {
             <label htmlFor="" className="text-[#646464] font-semibold">
               Active Phone Number <span className="text-red-600">*</span>
             </label>
-            <input
-              type="text"
-              id="phoneNumber"
-              value={phoneNumber}
+            <PhoneInput
+              country="ng"
+              regions={[
+                "america",
+                "europe",
+                "asia",
+                "africa",
+                "oceania",
+                "austrailia",
+              ]}
               required
-              onChange={(e) => setPhoneNumber(e.target.value)}
-              onBlur={validatePhoneNumber}
-              className={`w-full h-12 p-4 text-black rounded-lg border ${
-                phoneNumberValid ? "border-[#666666]" : "border-red-500"
-              }`}
+              inputStyle={{
+                height: "52px",
+                width: "100%",
+                borderRadius: "8px",
+                borderColor: "#666666",
+              }}
+              buttonStyle={{
+                backgroundColor: "white",
+                borderRadius: "8px 0 0 8px",
+                borderColor: "#666666",
+              }}
+              onBlur={validatePhoneNumber} // Trigger validation on blur
+              onChange={(e, phone) => handleChange(e, phone, "contactno")}
+              value={`${referenceData.country_code}${referenceData.contactno}`}
             />
           </div>
 
@@ -254,17 +341,21 @@ const Interest = () => {
             <label htmlFor="" className="text-[#646464] font-semibold">
               Gender <span className="text-red-600">*</span>
             </label>
-            <input
-              type="text"
+            <select
+              name="gender"
               id="gender"
               value={gender}
-              required
               onChange={(e) => setGender(e.target.value)}
               onBlur={validateGender}
-              className={`w-full h-12 p-4 text-black rounded-lg border ${
+              className={`w-full h-12 px-4 text-black rounded-lg border ${
                 genderValid ? "border-[#666666]" : "border-red-500"
               }`}
-            />
+            >
+              <option value="">Select an option</option>
+              <option value="male">Male</option>
+              <option value="female">Female</option>
+              <option value="others">Others</option>
+            </select>
           </div>
 
           {/* COUNTRY */}
@@ -272,16 +363,13 @@ const Interest = () => {
             <label htmlFor="" className="text-[#646464] font-semibold">
               Country of Residence <span className="text-red-600">*</span>
             </label>
-            <input
-              type="text"
-              id="country"
-              value={country}
-              required
-              onChange={(e) => setCountry(e.target.value)}
+
+            <Select
+              options={countries}
+              value={countries.find((option) => option.value === country)}
+              onChange={(selectedOption) => setCountry(selectedOption.value)}
               onBlur={validateCountry}
-              className={`w-full h-12 p-4 text-black rounded-lg border ${
-                countryValid ? "border-[#666666]" : "border-red-500"
-              }`}
+              styles={customStyles}
             />
           </div>
 

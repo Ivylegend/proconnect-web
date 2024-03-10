@@ -19,19 +19,19 @@ const Home = () => {
 
   const calculateReturn = () => {
     const annualInterestRate = 0.16; // 16%
+    const loanPeriodInMonths = 120; // 120 months
 
     // Convert the principal to a number
     const principalAmount = parseFloat(principal);
 
-    const TotalPayment = principalAmount + principalAmount * annualInterestRate;
+    const totalInterest = principalAmount * annualInterestRate;
+    const totalRepayment = principalAmount + totalInterest;
 
-    const formattedResult = formatCurrency(
-      principalAmount * annualInterestRate
+    const formattedResult = formatCurrency(totalInterest);
+    const formattedTotal = formatCurrency(totalRepayment);
+    const formattedMonthly = formatCurrency(
+      totalRepayment / loanPeriodInMonths
     );
-    const formattedTotal = formatCurrency(
-      principalAmount + principalAmount * annualInterestRate
-    );
-    const formattedMonthly = formatCurrency(TotalPayment / 12);
 
     setResult(formattedResult);
     setMonthly(formattedMonthly);
@@ -158,7 +158,7 @@ const Home = () => {
                 </p>
                 <input
                   type="text"
-                  placeholder="16%"
+                  placeholder="15.99%"
                   disabled
                   className="border w-[100px] sm:w-[200px] p-3 text-black rounded-xl"
                 />
@@ -169,7 +169,7 @@ const Home = () => {
                 </p>
                 <input
                   type="text"
-                  placeholder="72 MONTHS"
+                  placeholder="120 MONTHS"
                   className="border w-[100px] sm:w-[200px] p-3 text-black rounded-xl"
                 />
               </div>
