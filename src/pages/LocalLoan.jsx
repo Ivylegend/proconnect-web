@@ -23,10 +23,8 @@ import { Link } from "react-router-dom";
 
 const LocalLoan = ({ setShowAfterFooter }) => {
   useEffect(() => {
-    // Set the state to show AfterFooter when the component mounts
     setShowAfterFooter(true);
 
-    // Clear the state when the component unmounts
     return () => setShowAfterFooter(false);
   }, []);
   return (

@@ -129,7 +129,7 @@ const Interest = () => {
       };
 
       // Make the API call
-      fetch("https://form.eldanic.com/api/contact/", requestOptions)
+      fetch("https://form.proconnectpay.com/", requestOptions)
         .then((response) => response.json())
         .then((result) => {
           if (result.status === true) {
@@ -151,40 +151,33 @@ const Interest = () => {
 
   // Validation functions
   const validateFullName = () => {
-    // Implement your validation logic
     setFullNameValid(fullName.trim() !== ""); // Example: Non-empty validation
   };
 
   const validateEnquiryFor = () => {
-    // Implement your validation logic
     setEnquiryForValid(enquiryFor.trim() !== ""); // Example: Non-empty validation
   };
 
   const validateProductInterested = () => {
-    // Implement your validation logic
     setProductInterestedValid(productInterested.trim() !== ""); // Example: Non-empty validation
   };
 
   const validateEmail = () => {
-    // Implement your validation logic (basic email format check)
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     setEmailValid(emailRegex.test(email));
   };
 
   const validatePhoneNumber = () => {
-    // Implement your validation logic for phone number
     const phoneRegex = /^[0-9]{8,15}$/; // Adjust the regex according to your requirements
 
     setPhoneNumberValid(phoneRegex.test(phoneNumber));
   };
 
   const validateGender = () => {
-    // Implement your validation logic
     setGenderValid(gender.trim() !== ""); // Example: Non-empty validation
   };
 
   const validateCountry = () => {
-    // Implement your validation logic
     setCountryValid(country.trim() !== ""); // Example: Non-empty validation
   };
 
@@ -268,12 +261,6 @@ const Interest = () => {
               }`}
             >
               <option value="">Select an option</option>
-              <option value="Global Education Loan">
-                Local Education Loan
-              </option>
-              <option value="Local Education Loan">
-                Global Education Loan
-              </option>
               <option value="MBA/MSC Pathway">MBA/MSC Pathway</option>
               <option value="Transfer BSc">Transfer BSc Pathway</option>
               <option value="Private University">

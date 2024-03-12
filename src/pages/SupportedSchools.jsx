@@ -626,8 +626,6 @@ const usSchoolsArray = usSchools.map((school, index) => ({
   name: school,
 }));
 
-console.log(usSchoolsArray);
-
 const SupportedSchools = () => {
   const [selectedCategory, setSelectedCategory] = useState("Canadian");
 
