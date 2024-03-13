@@ -72,8 +72,6 @@ const Interest = () => {
 
   // CHANGING PHONE NUMBER
   const handleChange = (e, value, name) => {
-    console.log("value", value);
-    console.log("name", name);
     if (name === "contactno") {
       let splitMobile = e?.split(value?.dialCode);
       setReferenceData({
@@ -144,22 +142,21 @@ const Interest = () => {
       setIsModalOpen(true);
       setErrors("");
     } else {
-      // If any field is not valid, display an error message
       setErrors("Make sure to fill the form with the correct details");
     }
   };
 
   // Validation functions
   const validateFullName = () => {
-    setFullNameValid(fullName.trim() !== ""); // Example: Non-empty validation
+    setFullNameValid(fullName.trim() !== ""); 
   };
 
   const validateEnquiryFor = () => {
-    setEnquiryForValid(enquiryFor.trim() !== ""); // Example: Non-empty validation
+    setEnquiryForValid(enquiryFor.trim() !== ""); 
   };
 
   const validateProductInterested = () => {
-    setProductInterestedValid(productInterested.trim() !== ""); // Example: Non-empty validation
+    setProductInterestedValid(productInterested.trim() !== ""); 
   };
 
   const validateEmail = () => {
@@ -168,22 +165,21 @@ const Interest = () => {
   };
 
   const validatePhoneNumber = () => {
-    const phoneRegex = /^[0-9]{8,15}$/; // Adjust the regex according to your requirements
+    const phoneRegex = /^[0-9]{8,15}$/;
 
     setPhoneNumberValid(phoneRegex.test(phoneNumber));
   };
 
   const validateGender = () => {
-    setGenderValid(gender.trim() !== ""); // Example: Non-empty validation
+    setGenderValid(gender.trim() !== "");
   };
 
   const validateCountry = () => {
-    setCountryValid(country.trim() !== ""); // Example: Non-empty validation
+    setCountryValid(country.trim() !== ""); 
   };
 
   const handleInterest = (e) => {
     setProductInterested(e.target.value);
-    console.log(productInterested);
   };
 
   return (
@@ -236,9 +232,9 @@ const Interest = () => {
               }`}
             >
               <option value="">Select an option</option>
-              <option value="myself">Myself</option>
-              <option value="child">My Child / Minor</option>
-              <option value="thirdParty">3rd Party Adult</option>
+              <option value="Myself">Myself</option>
+              <option value="My Child / Minor">My Child / Minor</option>
+              <option value="3rd Party Adult">3rd Party Adult</option>
             </select>
           </div>
 
@@ -262,11 +258,11 @@ const Interest = () => {
             >
               <option value="">Select an option</option>
               <option value="MBA/MSC Pathway">MBA/MSC Pathway</option>
-              <option value="Transfer BSc">Transfer BSc Pathway</option>
-              <option value="Private University">
+              <option value="Transfer BSc Pathway">Transfer BSc Pathway</option>
+              <option value="Private University Education Loan">
                 Private University Education Loan
               </option>
-              <option value="Professional Examination">
+              <option value="Professional Examination / Testing Loan">
                 Professional Examination / Testing Loan
               </option>
             </select>
