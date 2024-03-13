@@ -129,7 +129,7 @@ const Interest = () => {
       };
 
       // Make the API call
-      fetch("https://form.eldanic.com/", requestOptions)
+      fetch("https://form.eldanic.com/api/contact/", requestOptions)
         .then((response) => response.json())
         .then((result) => {
           if (result.status === true) {
