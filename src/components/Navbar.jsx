@@ -24,10 +24,6 @@ const navItems = [
     name: "Join Global Education Community",
     url: "/global-resolution",
   },
-  {
-    name: "Blog",
-    url: "/proconnectpay.com/blog",
-  },
 ];
 
 const Navbar = () => {
@@ -92,7 +88,6 @@ const Navbar = () => {
               <NavLink
                 to={navItem.url}
                 key={navItem.name}
-                target="_blank"
                 className={({ isActive }) => {
                   return isActive ? "active-nav" : "active hover:text-red-500";
                 }}
@@ -130,7 +125,6 @@ const Navbar = () => {
               <NavLink
                 to={navItem.url}
                 key={navItem.name}
-                target="_blank"
                 className={({ isActive }) => {
                   return isActive ? "active-nav" : "active hover:text-red-500";
                 }}

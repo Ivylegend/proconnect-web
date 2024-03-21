@@ -11,6 +11,11 @@ import SocialIcons5 from "../assets/Social icons5.png";
 import SocialIcons6 from "../assets/youtube.png";
 
 const businessLinks = [
+
+  {
+    url: "https://proconnectpay.com/blog",
+    name: "Blog",
+  },
   {
     url: "/pricing",
     name: "Service Fee Pricing",
@@ -122,7 +127,7 @@ const Footer = () => {
           <ul className="flex gap-5 flex-col">
             {businessLinks.map((footerLink) => {
               return (
-                <Link to={footerLink.url} key={footerLink.url}>
+                <Link to={footerLink.url} key={footerLink.url} target="_blank">
                   <li className="font-bold hover:text-[#db251A]">
                     {footerLink.name}
                   </li>
