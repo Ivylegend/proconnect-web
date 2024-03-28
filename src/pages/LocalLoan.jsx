@@ -21,11 +21,11 @@ import Power from "../assets/power.png";
 import aiLaptop from "../assets/laptop.png";
 import { Link } from "react-router-dom";
 
-const LocalLoan = ({ setShowAfterFooter }) => {
+const LocalLoan = ({ setShowAfterFooterTwo }) => {
   useEffect(() => {
-    setShowAfterFooter(true);
+    setShowAfterFooterTwo(true);
 
-    return () => setShowAfterFooter(false);
+    return () => setShowAfterFooterTwo(false);
   }, []);
   return (
     <div className="md:px-20 md:py-10 bg-[#F4F4F4]">
