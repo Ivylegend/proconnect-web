@@ -44,20 +44,22 @@ const LocalLoan = ({ setShowAfterFooterTwo }) => {
       <div className="w-full mt-4 mb-16 bg-white flex gap-8 lg:gap-8 flex-col lg:flex-row md:rounded-3xl p-8">
         <div className="w-full lg:w-1/2 flex flex-col gap-8 items-start">
           <img src={First} alt="icon" />
-          <p className="font-bold text-2xl">LOAN PROCESSING LAYER DETAILS</p>
+          <p className="font-bold text-2xl">
+            STUDENT FINANCING PROCESSING LAYER DETAILS
+          </p>
           <span className="flex items-center gap-4">
             <img src={Check} alt="check image" />
-            <p>Interest Rate is between 20% - 35% per Annum</p>
+            <p>Interest Rate is ZERO% per Annum</p>
           </span>
           <span className="flex items-center gap-4">
             <img src={Check} alt="check image" />
-            <p>Loan can be repaid in Ten (10) Years (Optional)</p>
+            <p>Student Financing can be repaid in Ten (10) Years (Optional)</p>
           </span>
           <span className="flex items-center gap-4">
             <img src={Check} alt="check image" />
             <p>
               We provide 10 Million Naira in Private University Education
-              Student Loans
+              Student Financing
             </p>
           </span>
           <span className="flex items-center gap-4">
@@ -70,8 +72,9 @@ const LocalLoan = ({ setShowAfterFooterTwo }) => {
           <span className="flex items-center gap-4">
             <img src={Check} alt="check image" />
             <p>
-              Loan pays for your Tuition, Cost of Living, HealthInsurance,
-              Laptop, Phone, Internship, and Personal/Mental Development
+              Student Financing pays for your Tuition, Cost of Living,
+              HealthInsurance, Laptop, Phone, Internship, and Personal/Mental
+              Development.
             </p>
           </span>
         </div>
