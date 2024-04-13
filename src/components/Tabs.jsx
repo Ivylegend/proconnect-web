@@ -3,7 +3,6 @@ import { toast } from "react-toastify";
 import PaystackPop from "@paystack/inline-js";
 import Check from "../assets/check.png";
 import CurveArrow from "../assets/curve-arrow.png";
-import Modal from "./small-components/Modal";
 
 const Tabs = () => {
   const [activeTab, setActiveTab] = useState("tab1");
