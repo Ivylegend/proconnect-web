@@ -3,9 +3,14 @@ import { toast } from "react-toastify";
 import PaystackPop from "@paystack/inline-js";
 import Check from "../assets/check.png";
 import CurveArrow from "../assets/curve-arrow.png";
+import Modal from "./small-components/Modal";
 
 const Tabs = () => {
   const [activeTab, setActiveTab] = useState("tab1");
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isModalOpen2, setIsModalOpen2] = useState(false);
+  const [userEmail, setUserEmail] = useState("");
+  const [couponCode, setCouponCode] = useState("");
 
   // const paystackApiKey = process.env.REACT_APP_PAYSTACK_API_KEY;
 
@@ -14,11 +19,12 @@ const Tabs = () => {
   };
 
   const payWithPayStack = (amounts) => {
+    setIsModalOpen(false);
     const paystack = new PaystackPop();
     paystack.newTransaction({
       key: "pk_live_689cd76b33c137c295bfbf58e38d9205627b0ea6",
       amount: amounts * 100,
-      email: "user@gmail.com",
+      email: userEmail,
       onSuccess(transaction) {
         handlePayment(formData);
         toast.success(`Payment successful ${transaction.reference}`);
@@ -49,6 +55,99 @@ const Tabs = () => {
           USD
         </div>
       </div>
+
+      {/* CHECKOUT / COUPON MODAL */}
+
+      {isModalOpen && (
+        <div className="modal-overlay fixed left-0 top-0 z-40 bg-blue-100 bg-opacity-30 h-full flex items-center justify-center border p-8 shadow-lg w-full">
+          <div className="modal-content p-8 rounded-md shadow-lg flex flex-col gap-4 bg-white max-w-[350px] items-start">
+            <span
+              className="close-button flex items-start justify-end w-full cursor-pointer text-2xl"
+              onClick={() => setIsModalOpen(false)}
+            >
+              &times;
+            </span>
+            <span className="flex flex-col gap-2 mb-4">
+              <p className="font-semibold">Your Email Address *</p>
+              <input
+                value={userEmail}
+                onChange={(event) => setUserEmail(event.target.value)}
+                className="border w-full rounded-md p-3 text-sm"
+                required
+                type="email"
+                placeholder="Your valid email address"
+              />
+            </span>
+            <span className="flex flex-col gap-2 mb-4">
+              <p className="font-semibold text-center">
+                Enter Coupon Code If Available
+              </p>
+              <input
+                value={couponCode}
+                type="text"
+                className="border w-full rounded-md p-3 text-sm"
+                onChange={(event) => setCouponCode(event.target.value)}
+              />
+            </span>
+            <button
+              className="w-full border rounded-md bg-[#db251A] text-white p-4"
+              onClick={() => {
+                const discountedAmount =
+                  couponCode === "1234" ? 300000 / 2 : 300000;
+                payWithPayStack(discountedAmount);
+              }}
+            >
+              Proceed To Payment
+            </button>
+          </div>
+        </div>
+      )}
+
+      {/* MODAL TWO */}
+      {isModalOpen2 && (
+        <div className="modal-overlay fixed left-0 top-0 z-40 bg-blue-100 bg-opacity-30 h-full flex items-center justify-center border p-8 shadow-lg w-full">
+          <div className="modal-content p-8 rounded-md shadow-lg flex flex-col gap-4 bg-white max-w-[350px] items-start">
+            <span
+              className="close-button flex items-start justify-end w-full cursor-pointer text-2xl"
+              onClick={() => setIsModalOpen2(false)}
+            >
+              &times;
+            </span>
+            <span className="flex flex-col gap-2 mb-4">
+              <p className="font-semibold">Your Email Address *</p>
+              <input
+                value={userEmail}
+                onChange={(event) => setUserEmail(event.target.value)}
+                className="border w-full rounded-md p-3 text-sm"
+                required
+                type="email"
+                placeholder="Your valid email address"
+              />
+            </span>
+            <span className="flex flex-col gap-2 mb-4">
+              <p className="font-semibold text-center">
+                Enter Coupon Code If Available
+              </p>
+              <input
+                value={couponCode}
+                type="text"
+                className="border w-full rounded-md p-3 text-sm"
+                onChange={(event) => setCouponCode(event.target.value)}
+              />
+            </span>
+            <button
+              className="w-full border rounded-md bg-[#db251A] text-white p-4"
+              onClick={() => {
+                const discountedAmount =
+                  couponCode === "1234" ? 280000 / 2 : 280000;
+                payWithPayStack(discountedAmount);
+              }}
+            >
+              Proceed To Payment
+            </button>
+          </div>
+        </div>
+      )}
 
       {/* TAB CONTENT */}
       <div className="tab-content-container overflow-hidden relative">
@@ -89,7 +188,8 @@ const Tabs = () => {
                   <p className="font-semibold">Visa Processing Support</p>
                 </div>
                 <button
-                  onClick={() => payWithPayStack(300000)}
+                  // onClick={() => payWithPayStack(300000)}
+                  onClick={() => setIsModalOpen(true)}
                   className="w-full border h-14 font-bold mt-8 border-[#db251A] rounded-lg text-[#db251A] hover:bg-[#db251A] hover:text-white transition duration-300 ease-in-out flex items-center justify-center"
                 >
                   Join Now
@@ -127,7 +227,8 @@ const Tabs = () => {
                   </p>
                 </div>
                 <button
-                  onClick={() => payWithPayStack(280000)}
+                  // onClick={() => payWithPayStack(280000)}
+                  onClick={() => setIsModalOpen2(true)}
                   className="w-full border h-14 font-bold mt-8 border-[#db251A] rounded-lg text-[#db251A] hover:bg-[#db251A] hover:text-white transition duration-300 ease-in-out flex items-center justify-center"
                 >
                   Join Now
@@ -137,6 +238,7 @@ const Tabs = () => {
           )}
         </div>
 
+        {/* USD PAYMENT */}
         {/* Add transition effect for content sliding */}
         <div
           className={`tab-content transition-transform duration-300 ${

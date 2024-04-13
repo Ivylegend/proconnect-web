@@ -10,6 +10,7 @@ import people from "../assets/people.png";
 import globe from "../assets/globe.png";
 import education from "../assets/education.png";
 import LoanCalculator from "../components/Calculator";
+import CTA from "../components/CTA";
 
 const Home = () => {
   const [principal, setPrincipal] = useState("");
@@ -64,6 +65,7 @@ const Home = () => {
   return (
     <div>
       <Hero />
+      {/* <CTA /> */}
       <Partners />
       <TextImage
         picture={Macbook}
