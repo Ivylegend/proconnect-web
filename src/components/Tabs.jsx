@@ -10,6 +10,7 @@ const Tabs = () => {
   const [isModalOpen2, setIsModalOpen2] = useState(false);
   const [userEmail, setUserEmail] = useState("");
   const [couponCode, setCouponCode] = useState("");
+  const [discountedPrice, setDiscountedPrice] = useState(100000);
 
   // const paystackApiKey = process.env.REACT_APP_PAYSTACK_API_KEY;
 
@@ -32,6 +33,24 @@ const Tabs = () => {
         toast.error("Payment canceled");
       },
     });
+  };
+
+  const handlePayment = () => {
+    let newDiscountedPrice = 300000;
+
+    switch (couponCode) {
+      case "15PCPD2024":
+        newDiscountedPrice = 300000 - 300000 * 0.15;
+        break;
+      case "20PCPD2024":
+        newDiscountedPrice = 300000 - 300000 * 0.2;
+        break;
+      default:
+        alert("Invalid coupon code. Please enter a valid code.");
+    }
+
+    setDiscountedPrice(newDiscountedPrice);
+    payWithPayStack(newDiscountedPrice);
   };
 
   return (
@@ -90,11 +109,7 @@ const Tabs = () => {
             </span>
             <button
               className="w-full border rounded-md bg-[#db251A] text-white p-4"
-              onClick={() => {
-                const discountedAmount =
-                  couponCode === "1234" ? 300000 / 2 : 300000;
-                payWithPayStack(discountedAmount);
-              }}
+              onClick={handlePayment}
             >
               Proceed To Payment
             </button>
@@ -103,7 +118,7 @@ const Tabs = () => {
       )}
 
       {/* MODAL TWO */}
-      {isModalOpen2 && (
+      {/* {isModalOpen2 && (
         <div className="modal-overlay fixed left-0 top-0 z-40 bg-blue-100 bg-opacity-30 h-full flex items-center justify-center border p-8 shadow-lg w-full">
           <div className="modal-content p-8 rounded-md shadow-lg flex flex-col gap-4 bg-white max-w-[350px] items-start">
             <span
@@ -136,17 +151,18 @@ const Tabs = () => {
             </span>
             <button
               className="w-full border rounded-md bg-[#db251A] text-white p-4"
-              onClick={() => {
-                const discountedAmount =
-                  couponCode === "1234" ? 280000 / 2 : 280000;
-                payWithPayStack(discountedAmount);
-              }}
+              // onClick={() => {
+              //   const discountedAmount =
+              //     couponCode === "15PCPD2024" ? 100000 / 2 : couponCode === "20PCPD2024" ? 300000;
+              //   payWithPayStack(discountedAmount);
+              // }}
+              // onClick={handlePayment}
             >
               Proceed To Payment
             </button>
           </div>
         </div>
-      )}
+      )} */}
 
       {/* TAB CONTENT */}
       <div className="tab-content-container overflow-hidden relative">
@@ -226,8 +242,8 @@ const Tabs = () => {
                   </p>
                 </div>
                 <button
-                  // onClick={() => payWithPayStack(280000)}
-                  onClick={() => setIsModalOpen2(true)}
+                  onClick={() => payWithPayStack(100000)}
+                  // onClick={() => setIsModalOpen2(true)}
                   className="w-full border h-14 font-bold mt-8 border-[#db251A] rounded-lg text-[#db251A] hover:bg-[#db251A] hover:text-white transition duration-300 ease-in-out flex items-center justify-center"
                 >
                   Join Now
@@ -308,7 +324,7 @@ const Tabs = () => {
                     Global Undergraduate Community
                   </p>
                 </div>
-                <a href="https://buy.stripe.com/dR6bKF5pN5fm3wA146">
+                <a href="https://buy.stripe.com/aEU9Cx9G3bDKebe3cg">
                   <button className="w-full border h-14 font-bold mt-8 border-[#db251A] rounded-lg text-[#db251A] hover:bg-[#db251A] hover:text-white transition duration-300 ease-in-out flex items-center justify-center">
                     Join Now
                   </button>
