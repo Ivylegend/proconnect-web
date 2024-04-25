@@ -84,7 +84,7 @@ const LoanCalculator = () => {
         </div>
         <div className="flex justify-between items-center gap-4">
           <p className="font-semibold capitalize text-sm">
-            Repayment Period in First Phase (60% in 11 months)
+            Repayment Period in First Phase (60% in 12 months)
           </p>
           <input
             type="text"
@@ -95,7 +95,7 @@ const LoanCalculator = () => {
         </div>
         <div className="flex justify-between items-center gap-4">
           <p className="font-semibold capitalize text-sm">
-            Repayment Period in Second Phase (40% in 61 months)
+            Repayment Period in Second Phase (40% in 60 months)
           </p>
           <input
             type="text"

@@ -65,7 +65,6 @@ const Home = () => {
   return (
     <div>
       <Hero />
-      {/* <CTA /> */}
       <Partners />
       <TextImage
         picture={Macbook}
@@ -257,6 +256,9 @@ const Home = () => {
           <Button btnText={"Join Community"} linkTo={"/global-resolution"} />
         </div>
       </div>
+
+      {/* <CTA /> */}
+
     </div>
   );
 };

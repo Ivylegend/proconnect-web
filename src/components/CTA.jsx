@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import './CTA.css'
+import "./CTA.css";
 
 const CTA = () => {
   const refImage = useRef(null);
@@ -66,61 +66,30 @@ const CTA = () => {
         <div id="customForm">
           <div
             name="SIGNUP_PAGE"
-            className="large_form_3_css"
+            className="large_form_3_css bg-teal-500 text-white p-10 font-sans text-center text-lg min-w-[240px]"
             id="SIGNUP_PAGE"
-            style={{
-              backgroundColor: "rgb(66, 173, 174)",
-              color: "rgb(255, 255, 255)",
-              padding: "30px",
-              fontFamily: "Arial",
-              textAlign: "center",
-              fontSize: "14px",
-              minWidth: "240px",
-            }}
           >
-            <div style={{ margin: "0px auto" }}>
+            <div className="my-0 mx-auto">
               <div
                 id="imgBlock"
                 name="LOGO_DIV"
                 data-logo="true" // Use data- attribute for custom data
-                style={{
-                  width: "600px",
-                  margin: "0px auto",
-                  paddingBottom: "10px",
-                  textAlign: "center",
-                  paddingTop: "10px",
-                }}
+                className="w-600 mx-auto mb-0 text-center"
               />
             </div>
             <br />
             <div
               id="signupMainDiv"
-              style={{
-                margin: "0px auto",
-                width: "100%",
-                minWidth: "230px",
-                maxWidth: "600px",
-              }}
+              className="mx-auto w-full min-w-[230px] max-w-600"
               name="SIGNUPFORM"
               changeid="SIGNUPFORM"
               changename="SIGNUPFORM"
             >
               <div>
-                <div style={{ position: "relative" }}>
+                <div className="relative">
                   <div
                     id="Zc_SignupSuccess"
-                    style={{
-                      display: "none",
-                      position: "absolute",
-                      marginLeft: "4%",
-                      width: "90%",
-                      backgroundColor: "white",
-                      padding: "3px",
-                      border: "3px solid rgb(194, 225, 154)",
-                      marginTop: "10px",
-                      marginBottom: "10px",
-                      wordBreak: "break-all",
-                    }}
+                    className="hidden absolute left-4 w-90 bg-white p-3 border border-green-500 mt-10 mb-10 text-wrap"
                   >
                     <table
                       width="100%"
@@ -141,12 +110,7 @@ const CTA = () => {
                           <td>
                             <span
                               id="signupSuccessMsg"
-                              style={{
-                                color: "rgb(73, 140, 132)",
-                                fontFamily: "sans-serif",
-                                fontSize: "14px",
-                                wordBreak: "break-word",
-                              }}
+                              className="text-teal-400 font-sans text-lg text-wrap"
                             >
                               &nbsp;&nbsp;Thank you for Signing Up
                             </span>
@@ -160,35 +124,22 @@ const CTA = () => {
                 <form
                   method="POST"
                   id="zcampaignOptinForm"
-                  style={{ margin: "0px" }}
+                  className="m-0"
                   action="https://zohuta-cmpzourl.maillist-manage.com/weboptin.zc"
                   target="_zcSignup"
                 >
                   <div
                     id="SIGNUP_BODY_ALL"
                     name="SIGNUP_BODY_ALL"
-                    style={{
-                      borderColor: "rgb(45, 157, 158)",
-                      borderWidth: "5px",
-                      borderStyle: "solid",
-                    }}
+                    className="border-teal-600 border-4"
                   >
                     <h1
                       id="SIGNUP_HEADING"
                       name="SIGNUP_HEADING"
                       changeid="SIGNUP_MSG"
                       changetype="SIGNUP_HEADER"
-                      style={{
-                        color: "rgb(67, 67, 67)",
-                        backgroundColor: "rgb(245, 245, 245)",
-                        border: "1px none rgb(91, 91, 91)",
-                        wordBreak: "break-word",
-                        padding: "20px",
-                        margin: "0px",
-                        fontFamily: "Arial",
-                        textAlign: "center",
-                        fontSize: "17px",
-                      }}
+                      className="text-[#434343] bg-[#f5f5f5] border-b border-transparent p-8 m-0 font-sans font-semibold text-center text-lg
+                       text-wrap"
                     >
                       <span>
                         Learn more about our Global and Local Education Funding
@@ -198,70 +149,34 @@ const CTA = () => {
                     <div
                       id="SIGNUP_BODY"
                       name="SIGNUP_BODY"
-                      style={{
-                        backgroundColor: "rgb(255, 255, 255)",
-                        color: "rgb(68, 68, 68)",
-                        padding: "20px",
-                        fontFamily: "Arial",
-                        textAlign: "center",
-                        bottom: "2px",
-                        fontSize: "11px",
-                        opacity: "1",
-                      }}
+                      className="bg-white text-gray-400 p-8 font-sans text-center bottom-2 text-xs opacity-100 w-full"
                     >
-                      <div
-                        style={{
-                          margin: "0px auto",
-                          textAlign: "left",
-                        }}
-                      >
+                      <div className="mx-auto text-left">
                         <div
                           id="SIGNUP_DESCRIPTION"
                           changeid="SIGNUP_MSG"
                           changetype="SIGNUP_DESCRIPTION"
-                          style={{ lineHeight: "1.6" }}
+                          className="leading-loose"
                         />
                         <div
                           id="errorMsgDiv"
-                          style={{
-                            display: "none",
-                            backgroundColor: "#ffebe8",
-                            padding: "10px 10px",
-                            color: "#d20000",
-                            fontSize: "11px",
-                            margin: "10px 0px",
-                            border: "solid 1px #ffd9d3",
-                            marginTop: "20px",
-                          }}
+                          className="hidden bg-rose-100 text-red-500 p-4 text-xs my-10 border border-rose-200"
                         >
                           &nbsp;&nbsp;Please correct the marked field(s) below.
                         </div>
                         <div>
                           <div
-                            style="font-size: 12px; margin-top: 10px"
                             name="fieldsdivSf"
-                            className="zcsffieldsdiv"
+                            className="zcsffieldsdiv text-sm mt-4"
                           >
                             <div
-                              className="zcsffield"
+                              className="zcsffield py-0 px-0"
                               fieldid="1222562000000000023"
-                              style={{ padding: "10px 0px 10px 0px" }}
                             >
                               <div>
                                 {/* Check for email/required fields (logic not included) */}
                                 <input
-                                  style={{
-                                    width: "97%",
-                                    color: "rgb(68, 68, 68)",
-                                    backgroundColor: "rgb(255, 255, 255)",
-                                    border: "1px solid rgb(222, 222, 222)",
-                                    padding: "2px",
-                                    fontFamily: "Arial",
-                                    boxSizing: "border-box",
-                                    fontSize: "12px",
-                                    textIndent: "5px",
-                                    height: "28px",
-                                  }}
+                                  className="w-full text-gray-400 bg-white border border-gray-300 p-1 font-sans text-sm text-indent-2 h-8"
                                   maxLength="100"
                                   placeholder="First Name"
                                   name="FIRSTNAME"
@@ -269,10 +184,7 @@ const CTA = () => {
                                   type="text" // Change to "email" if necessary
                                 />
                                 &nbsp;
-                                <span
-                                  id="dt_FIRSTNAME"
-                                  style={{ display: "none" }}
-                                >
+                                <span id="dt_FIRSTNAME" className="hidden">
                                   1,false,1,First Name,2
                                 </span>
                               </div>
@@ -280,27 +192,13 @@ const CTA = () => {
                               <div style={{ clear: "both" }}></div>
                             </div>
                             <div
-                              style={{
-                                padding: "10px 0px 10px 0px",
-                              }}
-                              className="zcsffield"
+                              className="zcsffield py-2 px-0"
                               fieldid="1222562000000000021"
                             >
                               <div>
                                 {/* <!-- check to mark emailid field as type email, and other mandatory fields as type required --> */}
                                 <input
-                                  style={{
-                                    width: "97%",
-                                    color: "rgb(68, 68, 68)",
-                                    backgroundColor: "rgb(255, 255, 255)",
-                                    border: "1px solid rgb(222, 222, 222)",
-                                    padding: "2px",
-                                    fontFamily: "Arial",
-                                    boxSizing: "border-box",
-                                    fontSize: "12px",
-                                    textIndent: "5px",
-                                    height: "28px",
-                                  }}
+                                  className="w-full text-gray-400 bg-white border border-gray-300 p-1 font-sans text-sm text-indent-2 h-8"
                                   maxLength="100"
                                   placeholder="Email"
                                   name="CONTACT_EMAIL"
@@ -310,43 +208,24 @@ const CTA = () => {
                                 &nbsp;
                                 <span
                                   name="SIGNUP_REQUIRED"
-                                  style={{
-                                    color: "rgb(180, 0, 0)",
-                                    fontFamily: "Arial",
-                                    fontSize: "11px",
-                                  }}
+                                  className="text-red-500 font-sans text-xs"
                                 >
                                   *
                                 </span>
-                                <span
-                                  style={{ display: "none" }}
-                                  id="dt_CONTACT_EMAIL"
-                                >
+                                <span className="hidden" id="dt_CONTACT_EMAIL">
                                   1,true,6,Contact Email,2
                                 </span>
                               </div>
                               <div style={{ clear: "both" }}></div>
                             </div>
                             <div
-                              className="zcsffield"
+                              className="zcsffield py-2 px-0"
                               fieldid="1222562000000000029"
-                              style={{ padding: "10px 0px 10px 0px" }}
                             >
                               <div>
                                 {/* Check for email/required fields (logic not included) */}
                                 <input
-                                  style={{
-                                    width: "97%",
-                                    color: "rgb(68, 68, 68)",
-                                    backgroundColor: "rgb(255, 255, 255)",
-                                    border: "1px solid rgb(222, 222, 222)",
-                                    padding: "2px",
-                                    fontFamily: "Arial",
-                                    boxSizing: "border-box",
-                                    fontSize: "12px",
-                                    textIndent: "5px",
-                                    height: "28px",
-                                  }}
+                                  className="w-full text-gray-400 bg-white border border-gray-300 p-1 font-sans text-sm text-indent-2 h-8"
                                   maxLength="100"
                                   placeholder="Phone"
                                   name="PHONE"
@@ -354,7 +233,7 @@ const CTA = () => {
                                   type="text" // Change to "tel" if necessary
                                 />
                                 &nbsp;
-                                <span id="dt_PHONE" style={{ display: "none" }}>
+                                <span id="dt_PHONE" className="hidden">
                                   1,false,1,Phone,2
                                 </span>
                               </div>
@@ -362,25 +241,13 @@ const CTA = () => {
                             </div>
 
                             <div
-                              className="zcsffield"
+                              className="zcsffield py-2 px-0"
                               fieldid="1222562000000118023"
-                              style={{ padding: "10px 0px 10px 0px" }}
                             >
                               <div>
                                 {/* Check for email/required fields (logic not included) */}
                                 <input
-                                  style={{
-                                    width: "97%",
-                                    color: "rgb(68, 68, 68)",
-                                    backgroundColor: "rgb(255, 255, 255)",
-                                    border: "1px solid rgb(222, 222, 222)",
-                                    padding: "2px",
-                                    fontFamily: "Arial",
-                                    boxSizing: "border-box",
-                                    fontSize: "12px",
-                                    textIndent: "5px",
-                                    height: "28px",
-                                  }}
+                                  className="w-full text-gray-400 bg-white border border-gray-300 p-1 font-sans text-sm text-indent-2 h-8"
                                   maxLength="100"
                                   placeholder="Country of Residence"
                                   name="CONTACT_CF4"
@@ -388,10 +255,7 @@ const CTA = () => {
                                   type="text" // No change in type needed here
                                 />
                                 &nbsp;
-                                <span
-                                  id="dt_CONTACT_CF4"
-                                  style={{ display: "none" }}
-                                >
+                                <span id="dt_CONTACT_CF4" className="hidden">
                                   1,false,1,Country of Residence,2
                                 </span>
                               </div>
@@ -399,25 +263,13 @@ const CTA = () => {
                             </div>
 
                             <div
-                              className="zcsffield"
+                              className="zcsffield py-2 px-0"
                               fieldid="1222562000000000035"
-                              style={{ padding: "10px 0px 10px 0px" }}
                             >
                               <div>
                                 {/* Check for email/required fields (logic not included) */}
                                 <input
-                                  style={{
-                                    width: "97%",
-                                    color: "rgb(68, 68, 68)",
-                                    backgroundColor: "rgb(255, 255, 255)",
-                                    border: "1px solid rgb(222, 222, 222)",
-                                    padding: "2px",
-                                    fontFamily: "Arial",
-                                    boxSizing: "border-box",
-                                    fontSize: "12px",
-                                    textIndent: "5px",
-                                    height: "28px",
-                                  }}
+                                  className="w-full text-gray-400 bg-white border border-gray-300 p-1 font-sans text-sm text-indent-2 h-8"
                                   maxLength="100"
                                   placeholder="State"
                                   name="STATE"
@@ -425,7 +277,7 @@ const CTA = () => {
                                   type="text" // No change in type needed here
                                 />
                                 &nbsp;
-                                <span id="dt_STATE" style={{ display: "none" }}>
+                                <span id="dt_STATE" className="hidden">
                                   1,false,1,State,2
                                 </span>
                               </div>
@@ -433,51 +285,36 @@ const CTA = () => {
                             </div>
 
                             <div
-                              className="zcsffield"
+                              className="zcsffield py-2 px-0"
                               fieldid="1222562000000118011"
-                              style={{ padding: "10px 0px 10px 0px" }}
                             >
                               <div>
-                                <div style={{ position: "relative" }}>
+                                <div className="relative">
                                   <select
                                     name="CONTACT_CF3"
                                     changeitem="SIGNUP_FORM_FIELD"
                                     multiple
-                                    style={{
-                                      width: "97%",
-                                      color: "rgb(68, 68, 68)",
-                                      backgroundColor: "rgb(255, 255, 255)",
-                                      border: "1px solid rgb(222, 222, 222)",
-                                      padding: "2px",
-                                      fontFamily: "Arial",
-                                      boxSizing: "border-box",
-                                      fontSize: "12px",
-                                      textIndent: "5px",
-                                      height: "84px",
-                                    }}
+                                    className="w-full text-gray-400 bg-white border border-gray-300 p-1 font-sans text-sm text-indent-2 h-21"
                                     zc_display_name="Who are you enquiring for?"
                                   >
                                     <option value="dummy" disabled>
                                       Who are you enquiring for?
                                     </option>
-                                    <option value="Myself">Myself</option>
-                                    <option value="My child or Minor">
+                                    <option className="text-black text-sm" value="Myself">Myself</option>
+                                    <option className="text-black text-sm" value="My child or Minor">
                                       My child or Minor
                                     </option>
-                                    <option value="3rd party adult">
+                                    <option className="text-black text-sm" value="3rd party adult">
                                       3rd party adult
                                     </option>
                                   </select>
                                   &nbsp;
-                                  <span
-                                    id="dt_CONTACT_CF3"
-                                    style={{ display: "none" }}
-                                  >
+                                  <span id="dt_CONTACT_CF3" className="hidden">
                                     1,false,13,Who are you enquiring for?,2
                                   </span>
                                 </div>
                               </div>
-                              <div style={{ clear: "both" }}></div>
+                              <div className="clear-both"></div>
                             </div>
                           </div>
 
@@ -485,27 +322,18 @@ const CTA = () => {
                           <div
                             id="captchaOld"
                             name="captchaContainer"
-                            style={{
-                              display: isCaptchaVisible ? "block" : "none",
-                            }}
+                            className={`${
+                              isCaptchaVisible ? "block" : "hidden"
+                            }`}
                           >
                             <div>
                               <div
                                 id="captchaParent"
-                                style={{
-                                  width: "59%",
-                                  float: "left",
-                                  minWidth: 170,
-                                  maxWidth: "70%",
-                                }}
+                                className="w-[59%] md:w-full min-w-sm max-w-3xl float-left"
                               >
                                 <img
                                   src="//campaigns.zoho.com/images/refresh_icon.png"
-                                  style={{
-                                    cursor: "pointer",
-                                    float: "right",
-                                    marginRight: 4,
-                                  }}
+                                  className="cursor-pointer float-right mr-2"
                                   onClick={handleRefreshCaptcha}
                                   id="relCaptcha"
                                   alt="Refresh Captcha"
@@ -514,13 +342,7 @@ const CTA = () => {
                                   id="captchaDiv"
                                   captcha="true"
                                   name=""
-                                  style={{
-                                    padding: 20,
-                                    background: "#fff",
-                                    border: "1px solid rgb(222, 222, 222)",
-                                    boxSizing: "border-box",
-                                    width: "98.8%",
-                                  }}
+                                  className="p-5 bg-white border border-gray-300 w-full"
                                 >
                                   {/* Captcha image will be loaded here */}
                                 </div>
@@ -529,39 +351,20 @@ const CTA = () => {
                                   id="captchaText"
                                   name="captchaText"
                                   changeitem="SIGNUP_FORM_FIELD"
-                                  style={{
-                                    marginTop: 5,
-                                    width: "98.7%",
-                                    color: "rgb(68, 68, 68)",
-                                    backgroundColor: "rgb(255, 255, 255)",
-                                    border: "1px solid rgb(222, 222, 222)",
-                                    padding: 2,
-                                    fontFamily: "Arial",
-                                    boxSizing: "border-box",
-                                    fontSize: 12,
-                                    textIndent: 5,
-                                    height: 28,
-                                  }}
+                                  className="mt-2 w-full text-gray-400 bg-white border border-gray-300 p-1 font-sans text-sm text-indent-2 h-8"
                                   maxLength="100"
                                   type="text"
                                 />
                                 <span
                                   name="SIGNUP_REQUIRED"
                                   id="capRequired"
-                                  style={{
-                                    color: "rgb(180, 0, 0)",
-                                    marginTop: -16,
-                                    marginRight: -2,
-                                    float: "right",
-                                    fontFamily: "Arial",
-                                    fontSize: 11,
-                                  }}
+                                  className="text-red-500 mt-4 mr-1 float-right font-sans text-xs"
                                 >
                                   *
                                 </span>
                               </div>
                             </div>
-                            <div style={{ clear: "both" }}></div>
+                            <div className="clear-both"></div>
                           </div>
 
                           <input
@@ -570,56 +373,23 @@ const CTA = () => {
                             value="6LdNeDUUAAAAAG5l7cJfv1AA5OKLslkrOa_xXxLs"
                           />
                           {/* <!-- Captcha for Signup End--><!-- Other Lists Subscription Start--> */}
-                          <div
-                            style={{
-                              borderBottom: "1px dotted #ebebeb",
-                              marginTop: "10px",
-                              clear: "both",
-                            }}
-                          ></div>
+                          <div className="border-b border-dashed border-gray-400 mt-4 clear-both"></div>
                           <div
                             id="REQUIRED_FIELD_TEXT"
                             changetype="REQUIRED_FIELD_TEXT"
                             name="SIGNUP_REQUIRED"
-                            style={{
-                              color: "rgb(180, 0, 0)",
-                              padding: "10px 10px 10px 0px",
-                              fontFamily: "Arial",
-                              fontSize: "11px",
-                            }}
+                            className="text-red-500 py-[10px] px-0 font-sans text-xs"
                           >
                             *Required Fields
                           </div>
-                          <div
-                            style={{
-                              padding: "10px",
-                              textAlign: "center",
-                            }}
-                          >
+                          <div className="p-[10px] text-center">
                             <input
                               type="button"
                               action="Save"
                               id="zcWebOptin"
                               name="SIGNUP_SUBMIT_BUTTON"
                               changetype="SIGNUP_SUBMIT_BUTTON_TEXT"
-                              style={{
-                                cursor: "pointer",
-                                appearance: "none",
-                                color: "rgb(255, 255, 255)",
-                                backgroundColor: "rgb(212, 73, 73)",
-                                whiteSpace: "normal",
-                                padding: "5px 15px",
-                                borderColor: "rgb(212, 73, 73)",
-                                textAlign: "center",
-                                outline: "none",
-                                fontFamily: "Arial",
-                                borderRadius: "3px",
-                                borderWidth: "5px",
-                                fontSize: "14px",
-                                backgroundPosition: "center bottom",
-                                borderStyle: "solid",
-                                backgroundRepeat: "repeat-x",
-                              }}
+                              className="cursor-pointer focus:outline-none text-white bg-red-500 hover:bg-opacity-75 py-2 px-4 font-sans text-base rounded-md border border-red-500 border-solid"
                               value="Yes, please."
                             />
                           </div>
@@ -713,12 +483,7 @@ const CTA = () => {
               </div>
 
               <div
-                style={{
-                  margin: "0px auto",
-                  marginTop: "20px",
-                  textAlign: "left",
-                  height: "76px",
-                }}
+                className="mx-auto mt-5 text-left h-24"
                 id="privacyNotes"
                 data-identity="privacyNotes" // Use data- attribute for custom data
               >
@@ -736,7 +501,7 @@ const CTA = () => {
             src="https://zohuta-cmpzourl.maillist-manage.com/images/spacer.gif"
             ref={refImage}
             id="refImage"
-            style={{ display: "none" }}
+            className="hidden"
             alt="" // Add an alt attribute for accessibility
           />
         </div>
@@ -745,49 +510,21 @@ const CTA = () => {
       <div
         id="zcOptinOverLay"
         onContextMenu={handleContextMenu}
-        style={{
-          display: "none",
-          textAlign: "center",
-          backgroundColor: "rgba(0, 0, 0, 0.5)", // Use rgba for opacity
-          zIndex: 100,
-          position: "fixed",
-          width: "100%",
-          top: 0,
-          left: 0,
-          height: "988px",
-          cursor: "default",
-        }}
+        className="fixed top-0 left-0 w-full h-full bg-black/50 z-50 hidden cursor-default"
       />
 
       <div
         id="zcOptinSuccessPopup"
-        style={{
-          display: "none",
-          zIndex: 9999,
-          width: "800px",
-          height: "40%",
-          top: "84px",
-          position: "fixed",
-          left: "26%",
-          backgroundColor: "#ffffff",
-          borderColor: "#e6e6e6",
-          borderStyle: "solid",
-          borderWidth: "1px",
-          boxShadow: "0 1px 10px #424242",
-          padding: "35px",
-        }}
+        className="fixed top-16 left-1/4 w-full md:w-800 h-auto bg-white border border-gray-300 shadow-md p-10 z-50 hidden"
       >
         <span
-          style={{
-            position: "absolute",
-            top: "-16px",
-            right: "-14px",
-            zIndex: 99999,
-            cursor: "pointer",
-          }}
+          className="absolute top-[-16px] right-[-14px] z-50 cursor-pointer"
           id="closeSuccess"
         >
-          <img src="https://zohuta-cmpzourl.maillist-manage.com/images/videoclose.png" />
+          <img
+            src="https://zohuta-cmpzourl.maillist-manage.com/images/videoclose.png"
+            className="absolute top-[-16px] right-[-14px] z-50 cursor-pointer"
+          />
         </span>
         <div id="zcOptinSuccessPanel"></div>
       </div>
