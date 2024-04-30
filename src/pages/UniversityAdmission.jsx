@@ -179,7 +179,7 @@ const UniversityAdmission = () => {
             value={formData.stateOfResidence}
             onChange={handleChange}
             required
-            className="border rounded-md p-2 border-black"
+            className="border rounded-md p-2 border-black h-12 bg-white"
           >
             <option value="">-- Select State --</option>
             {/* Add options for each Nigerian state here */}
@@ -232,7 +232,7 @@ const UniversityAdmission = () => {
             value={formData.gender}
             onChange={handleChange}
             required
-            className="border rounded-md p-2 border-black"
+            className="border rounded-md p-2 border-black h-12 bg-white"
           >
             <option value="">-- Select Gender --</option>
             <option value="Male">Male</option>
@@ -272,7 +272,7 @@ const UniversityAdmission = () => {
             value={formData.parentDetails.relationship}
             onChange={handleChange}
             required
-            className="border rounded-md p-2 border-black"
+            className="border rounded-md p-2 border-black h-12 bg-white"
           >
             <option value="">-- Select Relationship --</option>
             <option value="Mother">Mother</option>
