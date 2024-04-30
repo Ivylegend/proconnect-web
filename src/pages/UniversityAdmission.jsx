@@ -20,11 +20,9 @@ const UniversityAdmission = () => {
     stateOfResidence: "",
     gender: "",
     age: "",
-    parentDetails: {
-      relationship: "", // Who (Mother, Father, etc.)
-      phoneNumber: "",
-      whatsappNumber: "",
-    },
+    relationship: "", // Who (Mother, Father, etc.)
+    parentphoneNumber: "",
+    parentwhatsappNumber: "",
   });
 
   const handleChange = (event) => {
@@ -258,18 +256,20 @@ const UniversityAdmission = () => {
           />
         </div>
         {/* PARENT DETAILS */}
-        <h2 className="font-semibold text-xl">Provide one your PARENTS or Guardian Details:</h2>
+        <h2 className="font-semibold text-xl">
+          Provide one your PARENTS or Guardian Details:
+        </h2>
         <div className="form-group flex flex-col gap-2">
           <label
-            htmlFor="parentDetails.relationship"
+            htmlFor="relationship"
             className="text-lg font-medium"
           >
             Who?*:
           </label>
           <select
-            name="parentDetails.relationship"
-            id="parentDetails.relationship"
-            value={formData.parentDetails.relationship}
+            name="relationship"
+            id="relationship"
+            value={formData.relationship}
             onChange={handleChange}
             required
             className="border rounded-md p-2 border-black h-12 bg-white"
@@ -286,16 +286,16 @@ const UniversityAdmission = () => {
         </div>
         <div className="form-group flex flex-col gap-2">
           <label
-            htmlFor="parentDetails.phoneNumber"
+            htmlFor="parentphoneNumber"
             className="text-lg font-medium"
           >
             Active Phone Number*:
           </label>
           <input
             type="tel"
-            name="parentDetails.phoneNumber"
-            id="parentDetails.phoneNumber"
-            value={formData.parentDetails.phoneNumber}
+            name="parentphoneNumber"
+            id="parentphoneNumber"
+            value={formData.parentphoneNumber}
             onChange={handleChange}
             required
             className="border rounded-md p-2 border-black"
@@ -303,21 +303,25 @@ const UniversityAdmission = () => {
         </div>
         <div className="form-group flex flex-col gap-2">
           <label
-            htmlFor="parentDetails.whatsappNumber"
+            htmlFor="parentwhatsappNumber"
             className="text-lg font-medium"
           >
             Active WhatsApp Number*:
           </label>
           <input
             type="tel"
-            name="parentDetails.whatsappNumber"
-            id="parentDetails.whatsappNumber"
-            value={formData.parentDetails.whatsappNumber}
+            name="parentwhatsappNumber"
+            id="parentwhatsappNumber"
+            value={formData.parentwhatsappNumber}
             onChange={handleChange}
             className="border rounded-md p-2 border-black"
           />
         </div>
-        <button type="submit" className="bg-red-600 mt-4 text-white p-4 rounded-md text-lg" onClick={handleSubmit}>
+        <button
+          type="submit"
+          className="bg-red-600 mt-4 text-white p-4 rounded-md text-lg"
+          onClick={handleSubmit}
+        >
           Submit
         </button>
       </div>
