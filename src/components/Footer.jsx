@@ -44,6 +44,10 @@ const businessLinks = [
     url: "/global-loan#terms-conditions",
     name: "Terms and Conditions",
   },
+  {
+    url: "/university-admission",
+    name: "University Admission",
+  },
 ];
 
 const locationLinks = [
