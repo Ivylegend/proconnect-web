@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import InterestImg from "../assets/interest-img.png";
+import ReusableModal from "../components/small-components/ReusableModal";
 
 const UniversityAdmission = () => {
   const [formData, setFormData] = useState({
@@ -16,9 +17,14 @@ const UniversityAdmission = () => {
     age: "",
     relationship: "", // Who (Mother, Father, etc.)
     parentphoneNumber: "",
+    relName: "",
     parentwhatsappNumber: "",
   });
   const [errors, setErrors] = useState({}); // State for storing validation errors
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -105,39 +111,46 @@ const UniversityAdmission = () => {
     // Submit form data only if there are no errors
     if (Object.keys(newErrors).length === 0) {
       console.log("Form Submitted:", formData);
-      // You can handle form submission logic here (e.g., send data to server)
-      var myHeaders = new Headers();
-      myHeaders.append("Content-Type", "application/json");
 
-      var raw = JSON.stringify({
+      // You can handle form submission logic here (e.g., send data to server)
+      const myHeaders = new Headers();
+      myHeaders.append("Content-Type", "application/json");
+      myHeaders.append("Cookie", "sessionid=sr1tiydcdjcytk5886hj9a5dupltu5gc");
+
+      const raw = JSON.stringify({
         full_name: formData.fullName,
         email: formData.email,
         phone: formData.phoneNumber,
+        whatsapp_number: formData.whatsappNumber,
         gender: formData.gender,
-        wrote_jamb: formData.tookJAMB2024,
         age: formData.age,
-        state: formData.stateOfResidence,
-        whatsapp: formData.whatsappNumber,
         university: formData.universityWritten,
-        course: formData.coursesWritten,
         jamb_score: formData.JAMBscore,
-        reference: formData.parentwhatsappNumber,
+        course: formData.coursesWritten,
+        state: formData.stateOfResidence,
+        wrote_jamb: formData.tookJAMB2024,
         relationship: formData.relationship,
-        parent_phone: formData.parentphoneNumber,
+        parent_name: formData.relName,
+        active_phone: formData.parentphoneNumber,
+        active_whatsapp_number: formData.parentwhatsappNumber,
       });
 
-      var requestOptions = {
+      const requestOptions = {
         method: "POST",
         headers: myHeaders,
         body: raw,
         redirect: "follow",
       };
 
-      fetch("https://university-admission.eldanic.com/", requestOptions)
-        .then((response) => response.json())
+      fetch(
+        "https://university-admission.eldanic.com/api/contact/",
+        requestOptions
+      )
+        .then((response) => response.text())
         .then((result) => {
           if (result.status === true) {
             console.log(result);
+            setIsModalOpen(true);
           } else {
             console.log(result);
           }
@@ -148,9 +161,40 @@ const UniversityAdmission = () => {
     }
   };
 
+  const renderInput = (fieldName, labelText) => (
+    <div className="form-group flex flex-col gap-2">
+      <label htmlFor={fieldName} className="text-lg font-medium">
+        {labelText}
+      </label>
+      <input
+        type="text"
+        id={fieldName}
+        name={fieldName}
+        value={formData[fieldName]}
+        onChange={handleChange}
+        className={
+          errors[fieldName]
+            ? "border rounded-md p-2 border-red-500 w-full "
+            : "border rounded-md p-2 border-black w-full "
+        }
+      />
+      {errors[fieldName] && (
+        <p className="error-message text-red-500">
+          {/* Use template literal with field name */}
+          Please enter a valid value for {fieldName}.
+        </p>
+      )}
+    </div>
+  );
+
   return (
     <div className="px-10 sm:px-20 lg:pl-20 py-10 flex gap-8">
-      <form className="w-full md:1/2" onSubmit={handleSubmit}>
+      <ReusableModal
+        isOpen={isModalOpen}
+        onClose={closeModal}
+        message="Your Information has been sent and you will get a response within 24 hours"
+      />
+      <form className="w-full md:w-1/2" onSubmit={handleSubmit}>
         <h2 className="text-2xl text-center font-semibold my-4">
           JAMB 2024 Registration Form
         </h2>
@@ -182,103 +226,13 @@ const UniversityAdmission = () => {
               </label>
             </div>
           </div>
-          <div className="form-group flex flex-col gap-2">
-            <label htmlFor="fullName" className="text-lg font-medium">
-              Full Name as on Government ID*:
-            </label>
-            <input
-              type="text"
-              name="fullName"
-              id="fullName"
-              value={formData.fullName}
-              onChange={handleChange}
-              required
-              className="border rounded-md p-2 border-black w-full "
-            />
-          </div>
-          <div className="form-group flex flex-col gap-2">
-            <label htmlFor="email" className="text-lg font-medium">
-              Active Email ID*:
-            </label>
-            <input
-              type="email"
-              name="email"
-              id="email"
-              value={formData.email}
-              onChange={handleChange}
-              required
-              className="border rounded-md p-2 border-black w-full "
-            />
-          </div>
-          <div className="form-group flex flex-col gap-2">
-            <label htmlFor="phoneNumber" className="text-lg font-medium">
-              Active Phone Number*:
-            </label>
-            <input
-              type="tel"
-              name="phoneNumber"
-              id="phoneNumber"
-              value={formData.phoneNumber}
-              onChange={handleChange}
-              required
-              className="border rounded-md p-2 border-black w-full "
-            />
-          </div>
-          <div className="form-group flex flex-col gap-2">
-            <label htmlFor="whatsappNumber" className="text-lg font-medium">
-              Active WhatsApp Number*:
-            </label>
-            <input
-              type="tel"
-              name="whatsappNumber"
-              id="whatsappNumber"
-              value={formData.whatsappNumber}
-              onChange={handleChange}
-              required
-              className="border rounded-md p-2 border-black w-full "
-            />
-          </div>
-          <div className="form-group flex flex-col gap-2">
-            <label htmlFor="coursesWritten" className="text-lg font-medium">
-              Enter Course(s) you WROTE for*:
-            </label>
-            <input
-              type="text"
-              name="coursesWritten"
-              id="coursesWritten"
-              value={formData.coursesWritten}
-              onChange={handleChange}
-              required
-              className="border rounded-md p-2 border-black w-full "
-            />
-          </div>
-          <div className="form-group flex flex-col gap-2">
-            <label htmlFor="JAMBscore" className="text-lg font-medium">
-              JAMB SCORE For 2024:
-            </label>
-            <input
-              type="number"
-              name="JAMBscore"
-              id="JAMBscore"
-              value={formData.JAMBscore}
-              onChange={handleChange}
-              className="border rounded-md p-2 border-black w-full "
-            />
-          </div>
-          <div className="form-group flex flex-col gap-2">
-            <label htmlFor="universityWritten" className="text-lg font-medium">
-              Enter University you WROTE for*:
-            </label>
-            <input
-              type="text"
-              name="universityWritten"
-              id="universityWritten"
-              value={formData.universityWritten}
-              onChange={handleChange}
-              required
-              className="border rounded-md p-2 border-black w-full "
-            />
-          </div>
+          {renderInput("fullName", "Full Name as on Government ID*:")}
+          {renderInput("email", "Active Email ID*:")}
+          {renderInput("phoneNumber", "Active Phone Number*:")}
+          {renderInput("whatsappNumber", "Active WhatsApp Number*:")}
+          {renderInput("coursesWritten", "Enter Course(s) you WROTE for*:")}
+          {renderInput("JAMBscore", "JAMB SCORE For 2024:")}
+          {renderInput("universityWritten", "Enter University you WROTE for*:")}
 
           <div className="form-group flex flex-col gap-2">
             <label htmlFor="stateOfResidence" className="text-lg font-medium">
@@ -294,42 +248,42 @@ const UniversityAdmission = () => {
             >
               <option value="">-- Select State --</option>
               {/* Add options for each Nigerian state here */}
-              <option value="AB">Abia</option>
-              <option value="AD">Adamawa</option>
-              <option value="AK">Akwa Ibom</option>
-              <option value="AN">Anambra</option>
-              <option value="BA">Bauchi</option>
-              <option value="BY">Bayelsa</option>
-              <option value="BE">Benue</option>
+              <option value="Abia">Abia</option>
+              <option value="Adamawa">Adamawa</option>
+              <option value="Akwa Ibom">Akwa Ibom</option>
+              <option value="Anambra">Anambra</option>
+              <option value="Bauchi">Bauchi</option>
+              <option value="Bayelsa">Bayelsa</option>
+              <option value="Benue">Benue</option>
               <option value="Borno">Borno</option>
-              <option value="CR">Cross River</option>
-              <option value="DE">Delta</option>
-              <option value="EB">Ebonyi</option>
-              <option value="ED">Edo</option>
-              <option value="EK">Ekiti</option>
-              <option value="EN">Enugu</option>
-              <option value="GO">Gombe</option>
-              <option value="IM">Imo</option>
-              <option value="JI">Jigawa</option>
-              <option value="KD">Kaduna</option>
-              <option value="KN">Kano</option>
-              <option value="KA">Katsina</option>
-              <option value="KB">Kebbi</option>
-              <option value="KO">Kogi</option>
-              <option value="KW">Kwara</option>
-              <option value="LA">Lagos</option>
-              <option value="NA">Nassarawa</option>
-              <option value="NI">Niger</option>
-              <option value="OG">Ogun</option>
-              <option value="ON">Ondo</option>
-              <option value="OS">Osun</option>
-              <option value="OY">Oyo</option>
-              <option value="PL">Plateau</option>
-              <option value="RI">Rivers</option>
-              <option value="SO">Sokoto</option>
-              <option value="TA">Taraba</option>
-              <option value="YO">Yobe</option>
-              <option value="ZA">Zamfara</option>
+              <option value="Cross River">Cross River</option>
+              <option value="Delta">Delta</option>
+              <option value="Ebonyi">Ebonyi</option>
+              <option value="Edo">Edo</option>
+              <option value="Ekiti">Ekiti</option>
+              <option value="Enugu">Enugu</option>
+              <option value="Gombe">Gombe</option>
+              <option value="Imo">Imo</option>
+              <option value="Jigawa">Jigawa</option>
+              <option value="Kaduna">Kaduna</option>
+              <option value="Kano">Kano</option>
+              <option value="Katsina">Katsina</option>
+              <option value="Kebbi">Kebbi</option>
+              <option value="Kogi">Kogi</option>
+              <option value="Kwara">Kwara</option>
+              <option value="Lagos">Lagos</option>
+              <option value="Nassarawa">Nassarawa</option>
+              <option value="Niger">Niger</option>
+              <option value="Ogun">Ogun</option>
+              <option value="Ondo">Ondo</option>
+              <option value="Osun">Osun</option>
+              <option value="Oyo">Oyo</option>
+              <option value="Plateau">Plateau</option>
+              <option value="Rivers">Rivers</option>
+              <option value="Sokoto">Sokoto</option>
+              <option value="Taraba">Taraba</option>
+              <option value="Yobe">Yobe</option>
+              <option value="Zamfara">Zamfara</option>
               <option value="FCT">Federal Capital Territory</option>
             </select>
           </div>
@@ -352,22 +306,8 @@ const UniversityAdmission = () => {
               <option value="Prefer not to say">Prefer not to say</option>
             </select>
           </div>
-          <div className="form-group flex flex-col gap-2">
-            <label htmlFor="age" className="text-lg font-medium">
-              Age as at 2024*:
-            </label>
-            <input
-              type="number"
-              name="age"
-              id="age"
-              value={formData.age}
-              onChange={handleChange}
-              min="16"
-              max="130"
-              required
-              className="border rounded-md p-2 border-black w-full"
-            />
-          </div>
+          {renderInput("age", "Age as at 2024*:")}
+
           {/* PARENT DETAILS */}
           <h2 className="font-semibold text-xl">
             Provide one your PARENTS or Guardian Details:
@@ -394,36 +334,10 @@ const UniversityAdmission = () => {
               <option value="Other Sponsor">Other Sponsor</option>
             </select>
           </div>
-          <div className="form-group flex flex-col gap-2">
-            <label htmlFor="parentphoneNumber" className="text-lg font-medium">
-              Active Phone Number*:
-            </label>
-            <input
-              type="tel"
-              name="parentphoneNumber"
-              id="parentphoneNumber"
-              value={formData.parentphoneNumber}
-              onChange={handleChange}
-              required
-              className="border rounded-md p-2 border-black w-full "
-            />
-          </div>
-          <div className="form-group flex flex-col gap-2">
-            <label
-              htmlFor="parentwhatsappNumber"
-              className="text-lg font-medium"
-            >
-              Active WhatsApp Number*:
-            </label>
-            <input
-              type="tel"
-              name="parentwhatsappNumber"
-              id="parentwhatsappNumber"
-              value={formData.parentwhatsappNumber}
-              onChange={handleChange}
-              className="border rounded-md p-2 border-black w-full "
-            />
-          </div>
+          {renderInput("relName", "Name of Relative*:")}
+          {renderInput("parentphoneNumber", "Active Phone Number*:")}
+          {renderInput("parentwhatsappNumber", "Active WhatsApp Number*:")}
+
           <button
             type="submit"
             className="bg-red-600 mt-4 text-white p-4 rounded-md text-lg"
