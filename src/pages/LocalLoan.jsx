@@ -29,8 +29,8 @@ const LocalLoan = ({ setShowAfterFooterTwo }) => {
   }, []);
   return (
     <div className="md:px-20 md:py-10 bg-[#F4F4F4]">
-      <span className="p-10 relative md:p-0">
-        <h2 className="text-center px-10 font-bold text-2xl sm:text-4xl">
+      <span className="p-4 block relative my-4 md:pt-0 min-h-20">
+      <h2 className="text-center sm:px-10 font-bold text-2xl sm:text-4xl">
           There are 3 layers to our Local Undergraduate Loan Services
         </h2>
         <img
@@ -175,8 +175,8 @@ const LocalLoan = ({ setShowAfterFooterTwo }) => {
         </Link>
       </div>
 
-      <div className="p-10">
-        <p className="text-2xl font-bold mb-16">
+      <div className="sm:p-10 pb-8">
+        <p className="text-2xl font-bold mb-0 sm:mb-16 p-10 sm:p-0">
           <span className="text-[#1E4580]">
             Find the Value-Added Services we provide to{" "}
             <br className="hidden lg:block" /> Undergraduate Members in our

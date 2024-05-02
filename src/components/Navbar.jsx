@@ -2,6 +2,7 @@ import { Link, NavLink, useLocation } from "react-router-dom";
 import Logo from "../assets/pcp-logo-1.png";
 import { BiMenu } from "react-icons/bi";
 import React, { useEffect, useState } from "react";
+import NavBtn from "../assets/navbtn.png";
 
 const navItems = [
   {
@@ -100,11 +101,13 @@ const Navbar = () => {
       </div>
       <div className="flex items-center gap-4 sm:gap-8">
         <Link to="/interest">
-          <button className="rounded-lg font-medium flex items-center gap-4 justify-center bg-[#DB251A] text-white py-3 px-6 cursor-pointer hover:bg-white hover:text-[#db251A] hover:border-[#db251A] hover:border transition-colors">
+          <button className="hidden rounded-lg font-medium sm:flex items-center gap-4 justify-center bg-[#DB251A] text-white py-3 px-6 cursor-pointer hover:bg-white hover:text-[#db251A] hover:border-[#db251A] hover:border transition-colors">
             Get Started
           </button>
         </Link>
-        <BiMenu
+        <img
+          src={NavBtn}
+          alt="navbar button"
           className="lg:hidden w-6 h-6 cursor-pointer"
           onClick={handleMenu}
         />

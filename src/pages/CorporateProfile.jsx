@@ -7,6 +7,7 @@ import frame2 from "../assets/pictureFrame2.png";
 import frame3 from "../assets/pictureFrame3.png";
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
+import line from "../assets/line.png";
 
 const CorporateProfile = () => {
   const containerVariants = {
@@ -29,11 +30,21 @@ const CorporateProfile = () => {
   });
 
   return (
-    <div className="p-10 lg:p-20">
+    <div className="p-10 lg:p-0">
+      <span className="p-4 my-4 lg:hidden relative md:p-0">
+        <h2 className="text-center px-10 font-bold text-2xl sm:text-4xl mb-2">
+          Corporate Profile{" "}
+        </h2>
+        <img
+          className="absolute left-4 sm:left-40 min-w-[240px] sm:w-[340px] lg:left-60 "
+          src={line}
+          alt="line"
+        />
+      </span>
       {/* FIRST */}
       <motion.div
         className={
-          "flex flex-col lg:flex-row lg:p-20 my-12 lg:my-0 gap-20 items-center"
+          "flex flex-col lg:flex-row lg:p-20 my-12 lg:my-0 gap-8 lg:gap-20 items-center"
         }
         variants={containerVariants}
         initial="hidden"
@@ -43,12 +54,12 @@ const CorporateProfile = () => {
         {/* ONE */}
         <motion.div
           variants={divOneVariants}
-          className="w-full lg:w-1/2 flex flex-col items-start gap-8"
+          className="w-full lg:w-1/2 flex flex-col items-start gap-4 sm:gap-8"
         >
           <p className="">
             <img src={Description} alt="description-logo" />
           </p>
-          <h2 className="text-4xl font-bold leading-normal">
+          <h2 className="text-3xl sm:text-4xl font-bold leading-normal whitespace-nowrap">
             Company Description
           </h2>
           <p className="text-xl leading-8 text-justify">
@@ -73,7 +84,7 @@ const CorporateProfile = () => {
       {/* SECOND */}
       <motion.div
         className={
-          "flex flex-col lg:flex-row-reverse my-12 lg:my-0 lg:p-20 gap-20 items-center"
+          "flex flex-col lg:flex-row-reverse my-12 lg:my-0 lg:p-20 gap-8 lg:gap-20 items-center"
         }
         variants={containerVariants}
         initial="hidden"
@@ -82,12 +93,12 @@ const CorporateProfile = () => {
         {/* ONE */}
         <motion.div
           variants={divOneVariants}
-          className="w-full lg:w-1/2 flex flex-col items-start gap-8"
+          className="w-full lg:w-1/2 flex flex-col items-start gap-4 sm:gap-8"
         >
           <p className="">
             <img src={mission} alt="mission-logo" />
           </p>
-          <h2 className="text-4xl font-bold leading-normal">
+          <h2 className="text-3xl sm:text-4xl font-bold leading-normal">
             Mission Statement
           </h2>
           <p className="text-xl leading-8 text-justify">
@@ -108,7 +119,7 @@ const CorporateProfile = () => {
       {/* THIRD */}
       <motion.div
         className={
-          "flex flex-col lg:flex-row my-12 lg:my-0 lg:p-20 gap-20 items-center"
+          "flex flex-col lg:flex-row my-12 lg:my-0 lg:p-20 gap-8 lg:gap-20 items-center"
         }
         variants={containerVariants}
         initial="hidden"
@@ -117,12 +128,12 @@ const CorporateProfile = () => {
         {/* ONE */}
         <motion.div
           variants={divOneVariants}
-          className="w-full lg:w-1/2 flex flex-col items-start gap-8"
+          className="w-full lg:w-1/2 flex flex-col items-start gap-4 sm:gap-8"
         >
           <p className="">
             <img src={vision} alt="vision-logo" />
           </p>
-          <h2 className="text-4xl font-bold leading-normal">
+          <h2 className="text-3xl sm:text-4xl font-bold leading-normal">
             Vision Statement
           </h2>
           <p className="text-xl leading-8 text-justify">

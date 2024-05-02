@@ -64,7 +64,7 @@ const Hero = () => {
 
       {/* DIV TWO */}
       <motion.div
-        className="hidden md:flex flex-col gap-16"
+        className="hidden sm:flex flex-col gap-16"
         variants={divTwoVariants}
       >
         <div className="flex gap-18">

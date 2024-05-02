@@ -21,8 +21,8 @@ const GlobalLoan = ({ setShowAfterFooter }) => {
 
   return (
     <div className="py-4 sm:py-10 md:px-20 bg-[#F4F4F4]">
-      <span className="p-4 my-4 relative md:p-0">
-        <h2 className="text-center px-10 font-bold text-2xl sm:text-4xl">
+      <span className="p-4 block relative my-4 md:pt-0 min-h-20">
+        <h2 className="text-center sm:px-10 font-bold text-2xl sm:text-4xl">
           There are 3 layers to our Global Education Loan Services
         </h2>
         <img
