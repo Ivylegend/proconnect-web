@@ -227,11 +227,11 @@ const Interest = () => {
               value={enquiryFor}
               onChange={(e) => setEnquiryFor(e.target.value)}
               onBlur={validateEnquiryFor}
-              className={`w-full h-12 px-4 text-black rounded-lg border ${
+              className={`w-full h-12 px-4 bg-white text-black rounded-lg border ${
                 enquiryForValid ? "border-[#666666]" : "border-red-500"
               }`}
             >
-              <option value="">Select an option</option>
+              <option value="">--Select an option--</option>
               <option value="Myself">Myself</option>
               <option value="My Child / Minor">My Child / Minor</option>
               <option value="3rd Party Adult">3rd Party Adult</option>
@@ -252,11 +252,11 @@ const Interest = () => {
               value={productInterested}
               onChange={handleInterest}
               onBlur={validateProductInterested}
-              className={`w-full h-12 px-4 text-black rounded-lg border ${
+              className={`w-full h-12 px-4 bg-white text-black rounded-lg border ${
                 productInterestedValid ? "border-[#666666]" : "border-red-500"
               }`}
             >
-              <option value="">Select an option</option>
+              <option value="">--Select an option--</option>
               <option value="MBA/MSC Pathway">MBA/MSC Pathway</option>
               <option value="Transfer BSc Pathway">Transfer BSc Pathway</option>
               <option value="Private University Education Loan">
@@ -330,7 +330,7 @@ const Interest = () => {
               value={gender}
               onChange={(e) => setGender(e.target.value)}
               onBlur={validateGender}
-              className={`w-full h-12 px-4 text-black rounded-lg border ${
+              className={`w-full h-12 px-4 bg-white text-black rounded-lg border ${
                 genderValid ? "border-[#666666]" : "border-red-500"
               }`}
             >
