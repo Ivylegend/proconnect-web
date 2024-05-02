@@ -153,6 +153,7 @@ const UniversityAdmission = () => {
             setIsModalOpen(true);
           } else {
             console.log(result);
+            setIsModalOpen(true);
           }
         })
         .catch((error) => console.log("error", error));
