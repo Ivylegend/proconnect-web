@@ -17,6 +17,7 @@ import PrivacyPolicy from "./pages/PrivacyPolicy";
 import Interest from "./pages/Interest";
 import SupportedSchools from "./pages/SupportedSchools";
 import UniversityAdmission from "./pages/UniversityAdmission";
+import WhatsappIcon from "./components/WhatsappIcon";
 
 function App() {
   const [showAfterFooter, setShowAfterFooter] = useState(false);
@@ -45,6 +46,7 @@ function App() {
           <Route path="/supported-schools" element={<SupportedSchools />} />
           <Route path="/university-admission" element={<UniversityAdmission />} />
         </Routes>
+        <WhatsappIcon />
         <Footer />
         {showAfterFooter && (
           <AfterFooter
