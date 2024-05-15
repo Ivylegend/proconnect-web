@@ -48,6 +48,10 @@ const businessLinks = [
     url: "/university-admission",
     name: "University Admission",
   },
+  {
+    url: "/calculator",
+    name: "Use our Calculator",
+  },
 ];
 
 const locationLinks = [

@@ -18,6 +18,7 @@ import Interest from "./pages/Interest";
 import SupportedSchools from "./pages/SupportedSchools";
 import UniversityAdmission from "./pages/UniversityAdmission";
 import WhatsappIcon from "./components/WhatsappIcon";
+import Calculator from "./pages/Calculator";
 
 function App() {
   const [showAfterFooter, setShowAfterFooter] = useState(false);
@@ -43,6 +44,7 @@ function App() {
           <Route path="/pricing" element={<Pricing />} />
           <Route path="/privacy-policy" element={<PrivacyPolicy />} />
           <Route path="/interest" element={<Interest />} />
+          <Route path="/calculator" element={<Calculator />} />
           <Route path="/supported-schools" element={<SupportedSchools />} />
           <Route path="/university-admission" element={<UniversityAdmission />} />
         </Routes>
