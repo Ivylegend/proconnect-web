@@ -128,7 +128,7 @@ const Calculator = () => {
           <p className="font-medium uppercase text-lg mb-4">
             Select your flexible loan Period
           </p>
-          <div className="flex justify-between items-center flex-wrap gap-4">
+          <div className="flex justify-center md:justify-between items-center flex-wrap gap-4">
             <button
               className={`flex items-center font-semibold text-sm py-2 px-2 rounded-xl border-2 text-[#db251a] border-[#db251a] cursor-pointer ${
                 period === 6 ? "bg-red-500 text-white" : ""
