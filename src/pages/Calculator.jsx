@@ -125,12 +125,12 @@ const Calculator = () => {
           </div>
         </div>
         <div>
-          <p className="font-medium uppercase text-xl mb-4">
+          <p className="font-medium uppercase text-lg mb-4">
             Select your flexible loan Period
           </p>
-          <div className="flex justify-between items-center flex-wrap">
+          <div className="flex justify-between items-center flex-wrap gap-4">
             <button
-              className={`flex items-center font-semibold py-3 px-6 rounded-xl border-2 text-[#db251a] border-[#db251a] cursor-pointer ${
+              className={`flex items-center font-semibold text-sm py-2 px-2 rounded-xl border-2 text-[#db251a] border-[#db251a] cursor-pointer ${
                 period === 6 ? "bg-red-500 text-white" : ""
               }`}
               onClick={() => setPeriod(6)}
@@ -138,7 +138,7 @@ const Calculator = () => {
               6 months
             </button>
             <button
-              className={`flex items-center font-semibold py-3 px-6 rounded-xl border-2 text-[#db251a] border-[#db251a] cursor-pointer ${
+              className={`flex items-center font-semibold text-sm py-2 px-2 rounded-xl border-2 text-[#db251a] border-[#db251a] cursor-pointer ${
                 period === 12 ? "bg-red-500 text-white" : ""
               }`}
               onClick={() => setPeriod(12)}
@@ -146,7 +146,7 @@ const Calculator = () => {
               12 months
             </button>
             <button
-              className={`flex items-center font-semibold py-3 px-6 rounded-xl border-2 text-[#db251a] border-[#db251a] cursor-pointer ${
+              className={`flex items-center font-semibold text-sm py-2 px-2 rounded-xl border-2 text-[#db251a] border-[#db251a] cursor-pointer ${
                 period === 18 ? "bg-red-500 text-white" : ""
               }`}
               onClick={() => setPeriod(18)}
