@@ -1,5 +1,6 @@
-import React, { useState } from "react";
-import LoanCalculator from "../components/Calculator";
+import { useRef, useState } from "react";
+import html2canvas from "html2canvas";
+import jsPDF from "jspdf";
 
 const Calculator = () => {
   const [totalLoan, setTotalLoan] = useState("");
@@ -11,6 +12,30 @@ const Calculator = () => {
   const [costOfLiving, setCostOfLiving] = useState("");
   const [others, setOthers] = useState("");
   const [period, setPeriod] = useState(6);
+
+  const downloadRef = useRef(null);
+
+  const handleGeneratePDF = async () => {
+    const input = downloadRef.current;
+
+    try {
+      const canvas = await html2canvas(input);
+      const imgData = canvas.toDataURL("image/png");
+      const pdf = new jsPDF({
+        orientation: "portrait",
+        unit: "px",
+        format: "a4",
+      });
+
+      const width = pdf.internal.pageSize.getWidth();
+      const height = (canvas.height * width) / canvas.width;
+
+      pdf.addImage(imgData, "PNG", 0, 0, width, height);
+      pdf.save("document.pdf");
+    } catch (error) {
+      console.error("Error generating PDF:", error);
+    }
+  };
 
   //   const calculateReturn = () => {
   //     // Constants (for example purposes, you can replace these with your actual values)
@@ -84,8 +109,8 @@ const Calculator = () => {
   };
 
   return (
-    <div className="p-10 lg:p-0">
-      <div className="border z-20 bg-white mx-auto my-8 border-black rounded-2xl p-3 md:max-w-2xl flex flex-col gap-8">
+    <div className="p-10 lg:p-0" ref={downloadRef}>
+      <div className="border bg-white mx-auto my-8 border-black rounded-2xl p-3 md:max-w-2xl flex flex-col gap-8">
         <div className="rounded-lg border-[0.4px] p-3 flex flex-col gap-4 bg-white">
           <div className="flex justify-between items-center">
             <p className="uppercase font-semibold text-sm">Tution Fee</p>
@@ -216,6 +241,15 @@ const Calculator = () => {
             />
           </div>
         </div>
+      </div>
+
+      <div className="flex justify-center items-center">
+        <button
+          onClick={handleGeneratePDF}
+          className="bg-red-500 text-white p-4 rounded-xl hover:bg-white hover:text-red-500 border border-red-500"
+        >
+          Download as a PDF
+        </button>
       </div>
     </div>
   );
