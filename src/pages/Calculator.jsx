@@ -1,6 +1,5 @@
 import { useRef, useState } from "react";
-import html2canvas from "html2canvas";
-import jsPDF from "jspdf";
+import { usePDF } from "react-to-pdf";
 
 const Calculator = () => {
   const [totalLoan, setTotalLoan] = useState("");
@@ -13,70 +12,9 @@ const Calculator = () => {
   const [others, setOthers] = useState("");
   const [period, setPeriod] = useState(6);
 
-  const downloadRef = useRef(null);
-
-  const handleGeneratePDF = async () => {
-    const input = downloadRef.current;
-
-    try {
-      const canvas = await html2canvas(input);
-      const imgData = canvas.toDataURL("image/png");
-      const pdf = new jsPDF({
-        orientation: "landscape",
-        unit: "px",
-        format: "a4",
-        floatPrecision: "smart",
-        // format: [canvas.width, canvas.height],
-      });
-
-      const width = pdf.internal.pageSize.getWidth();
-      const height = (canvas.height * width) / canvas.width;
-
-      pdf.addImage(imgData, "PNG", 0, 0, width, height);
-      pdf.save("document.pdf");
-    } catch (error) {
-      console.error("Error generating PDF:", error);
-    }
-  };
-
-  //   const calculateReturn = () => {
-  //     // Constants (for example purposes, you can replace these with your actual values)
-  //     const annualInterestRate = 0.34; // 34%
-  //     const repaymentPeriodPhase1Months = 11;
-  //     const repaymentPeriodPhase2Months = 61;
-
-  //     // Convert the principal to a number
-  //     const principalAmount = parseFloat(principal);
-
-  //     // Calculate interest for both phases
-  //     const interestPhase1 =
-  //       principalAmount * annualInterestRate * (repaymentPeriodPhase1Months / 12);
-  //     const interestPhase2 =
-  //       principalAmount * annualInterestRate * (repaymentPeriodPhase2Months / 12);
-
-  //     // Calculate total payment and monthly payment for both phases
-  //     const totalPaymentPhase1 = principalAmount + interestPhase1;
-  //     const monthlyPaymentPhase1 =
-  //       totalPaymentPhase1 / repaymentPeriodPhase1Months;
-
-  //     const totalPaymentPhase2 = principalAmount + interestPhase2;
-  //     const monthlyPaymentPhase2 =
-  //       totalPaymentPhase2 / repaymentPeriodPhase2Months;
-
-  //     // Format values
-  //     const formattedTotal = formatCurrency(
-  //       totalPaymentPhase1 + totalPaymentPhase2
-  //     );
-  //     const formattedMonthly = formatCurrency(monthlyPaymentPhase1);
-  //     const formattedMonthly2 = formatCurrency(monthlyPaymentPhase2);
-  //     const formattedResult = formatCurrency(interestPhase1 + interestPhase2);
-
-  //     // Set the state values
-  //     setTotal(formattedTotal);
-  //     setMonthly(formattedMonthly);
-  //     setMonthly2(formattedMonthly2);
-  //     setResult(formattedResult);
-  //   };
+  const { toPDF, targetRef } = usePDF({
+    filename: "my-component.pdf",
+  });
 
   const formatCurrency = (amount) => {
     return `₦${amount.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, "$&,")}`;
@@ -112,8 +50,8 @@ const Calculator = () => {
 
   return (
     <div
-      className="p-10 lg:p-0 min-h-full flex justify-center items-center flex-col"
-      ref={downloadRef}
+      className="p-10 lg:p-0 min-h-screen lg:min-h-[1200px] flex justify-center items-center flex-col"
+      ref={targetRef}
     >
       <div className="border bg-white mx-auto my-8 border-black rounded-2xl p-3 md:max-w-2xl flex flex-col gap-8">
         <div className="rounded-lg border-[0.4px] p-3 flex flex-col gap-4 bg-white">
@@ -250,7 +188,7 @@ const Calculator = () => {
 
       <div className="flex justify-center items-center">
         <button
-          onClick={handleGeneratePDF}
+          onClick={() => toPDF()}
           className="bg-red-500 text-white p-4 rounded-xl hover:bg-white hover:text-red-500 border border-red-500"
         >
           Download as a PDF
