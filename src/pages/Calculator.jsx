@@ -13,7 +13,7 @@ const Calculator = () => {
   const [period, setPeriod] = useState(6);
 
   const { toPDF, targetRef } = usePDF({
-    filename: "my-component.pdf",
+    filename: "calculated-loan.pdf",
   });
 
   const formatCurrency = (amount) => {
@@ -50,7 +50,7 @@ const Calculator = () => {
 
   return (
     <div
-      className="p-10 lg:p-0 min-h-screen lg:min-h-[1200px] flex justify-center items-center flex-col"
+      className="p-10 lg:p-0 min-h-screen lg:min-h-[1200px] min-w-[100vw] flex justify-center items-center flex-col"
       ref={targetRef}
     >
       <div className="border bg-white mx-auto my-8 border-black rounded-2xl p-3 md:max-w-2xl flex flex-col gap-8">
