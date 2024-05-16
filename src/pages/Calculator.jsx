@@ -22,9 +22,11 @@ const Calculator = () => {
       const canvas = await html2canvas(input);
       const imgData = canvas.toDataURL("image/png");
       const pdf = new jsPDF({
-        orientation: "portrait",
+        orientation: "landscape",
         unit: "px",
         format: "a4",
+        floatPrecision: "smart",
+        // format: [canvas.width, canvas.height],
       });
 
       const width = pdf.internal.pageSize.getWidth();
@@ -109,7 +111,10 @@ const Calculator = () => {
   };
 
   return (
-    <div className="p-10 lg:p-0" ref={downloadRef}>
+    <div
+      className="p-10 lg:p-0 min-h-full flex justify-center items-center flex-col"
+      ref={downloadRef}
+    >
       <div className="border bg-white mx-auto my-8 border-black rounded-2xl p-3 md:max-w-2xl flex flex-col gap-8">
         <div className="rounded-lg border-[0.4px] p-3 flex flex-col gap-4 bg-white">
           <div className="flex justify-between items-center">
