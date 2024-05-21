@@ -18,24 +18,26 @@ const NelfundFinancing = () => {
     semester: "",
     matricNo: "",
     graduationYear: "",
-    costOfTuition: "",
-    monthlyCostOfLiving: "",
-    needFinancialSupport: "",
-    mentorship: "",
+    costOfTuition: 0,
+    monthlyCostOfLiving: 0,
+    needFinancialSupport: false,
+    mentorship: false,
   });
   const [errors, setErrors] = useState({}); // State for storing validation errors
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [loading, setLoading] = useState(false);
   const closeModal = () => {
     setIsModalOpen(false);
   };
 
   const handleChange = (event) => {
-    const { name, value } = event.target;
-    setFormData((prevData) => ({ ...prevData, [name]: value }));
+    const { name, value, type } = event.target;
+    const newValue = type === "radio" ? value === "true" : value;
+    setFormData((prevData) => ({ ...prevData, [name]: newValue }));
     setErrors((prevErrors) => ({
       ...prevErrors,
-      [name]: validate(name, value),
-    })); // Update errors on change
+      [name]: validate(name, newValue),
+    }));
   };
 
   const validate = (fieldName, value) => {
@@ -54,39 +56,11 @@ const NelfundFinancing = () => {
           error = "Invalid email format.";
         }
         break;
-      case "phoneNumber":
-      case "parentphoneNumber":
-        if (!value.trim()) {
-          error = "Phone number is required.";
-        } else if (!/^\d+$/.test(value)) {
-          error = "Invalid phone number format.";
-        }
-        break;
-      case "coursesWritten":
-      case "universityWritten":
-        if (!value.trim()) {
-          error = `${fieldName} is required.`;
-        }
-        break;
-      case "JAMBscore":
-        if (!value.trim()) {
-          error = "JAMB Score is required.";
-        } else if (isNaN(value) || parseInt(value, 10) < 0) {
-          error = "Invalid JAMB Score format.";
-        }
-        break;
       case "age":
         if (!value.trim()) {
           error = "Age is required.";
         } else if (parseInt(value, 10) < 16 || parseInt(value, 10) > 130) {
           error = "Age must be between 16 and 130.";
-        }
-        break;
-      case "stateOfResidence":
-      case "gender":
-      case "relationship":
-        if (!value) {
-          error = `${fieldName} is required.`;
         }
         break;
       default:
@@ -98,73 +72,83 @@ const NelfundFinancing = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log("Form Submitted:", formData);
+    setLoading(true);
+    // Clear any previous errors before validation
+    setErrors({});
 
-    // // Clear any previous errors before validation
-    // setErrors({});
+    const newErrors = {};
+    Object.entries(formData).forEach(([name, value]) => {
+      const error = validate(name, value);
+      if (error) {
+        newErrors[name] = error;
+        setLoading(false);
+      }
+    });
 
-    // const newErrors = {};
-    // Object.entries(formData).forEach(([name, value]) => {
-    //   const error = validate(name, value);
-    //   if (error) {
-    //     newErrors[name] = error;
-    //   }
-    // });
+    setErrors(newErrors);
 
-    // setErrors(newErrors);
+    // Submit form data only if there are no errors
+    if (Object.keys(newErrors).length === 0) {
+      console.log("Form Submitted:", formData);
 
-    // // Submit form data only if there are no errors
-    // if (Object.keys(newErrors).length === 0) {
-    //   console.log("Form Submitted:", formData);
+      // You can handle form submission logic here (e.g., send data to server)
+      const myHeaders = new Headers();
+      myHeaders.append("Content-Type", "application/json");
+      myHeaders.append("Cookie", "sessionid=9v4au3hykk3yhafsypsp8olqyg3fp0jw");
 
-    //   // You can handle form submission logic here (e.g., send data to server)
-    //   const myHeaders = new Headers();
-    //   myHeaders.append("Content-Type", "application/json");
-    //   myHeaders.append("Cookie", "sessionid=sr1tiydcdjcytk5886hj9a5dupltu5gc");
+      const raw = JSON.stringify({
+        full_name: formData.fullName,
+        school_type: formData.schoolAttended,
+        school_name: formData.nameOfSchoolAttended,
+        course_study: formData.courseOfStudy,
+        email: formData.email,
+        level: formData.yearInSchool,
+        semester: formData.semester,
+        matric_no: formData.matricNo,
+        grad_year: formData.graduationYear,
+        cost_of_institution: formData.costOfTuition,
+        cost_of_living: formData.monthlyCostOfLiving,
+        official_school_email: formData.schoolEmail,
+        age: formData.age,
+        gender: formData.gender,
+        phone: formData.phoneNumber,
+        whatsapp_number: formData.whatsappNumber,
+        need_financial_support: formData.needFinancialSupport,
+        want_mentor: formData.mentorship,
+      });
 
-    //   const raw = JSON.stringify({
-    //     full_name: formData.fullName,
-    //     email: formData.email,
-    //     phone: formData.phoneNumber,
-    //     whatsapp_number: formData.whatsappNumber,
-    //     gender: formData.gender,
-    //     age: formData.age,
-    //     university: formData.universityWritten,
-    //     jamb_score: formData.JAMBscore,
-    //     course: formData.coursesWritten,
-    //     state: formData.stateOfResidence,
-    //     wrote_jamb: formData.tookJAMB2024,
-    //     relationship: formData.relationship,
-    //     parent_name: formData.relName,
-    //     active_phone: formData.parentphoneNumber,
-    //     active_whatsapp_number: formData.parentwhatsappNumber,
-    //   });
+      const requestOptions = {
+        method: "POST",
+        headers: myHeaders,
+        body: raw,
+        redirect: "follow",
+      };
 
-    //   const requestOptions = {
-    //     method: "POST",
-    //     headers: myHeaders,
-    //     body: raw,
-    //     redirect: "follow",
-    //   };
+      // fetch("https://nelfund.eldanic.com/api/contact", requestOptions)
+      //   .then((response) => response.text())
+      //   .then((result) => {
 
-    //   fetch(
-    //     "https://university-admission.eldanic.com/api/contact/",
-    //     requestOptions
-    //   )
-    //     .then((response) => response.text())
-    //     .then((result) => {
-    //       if (result.status === true) {
-    //         console.log(result);
-    //         setIsModalOpen(true);
-    //       } else {
-    //         console.log(result);
-    //         setIsModalOpen(true);
-    //       }
-    //     })
-    //     .catch((error) => console.log("error", error));
-    // } else {
-    //   console.error("Validation Errors:", newErrors);
-    // }
+      //   .catch((error) => console.log("error", error));
+      fetch("https://nelfund.eldanic.com/api/contact/", requestOptions)
+        .then((response) => response.text())
+        .then((result) => {
+          if (result.status === true) {
+            console.log(result);
+            setIsModalOpen(true);
+            setLoading(false);
+          } else {
+            console.log(result);
+            setLoading(false);
+            setIsModalOpen(true);
+          }
+        })
+        .catch((error) => {
+          console.error(error);
+          setLoading(false);
+        });
+    } else {
+      console.error("Validation Errors:", newErrors);
+    }
   };
 
   const renderInput = (fieldName, labelText) => (
@@ -173,7 +157,11 @@ const NelfundFinancing = () => {
         {labelText}
       </label>
       <input
-        type="text"
+        type={
+          fieldName === "costOfTuition" || fieldName === "monthlyCostOfLiving"
+            ? "number"
+            : "text"
+        }
         id={fieldName}
         name={fieldName}
         value={formData[fieldName]}
@@ -217,61 +205,87 @@ const NelfundFinancing = () => {
           {renderInput("phoneNumber", "Active Phone Number*:")}
           {renderInput("whatsappNumber", "WhatsApp Phone Number")}
           {renderInput("age", "Age as at 2024")}
-          {renderInput(
-            "schoolAttended",
-            "Type of Public Tertiary Institution YOU attend (University, College of Education, Polytechnic)"
-          )}
-          <div className="form-group">
-            <label htmlFor="tookJAMB2024" className="text-lg font-medium">
-              Type of Public Tertiary Institution YOU attend (University,
-              College of Education, Polytechnic){" "}
+          <div className="form-group flex flex-col gap-2">
+            <label htmlFor="gender" className="text-lg font-medium">
+              Gender*
             </label>
-            <div className="radio-group flex gap-4">
-              <label>
-                <input
-                  type="radio"
-                  id="university"
-                  name="university"
-                  value="university"
-                  onChange={handleChange}
-                />
-                University
-              </label>
-              <label>
-                <input
-                  type="radio"
-                  id="collegeOfEducation"
-                  name="collegeOfEducation"
-                  value="collegeOfEducation"
-                  onChange={handleChange}
-                />
-                College Of Education
-              </label>
-              <label>
-                <input
-                  type="radio"
-                  id="polytechnic"
-                  name="polytechnic"
-                  value="polytechnic"
-                  onChange={handleChange}
-                />
-                Polytechnic
-              </label>
-            </div>
+            <select
+              name="gender"
+              id="gender"
+              value={formData.gender}
+              onChange={handleChange}
+              required
+              className="border rounded-md p-2 border-black h-12 bg-white w-full"
+            >
+              <option value="">-- Select Gender --</option>
+              <option value="Male">Male</option>
+              <option value="Female">Female</option>
+              <option value="Non-binary">Non-binary</option>
+              <option value="Prefer not to say">Prefer not to say</option>
+            </select>
+          </div>
+          <div className="form-group flex flex-col gap-2">
+            <label htmlFor="schoolAttended" className="text-lg font-medium">
+              Type of Public Tertiary Institution YOU attend
+            </label>
+            <select
+              name="schoolAttended"
+              id="schoolAttended"
+              value={formData.schoolAttended}
+              onChange={handleChange}
+              required
+              className="border rounded-md p-2 border-black h-12 bg-white w-full"
+            >
+              <option value="">-- Select Type Of Institution --</option>
+              <option value="university">University</option>
+              <option value="college Of education">College Of Education</option>
+              <option value="polytechnic">Polytechnic</option>
+            </select>
           </div>
           {renderInput("nameOfSchoolAttended", "Name of Tertiary Institution")}
           {renderInput(
             "courseOfStudy",
             "Course of Study (Write in Full: e.g, BSc, Banking and Finance)"
           )}
-          {renderInput(
-            "yearInSchool",
-            "Level (First Year, Second Year, Third Year, Fourth Year, Fifth Year, Sixth Year, Seventh Year)"
-          )}
-          {renderInput(
-            "semester",
-            "What Semester are you in NOW? (First Semester, Second Semester)"
-          )}
+          <div className="form-group flex flex-col gap-2">
+            <label htmlFor="yearInSchool" className="text-lg font-medium">
+              Level
+            </label>
+            <select
+              name="yearInSchool"
+              id="yearInSchool"
+              value={formData.yearInSchool}
+              onChange={handleChange}
+              required
+              className="border rounded-md p-2 border-black h-12 bg-white w-full"
+            >
+              <option value="">-- Your Current Year In School --</option>
+              <option value="100 level">First Year</option>
+              <option value="200 level">Second Year</option>
+              <option value="300 level">Third Year</option>
+              <option value="400 level">Fourth Year</option>
+              <option value="500 level">Fifth Year</option>
+              <option value="600 level">Sixth Year</option>
+              <option value="700 level">Seventh Year</option>
+            </select>
+          </div>
+          <div className="form-group flex flex-col gap-2">
+            <label htmlFor="semester" className="text-lg font-medium">
+              Semester
+            </label>
+            <select
+              name="semester"
+              id="semester"
+              value={formData.semester}
+              onChange={handleChange}
+              required
+              className="border rounded-md p-2 border-black h-12 bg-white w-full"
+            >
+              <option value="">-- Your Current Semester --</option>
+              <option value="1st semester">First Semester</option>
+              <option value="2nd semester">Second Semester</option>
+            </select>
+          </div>
           {renderInput("matricNo", "Matric No")}
           {renderInput("graduationYear", "Expected Graduation Year")}
           {renderInput("costOfTuition", "Specific Cost of Tuition")}
@@ -280,21 +294,77 @@ const NelfundFinancing = () => {
             "What is your monthly AVERAGE Cost of Living?"
           )}
           {/* RADIO COMPONENTS */}
-          {renderInput(
-            "financialSupport",
-            "Do you need Financial Support getting a Laptop for Academic Purposes?"
-          )}
-          {renderInput(
-            "mentorship",
-            "Will you want ProconnectPAY to MENTOR you VIRTUALLY for 6 Months through its Global Undergraduate Community?"
-          )}
+          <div className="form-group">
+            <label
+              htmlFor="needFinancialSupport"
+              className="text-lg font-medium"
+            >
+              Do you need Financial Support getting a Laptop for Academic
+              Purposes?
+            </label>
+            <div className="radio-group flex gap-4">
+              <label>
+                <input
+                  type="radio"
+                  id="needFinancialSupport-yes"
+                  name="needFinancialSupport"
+                  value="true"
+                  checked={formData.needFinancialSupport === true}
+                  onChange={handleChange}
+                />
+                Yes
+              </label>
+              <label>
+                <input
+                  type="radio"
+                  id="needFinancialSupport-no"
+                  name="needFinancialSupport"
+                  value="false"
+                  checked={formData.needFinancialSupport === false}
+                  onChange={handleChange}
+                />
+                No
+              </label>
+            </div>
+          </div>
+          <div className="form-group">
+            <label htmlFor="financialSupport" className="text-lg font-medium">
+              Will you want ProconnectPAY to MENTOR you VIRTUALLY for 6 Months
+              through its Global Undergraduate Community?
+            </label>
+            <div className="radio-group flex gap-4">
+              <label>
+                <input
+                  type="radio"
+                  id="mentorship-yes"
+                  name="mentorship"
+                  value="true"
+                  checked={formData.mentorship === true}
+                  onChange={handleChange}
+                />
+                Yes
+              </label>
+              <label>
+                <input
+                  type="radio"
+                  id="mentorship-no"
+                  name="mentorship"
+                  value="false"
+                  checked={formData.mentorship === false}
+                  onChange={handleChange}
+                />
+                No
+              </label>
+            </div>
+          </div>
 
           <button
             type="submit"
             className="bg-red-600 mt-4 text-white p-4 rounded-md text-lg"
             onClick={handleSubmit}
+            disabled={loading}
           >
-            Submit
+            {loading ? "Loading..." : "Submit"}
           </button>
         </div>
       </form>
