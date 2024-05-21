@@ -2,62 +2,53 @@ import { useRef, useState } from "react";
 import { usePDF } from "react-to-pdf";
 
 const Calculator = () => {
-  const [interest, setInterest] = useState(0);
-  const [totalPayment, setTotalPayment] = useState(0);
-  const [monthly, setMonthly] = useState(0);
-  const [tuition, setTuition] = useState(0);
-  const [hostel, setHostel] = useState(0);
-  const [costOfLiving, setCostOfLiving] = useState(0);
-  const [others, setOthers] = useState(0);
   const [period, setPeriod] = useState(6);
-  const [totalLoan, setTotalLoan] = useState(
-    tuition + hostel + costOfLiving + others
-  );
+  const [values, setValues] = useState({
+    tuition: "",
+    hostel: "",
+    costOfLiving: "",
+    others: "",
+  });
 
   const { toPDF, targetRef } = usePDF({
     filename: "calculated-loan.pdf",
   });
 
-  const formatCurrency = (amount) => {
-    return `₦${amount.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, "$&,")}`;
-  };
-
-  const calculateReturn = () => {
-    const totalLoanAmount =
-      parseFloat(tuition) +
-      parseFloat(hostel) +
-      parseFloat(costOfLiving) +
-      parseFloat(others);
-
-    const interestFormula = totalLoanAmount * 0.34 * (period / 12);
-
-    const totalRepayment = totalLoanAmount + interestFormula;
-
-    const monthlyRepayment = totalRepayment / period;
-
-    setTotalLoan(totalLoanAmount);
-    setMonthly(formatCurrency(monthlyRepayment));
-    setTotalPayment(formatCurrency(totalRepayment));
-    setInterest(formatCurrency(interestFormula));
-  };
-
   const Reset = () => {
-    setTotalLoan(0);
-    setInterest(0);
-    setTotalPayment(0);
-    setMonthly(0);
-    setTuition(0);
-    setHostel(0);
-    setCostOfLiving(0);
-    setOthers(0);
+    setValues({
+      tuition: "",
+      hostel: "",
+      costOfLiving: "",
+      others: "",
+    });
     setPeriod(6);
   };
 
-  function numberWithCommas(x) {
-    const num = x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-    console.log(num);
-    return num;
-  }
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    const numericValue = value.replace(/,/g, ""); // Remove existing commas
+    if (!isNaN(numericValue)) {
+      const formattedValue = formatNumber(numericValue);
+      setValues({ ...values, [name]: formattedValue });
+    }
+  };
+
+  const formatNumber = (num) => {
+    return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  };
+
+  const calculateSum = () => {
+    const sum = Object.values(values).reduce(
+      (acc, val) => acc + (parseFloat(val.replace(/,/g, "")) || 0),
+      0
+    );
+    return sum;
+  };
+
+  const sum = calculateSum();
+  const interestFormula = sum * 0.34 * (period / 12);
+  const totalRepayment = sum + interestFormula;
+  const monthlyRepayment = period ? totalRepayment / period : 0;
 
   return (
     <>
@@ -70,36 +61,44 @@ const Calculator = () => {
             <div className="flex justify-between items-center">
               <p className="uppercase font-semibold text-sm">Tution Fee</p>
               <input
-                type="number"
-                value={tuition}
-                onChange={(e) => setTuition(e.target.value)}
+                type="text"
+                name="tuition"
+                value={values.tuition}
+                onChange={handleChange}
+                placeholder="Enter number"
                 className="border w-[100px] sm:w-[200px] p-3 text-black rounded-xl"
               />
             </div>
             <div className="flex justify-between items-center">
               <p className="uppercase font-semibold text-sm">Hostel Fee </p>
               <input
-                type="number"
-                value={hostel}
-                onChange={(e) => setHostel(e.target.value)}
+                type="text"
+                name="hostel"
+                value={values.hostel}
+                onChange={handleChange}
+                placeholder="Enter number"
                 className="border w-[100px] sm:w-[200px] p-3 text-black rounded-xl"
               />
             </div>
             <div className="flex justify-between items-center">
               <p className="uppercase font-semibold text-sm">Cost Of Living </p>
               <input
-                type="number"
-                value={costOfLiving}
-                onChange={(e) => setCostOfLiving(e.target.value)}
+                type="text"
+                name="costOfLiving"
+                value={values.costOfLiving}
+                onChange={handleChange}
+                placeholder="Enter number"
                 className="border w-[100px] sm:w-[200px] p-3 text-black rounded-xl"
               />
             </div>
             <div className="flex justify-between items-center">
               <p className="uppercase font-semibold text-sm">other cost</p>
               <input
-                type="number"
-                value={others}
-                onChange={(e) => setOthers(e.target.value)}
+                type="text"
+                name="others"
+                value={values.others}
+                onChange={handleChange}
+                placeholder="Enter number"
                 className="border w-[100px] sm:w-[200px] p-3 text-black rounded-xl"
               />
             </div>
@@ -142,10 +141,7 @@ const Calculator = () => {
             >
               RESET
             </button>
-            <button
-              className="font-semibold py-3 px-6 rounded-xl border-2 bg-[#db251a] border-[#db251a] text-white"
-              onClick={() => calculateReturn()}
-            >
+            <button className="font-semibold py-3 px-6 rounded-xl border-2 bg-[#db251a] border-[#db251a] text-white">
               COMPUTE
             </button>
           </span>
@@ -154,46 +150,33 @@ const Calculator = () => {
               <p className="uppercase font-semibold text-sm">
                 total loan Amount
               </p>
-              <input
-                type="number"
-                value={totalLoan}
-                disabled
-                //   onChange={(e) => setTotal(e.target.value)}
-                className="border w-[100px] sm:w-[200px] p-3 text-black rounded-xl"
-              />
+              <div className="border w-[100px] sm:w-[200px] p-3 text-black rounded-xl">
+                ₦{formatNumber(sum.toFixed(2))}
+              </div>
             </div>
             <div className="flex justify-between items-center gap-4">
               <p className="uppercase font-semibold text-sm">
                 Your Monthly Payment
               </p>
-              <input
-                type="text"
-                value={monthly}
-                disabled
-                className="border w-[100px] sm:w-[200px] p-3 text-black rounded-xl"
-              />
+              <div className="border w-[100px] sm:w-[200px] p-3 text-black rounded-xl">
+                ₦{formatNumber(monthlyRepayment.toFixed(2))}
+              </div>
             </div>
 
             <div className="flex justify-between items-center gap-4">
               <p className="uppercase font-semibold text-sm">
                 Your Total Payment will be
               </p>
-              <input
-                type="text"
-                value={totalPayment}
-                disabled
-                className="border w-[100px] sm:w-[200px] p-3 text-black rounded-xl"
-              />
+              <div className="border w-[100px] sm:w-[200px] p-3 text-black rounded-xl">
+                ₦{formatNumber(totalRepayment.toFixed(2))}
+              </div>
             </div>
             <div className="flex justify-between items-center gap-4">
               <p className="uppercase font-semibold text-sm">Service charge </p>
-              <input
-                type="text"
-                placeholder=""
-                value={interest}
-                disabled
-                className="border w-[100px] sm:w-[200px] p-3 text-black rounded-xl"
-              />
+
+              <div className="border w-[100px] sm:w-[200px] p-3 text-black rounded-xl">
+                ₦{formatNumber(interestFormula.toFixed(2))}
+              </div>
             </div>
           </div>
         </div>
