@@ -19,6 +19,7 @@ import SupportedSchools from "./pages/SupportedSchools";
 import UniversityAdmission from "./pages/UniversityAdmission";
 import WhatsappIcon from "./components/WhatsappIcon";
 import Calculator from "./pages/Calculator";
+import NelfundFinancing from "./pages/NelfundFinancing";
 
 function App() {
   const [showAfterFooter, setShowAfterFooter] = useState(false);
@@ -37,7 +38,9 @@ function App() {
           />
           <Route
             path="/local-loan"
-            element={<LocalLoan setShowAfterFooterTwo={setShowAfterFooterTwo} />}
+            element={
+              <LocalLoan setShowAfterFooterTwo={setShowAfterFooterTwo} />
+            }
           />
           <Route path="/global-resolution" element={<RevolutionCommunity />} />
           <Route path="/contact" element={<Contact />} />
@@ -46,7 +49,11 @@ function App() {
           <Route path="/interest" element={<Interest />} />
           <Route path="/calculator" element={<Calculator />} />
           <Route path="/supported-schools" element={<SupportedSchools />} />
-          <Route path="/university-admission" element={<UniversityAdmission />} />
+          <Route
+            path="/university-admission"
+            element={<UniversityAdmission />}
+          />
+          <Route path="/nelfund-financing" element={<NelfundFinancing />} />
         </Routes>
         <WhatsappIcon />
         <Footer />

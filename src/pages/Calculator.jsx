@@ -2,15 +2,17 @@ import { useRef, useState } from "react";
 import { usePDF } from "react-to-pdf";
 
 const Calculator = () => {
-  const [totalLoan, setTotalLoan] = useState("");
-  const [interest, setInterest] = useState("");
-  const [totalPayment, setTotalPayment] = useState("");
-  const [monthly, setMonthly] = useState("");
-  const [tuition, setTuition] = useState("");
-  const [hostel, setHostel] = useState("");
-  const [costOfLiving, setCostOfLiving] = useState("");
-  const [others, setOthers] = useState("");
+  const [interest, setInterest] = useState(0);
+  const [totalPayment, setTotalPayment] = useState(0);
+  const [monthly, setMonthly] = useState(0);
+  const [tuition, setTuition] = useState(0);
+  const [hostel, setHostel] = useState(0);
+  const [costOfLiving, setCostOfLiving] = useState(0);
+  const [others, setOthers] = useState(0);
   const [period, setPeriod] = useState(6);
+  const [totalLoan, setTotalLoan] = useState(
+    tuition + hostel + costOfLiving + others
+  );
 
   const { toPDF, targetRef } = usePDF({
     filename: "calculated-loan.pdf",
@@ -22,7 +24,10 @@ const Calculator = () => {
 
   const calculateReturn = () => {
     const totalLoanAmount =
-      Number(tuition) + Number(hostel) + Number(costOfLiving) + Number(others);
+      parseFloat(tuition) +
+      parseFloat(hostel) +
+      parseFloat(costOfLiving) +
+      parseFloat(others);
 
     const interestFormula = totalLoanAmount * 0.34 * (period / 12);
 
@@ -30,23 +35,29 @@ const Calculator = () => {
 
     const monthlyRepayment = totalRepayment / period;
 
-    setTotalLoan(parseFloat(totalLoanAmount)); // Now use the formatted string
+    setTotalLoan(totalLoanAmount);
     setMonthly(formatCurrency(monthlyRepayment));
     setTotalPayment(formatCurrency(totalRepayment));
     setInterest(formatCurrency(interestFormula));
   };
 
   const Reset = () => {
-    setTotalLoan("");
-    setInterest("");
-    setTotalPayment("");
-    setMonthly("");
-    setTuition("");
-    setHostel("");
-    setCostOfLiving("");
-    setOthers("");
+    setTotalLoan(0);
+    setInterest(0);
+    setTotalPayment(0);
+    setMonthly(0);
+    setTuition(0);
+    setHostel(0);
+    setCostOfLiving(0);
+    setOthers(0);
     setPeriod(6);
   };
+
+  function numberWithCommas(x) {
+    const num = x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    console.log(num);
+    return num;
+  }
 
   return (
     <>
@@ -175,9 +186,7 @@ const Calculator = () => {
               />
             </div>
             <div className="flex justify-between items-center gap-4">
-              <p className="uppercase font-semibold text-sm">
-                Your Total Interest Payment Will Be
-              </p>
+              <p className="uppercase font-semibold text-sm">Service charge </p>
               <input
                 type="text"
                 placeholder=""
@@ -192,7 +201,7 @@ const Calculator = () => {
       <div className="flex justify-center items-center">
         <button
           onClick={() => toPDF()}
-          className="bg-red-500 text-white p-4 rounded-xl hover:bg-white hover:text-red-500 border border-red-500"
+          className="bg-[#db251a] text-white p-4 rounded-xl hover:bg-white hover:text-red-500 border border-red-500"
         >
           Download as a PDF
         </button>
