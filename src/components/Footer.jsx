@@ -11,7 +11,6 @@ import SocialIcons5 from "../assets/Social icons5.png";
 import SocialIcons6 from "../assets/youtube.png";
 
 const businessLinks = [
-
   {
     url: "https://proconnectpay.com/blog",
     name: "Blog",
@@ -52,6 +51,10 @@ const businessLinks = [
     url: "/calculator",
     name: "Use our Calculator",
   },
+  {
+    url: "/nelfund-financing",
+    name: "Nelfund Financing",
+  },
 ];
 
 const locationLinks = [
@@ -90,7 +93,10 @@ const socialIcons = [
   { name: SocialIcons3, url: "https://twitter.com/ProconnectPAY" },
   { name: SocialIcons4, url: "https://www.instagram.com/proconnectpay/" },
   { name: SocialIcons5, url: "https://ng.linkedin.com/company/proconnectpay" },
-  { name: SocialIcons6, url: "https://www.youtube.com/channel/UCsX-weJpSWORcMUAQ-g0HdA" },
+  {
+    name: SocialIcons6,
+    url: "https://www.youtube.com/channel/UCsX-weJpSWORcMUAQ-g0HdA",
+  },
 ];
 
 const Footer = () => {
