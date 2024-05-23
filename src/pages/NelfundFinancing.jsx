@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import InterestImg from "../assets/interest-img.png";
 import ReusableModal from "../components/small-components/ReusableModal";
+import { useNavigate } from "react-router-dom";
 
 const NelfundFinancing = () => {
   const [formData, setFormData] = useState({
@@ -26,6 +27,8 @@ const NelfundFinancing = () => {
   const [errors, setErrors] = useState({}); // State for storing validation errors
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
+
   const closeModal = () => {
     setIsModalOpen(false);
   };
@@ -123,12 +126,6 @@ const NelfundFinancing = () => {
         body: raw,
         redirect: "follow",
       };
-
-      // fetch("https://nelfund.eldanic.com/api/contact", requestOptions)
-      //   .then((response) => response.text())
-      //   .then((result) => {
-
-      //   .catch((error) => console.log("error", error));
       fetch("https://nelfund.eldanic.com/api/contact/", requestOptions)
         .then((response) => response.text())
         .then((result) => {
@@ -136,10 +133,16 @@ const NelfundFinancing = () => {
             console.log(result);
             setIsModalOpen(true);
             setLoading(false);
+            setTimeout(() => {
+              navigate("/local-loan#VAT");
+            }, 3000);
           } else {
             console.log(result);
             setLoading(false);
             setIsModalOpen(true);
+            setTimeout(() => {
+              navigate("/local-loan#VAT");
+            }, 3000);
           }
         })
         .catch((error) => {
@@ -186,7 +189,7 @@ const NelfundFinancing = () => {
       <ReusableModal
         isOpen={isModalOpen}
         onClose={closeModal}
-        message="Your Information has been sent and you will get a response within 24 hours"
+        message="Your Information has been sent and you will get a response within 24 hours, wait while you're being redirected..."
       />
       <form className="w-full md:w-1/2" onSubmit={handleSubmit}>
         <h2 className="text-2xl text-center font-semibold my-4">
