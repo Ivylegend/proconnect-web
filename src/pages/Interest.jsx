@@ -17,6 +17,7 @@ const Interest = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [errors, setErrors] = useState(false);
   const [countries, setCountries] = useState([]);
+  const [countryAbroad, setcountryAbroad] = useState("");
 
   // State variables for form field validity
   const [fullNameValid, setFullNameValid] = useState(true);
@@ -26,6 +27,7 @@ const Interest = () => {
   const [phoneNumberValid, setPhoneNumberValid] = useState(true);
   const [genderValid, setGenderValid] = useState(true);
   const [countryValid, setCountryValid] = useState(true);
+  const [loading, setLoading] = useState(false);
 
   const closeModal = () => {
     setIsModalOpen(false);
@@ -83,6 +85,28 @@ const Interest = () => {
       setReferenceData({ ...referenceData, [e.target.name]: e.target.value });
   };
 
+  const countryOptions = [
+    { value: "United States", label: "United States" },
+    { value: "Canada", label: "Canada" },
+    {
+      value: "United Kingdom (Scotland, Wales, Ireland and England)",
+      label: "United Kingdom (Scotland, Wales, Ireland and England)",
+    },
+    { value: "HongKong", label: "HongKong" },
+    { value: "Singapore", label: "Singapore" },
+    { value: "France", label: "France" },
+    { value: "Germany", label: "Germany" },
+    { value: "Australia", label: "Australia" },
+    { value: "South-Africa", label: "South-Africa" },
+    { value: "China", label: "China" },
+    { value: "Denmark", label: "Denmark" },
+    { value: "Belgium", label: "Belgium" },
+    { value: "Spain", label: "Spain" },
+    { value: "Italy", label: "Italy" },
+    { value: "Netherlands", label: "Netherlands" },
+    { value: "Portugal", label: "Portugal" },
+  ];
+
   // SUBMITTING FORM
   const handleFormSubmit = (e) => {
     e.preventDefault();
@@ -104,19 +128,20 @@ const Interest = () => {
       genderValid &&
       countryValid
     ) {
+      setLoading(true);
       // Submit the form with actual form values
       var myHeaders = new Headers();
       myHeaders.append("Content-Type", "application/json");
 
       var raw = JSON.stringify({
         full_name: fullName,
-        enquiryFor: enquiryFor,
+        enquiry_on: enquiryFor,
         email: email,
         phone: `${referenceData.country_code}${referenceData.contactno}`, // Use referenceData for the phone number
         gender: gender,
         country: country,
         interested_in: productInterested,
-        enquiry_on: enquiryFor,
+        country_interested_in: countryAbroad,
       });
 
       var requestOptions = {
@@ -132,14 +157,16 @@ const Interest = () => {
         .then((result) => {
           if (result.status === true) {
             console.log(result);
+            // console.log("Form submitted successfully");
+            setIsModalOpen(true);
+            setLoading(false);
           } else {
             console.log(result);
+            setLoading(false);
           }
         })
         .catch((error) => console.log("error", error));
 
-      console.log("Form submitted successfully");
-      setIsModalOpen(true);
       setErrors("");
     } else {
       setErrors("Make sure to fill the form with the correct details");
@@ -148,15 +175,15 @@ const Interest = () => {
 
   // Validation functions
   const validateFullName = () => {
-    setFullNameValid(fullName.trim() !== ""); 
+    setFullNameValid(fullName.trim() !== "");
   };
 
   const validateEnquiryFor = () => {
-    setEnquiryForValid(enquiryFor.trim() !== ""); 
+    setEnquiryForValid(enquiryFor.trim() !== "");
   };
 
   const validateProductInterested = () => {
-    setProductInterestedValid(productInterested.trim() !== ""); 
+    setProductInterestedValid(productInterested.trim() !== "");
   };
 
   const validateEmail = () => {
@@ -175,7 +202,7 @@ const Interest = () => {
   };
 
   const validateCountry = () => {
-    setCountryValid(country.trim() !== ""); 
+    setCountryValid(country.trim() !== "");
   };
 
   const handleInterest = (e) => {
@@ -356,6 +383,26 @@ const Interest = () => {
             />
           </div>
 
+          {/* COUNTRY INTERESTED IN ABROAD */}
+          <div className="mb-8 flex flex-col gap-4">
+            <label htmlFor="" className="text-[#646464] font-semibold">
+              Study Abroad Country Interested In{" "}
+              <span className="text-red-600">*</span>
+            </label>
+
+            <Select
+              options={countryOptions}
+              value={countryOptions.find(
+                (option) => option.value === countryAbroad
+              )}
+              onChange={(selectedOption) =>
+                setcountryAbroad(selectedOption.value)
+              }
+              onBlur={validateCountry}
+              styles={customStyles}
+            />
+          </div>
+
           {/* SUBSCRIBE CHECKBOX */}
           <div className="flex items-center gap-2 my-4">
             <input
@@ -378,7 +425,7 @@ const Interest = () => {
             type="submit"
             className="bg-[#DB251A] font-medium text-white rounded-lg text-center w-full h-12"
           >
-            Submit
+            {loading ? "Loading..." : "Submit"}
           </button>
         </form>
       </div>
