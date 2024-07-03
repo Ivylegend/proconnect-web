@@ -986,8 +986,7 @@ const usPg = [
     { id: 328, name: "Wright State University" },
     { id: 329, name: "Yale University" },
     { id: 330, name: "Yeshiva University" }
-  ]
-};
+  ];
 
 
 // Convert the array into an array of objects with "id" and "name"
