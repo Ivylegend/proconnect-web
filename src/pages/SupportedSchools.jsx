@@ -1029,23 +1029,69 @@ const SupportedSchools = () => {
           onChange={handleCategoryChange}
         >
           <option value="Canadian" className="my-4 text-black font-medium">
-            Canadian Schools
+              Canadian Schools
           </option>
-          <option value="US" className="my-4 text-black font-medium">
-            US Schools
-          </option>
-          <option value="Nigerian" className="my-4 text-black font-medium">
-            Nigerian Schools
-          </option>
-          <option value="Professional" className="my-4 text-black font-medium">
-            Professional Bodies
-          </option>
-          <option value="canadaPg" className="my-4 text-black font-medium">
-            PG Canada
-          </option>
-          <option value="usPg" className="my-4 text-black font-medium">
-            PG United States
-          </option>
+<option value="US" className="my-4 text-black font-medium">
+  US Schools
+</option>
+<option value="Nigerian" className="my-4 text-black font-medium">
+  Nigerian Schools
+</option>
+<option value="Professional" className="my-4 text-black font-medium">
+  Professional Bodies
+</option>
+<option value="canadaPg" className="my-4 text-black font-medium">
+  PG Canada
+</option>
+<option value="usPg" className="my-4 text-black font-medium">
+  PG United States
+</option>
+<option value="UK" className="my-4 text-black font-medium">
+  UK Schools
+</option>
+<option value="France" className="my-4 text-black font-medium">
+  French Schools
+</option>
+<option value="Netherlands" className="my-4 text-black font-medium">
+  Dutch Schools
+</option>
+<option value="Germany" className="my-4 text-black font-medium">
+  German Schools
+</option>
+<option value="Australia" className="my-4 text-black font-medium">
+  Australian Schools
+</option>
+<option value="Singapore" className="my-4 text-black font-medium">
+  Singaporean Schools
+</option>
+<option value="Portugal" className="my-4 text-black font-medium">
+  Portuguese Schools
+</option>
+<option value="Italy" className="my-4 text-black font-medium">
+  Italian Schools
+</option>
+<option value="Hong-Kong" className="my-4 text-black font-medium">
+  Hong Kong Schools
+</option>
+<option value="Spain" className="my-4 text-black font-medium">
+  Spanish Schools
+</option>
+<option value="Denmark" className="my-4 text-black font-medium">
+  Danish Schools
+</option>
+<option value="China" className="my-4 text-black font-medium">
+  Chinese Schools
+</option>
+<option value="Switzerland" className="my-4 text-black font-medium">
+  Swiss Schools
+</option>
+<option value="Belgium" className="my-4 text-black font-medium">
+  Belgian Schools
+</option>
+<option value="South-Africa" className="my-4 text-black font-medium">
+  South African Schools
+</option>
+
         </select>
       </div>
 
