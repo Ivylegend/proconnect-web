@@ -1302,6 +1302,223 @@ const SupportedSchools = () => {
       </div>
 
       <div className="my-8 border font-medium border-black rounded-lg py-4 shadow-2xl">
+
+         {/* FOR SOUTH AFRICA SCHOOLS */}
+        {selectedCategory === "South-Africa" && (
+          <div className="flex flex-col">
+            {SouthAfrica.map((school, index) => (
+              <i
+                key={school.id}
+                className={`border-black ${
+                  index !== SouthAfrica.length - 1
+                    ? "border-b shadow-lg"
+                    : ""
+                } px-8 py-4`}
+              >
+                {school.name}
+              </i>
+            ))}
+          </div>
+        )}
+        
+         {/* FOR BELGIUM SCHOOLS */}
+        {selectedCategory === "Belgium" && (
+          <div className="flex flex-col">
+            {Belgium.map((school, index) => (
+              <i
+                key={school.id}
+                className={`border-black ${
+                  index !== Belgium.length - 1
+                    ? "border-b shadow-lg"
+                    : ""
+                } px-8 py-4`}
+              >
+                {school.name}
+              </i>
+            ))}
+          </div>
+        )}
+        
+         {/* FOR SWITZ SCHOOLS */}
+        {selectedCategory === "Switzerland" && (
+          <div className="flex flex-col">
+            {Switzerland.map((school, index) => (
+              <i
+                key={school.id}
+                className={`border-black ${
+                  index !== Switzerland.length - 1
+                    ? "border-b shadow-lg"
+                    : ""
+                } px-8 py-4`}
+              >
+                {school.name}
+              </i>
+            ))}
+          </div>
+        )}
+        
+         {/* FOR CHINA SCHOOLS */}
+        {selectedCategory === "China" && (
+          <div className="flex flex-col">
+            {China.map((school, index) => (
+              <i
+                key={school.id}
+                className={`border-black ${
+                  index !== China.length - 1
+                    ? "border-b shadow-lg"
+                    : ""
+                } px-8 py-4`}
+              >
+                {school.name}
+              </i>
+            ))}
+          </div>
+        )}
+        
+         {/* FOR DENMARK SCHOOLS */}
+        {selectedCategory === "Denmark" && (
+          <div className="flex flex-col">
+            {Denmark.map((school, index) => (
+              <i
+                key={school.id}
+                className={`border-black ${
+                  index !== Denmark.length - 1
+                    ? "border-b shadow-lg"
+                    : ""
+                } px-8 py-4`}
+              >
+                {school.name}
+              </i>
+            ))}
+          </div>
+        )}
+        
+         {/* FOR SPAIN SCHOOLS */}
+        {selectedCategory === "Spain" && (
+          <div className="flex flex-col">
+            {Spain.map((school, index) => (
+              <i
+                key={school.id}
+                className={`border-black ${
+                  index !== Spain.length - 1
+                    ? "border-b shadow-lg"
+                    : ""
+                } px-8 py-4`}
+              >
+                {school.name}
+              </i>
+            ))}
+          </div>
+        )}
+        
+         {/* FOR HONGKONG SCHOOLS */}
+        {selectedCategory === "Hong-Kong" && (
+          <div className="flex flex-col">
+            {HongKong.map((school, index) => (
+              <i
+                key={school.id}
+                className={`border-black ${
+                  index !== HongKong.length - 1
+                    ? "border-b shadow-lg"
+                    : ""
+                } px-8 py-4`}
+              >
+                {school.name}
+              </i>
+            ))}
+          </div>
+        )}
+        
+         {/* FOR ITALY SCHOOLS */}
+        {selectedCategory === "Italy" && (
+          <div className="flex flex-col">
+            {Italy.map((school, index) => (
+              <i
+                key={school.id}
+                className={`border-black ${
+                  index !== Italy.length - 1
+                    ? "border-b shadow-lg"
+                    : ""
+                } px-8 py-4`}
+              >
+                {school.name}
+              </i>
+            ))}
+          </div>
+        )}
+        
+         {/* FOR PORTUGAL SCHOOLS */}
+        {selectedCategory === "Portugal" && (
+          <div className="flex flex-col">
+            {Portugal.map((school, index) => (
+              <i
+                key={school.id}
+                className={`border-black ${
+                  index !== Portugal.length - 1
+                    ? "border-b shadow-lg"
+                    : ""
+                } px-8 py-4`}
+              >
+                {school.name}
+              </i>
+            ))}
+          </div>
+        )}
+        
+         {/* FOR SINGAPORE SCHOOLS */}
+        {selectedCategory === "Singapore" && (
+          <div className="flex flex-col">
+            {Singapore.map((school, index) => (
+              <i
+                key={school.id}
+                className={`border-black ${
+                  index !==Singapore.length - 1
+                    ? "border-b shadow-lg"
+                    : ""
+                } px-8 py-4`}
+              >
+                {school.name}
+              </i>
+            ))}
+          </div>
+        )}
+        
+         {/* FOR AUSTRALIA SCHOOLS */}
+        {selectedCategory === "Australia" && (
+          <div className="flex flex-col">
+            {Australia.map((school, index) => (
+              <i
+                key={school.id}
+                className={`border-black ${
+                  index !== Australia.length - 1
+                    ? "border-b shadow-lg"
+                    : ""
+                } px-8 py-4`}
+              >
+                {school.name}
+              </i>
+            ))}
+          </div>
+        )}
+        
+        {/* FOR GERMAN SCHOOLS */}
+        {selectedCategory === "Germany" && (
+          <div className="flex flex-col">
+            {Germany.map((school, index) => (
+              <i
+                key={school.id}
+                className={`border-black ${
+                  index !== Germany.length - 1
+                    ? "border-b shadow-lg"
+                    : ""
+                } px-8 py-4`}
+              >
+                {school.name}
+              </i>
+            ))}
+          </div>
+        )}
+        
         {/* FOR CANADIAN SCHOOLS */}
         {selectedCategory === "Canadian" && (
           <div className="flex flex-col">
