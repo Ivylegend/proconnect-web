@@ -1,6 +1,28 @@
 import React, { useState } from "react";
 import blueLine from "../assets/blue-line.png";
 
+const France = [
+  { id: 0, name: "Audencia Business School" },
+  { id: 1, name: "Burgundy School of Business" },
+  { id: 2, name: "Ecole Polytechnique" },
+  { id: 3, name: "EDHEC Business School" },
+  { id: 4, name: "EM Normandie Business School" },
+  { id: 5, name: "Emlyon" },
+  { id: 6, name: "ESCP Europe Business School" },
+  { id: 7, name: "ESSEC Business School" },
+  { id: 8, name: "Grenoble Ecole de Management" },
+  { id: 9, name: "HEC Paris" },
+  { id: 10, name: "IESEG" },
+  { id: 11, name: "INSEAD" },
+  { id: 12, name: "Kedge Business School" },
+  { id: 13, name: "Montpellier Business School" },
+  { id: 14, name: "Neoma Business School" },
+  { id: 15, name: "Paris School of Business" },
+  { id: 16, name: "Rennes School of Business" },
+  { id: 17, name: "SKEMA Business School" }
+];
+
+
 const ukSchools = [
   { id: 0, name: "Aberystwyth University" },
   { id: 1, name: "Anglia Ruskin University" },
@@ -1077,6 +1099,18 @@ const usPg = [
     { id: 330, name: "Yeshiva University" }
   ];
 
+const netherlands = [
+  { id: 0, name: "Delft University of Technology" },
+  { id: 1, name: "Erasmus University" },
+  { id: 2, name: "Maastricht University" },
+  { id: 3, name: "Nyenrode Business Universiteit" },
+  { id: 4, name: "Tias Business School" },
+  { id: 5, name: "University of Amsterdam" },
+  { id: 6, name: "University of Groningen" },
+  { id: 7, name: "University of Twente" }
+];
+
+
 
 // Convert the array into an array of objects with "id" and "name"
 const usSchoolsArray = usSchools.map((school, index) => ({
@@ -1314,6 +1348,43 @@ const SupportedSchools = () => {
             })}
           </div>
         )}
+
+        {/* FRANCE SCHOOLS */}
+        {selectedCategory === "France" && (
+          <div className="flex flex-col">
+            {France.map((school, index) => {
+              return (
+                <i
+                  key={school.id}
+                  className={`border-black ${
+                    index !== France.length - 1 ? "border-b shadow-lg" : ""
+                  } px-8 py-4`}
+                >
+                  {school.name}
+                </i>
+              );
+            })}
+          </div>
+        )}
+
+         {/* NETHERLANDS SCHOOLS */}
+        {selectedCategory === "Netherlands" && (
+          <div className="flex flex-col">
+            {netherlands.map((school, index) => {
+              return (
+                <i
+                  key={school.id}
+                  className={`border-black ${
+                    index !== netherlands.length - 1 ? "border-b shadow-lg" : ""
+                  } px-8 py-4`}
+                >
+                  {school.name}
+                </i>
+              );
+            })}
+          </div>
+        )}
+
         
       </div>
     </div>
