@@ -1,6 +1,95 @@
 import React, { useState } from "react";
 import blueLine from "../assets/blue-line.png";
 
+const ukSchools = [
+  { id: 0, name: "Aberystwyth University" },
+  { id: 1, name: "Anglia Ruskin University" },
+  { id: 2, name: "Aston University" },
+  { id: 3, name: "Bangor University" },
+  { id: 4, name: "Birkbeck University of London" },
+  { id: 5, name: "Bournemouth University" },
+  { id: 6, name: "Brunel University" },
+  { id: 7, name: "Cardiff University" },
+  { id: 8, name: "City, University of London" },
+  { id: 9, name: "Coventry University" },
+  { id: 10, name: "Cranfield University" },
+  { id: 11, name: "De Montfort University" },
+  { id: 12, name: "Durham University" },
+  { id: 13, name: "Edinburgh Napier University" },
+  { id: 14, name: "Glasgow Caledonian University" },
+  { id: 15, name: "Goldsmiths University of London" },
+  { id: 16, name: "Henley Business School" },
+  { id: 17, name: "Imperial College London" },
+  { id: 18, name: "Keele University" },
+  { id: 19, name: "King's College London" },
+  { id: 20, name: "Kingston University" },
+  { id: 21, name: "Lancaster University" },
+  { id: 22, name: "Leeds Beckett University" },
+  { id: 23, name: "Liverpool John Moores University" },
+  { id: 24, name: "Liverpool School of Tropical Medicine" },
+  { id: 25, name: "London Business School" },
+  { id: 26, name: "London School of Economics" },
+  { id: 27, name: "London School of Hygiene & Tropical Medicine" },
+  { id: 28, name: "Loughborough University" },
+  { id: 29, name: "Newcastle University" },
+  { id: 30, name: "Northumbria University" },
+  { id: 31, name: "Nottingham Trent University" },
+  { id: 32, name: "Oxford Brookes University" },
+  { id: 33, name: "Queen Mary University of London" },
+  { id: 34, name: "Queen’s University Belfast" },
+  { id: 35, name: "Roehampton University" },
+  { id: 36, name: "Royal Holloway University of London" },
+  { id: 37, name: "Royal Veterinary College" },
+  { id: 38, name: "Sheffield Hallam" },
+  { id: 39, name: "St George’s, University of London" },
+  { id: 40, name: "Swansea University" },
+  { id: 41, name: "The University of Edinburgh" },
+  { id: 42, name: "University College London (UCL)" },
+  { id: 43, name: "University of Aberdeen" },
+  { id: 44, name: "University of Bath" },
+  { id: 45, name: "University of Birmingham" },
+  { id: 46, name: "University of Bradford" },
+  { id: 47, name: "University of Brighton" },
+  { id: 48, name: "University of Bristol" },
+  { id: 49, name: "University of Cambridge" },
+  { id: 50, name: "University of Central Lancashire" },
+  { id: 51, name: "University of Derby" },
+  { id: 52, name: "University of Dundee" },
+  { id: 53, name: "University of East Anglia" },
+  { id: 54, name: "University of Essex" },
+  { id: 55, name: "University of Exeter" },
+  { id: 56, name: "University of Glasgow" },
+  { id: 57, name: "University of Greenwich" },
+  { id: 58, name: "University of Hertfordshire" },
+  { id: 59, name: "University of Huddersfield" },
+  { id: 60, name: "University of Hull" },
+  { id: 61, name: "University of Kent" },
+  { id: 62, name: "University of Leeds" },
+  { id: 63, name: "University of Leicester" },
+  { id: 64, name: "University of Lincoln" },
+  { id: 65, name: "University of Liverpool" },
+  { id: 66, name: "University of London School Oriental and African Studies (SOAS)" },
+  { id: 67, name: "University of Nottingham" },
+  { id: 68, name: "University of Oxford" },
+  { id: 69, name: "University of Portsmouth" },
+  { id: 70, name: "University of Reading" },
+  { id: 71, name: "University of Sheffield" },
+  { id: 72, name: "University of Southampton" },
+  { id: 73, name: "University of St Andrews" },
+  { id: 74, name: "University of Stirling" },
+  { id: 75, name: "University of Strathclyde" },
+  { id: 76, name: "University of Surrey" },
+  { id: 77, name: "University of Sussex" },
+  { id: 78, name: "University of the West of England" },
+  { id: 79, name: "University of the West of Scotland" },
+  { id: 80, name: "University of Ulster" },
+  { id: 81, name: "University of Warwick" },
+  { id: 82, name: "University of Westminster" },
+  { id: 83, name: "University of Wolverhampton" },
+  { id: 84, name: "University of York" }
+];
+
+
 const CanadianSchools = [
   { id: 1, name: "Brock University" },
   { id: 2, name: "Carleton University" },
@@ -1207,6 +1296,25 @@ const SupportedSchools = () => {
             })}
           </div>
         )}
+
+        {/* UK SCHOOLS */}
+        {selectedCategory === "UK" && (
+          <div className="flex flex-col">
+            {ukSchools.map((school, index) => {
+              return (
+                <i
+                  key={school.id}
+                  className={`border-black ${
+                    index !== ukSchools.length - 1 ? "border-b shadow-lg" : ""
+                  } px-8 py-4`}
+                >
+                  {school.name}
+                </i>
+              );
+            })}
+          </div>
+        )}
+        
       </div>
     </div>
   );
