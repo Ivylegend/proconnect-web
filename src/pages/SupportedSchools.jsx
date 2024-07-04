@@ -1,6 +1,90 @@
 import React, { useState } from "react";
 import blueLine from "../assets/blue-line.png";
 
+const Germany = [
+  { id: 0, name: "Carl von Ossietzky Universitat Oldenburg" },
+  { id: 1, name: "Constructor University" },
+  { id: 2, name: "ESMT Berlin" },
+  { id: 3, name: "Frankfurt School of Finance and Management" },
+  { id: 4, name: "Hamburg University of Technology" },
+  { id: 5, name: "HHL Leipzig" },
+  { id: 6, name: "Mannheim Business School" },
+  { id: 7, name: "Technical University of Munich" },
+  { id: 8, name: "WHU - Otto Beisheim" }
+];
+
+const Australia = [
+  { id: 0, name: "Australian Catholic University" },
+  { id: 1, name: "Australian National University" },
+  { id: 2, name: "Charles Sturt University" },
+  { id: 3, name: "Deakin University" },
+  { id: 4, name: "Edith Cowan University" },
+  { id: 5, name: "Griffith University" },
+  { id: 6, name: "James Cook University" },
+  { id: 7, name: "Macquarie University" },
+  { id: 8, name: "Monash University" },
+  { id: 9, name: "Queensland University of Technology" },
+  { id: 10, name: "Swinburne University of Technology" },
+  { id: 11, name: "University of Canberra" },
+  { id: 12, name: "University of New England - Australia" },
+  { id: 13, name: "University of Sydney" },
+  { id: 14, name: "University of Tasmania" },
+  { id: 15, name: "University of Technology Sydney" },
+  { id: 16, name: "University of Western Australia" },
+  { id: 17, name: "University of Wollongong" },
+  { id: 18, name: "Western Sydney University" }
+];
+
+const Singapore = [
+  { id: 0, name: "Nanyang Technological University" },
+  { id: 1, name: "National University of Singapore" }
+];
+
+const Portugal = [
+  { id: 0, name: "The Lisbon MBA" },
+  { id: 1, name: "University of Porto" }
+];
+
+const Italy = [
+  { id: 0, name: "POLIMI Graduate School of Management" },
+  { id: 1, name: "SDA Bocconi School of Management" }
+];
+
+const HongKong = [
+  { id: 0, name: "Chinese University of Hong Kong" },
+  { id: 1, name: "Hong Kong University of Science and Technology" },
+  { id: 2, name: "University of Hong Kong" }
+];
+
+const Spain = [
+  { id: 0, name: "EADA Business School" },
+  { id: 1, name: "Ramon Llull University" },
+  { id: 2, name: "University of Navarra" }
+];
+
+const Denmark = [
+  { id: 0, name: "Copenhagen Business School" }
+];
+
+const China = [
+  { id: 0, name: "China Europe International Business School" },
+  { id: 1, name: "Fudan University" },
+  { id: 2, name: "Shanghai Jiao Tong University" }
+];
+
+const Switzerland = [
+  { id: 0, name: "IMD Business School" }
+];
+
+const Belgium = [
+  { id: 0, name: "Antwerp Management School" },
+  { id: 1, name: "Vlerick Business School" }
+];
+
+const SouthAfrica = [
+  { id: 0, name: "University of Cape Town" }
+];
+
 const France = [
   { id: 0, name: "Audencia Business School" },
   { id: 1, name: "Burgundy School of Business" },
@@ -110,7 +194,6 @@ const ukSchools = [
   { id: 83, name: "University of Wolverhampton" },
   { id: 84, name: "University of York" }
 ];
-
 
 const CanadianSchools = [
   { id: 1, name: "Brock University" },
