@@ -7,12 +7,11 @@ import CurveArrow from "../assets/curve-arrow.png";
 const Tabs = () => {
   const [activeTab, setActiveTab] = useState("tab1");
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [isModalOpen2, setIsModalOpen2] = useState(false);
   const [userEmail, setUserEmail] = useState("");
-  const [couponCode, setCouponCode] = useState("");
-  const [discountedPrice, setDiscountedPrice] = useState(100000);
+  const [emailError, setEmailError] = useState("");
 
-  // const paystackApiKey = process.env.REACT_APP_PAYSTACK_API_KEY;
+  // const paystackApiKey = import.meta.env.VITE_APP_PAYSTACK_API_KEY;
+  // const API_URL = import.meta.env.VITE_PAYSTACK_API_KEY;
 
   const handleTabClick = (tab) => {
     setActiveTab(tab);
@@ -36,20 +35,17 @@ const Tabs = () => {
   };
 
   const handlePayment = () => {
-    let newDiscountedPrice = 300000;
+    let newDiscountedPrice = 200000;
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-    switch (couponCode) {
-      case "15PCPD2024":
-        newDiscountedPrice = 300000 - 300000 * 0.15;
-        break;
-      case "20PCPD2024":
-        newDiscountedPrice = 300000 - 300000 * 0.2;
-        break;
-      default:
-        alert("Invalid coupon code. Please enter a valid code.");
+    if (userEmail === "") {
+      setEmailError("Email address cannot be empty");
+      return;
+    } else if (!emailRegex.test(userEmail)) {
+      setEmailError("Enter a valid email address");
+      return;
     }
-
-    setDiscountedPrice(newDiscountedPrice);
+    setEmailError("");
     payWithPayStack(newDiscountedPrice);
   };
 
@@ -78,14 +74,14 @@ const Tabs = () => {
 
       {isModalOpen && (
         <div className="modal-overlay fixed left-0 top-0 z-40 bg-blue-100 bg-opacity-30 h-full flex items-center justify-center border p-8 shadow-lg w-full">
-          <div className="modal-content p-8 rounded-md shadow-lg flex flex-col gap-4 bg-white max-w-[350px] items-start">
+          <div className="modal-content p-8 rounded-md shadow-lg flex flex-col gap-4 bg-white max-w-[350px] md:w-[500px] items-start">
             <span
               className="close-button flex items-start justify-end w-full cursor-pointer text-2xl"
               onClick={() => setIsModalOpen(false)}
             >
               &times;
             </span>
-            <span className="flex flex-col gap-2 mb-4">
+            <span className="flex flex-col gap-2 mb-4 w-full">
               <p className="font-semibold">Your Email Address *</p>
               <input
                 value={userEmail}
@@ -95,20 +91,12 @@ const Tabs = () => {
                 type="email"
                 placeholder="Your valid email address"
               />
-            </span>
-            <span className="flex flex-col gap-2 mb-4">
-              <p className="font-semibold text-center">
-                Enter Coupon Code If Available
-              </p>
-              <input
-                value={couponCode}
-                type="text"
-                className="border w-full rounded-md p-3 text-sm"
-                onChange={(event) => setCouponCode(event.target.value)}
-              />
+              {emailError && (
+                <p className="text-sm text-red-600">{emailError}</p>
+              )}
             </span>
             <button
-              className="w-full border rounded-md bg-[#db251A] text-white p-4"
+              className="w-full border rounded-md bg-[#db251A] text-white py-2 px-4"
               onClick={handlePayment}
             >
               Proceed To Payment
@@ -117,56 +105,8 @@ const Tabs = () => {
         </div>
       )}
 
-      {/* MODAL TWO */}
-      {/* {isModalOpen2 && (
-        <div className="modal-overlay fixed left-0 top-0 z-40 bg-blue-100 bg-opacity-30 h-full flex items-center justify-center border p-8 shadow-lg w-full">
-          <div className="modal-content p-8 rounded-md shadow-lg flex flex-col gap-4 bg-white max-w-[350px] items-start">
-            <span
-              className="close-button flex items-start justify-end w-full cursor-pointer text-2xl"
-              onClick={() => setIsModalOpen2(false)}
-            >
-              &times;
-            </span>
-            <span className="flex flex-col gap-2 mb-4">
-              <p className="font-semibold">Your Email Address *</p>
-              <input
-                value={userEmail}
-                onChange={(event) => setUserEmail(event.target.value)}
-                className="border w-full rounded-md p-3 text-sm"
-                required
-                type="email"
-                placeholder="Your valid email address"
-              />
-            </span>
-            <span className="flex flex-col gap-2 mb-4">
-              <p className="font-semibold text-center">
-                Enter Coupon Code If Available
-              </p>
-              <input
-                value={couponCode}
-                type="text"
-                className="border w-full rounded-md p-3 text-sm"
-                onChange={(event) => setCouponCode(event.target.value)}
-              />
-            </span>
-            <button
-              className="w-full border rounded-md bg-[#db251A] text-white p-4"
-              // onClick={() => {
-              //   const discountedAmount =
-              //     couponCode === "15PCPD2024" ? 100000 / 2 : couponCode === "20PCPD2024" ? 300000;
-              //   payWithPayStack(discountedAmount);
-              // }}
-              // onClick={handlePayment}
-            >
-              Proceed To Payment
-            </button>
-          </div>
-        </div>
-      )} */}
-
       {/* TAB CONTENT */}
       <div className="tab-content-container overflow-hidden relative">
-        {/* Add transition effect for content sliding */}
         <div
           className={`tab-content transition-transform duration-300 ${
             activeTab === "tab1" ? "translate-x-0" : "translate-x-[calc(-100%)]"
@@ -184,7 +124,7 @@ const Tabs = () => {
                   alt="curved arrow"
                   className="absolute w-1/4 lg:w-1/3 right-6"
                 />
-                <p className="text-4xl font-bold my-10">₦ 300,000</p>
+                <p className="text-4xl font-bold my-10">₦ 200,000</p>
                 <p className="text-[#db251A] text-xl font-normal mb-5">
                   What's Included
                 </p>
@@ -195,13 +135,10 @@ const Tabs = () => {
                 <div className="flex items-center gap-4 my-6">
                   <img src={Check} alt="check image" />
                   <p className="font-semibold">
-                    Admission Processing to the US or Canada
+                    Admission Processing to any of our 17 supported countries
                   </p>
                 </div>
-                <div className="flex items-center gap-4 my-6">
-                  <img src={Check} alt="check image" />
-                  <p className="font-semibold">Visa Processing Support</p>
-                </div>
+
                 <button
                   // onClick={() => payWithPayStack(300000)}
                   onClick={() => setIsModalOpen(true)}
@@ -212,7 +149,7 @@ const Tabs = () => {
               </div>
 
               {/* LOCAL COMMUNITY */}
-              <div className="border-[#646464] border rounded-xl p-8 relative">
+              {/* <div className="border-[#646464] border rounded-xl p-8 relative">
                 <p className="text-2xl font-bold">
                   Join Our Local Education Community
                 </p>
@@ -248,13 +185,12 @@ const Tabs = () => {
                 >
                   Join Now
                 </button>
-              </div>
+              </div> */}
             </div>
           )}
         </div>
 
         {/* USD PAYMENT */}
-        {/* Add transition effect for content sliding */}
         <div
           className={`tab-content transition-transform duration-300 ${
             activeTab === "tab2" ? "translate-x-0" : "translate-x-full"
@@ -272,7 +208,7 @@ const Tabs = () => {
                   alt="curved arrow"
                   className="absolute w-1/4 lg:w-1/3 right-6"
                 />
-                <p className="text-4xl font-bold my-10">$450usd</p>
+                <p className="text-4xl font-bold my-10">$158 USD</p>
                 <p className="text-[#db251A] text-xl font-normal mb-5">
                   What's Included
                 </p>
@@ -283,12 +219,8 @@ const Tabs = () => {
                 <div className="flex items-center gap-4 my-6">
                   <img src={Check} alt="check image" />
                   <p className="font-semibold">
-                    Admission Processing to the US or Canada{" "}
+                    Admission Processing to any of our 17 supported countries
                   </p>
-                </div>
-                <div className="flex items-center gap-4 my-6">
-                  <img src={Check} alt="check image" />
-                  <p className="font-semibold">Visa Processing Support </p>
                 </div>
                 <a href="https://buy.stripe.com/fZe9Cx9G30Z6fficMN">
                   <button className="w-full border h-14 font-bold mt-8 border-[#db251A] rounded-lg text-[#db251A] hover:bg-[#db251A] hover:text-white transition duration-300 ease-in-out flex items-center justify-center">
@@ -297,7 +229,7 @@ const Tabs = () => {
                 </a>
               </div>
               {/* LOCAL COMMUNITY */}
-              <div className="border-[#646464] border rounded-xl p-8 relative">
+              {/* <div className="border-[#646464] border rounded-xl p-8 relative">
                 <p className="text-2xl font-bold">
                   Join Our Local Education Community
                 </p>
@@ -329,7 +261,7 @@ const Tabs = () => {
                     Join Now
                   </button>
                 </a>
-              </div>
+              </div> */}
             </div>
           )}
         </div>

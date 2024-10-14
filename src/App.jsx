@@ -2,9 +2,9 @@ import "./App.css";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import {
   CorporateProfile,
-  GlobalLoan,
+  // GlobalLoan,
   Home,
-  LocalLoan,
+  // LocalLoan,
   RevolutionCommunity,
 } from "./pages";
 import Navbar from "./components/Navbar";
@@ -20,6 +20,8 @@ import UniversityAdmission from "./pages/UniversityAdmission";
 import WhatsappIcon from "./components/WhatsappIcon";
 import Calculator from "./pages/Calculator";
 import NelfundFinancing from "./pages/NelfundFinancing";
+import StudyAbroadFinancingServices from "./pages/StudyAbroadFinancingServices";
+import FAQs from "./pages/FAQs";
 
 function App() {
   const [showAfterFooter, setShowAfterFooter] = useState(false);
@@ -32,16 +34,24 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/corporate-profile" element={<CorporateProfile />} />
-          <Route
+          {/* <Route
             path="/global-loan"
             element={<GlobalLoan setShowAfterFooter={setShowAfterFooter} />}
-          />
+          /> */}
           <Route
+            path="/study-abroad-financing-services"
+            element={
+              <StudyAbroadFinancingServices
+                setShowAfterFooter={setShowAfterFooter}
+              />
+            }
+          />
+          {/* <Route
             path="/local-loan"
             element={
               <LocalLoan setShowAfterFooterTwo={setShowAfterFooterTwo} />
             }
-          />
+          /> */}
           <Route path="/global-resolution" element={<RevolutionCommunity />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/pricing" element={<Pricing />} />
@@ -54,6 +64,7 @@ function App() {
             element={<UniversityAdmission />}
           />
           <Route path="/nelfund-financing" element={<NelfundFinancing />} />
+          <Route path="/faqs" element={<FAQs />} />
         </Routes>
         <WhatsappIcon />
         <Footer />

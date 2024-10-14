@@ -40,7 +40,7 @@ const Hero = () => {
           <span className="text-[#db251A]">Welcome to </span>
           <span className="relative">
             <span className="text-[#1E4580]">Proconnect</span>
-            <span className="text-[#db251A]">PAY</span>
+            {/* <span className="text-[#db251A]">PAY</span> */}
             <img src={Line} alt="line" className="absolute right-0" />
           </span>
         </h2>

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import Logo from "../assets/pcp-logo-1.png";
+import Logo from "../assets/proconnect-logo-new.jpg";
 import business from "../assets/company.png";
 import Location from "../assets/location.png";
 import SocialIcons1 from "../assets/Social icons1.png";
@@ -27,14 +27,22 @@ const businessLinks = [
     url: "/interest",
     name: "Signify your interest",
   },
+  // {
+  //   url: "/local-loan",
+  //   name: "Local loan",
+  // },
   {
-    url: "/local-loan",
-    name: "Local loan",
+    url: "/faqs",
+    name: "FAQs",
   },
   {
-    url: "/global-loan",
-    name: "Global Loan",
+    name: "Study Abroad Financing Services",
+    url: "/study-abroad-financing-services",
   },
+  // {
+  //   url: "/global-loan",
+  //   name: "Global Loan",
+  // },
   {
     url: "/privacy-policy",
     name: "Privacy Policy",
@@ -116,11 +124,24 @@ const Footer = () => {
     <div className="p-10 md:p-20 flex flex-col gap-20 md:gap-40">
       <div className="flex gap-4 md:gap-0 flex-col md:flex-row justify-between items-start">
         <div className="flex w-full md:w-[30%] items-start justify-start flex-col gap-4">
-          <img src={Logo} alt="proconnect-logo" />
+          <div className="relative -left-16 w-80 h-24">
+            <img
+              src={Logo}
+              alt="proconnect-logo"
+              className="w-full h-full object-cover"
+            />
+          </div>
           <p className="text-left font-semibold">
-            ProconnectPAY is an African Edu-FinTech Company that works with
-            other financial institutions to drive adoption of Education-oriented
-            Loans.
+            Proconnect is a global financial services provider specializing in
+            education and mobility solutions. We help students gain access to
+            over 5,000 universities in 17 countries, offering tailored financing
+            that makes studying abroad more accessible. Additionally, we
+            streamline the relocation process by covering essential expenses
+            such as flights, living costs, and rent, ensuring a smooth
+            transition for individuals pursuing global opportunities. With our
+            comprehensive approach and global partnerships, Proconnect empowers
+            students and professionals to focus on their ambitions while we
+            manage the financial logistics.
           </p>
           <p className="text-left font-semibold">
             ProconnectPAY is legally registered in Nigeria and the United

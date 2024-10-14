@@ -1,5 +1,5 @@
 import { Link, NavLink, useLocation } from "react-router-dom";
-import Logo from "../assets/pcp-logo-1.png";
+import Logo from "../assets/proconnect-logo-new.jpg";
 import { BiMenu } from "react-icons/bi";
 import React, { useEffect, useState } from "react";
 import NavBtn from "../assets/navbtn.png";
@@ -14,13 +14,17 @@ const navItems = [
     url: "/corporate-profile",
   },
   {
-    name: "Global Loan",
-    url: "/global-loan",
+    name: "Global Financing",
+    url: "/study-abroad-financing-services",
   },
-  {
-    name: "Local Loan",
-    url: "/local-loan",
-  },
+  // {
+  //   name: "Global Loan",
+  //   url: "/global-loan",
+  // },
+  // {
+  //   name: "Local Loan",
+  //   url: "/local-loan",
+  // },
   {
     name: "Join Global Education Community",
     url: "/global-resolution",
@@ -75,13 +79,13 @@ const Navbar = () => {
 
   return (
     <div
-      className={`px-5 sm:px-10 lg:px-16 py-5 flex items-center justify-between bg-[#ffff] ${
+      className={`px-5 sm:px-10 lg:px-16 py-5 flex items-center justify-between bg-[#ffff] overflow-hidden max-h-28 md:max-h-32 ${
         scrolling ? "sticky top-0 shadow-md bg-white z-30" : ""
       }`}
     >
-      <div className="flex items-center gap-12">
-        <Link to="/">
-          <img src={Logo} className="w-36 lg:w-44" alt="logo" />
+      <div className="flex items-center gap-12 overflow-hidden">
+        <Link to="/" className="overflow-hidden">
+          <img src={Logo} className="w-72 relative -left-10" alt="logo" />
         </Link>
         <div className="hidden lg:flex gap-6 font-bold">
           {navItems.map((navItem) => {
