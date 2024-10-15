@@ -22,6 +22,7 @@ import Calculator from "./pages/Calculator";
 import NelfundFinancing from "./pages/NelfundFinancing";
 import StudyAbroadFinancingServices from "./pages/StudyAbroadFinancingServices";
 import FAQs from "./pages/FAQs";
+import EldaAi from "./pages/EldaAi";
 
 function App() {
   const [showAfterFooter, setShowAfterFooter] = useState(false);
@@ -33,6 +34,7 @@ function App() {
         <Navbar />
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/elda-ai" element={<EldaAi />} />
           <Route path="/corporate-profile" element={<CorporateProfile />} />
           {/* <Route
             path="/global-loan"
