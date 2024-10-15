@@ -39,25 +39,28 @@ const Hero = () => {
         <h2 className="font-semibold text-2xl sm:text-4xl whitespace-nowrap">
           <span className="text-[#db251A]">Welcome to </span>
           <span className="relative">
-            <span className="text-[#1E4580]">Proconnect</span>
-            {/* <span className="text-[#db251A]">PAY</span> */}
+            <span className="text-[#db251A]">Pro</span>
+            <span className="text-[#1E4580]">connect</span>
             <img src={Line} alt="line" className="absolute right-0" />
           </span>
         </h2>
         <h1 className="font-bold text-[42px] sm:text-[56px] leading-tight">
-          Africa's First <br /> EduFintechCo.
+          Global Education and Global Mobility <br /> FinTechCo.
         </h1>
-        <p className="text-[#646464] font-normal leading-normal text-xl">
-          We provide seamless long-term Education Financing to DEMOCRATIZE
-          access to Global and Local Educational Opportunities for
-          high-potential African Students/Candidates
+        <p className="text-[#646464] font-normal leading-normal text-xl text-justify">
+          Proconnect is a global financial services provider focused on
+          education and mobility solutions. We offer tailored financing for
+          students to access over 5,000 universities in 17 countries. Our
+          services cover essential relocation expenses, ensuring a smooth
+          transition abroad. Through global partnerships, we empower individuals
+          to focus on their ambitions while we handle the financial logistics.
         </p>
         <div className="flex gap-4">
           <button className="w-1/2 rounded-lg h-14 hover:bg-transparent hover:text-[#db251A] border-2 hover:border-red-500 font-medium flex items-center justify-center bg-[#DB251A] text-white py-2 px-4 transition-all">
             <Link to="/interest">Get Started</Link>
           </button>
           <button className="w-1/2 flex border-2 h-14 justify-center font-medium text-[#db251A] border-red-500 items-center rounded-lg px-4 py-2 cursor-pointer hover:bg-[#db251A] hover:text-white transition-all">
-            <Link to="/contact">Contact Sales</Link>
+            <a href="mailto:grace@proconnectpay.com">Contact Sales</a>
           </button>
         </div>
       </motion.div>

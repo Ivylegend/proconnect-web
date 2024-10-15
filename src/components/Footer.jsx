@@ -131,7 +131,7 @@ const Footer = () => {
               className="w-full h-full object-cover"
             />
           </div>
-          <p className="text-left font-semibold">
+          <p className="font-semibold text-justify">
             Proconnect is a global financial services provider specializing in
             education and mobility solutions. We help students gain access to
             over 5,000 universities in 17 countries, offering tailored financing
@@ -143,7 +143,7 @@ const Footer = () => {
             students and professionals to focus on their ambitions while we
             manage the financial logistics.
           </p>
-          <p className="text-left font-semibold">
+          <p className="text-justify font-semibold">
             ProconnectPAY is legally registered in Nigeria and the United
             States. RC Number in Nigeria is{" "}
             <span className="text-[#1E4580]">
