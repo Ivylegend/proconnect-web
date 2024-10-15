@@ -130,7 +130,7 @@ const StudyAbroadFinancingServices = ({ setShowAfterFooter }) => {
         </Link>
       </div>
 
-      <div className="mt-10 md:mt-20">
+      <div className="my-10 md:mt-20 flex items-center justify-center w-full">
         <img src={PCP} alt="about-pcp" className="w-full" />
       </div>
 

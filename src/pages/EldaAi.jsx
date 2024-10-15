@@ -3,8 +3,8 @@ import EldaAI from "../assets/elda-pamphlet.png";
 
 const EldaAi = () => {
   return (
-    <div>
-      <img src={EldaAI} alt="elda ai" />
+    <div className="flex items-center justify-center w-full">
+      <img src={EldaAI} alt="elda ai" className="w-full" />
     </div>
   );
 };
