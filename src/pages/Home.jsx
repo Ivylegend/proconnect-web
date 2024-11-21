@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Hero from "../components/Hero";
+// import Hero from "../components/Hero";
 import Partners from "../components/Partners";
 import TextImage from "../components/TextImage";
 import Button from "../components/small-components/Button";
@@ -11,6 +11,7 @@ import globe from "../assets/globe.png";
 import education from "../assets/education.png";
 import LoanCalculator from "../components/Calculator";
 import CTA from "../components/CTA";
+import NewHero from "../components/NewHero";
 
 const Home = () => {
   const [principal, setPrincipal] = useState("");
@@ -64,7 +65,8 @@ const Home = () => {
 
   return (
     <div>
-      <Hero />
+      {/* <Hero /> */}
+      <NewHero />
       <Partners />
       <TextImage
         picture={Macbook}
