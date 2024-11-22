@@ -208,7 +208,7 @@ const Tabs = () => {
                   alt="curved arrow"
                   className="absolute w-1/4 lg:w-1/3 right-6"
                 />
-                <p className="text-4xl font-bold my-10">$158 USD</p>
+                <p className="text-4xl font-bold my-10">$58 USD</p>
                 <p className="text-[#db251A] text-xl font-normal mb-5">
                   What's Included
                 </p>
