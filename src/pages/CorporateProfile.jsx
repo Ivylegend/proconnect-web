@@ -63,10 +63,9 @@ const CorporateProfile = () => {
             Company Description
           </h2>
           <p className="text-xl leading-8 text-justify">
-            <span className="text-[#1E4580] font-bold">Proconnect</span>
-            <span className="text-[#db251A] font-bold">PAY</span> is Africa’s
+            <span className="text-[#db251A] font-bold">Proconnect</span> is Africa&apos;s
             First EduFinTechCo. We are the Amazon of Education Financing in
-            Africa. ProconnectPAY works with Local and Global Financial
+            Africa. Proconnect works with Local and Global Financial
             Institutions to provide Specialized and Affordable Financing
             Solutions focused on Education. We work across the entire spectrum
             of the educational value-chain LOCALLY, CONTINENTALLY AND GLOBALLY.

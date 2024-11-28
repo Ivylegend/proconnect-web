@@ -11,7 +11,7 @@ const PrivacyPolicy = () => {
           <span className="text-[#323232]">Privacy Policy</span>
         </p>
         <p className="leading-normal font-bold text-center my-6">
-          Thank you for choosing ProconnectPAY. We are committed to protecting
+          Thank you for choosing Proconnect. We are committed to protecting
           your privacy and ensuring the security of your personal information.
           This Privacy Policy outlines how we collect, use, disclose, and
           protect your information when you use our services, specifically

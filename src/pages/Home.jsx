@@ -77,6 +77,8 @@ const Home = () => {
         }
         showButton={true}
         classdyn={"flex-row"}
+        buttonText={"Know More"}
+        buttonHref={"https://elda.cloud"}
       />
       <TextImage
         picture={aiLaptop}
@@ -91,6 +93,8 @@ const Home = () => {
         }
         classdyn={"flex-row-reverse"}
         showButton={true}
+        buttonText={"Know More"}
+        buttonHref={"https://eldanic.com"}
       />
       <TextImage
         picture={people}
@@ -101,6 +105,8 @@ const Home = () => {
         }
         showButton={true}
         classdyn={"flex-row"}
+        buttonText={"Get Started"}
+        buttonHref={"/interest"}
       />
 
       <div className="relative overflow-hidden">

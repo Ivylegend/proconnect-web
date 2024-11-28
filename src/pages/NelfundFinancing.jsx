@@ -332,7 +332,7 @@ const NelfundFinancing = () => {
           </div>
           <div className="form-group">
             <label htmlFor="financialSupport" className="text-lg font-medium">
-              Will you want ProconnectPAY to MENTOR you VIRTUALLY for 6 Months
+              Will you want Proconnect to MENTOR you VIRTUALLY for 6 Months
               through its Global Undergraduate Community?
             </label>
             <div className="radio-group flex gap-4">

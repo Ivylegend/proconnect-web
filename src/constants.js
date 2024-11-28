@@ -1176,6 +1176,7 @@ export const usPg = [
 
 export const netherlands = [
   { id: 0, name: "Delft University of Technology" },
+  { id: 8, name: "Eindhoven University of Technology" },
   { id: 1, name: "Erasmus University" },
   { id: 2, name: "Maastricht University" },
   { id: 3, name: "Nyenrode Business Universiteit" },

@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { motion, useAnimation } from "framer-motion";
 import Button from "./small-components/Button";
 
-const TextImage = ({ picture, title, header, text, classdyn, showButton }) => {
+const TextImage = ({ picture, title, header, text, classdyn, showButton, buttonText, buttonHref }) => {
   const controls = useAnimation();
 
   const containerVariants = {
@@ -40,7 +40,7 @@ const TextImage = ({ picture, title, header, text, classdyn, showButton }) => {
         <p className="font-bold text-xl">{header}</p>
         <h2 className="text-4xl font-bold leading-normal">{title}</h2>
         <p className="text-xl">{text}</p>
-        {showButton && <Button btnText={"Get Started"} linkTo={"/interest"} />}
+        {showButton && <Button btnText={buttonText} linkTo={buttonHref} />}
       </div>
       {/* DIV TWO */}
       <div className="w-full flex items-center justify-center lg:w-1/2">

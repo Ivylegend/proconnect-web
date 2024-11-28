@@ -2,6 +2,7 @@ import React from "react";
 import PcpCountries from "../assets/pcp-countries.svg";
 import HeroIcons from "../assets/hero-icons.svg";
 import HeroIconsLeft from "../assets/hero-icons-left.svg";
+import EldaAiLogo from "../assets/elda-new-logo.png";
 import { Link } from "react-router-dom";
 
 const NewHero = () => {
@@ -14,15 +15,17 @@ const NewHero = () => {
           className="absolute left-0 top-0 w-16 h-16 sm:w-24 sm:h-24 md:w-auto md:h-auto"
         />
         <div className="space-y-6 flex items-center flex-col justify-center md:w-[80%]">
-          <h1 className="text-center font-bold text-[32px] md:text-[52px]">
+          <h1 className="text-center font-bold text-[32px] md:text-[48px]">
             STUDY AND <br className="lg:hidden" />{" "}
             <span className="text-[#DB251A]">MIGRATE</span> TO THESE{" "}
             <br className="lg:hidden" />
             <span className="text-[#DB251A]">17</span> COUNTRIES{" "}
-            <br className="lg:hidden" /> WITH OUR SUPPORT
+            <br className="lg:hidden" /> WITH OUR{" "}
+            {/* <br /> */}
+            <span className="text-[#DB251A]">100K USD</span> SUPPORT
           </h1>
           <p className="text-center font-semibold text-base md:text-lg">
-            Proconnect provides tailored, non-collateral financing for students
+           <span className="text-[#DB251A]">Proconnect</span> provides tailored, non-collateral financing for students
             to access over 5,000 universities across 17 countries, powered by
             the innovative eLDa AI platform that ensures 99% success and
             accuracy in automating resume refinement, SOP creation, and

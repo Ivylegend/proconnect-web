@@ -74,6 +74,9 @@ const SupportedSchools = () => {
           <option value="Australia" className="my-4 text-black font-medium">
             Australian Schools
           </option>
+          <option value="Netherlands" className="my-4 text-black font-medium">
+            Netherland Schools
+          </option>
           <option value="Singapore" className="my-4 text-black font-medium">
             Singaporean Schools
           </option>

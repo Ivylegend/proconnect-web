@@ -155,7 +155,7 @@ const LocalLoan = ({ setShowAfterFooterTwo }) => {
           <img src={Law} alt="icon" />
           <p className="font-bold text-2xl">GLOBAL UNDERGRADUATE COMMUNITY</p>
           <p className="text-xl leading-8">
-            What ProconnectPAY has created will allow Nigerian Students below 21
+            What Proconnect has created will allow Nigerian Students below 21
             years old study commercially relevant courses in selected science
             courses, technology courses, engineering courses, health courses,
             and business courses that guarantees they are able to access global
