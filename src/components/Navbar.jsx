@@ -15,8 +15,12 @@ const navItems = [
   },
   {
     name: "Global Financing",
-    url: "/study-abroad-financing-services",
+    url: "/global-financing",
   },
+  // {
+  //   name: "Global Financing",
+  //   url: "/study-abroad-financing-services",
+  // },
   {
     name: "Elda AI",
     url: "/elda-ai",

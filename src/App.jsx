@@ -23,6 +23,7 @@ import NelfundFinancing from "./pages/NelfundFinancing";
 import StudyAbroadFinancingServices from "./pages/StudyAbroadFinancingServices";
 import FAQs from "./pages/FAQs";
 import EldaAi from "./pages/EldaAi";
+import GlobalFinancing from "./pages/GlobalFinancing";
 
 function App() {
   const [showAfterFooter, setShowAfterFooter] = useState(false);
@@ -40,12 +41,18 @@ function App() {
             path="/global-loan"
             element={<GlobalLoan setShowAfterFooter={setShowAfterFooter} />}
           /> */}
-          <Route
+          {/* <Route
             path="/study-abroad-financing-services"
             element={
               <StudyAbroadFinancingServices
                 setShowAfterFooter={setShowAfterFooter}
               />
+            }
+          /> */}
+          <Route
+            path="/global-financing"
+            element={
+              <GlobalFinancing setShowAfterFooter={setShowAfterFooter} />
             }
           />
           {/* <Route
@@ -86,17 +93,17 @@ function App() {
                 already instituted or updated by our partners or necessitated by
                 economic realities . Governments of the countries in which our
                 student loans are applicable are the ultimate decider of
-                policies that impacts student visa processing – Proconnect
-                will always communicate and clarify up-to-date information that
+                policies that impacts student visa processing – Proconnect will
+                always communicate and clarify up-to-date information that
                 concerns all these processes but do note that changes happen in
                 a moment’s notice and these changes are implemented immediately,
                 we are not an advocacy group and we do not intermediate on
                 behalf of students to these institutions whose processes our
                 services are anchored upon, it is important to accommodate
                 changes that can happen in the course of your relationship with
-                Proconnect – we do not lie, fabricate, or falsify information
-                to mislead our candidates and prospective customers. This
-                statement is a commitment to our timeless value of integrity and
+                Proconnect – we do not lie, fabricate, or falsify information to
+                mislead our candidates and prospective customers. This statement
+                is a commitment to our timeless value of integrity and
                 forthrightness. Kindly note that we have a{" "}
                 <span className="font-bold">
                   STRICT NO-REFUND POLICY in Proconnect.
@@ -130,8 +137,8 @@ function App() {
                 an advocacy group and we do not intermediate on behalf of
                 students to these institutions whose processes our services are
                 anchored upon, it is important to accommodate changes that can
-                happen in the course of your relationship with Proconnect –
-                we do not lie, fabricate, or falsify information to mislead our
+                happen in the course of your relationship with Proconnect – we
+                do not lie, fabricate, or falsify information to mislead our
                 candidates and prospective customers. This statement is a
                 commitment to our timeless value of integrity and
                 forthrightness. Kindly note that we have a{" "}
