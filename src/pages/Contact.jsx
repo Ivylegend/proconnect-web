@@ -17,8 +17,8 @@ const ContactInfo = [
   {
     location: "African HQ (Nigeria)",
     street:
-      "111/114, Oshodi ApapaExpressway, Off International Airport Road, Lagos State, Nigeria",
-    number: "+234 907 414 6819",
+      "111/114, Oshodi Apapa Expressway, Off International Airport Road, Lagos State, Nigeria",
+    number: "+234 708 590 4631",
   },
   {
     location: "Ghana",
