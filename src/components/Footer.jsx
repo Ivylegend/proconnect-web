@@ -36,9 +36,13 @@ const businessLinks = [
     name: "FAQs",
   },
   {
-    name: "Study Abroad Financing Services",
-    url: "/study-abroad-financing-services",
+    name: "Global Financing",
+    url: "/global-financing",
   },
+  // {
+  //   name: "Study Abroad Financing Services",
+  //   url: "/study-abroad-financing-services",
+  // },
   // {
   //   url: "/global-loan",
   //   name: "Global Loan",
@@ -121,7 +125,7 @@ const Footer = () => {
   }, []);
 
   return (
-    <div className="p-10 md:p-20 flex flex-col gap-20 md:gap-40">
+    <div className="p-5 md:p-20 flex flex-col gap-20 md:gap-40">
       <div className="flex gap-4 md:gap-0 flex-col md:flex-row justify-between items-start">
         <div className="flex w-full md:w-[30%] items-start justify-start flex-col gap-4">
           <div className="relative -left-16 w-80 h-24">
@@ -132,20 +136,20 @@ const Footer = () => {
             />
           </div>
           <p className="font-semibold text-justify">
-           <span className="text-[#DB251A]">Proconnect</span> is a global financial services provider specializing in
-            education and mobility solutions. We help students gain access to
-            over 5,000 universities in 17 countries, offering tailored financing
-            that makes studying abroad more accessible. Additionally, we
-            streamline the relocation process by covering essential expenses
-            such as flights, living costs, and rent, ensuring a smooth
-            transition for individuals pursuing global opportunities. With our
-            comprehensive approach and global partnerships, Proconnect empowers
-            students and professionals to focus on their ambitions while we
-            manage the financial logistics.
+            <span className="text-[#DB251A]">Proconnect</span> is a global
+            financial services provider specializing in education and mobility
+            solutions. We help students gain access to over 5,000 universities
+            in 17 countries, offering tailored financing that makes studying
+            abroad more accessible. Additionally, we streamline the relocation
+            process by covering essential expenses such as flights, living
+            costs, and rent, ensuring a smooth transition for individuals
+            pursuing global opportunities. With our comprehensive approach and
+            global partnerships, Proconnect empowers students and professionals
+            to focus on their ambitions while we manage the financial logistics.
           </p>
           <p className="text-justify font-semibold">
-            Proconnect is legally registered in Nigeria and the United
-            States. RC Number in Nigeria is{" "}
+            Proconnect is legally registered in Nigeria and the United States.
+            RC Number in Nigeria is{" "}
             <span className="text-[#1E4580]">
               1884617 (Proconnect Tech Solutions Limited) ,
             </span>{" "}
