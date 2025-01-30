@@ -6,13 +6,11 @@ const LeaderImage = ({ name, position, image }) => {
       {/* Image */}
       <img src={image} alt="image" className="w-full h-full object-cover" />
 
-      {/* Overlay */}
-      <div className="absolute inset-0 bg-black bg-opacity-20"></div>
-
-      {/* Text Content */}
-      <div className="absolute bottom-0 left-0 w-full p-4 space-y-3">
-        <p className="text-white font-bold relative">{name}</p>
-        <p className="text-white font-semibold relative">{position}</p>
+      {/* Overlay behind Text Content */}
+      <div className="absolute bottom-0 left-0 w-full p-4 bg-gradient-to-t from-black to-transparent">
+        {/* Text Content */}
+        <p className="text-white font-bold">{name}</p>
+        <p className="text-white font-semibold">{position}</p>
       </div>
     </div>
   );
