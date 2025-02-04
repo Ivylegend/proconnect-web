@@ -35,7 +35,7 @@ const Tabs = () => {
   };
 
   const handlePayment = () => {
-    let newDiscountedPrice = 200000;
+    let newDiscountedPrice = 158000;
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
     if (userEmail === "") {
@@ -124,7 +124,7 @@ const Tabs = () => {
                   alt="curved arrow"
                   className="absolute w-1/4 lg:w-1/3 right-6"
                 />
-                <p className="text-4xl font-bold my-10">₦ 200,000</p>
+                <p className="text-4xl font-bold my-10">₦ 158,000</p>
                 <p className="text-[#db251A] text-xl font-normal mb-5">
                   What's Included
                 </p>
@@ -147,45 +147,6 @@ const Tabs = () => {
                   Join Now
                 </button>
               </div>
-
-              {/* LOCAL COMMUNITY */}
-              {/* <div className="border-[#646464] border rounded-xl p-8 relative">
-                <p className="text-2xl font-bold">
-                  Join Our Local Education Community
-                </p>
-                <img
-                  src={CurveArrow}
-                  alt="curved arrow"
-                  className="absolute w-1/4 lg:w-1/3 right-6"
-                />
-                <p className="text-4xl font-bold my-10">₦ 100,000</p>
-                <p className="text-[#db251A] text-xl font-normal mb-5">
-                  What's Included
-                </p>
-                <div className="flex items-center gap-4 my-6">
-                  <img src={Check} alt="check image" />
-                  <p className="font-semibold">Admission Processing</p>
-                </div>
-                <div className="flex items-center gap-4 my-6">
-                  <img src={Check} alt="check image" />
-                  <p className="font-semibold">
-                    Loan and Non-Loan Finance Option Processing
-                  </p>
-                </div>
-                <div className="flex items-center gap-4 my-6">
-                  <img src={Check} alt="check image" />
-                  <p className="font-semibold">
-                    Access to Global Undergraduate Community
-                  </p>
-                </div>
-                <button
-                  onClick={() => payWithPayStack(100000)}
-                  // onClick={() => setIsModalOpen2(true)}
-                  className="w-full border h-14 font-bold mt-8 border-[#db251A] rounded-lg text-[#db251A] hover:bg-[#db251A] hover:text-white transition duration-300 ease-in-out flex items-center justify-center"
-                >
-                  Join Now
-                </button>
-              </div> */}
             </div>
           )}
         </div>
@@ -208,7 +169,7 @@ const Tabs = () => {
                   alt="curved arrow"
                   className="absolute w-1/4 lg:w-1/3 right-6"
                 />
-                <p className="text-4xl font-bold my-10">$58 USD</p>
+                <p className="text-4xl font-bold my-10">$45 USD</p>
                 <p className="text-[#db251A] text-xl font-normal mb-5">
                   What's Included
                 </p>
@@ -228,40 +189,6 @@ const Tabs = () => {
                   </button>
                 </a>
               </div>
-              {/* LOCAL COMMUNITY */}
-              {/* <div className="border-[#646464] border rounded-xl p-8 relative">
-                <p className="text-2xl font-bold">
-                  Join Our Local Education Community
-                </p>
-                <img
-                  src={CurveArrow}
-                  alt="curved arrow"
-                  className="absolute w-1/4 lg:w-1/3 right-6"
-                />
-                <p className="text-4xl font-bold my-10">$160usd</p>
-                <p className="text-[#db251A] text-xl font-normal mb-5">
-                  What's Included
-                </p>
-                <div className="flex items-center gap-4 my-6">
-                  <img src={Check} alt="check image" />
-                  <p className="font-semibold">Admission Processing</p>
-                </div>
-                <div className="flex items-center gap-4 my-6">
-                  <img src={Check} alt="check image" />
-                  <p className="font-semibold">Finance Option Processing</p>
-                </div>
-                <div className="flex items-center gap-4 my-6">
-                  <img src={Check} alt="check image" />
-                  <p className="font-semibold">
-                    Global Undergraduate Community
-                  </p>
-                </div>
-                <a href="https://buy.stripe.com/aEU9Cx9G3bDKebe3cg">
-                  <button className="w-full border h-14 font-bold mt-8 border-[#db251A] rounded-lg text-[#db251A] hover:bg-[#db251A] hover:text-white transition duration-300 ease-in-out flex items-center justify-center">
-                    Join Now
-                  </button>
-                </a>
-              </div> */}
             </div>
           )}
         </div>

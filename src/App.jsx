@@ -2,10 +2,14 @@ import "./App.css";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import {
   CorporateProfile,
+  Ecobank,
   // GlobalLoan,
   Home,
   // LocalLoan,
   RevolutionCommunity,
+  Sycamore,
+  UnionBank,
+  WemaBank,
 } from "./pages";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
@@ -20,10 +24,10 @@ import UniversityAdmission from "./pages/UniversityAdmission";
 import WhatsappIcon from "./components/WhatsappIcon";
 import Calculator from "./pages/Calculator";
 import NelfundFinancing from "./pages/NelfundFinancing";
-import StudyAbroadFinancingServices from "./pages/StudyAbroadFinancingServices";
 import FAQs from "./pages/FAQs";
 import EldaAi from "./pages/EldaAi";
 import GlobalFinancing from "./pages/GlobalFinancing";
+import Error from "./pages/Error";
 
 function App() {
   const [showAfterFooter, setShowAfterFooter] = useState(false);
@@ -32,36 +36,18 @@ function App() {
   return (
     <>
       <BrowserRouter>
-        <Navbar />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/elda-ai" element={<EldaAi />} />
           <Route path="/corporate-profile" element={<CorporateProfile />} />
-          {/* <Route
-            path="/global-loan"
-            element={<GlobalLoan setShowAfterFooter={setShowAfterFooter} />}
-          /> */}
-          {/* <Route
-            path="/study-abroad-financing-services"
-            element={
-              <StudyAbroadFinancingServices
-                setShowAfterFooter={setShowAfterFooter}
-              />
-            }
-          /> */}
+
           <Route
             path="/global-financing"
             element={
               <GlobalFinancing setShowAfterFooter={setShowAfterFooter} />
             }
           />
-          {/* <Route
-            path="/local-loan"
-            element={
-              <LocalLoan setShowAfterFooterTwo={setShowAfterFooterTwo} />
-            }
-          /> */}
-          <Route path="/global-resolution" element={<RevolutionCommunity />} />
+          <Route path="/global-community" element={<RevolutionCommunity />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/pricing" element={<Pricing />} />
           <Route path="/privacy-policy" element={<PrivacyPolicy />} />
@@ -74,9 +60,15 @@ function App() {
           />
           <Route path="/nelfund-financing" element={<NelfundFinancing />} />
           <Route path="/faqs" element={<FAQs />} />
+          
+          {/* BANKS */}
+          <Route path="/banks/wema" element={<WemaBank />} />
+          <Route path="/banks/union" element={<UnionBank />} />
+          <Route path="/banks/ecobank" element={<Ecobank />} />
+          <Route path="/banks/sycamore" element={<Sycamore />} />
+
+          <Route path="*" element={<Error />} />
         </Routes>
-        <WhatsappIcon />
-        <Footer />
         {showAfterFooter && (
           <AfterFooter
             customText={

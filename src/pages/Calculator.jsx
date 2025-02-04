@@ -1,5 +1,6 @@
 import { useRef, useState } from "react";
 import { usePDF } from "react-to-pdf";
+import MainLayout from "../layouts/MainLayout";
 
 const Calculator = () => {
   const [period, setPeriod] = useState(6);
@@ -51,7 +52,7 @@ const Calculator = () => {
   const monthlyRepayment = period ? totalRepayment / period : 0;
 
   return (
-    <>
+    <MainLayout>
       <div
         className="p-10 lg:p-0 min-h-screen min-w-[100vw] flex justify-center items-center flex-col"
         ref={targetRef}
@@ -189,7 +190,7 @@ const Calculator = () => {
           Download as a PDF
         </button>
       </div>
-    </>
+    </MainLayout>
   );
 };
 

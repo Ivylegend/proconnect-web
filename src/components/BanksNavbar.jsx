@@ -1,6 +1,5 @@
 import { Link, NavLink, useLocation } from "react-router-dom";
 import Logo from "../assets/proconnect-logo-new.jpg";
-import { BiMenu } from "react-icons/bi";
 import React, { useEffect, useState } from "react";
 import NavBtn from "../assets/navbtn.png";
 
@@ -17,29 +16,18 @@ const navItems = [
     name: "Global Financing",
     url: "/global-financing",
   },
-  // {
-  //   name: "Global Financing",
-  //   url: "/study-abroad-financing-services",
-  // },
   {
     name: "Elda AI",
     url: "/elda-ai",
   },
-  // {
-  //   name: "Global Loan",
-  //   url: "/global-loan",
-  // },
-  // {
-  //   name: "Local Loan",
-  //   url: "/local-loan",
-  // },
+
   {
     name: "Join Global Education Community",
     url: "/global-community",
   },
 ];
 
-const Navbar = () => {
+const BanksNavbar = ({ bankLogo }) => {
   const [toggle, setToggle] = useState(false);
   const [scrolling, setScrolling] = useState(false);
   const location = useLocation();
@@ -91,10 +79,17 @@ const Navbar = () => {
         scrolling ? "sticky top-0 shadow-md bg-white z-30" : ""
       }`}
     >
-      <div className="flex items-center gap-4 overflow-hidden">
-        <Link to="/" className="overflow-hidden">
-          <img src={Logo} className="w-64 relative -left-10" alt="logo" />
-        </Link>
+      <div className="flex items-center gap-4">
+        <div className="flex">
+          <div className="w-44 h-44 overflow-hidden relative -left-5 md:-left-10">
+            <Link to="/" className="">
+              <img src={Logo} className="w-full scale-125" alt="logo" />
+            </Link>
+          </div>
+          <div className="w-32 overflow-hidden flex items-center justify-center relative -left-10">
+            <img src={bankLogo} className="scale-75" alt="logo" />
+          </div>
+        </div>
         <div className="hidden lg:flex gap-6 font-semibold">
           {navItems.map((navItem) => {
             return (
@@ -155,4 +150,4 @@ const Navbar = () => {
   );
 };
 
-export default Navbar;
+export default BanksNavbar;

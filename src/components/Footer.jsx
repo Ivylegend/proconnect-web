@@ -100,6 +100,25 @@ const locationLinks = [
   },
 ];
 
+const bankPartners = [
+  {
+    url: "/banks/union",
+    name: "Union Bank",
+  },
+  {
+    url: "/banks/wema",
+    name: "Wema Bank",
+  },
+  {
+    url: "/banks/ecobank",
+    name: "EcoBank",
+  },
+  {
+    url: "/banks/sycamore",
+    name: "Sycamore",
+  },
+];
+
 const socialIcons = [
   { name: SocialIcons1, url: "https://web.facebook.com/proconnectpay" },
   { name: SocialIcons3, url: "https://twitter.com/ProconnectPAY" },
@@ -125,9 +144,9 @@ const Footer = () => {
   }, []);
 
   return (
-    <div className="p-5 md:p-20 flex flex-col gap-20 md:gap-40">
-      <div className="flex gap-4 md:gap-0 flex-col md:flex-row justify-between items-start">
-        <div className="flex w-full md:w-[30%] items-start justify-start flex-col gap-4">
+    <div className="p-5 md:p-10 lg:p-20 flex flex-col bg-white gap-20 md:gap-40">
+      <div className="flex gap-4 md:gap-0 flex-col lg:flex-row justify-between items-start">
+        <div className="flex w-full lg:w-[30%] items-start justify-start flex-col gap-4">
           <div className="relative -left-16 w-80 h-24">
             <img
               src={Logo}
@@ -165,6 +184,22 @@ const Footer = () => {
           </p>
           <ul className="flex gap-5 flex-col">
             {businessLinks.map((footerLink) => {
+              return (
+                <Link to={footerLink.url} key={footerLink.url} target="_blank">
+                  <li className="font-bold hover:text-[#db251A]">
+                    {footerLink.name}
+                  </li>
+                </Link>
+              );
+            })}
+          </ul>
+        </div>
+        <div>
+          <p className="text-lg font-medium capitalize my-6 flex items-center gap-2">
+            <img src={business} alt="business" /> BANK PARTNERS
+          </p>
+          <ul className="flex gap-5 flex-col">
+            {bankPartners.map((footerLink) => {
               return (
                 <Link to={footerLink.url} key={footerLink.url} target="_blank">
                   <li className="font-bold hover:text-[#db251A]">

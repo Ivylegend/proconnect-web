@@ -2,7 +2,6 @@ import React from "react";
 import PcpCountries from "../assets/pcp-countries.svg";
 import HeroIcons from "../assets/hero-icons.svg";
 import HeroIconsLeft from "../assets/hero-icons-left.svg";
-import EldaAiLogo from "../assets/elda-new-logo.png";
 import { Link } from "react-router-dom";
 
 const NewHero = () => {

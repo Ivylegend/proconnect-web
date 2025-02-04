@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import InterestImg from "../assets/interest-img.png";
 import ReusableModal from "../components/small-components/ReusableModal";
+import MainLayout from "../layouts/MainLayout";
 
 const UniversityAdmission = () => {
   const [formData, setFormData] = useState({
@@ -189,173 +190,178 @@ const UniversityAdmission = () => {
   );
 
   return (
-    <div className="px-10 sm:px-20 lg:pl-20 py-10 flex gap-8">
-      <ReusableModal
-        isOpen={isModalOpen}
-        onClose={closeModal}
-        message="Your Information has been sent and you will get a response within 24 hours"
-      />
-      <form className="w-full md:w-1/2" onSubmit={handleSubmit}>
-        <h2 className="text-2xl text-center font-semibold my-4">
-          JAMB 2024 Registration Form
-        </h2>
-        <div className="flex flex-col mx-auto my-4 w-full gap-4 sm:gap-8">
-          <div className="form-group">
-            <label htmlFor="tookJAMB2024" className="text-lg font-medium">
-              Did you write the 2024 JAMB Examination?*
-            </label>
-            <div className="radio-group flex gap-4">
-              <label>
-                <input
-                  type="radio"
-                  id="tookJAMB2024-yes"
-                  name="tookJAMB2024"
-                  value="Yes"
-                  onChange={handleChange}
-                />
-                Yes
-              </label>
-              <label>
-                <input
-                  type="radio"
-                  id="tookJAMB2024-no"
-                  name="tookJAMB2024"
-                  value="No"
-                  onChange={handleChange}
-                />
-                No
-              </label>
-            </div>
-          </div>
-          {renderInput("fullName", "Full Name as on Government ID*:")}
-          {renderInput("email", "Active Email ID*:")}
-          {renderInput("phoneNumber", "Active Phone Number*:")}
-          {renderInput("whatsappNumber", "Active WhatsApp Number*:")}
-          {renderInput("coursesWritten", "Enter Course(s) you WROTE for*:")}
-          {renderInput("JAMBscore", "JAMB SCORE For 2024:")}
-          {renderInput("universityWritten", "Enter University you WROTE for*:")}
-
-          <div className="form-group flex flex-col gap-2">
-            <label htmlFor="stateOfResidence" className="text-lg font-medium">
-              State of Residence*:
-            </label>
-            <select
-              name="stateOfResidence"
-              id="stateOfResidence"
-              value={formData.stateOfResidence}
-              onChange={handleChange}
-              required
-              className="border rounded-md p-2 border-black h-12 bg-white w-full"
-            >
-              <option value="">-- Select State --</option>
-              {/* Add options for each Nigerian state here */}
-              <option value="Abia">Abia</option>
-              <option value="Adamawa">Adamawa</option>
-              <option value="Akwa Ibom">Akwa Ibom</option>
-              <option value="Anambra">Anambra</option>
-              <option value="Bauchi">Bauchi</option>
-              <option value="Bayelsa">Bayelsa</option>
-              <option value="Benue">Benue</option>
-              <option value="Borno">Borno</option>
-              <option value="Cross River">Cross River</option>
-              <option value="Delta">Delta</option>
-              <option value="Ebonyi">Ebonyi</option>
-              <option value="Edo">Edo</option>
-              <option value="Ekiti">Ekiti</option>
-              <option value="Enugu">Enugu</option>
-              <option value="Gombe">Gombe</option>
-              <option value="Imo">Imo</option>
-              <option value="Jigawa">Jigawa</option>
-              <option value="Kaduna">Kaduna</option>
-              <option value="Kano">Kano</option>
-              <option value="Katsina">Katsina</option>
-              <option value="Kebbi">Kebbi</option>
-              <option value="Kogi">Kogi</option>
-              <option value="Kwara">Kwara</option>
-              <option value="Lagos">Lagos</option>
-              <option value="Nassarawa">Nassarawa</option>
-              <option value="Niger">Niger</option>
-              <option value="Ogun">Ogun</option>
-              <option value="Ondo">Ondo</option>
-              <option value="Osun">Osun</option>
-              <option value="Oyo">Oyo</option>
-              <option value="Plateau">Plateau</option>
-              <option value="Rivers">Rivers</option>
-              <option value="Sokoto">Sokoto</option>
-              <option value="Taraba">Taraba</option>
-              <option value="Yobe">Yobe</option>
-              <option value="Zamfara">Zamfara</option>
-              <option value="FCT">Federal Capital Territory</option>
-            </select>
-          </div>
-          <div className="form-group flex flex-col gap-2">
-            <label htmlFor="gender" className="text-lg font-medium">
-              Gender*:
-            </label>
-            <select
-              name="gender"
-              id="gender"
-              value={formData.gender}
-              onChange={handleChange}
-              required
-              className="border rounded-md p-2 border-black h-12 bg-white w-full"
-            >
-              <option value="">-- Select Gender --</option>
-              <option value="Male">Male</option>
-              <option value="Female">Female</option>
-              <option value="Non-binary">Non-binary</option>
-              <option value="Prefer not to say">Prefer not to say</option>
-            </select>
-          </div>
-          {renderInput("age", "Age as at 2024*:")}
-
-          {/* PARENT DETAILS */}
-          <h2 className="font-semibold text-xl">
-            Provide one your PARENTS or Guardian Details:
-          </h2>
-          <div className="form-group flex flex-col gap-2">
-            <label htmlFor="relationship" className="text-lg font-medium">
-              Who?*:
-            </label>
-            <select
-              name="relationship"
-              id="relationship"
-              value={formData.relationship}
-              onChange={handleChange}
-              required
-              className="border rounded-md p-2 border-black h-12 bg-white w-full"
-            >
-              <option value="">-- Select Relationship --</option>
-              <option value="Mother">Mother</option>
-              <option value="Father">Father</option>
-              <option value="Older Sibling">Older Sibling</option>
-              <option value="Aunty">Aunty</option>
-              <option value="Uncle">Uncle</option>
-              <option value="Family Relation">Family Relation</option>
-              <option value="Other Sponsor">Other Sponsor</option>
-            </select>
-          </div>
-          {renderInput("relName", "Name of Relative*:")}
-          {renderInput("parentphoneNumber", "Active Phone Number*:")}
-          {renderInput("parentwhatsappNumber", "Active WhatsApp Number*:")}
-
-          <button
-            type="submit"
-            className="bg-red-600 mt-4 text-white p-4 rounded-md text-lg"
-            onClick={handleSubmit}
-          >
-            Submit
-          </button>
-        </div>
-      </form>
-      <div className="hidden md:flex md:w-1/2">
-        <img
-          className="h-full object-cover"
-          src={InterestImg}
-          alt="interest image"
+    <MainLayout>
+      <div className="px-10 sm:px-20 lg:pl-20 py-10 flex gap-8">
+        <ReusableModal
+          isOpen={isModalOpen}
+          onClose={closeModal}
+          message="Your Information has been sent and you will get a response within 24 hours"
         />
+        <form className="w-full md:w-1/2" onSubmit={handleSubmit}>
+          <h2 className="text-2xl text-center font-semibold my-4">
+            JAMB 2024 Registration Form
+          </h2>
+          <div className="flex flex-col mx-auto my-4 w-full gap-4 sm:gap-8">
+            <div className="form-group">
+              <label htmlFor="tookJAMB2024" className="text-lg font-medium">
+                Did you write the 2024 JAMB Examination?*
+              </label>
+              <div className="radio-group flex gap-4">
+                <label>
+                  <input
+                    type="radio"
+                    id="tookJAMB2024-yes"
+                    name="tookJAMB2024"
+                    value="Yes"
+                    onChange={handleChange}
+                  />
+                  Yes
+                </label>
+                <label>
+                  <input
+                    type="radio"
+                    id="tookJAMB2024-no"
+                    name="tookJAMB2024"
+                    value="No"
+                    onChange={handleChange}
+                  />
+                  No
+                </label>
+              </div>
+            </div>
+            {renderInput("fullName", "Full Name as on Government ID*:")}
+            {renderInput("email", "Active Email ID*:")}
+            {renderInput("phoneNumber", "Active Phone Number*:")}
+            {renderInput("whatsappNumber", "Active WhatsApp Number*:")}
+            {renderInput("coursesWritten", "Enter Course(s) you WROTE for*:")}
+            {renderInput("JAMBscore", "JAMB SCORE For 2024:")}
+            {renderInput(
+              "universityWritten",
+              "Enter University you WROTE for*:"
+            )}
+
+            <div className="form-group flex flex-col gap-2">
+              <label htmlFor="stateOfResidence" className="text-lg font-medium">
+                State of Residence*:
+              </label>
+              <select
+                name="stateOfResidence"
+                id="stateOfResidence"
+                value={formData.stateOfResidence}
+                onChange={handleChange}
+                required
+                className="border rounded-md p-2 border-black h-12 bg-white w-full"
+              >
+                <option value="">-- Select State --</option>
+                {/* Add options for each Nigerian state here */}
+                <option value="Abia">Abia</option>
+                <option value="Adamawa">Adamawa</option>
+                <option value="Akwa Ibom">Akwa Ibom</option>
+                <option value="Anambra">Anambra</option>
+                <option value="Bauchi">Bauchi</option>
+                <option value="Bayelsa">Bayelsa</option>
+                <option value="Benue">Benue</option>
+                <option value="Borno">Borno</option>
+                <option value="Cross River">Cross River</option>
+                <option value="Delta">Delta</option>
+                <option value="Ebonyi">Ebonyi</option>
+                <option value="Edo">Edo</option>
+                <option value="Ekiti">Ekiti</option>
+                <option value="Enugu">Enugu</option>
+                <option value="Gombe">Gombe</option>
+                <option value="Imo">Imo</option>
+                <option value="Jigawa">Jigawa</option>
+                <option value="Kaduna">Kaduna</option>
+                <option value="Kano">Kano</option>
+                <option value="Katsina">Katsina</option>
+                <option value="Kebbi">Kebbi</option>
+                <option value="Kogi">Kogi</option>
+                <option value="Kwara">Kwara</option>
+                <option value="Lagos">Lagos</option>
+                <option value="Nassarawa">Nassarawa</option>
+                <option value="Niger">Niger</option>
+                <option value="Ogun">Ogun</option>
+                <option value="Ondo">Ondo</option>
+                <option value="Osun">Osun</option>
+                <option value="Oyo">Oyo</option>
+                <option value="Plateau">Plateau</option>
+                <option value="Rivers">Rivers</option>
+                <option value="Sokoto">Sokoto</option>
+                <option value="Taraba">Taraba</option>
+                <option value="Yobe">Yobe</option>
+                <option value="Zamfara">Zamfara</option>
+                <option value="FCT">Federal Capital Territory</option>
+              </select>
+            </div>
+            <div className="form-group flex flex-col gap-2">
+              <label htmlFor="gender" className="text-lg font-medium">
+                Gender*:
+              </label>
+              <select
+                name="gender"
+                id="gender"
+                value={formData.gender}
+                onChange={handleChange}
+                required
+                className="border rounded-md p-2 border-black h-12 bg-white w-full"
+              >
+                <option value="">-- Select Gender --</option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+                <option value="Non-binary">Non-binary</option>
+                <option value="Prefer not to say">Prefer not to say</option>
+              </select>
+            </div>
+            {renderInput("age", "Age as at 2024*:")}
+
+            {/* PARENT DETAILS */}
+            <h2 className="font-semibold text-xl">
+              Provide one your PARENTS or Guardian Details:
+            </h2>
+            <div className="form-group flex flex-col gap-2">
+              <label htmlFor="relationship" className="text-lg font-medium">
+                Who?*:
+              </label>
+              <select
+                name="relationship"
+                id="relationship"
+                value={formData.relationship}
+                onChange={handleChange}
+                required
+                className="border rounded-md p-2 border-black h-12 bg-white w-full"
+              >
+                <option value="">-- Select Relationship --</option>
+                <option value="Mother">Mother</option>
+                <option value="Father">Father</option>
+                <option value="Older Sibling">Older Sibling</option>
+                <option value="Aunty">Aunty</option>
+                <option value="Uncle">Uncle</option>
+                <option value="Family Relation">Family Relation</option>
+                <option value="Other Sponsor">Other Sponsor</option>
+              </select>
+            </div>
+            {renderInput("relName", "Name of Relative*:")}
+            {renderInput("parentphoneNumber", "Active Phone Number*:")}
+            {renderInput("parentwhatsappNumber", "Active WhatsApp Number*:")}
+
+            <button
+              type="submit"
+              className="bg-red-600 mt-4 text-white p-4 rounded-md text-lg"
+              onClick={handleSubmit}
+            >
+              Submit
+            </button>
+          </div>
+        </form>
+        <div className="hidden md:flex md:w-1/2">
+          <img
+            className="h-full object-cover"
+            src={InterestImg}
+            alt="interest image"
+          />
+        </div>
       </div>
-    </div>
+    </MainLayout>
   );
 };
 
