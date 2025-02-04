@@ -301,7 +301,7 @@ const Banks = ({ bankName, miniName }) => {
       </div>
 
       <div className="mx-auto py-10 px-6 lg:px-20 md:w-[80%] flex flex-col items-center justify-center">
-        <MiniForm />
+        <MiniForm bankName={bankName} />
       </div>
     </section>
   );

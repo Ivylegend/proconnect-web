@@ -28,6 +28,7 @@ import FAQs from "./pages/FAQs";
 import EldaAi from "./pages/EldaAi";
 import GlobalFinancing from "./pages/GlobalFinancing";
 import Error from "./pages/Error";
+import LandingPageForNew from "./pages/LandingPageForNew";
 
 function App() {
   const [showAfterFooter, setShowAfterFooter] = useState(false);
@@ -38,6 +39,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/new-members" element={<LandingPageForNew />} />
           <Route path="/elda-ai" element={<EldaAi />} />
           <Route path="/corporate-profile" element={<CorporateProfile />} />
 

@@ -1,6 +1,7 @@
 import React from "react";
+import { nigerianStates } from "../constants";
 
-const MiniForm = () => {
+const MiniForm = ({ bankName }) => {
   return (
     <div className="w-full">
       <div className="w-full bg-white border rounded-2xl border-[#F8D3D1] py-9 px-10">
@@ -37,12 +38,16 @@ const MiniForm = () => {
               <label htmlFor="gender" className="text-[#646464] font-medium">
                 Gender <span className="text-red-600">*</span>
               </label>
-              <input
-                type="text"
+              <select
+                name="gender"
                 id="gender"
                 required
-                className={"w-full h-10 p-4 text-black rounded-md border"}
-              />
+                className="w-full h-10 px-2 text-black rounded-md border"
+              >
+                <option value="">--Select gender--</option>
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+              </select>
             </div>
             <div className="mb-6 flex flex-col gap-1 w-full md:w-1/2">
               <label
@@ -51,12 +56,16 @@ const MiniForm = () => {
               >
                 Graduate Of <span className="text-red-600">*</span>
               </label>
-              <input
-                type="text"
+              <select
+                name="graduateOf"
                 id="graduateOf"
                 required
-                className={"w-full h-10 p-4 text-black rounded-md border"}
-              />
+                className="w-full h-10 px-2 text-black rounded-md border"
+              >
+                <option value="">--Select--</option>
+                <option value="polytechnic">Polytechnic</option>
+                <option value="university">University</option>
+              </select>
             </div>
           </div>
 
@@ -68,12 +77,19 @@ const MiniForm = () => {
               >
                 State Of Residence <span className="text-red-600">*</span>
               </label>
-              <input
-                type="text"
+              <select
+                name="stateOFResidence"
                 id="stateOFResidence"
                 required
-                className={"w-full h-10 p-4 text-black rounded-md border"}
-              />
+                className="w-full h-10 px-2 text-black rounded-md border"
+              >
+                <option value="">--Select a state--</option>
+                {nigerianStates.map((state, index) => (
+                  <option key={index} value={state}>
+                    {state}
+                  </option>
+                ))}
+              </select>
             </div>
             <div className="mb-6 flex flex-col gap-1 w-full md:w-1/2">
               <label
@@ -83,7 +99,7 @@ const MiniForm = () => {
                 Date Of Birth <span className="text-red-600">*</span>
               </label>
               <input
-                type="text"
+                type="date"
                 id="dateOfBirth"
                 required
                 className={"w-full h-10 p-4 text-black rounded-md border"}
@@ -97,7 +113,7 @@ const MiniForm = () => {
                 Age <span className="text-red-600">*</span>
               </label>
               <input
-                type="text"
+                type="number"
                 id="age"
                 required
                 className={"w-full h-10 p-4 text-black rounded-md border"}
@@ -110,12 +126,19 @@ const MiniForm = () => {
               >
                 Class of Degree <span className="text-red-600">*</span>
               </label>
-              <input
-                type="text"
+              <select
+                name="classOfDegree"
                 id="classOfDegree"
                 required
-                className={"w-full h-10 p-4 text-black rounded-md border"}
-              />
+                className="w-full h-10 px-2 text-black rounded-md border"
+              >
+                <option value="">--Select class of degree--</option>
+                <option value="first class">First Class / Distinction</option>
+                <option value="second class upper">Second Class Upper</option>
+                <option value="second class lower">Second Class Lower</option>
+                <option value="third class">Third Class</option>
+                <option value="pass">Pass</option>
+              </select>
             </div>
           </div>
         </form>
@@ -141,9 +164,9 @@ const MiniForm = () => {
         <div className="flex gap-2">
           <input type="checkbox" />
           <p className="text-sm">
-            I confirm that I understand that neither Proconnect, EcoBank Nigeria
-            Plc, nor its International Banking Partners influence the visa
-            decision process in any country where this loan is applicable.
+            I confirm that I understand that neither Proconnect, {bankName}, nor
+            its International Banking Partners influence the visa decision
+            process in any country where this loan is applicable.
           </p>
         </div>
       </div>

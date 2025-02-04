@@ -30,16 +30,16 @@ const TextImage = ({ picture, title, header, text, classdyn, showButton, buttonT
   return (
     <motion.div
       id="textImage"
-      className={`flex px-10 py-10 md:py-20 lg:p-20 gap-10 lg:gap-20 items-center flex-col lg:${classdyn}`}
+      className={`flex px-6 sm:px-10 py-10 md:py-20 lg:p-20 gap-10 lg:gap-20 items-center flex-col lg:${classdyn}`}
       variants={containerVariants}
       initial="hidden"
       animate={controls}
     >
       {/* DIV ONE */}
-      <div className="w-full lg:w-1/2 flex flex-col items-start gap-8">
-        <p className="font-bold text-xl">{header}</p>
-        <h2 className="text-4xl font-bold leading-normal">{title}</h2>
-        <p className="text-xl">{text}</p>
+      <div className="w-full lg:w-1/2 flex flex-col items-start gap-4 md:gap-8">
+        <p className="font-bold text-lg md:text-xl">{header}</p>
+        <h2 className="text-2xl md:text-4xl font-bold leading-normal">{title}</h2>
+        <p className="text-base md:text-xl">{text}</p>
         {showButton && <Button btnText={buttonText} linkTo={buttonHref} />}
       </div>
       {/* DIV TWO */}

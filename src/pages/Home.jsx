@@ -115,11 +115,11 @@ const Home = () => {
           <div className="background-image1"></div>
           <div
             id="textImage"
-            className="flex px-10 py-10 md:py-20 lg:p-20 gap-10 lg:gap-20 items-center flex-col lg:flex-row"
+            className="flex px-6 sm:px-10 py-10 md:py-20 lg:p-20 gap-10 lg:gap-20 items-center flex-col lg:flex-row"
           >
             {/* DIV ONE */}
             <div className="w-full lg:w-1/2 flex flex-col items-start gap-8">
-              <h2 className="text-4xl font-bold leading-normal">
+              <h2 className="text-2xl md:text-4xl font-bold leading-normal">
                 <span className="flex items-start justify-start relative">
                   <p>
                     Local <br /> Undergraduate Education <br /> Loan Calculator
@@ -141,18 +141,18 @@ const Home = () => {
           <div className="background-image2"></div>
           <div
             id="textImage"
-            className="flex px-10 py-10 md:py-20 lg:p-20 gap-10 lg:gap-20 items-center flex-col lg:flex-row-reverse"
+            className="flex px-6 sm:px-10 py-10 md:py-20 lg:p-20 gap-10 lg:gap-20 items-center flex-col lg:flex-row-reverse"
           >
             {/* DIV ONE */}
             <div className="w-full lg:w-1/2 flex flex-col items-start gap-8">
-              <h2 className="text-4xl font-bold leading-normal">
+              <h2 className="text-2xl md:text-4xl font-bold leading-normal">
                 <span className="">
                   <span className="flex relative gap-8">
                     Gl
                     <img
                       src={globe}
                       alt="globe"
-                      className="absolute left-8 top-2"
+                      className="absolute left-[21px] md:left-8 md:top-2"
                     />
                     bal
                   </span>
@@ -253,13 +253,13 @@ const Home = () => {
           </div>
         </div>
 
-        <div className="men">
+        <div className="m-6 sm:m-10 relative rounded-2xl md:m-20">
           <div className="background-image"></div>
-          <div className="content p-8 flex flex-col gap-8 items-start lg:p-20 lg:w-[50%] xl:w-[45%]">
-            <h2 className="text-4xl font-bold leading-normal">
+          <div className="content p-5 sm:p-8 flex flex-col gap-4 sm:gap-8 items-start lg:py-16 lg:w-[50%] xl:w-[468px] leading-tight">
+            <h2 className="text-2xl sm:text-4xl font-bold leading-normal">
               We are BIG on Mentoring and Academic Excellence
             </h2>
-            <p className="text-xl leading-normal">
+            <p className="text-base sm:text-xl leading-normal">
               We foster personal and professional learning and development to
               enable our community access to great opportunities
               post-graduation.
