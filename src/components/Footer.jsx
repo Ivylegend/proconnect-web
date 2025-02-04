@@ -43,10 +43,6 @@ const businessLinks = [
   //   name: "Study Abroad Financing Services",
   //   url: "/study-abroad-financing-services",
   // },
-  // {
-  //   url: "/global-loan",
-  //   name: "Global Loan",
-  // },
   {
     url: "/privacy-policy",
     name: "Privacy Policy",
@@ -66,6 +62,10 @@ const businessLinks = [
   {
     url: "/nelfund-financing",
     name: "Nelfund Financing",
+  },
+  {
+    url: "/new-members",
+    name: "New Members",
   },
 ];
 
