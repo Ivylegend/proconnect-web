@@ -34,8 +34,8 @@ const MiniForm = ({ bankName, prefillData }) => {
   const payWithPayStack = (amounts) => {
     const paystack = new PaystackPop();
     paystack.newTransaction({
-      key: "pk_test_8bf2b4700c3fcc36408da11bebbb7a1619c3f3ce",
-      // key: "pk_live_689cd76b33c137c295bfbf58e38d9205627b0ea6",
+      // key: "pk_test_8bf2b4700c3fcc36408da11bebbb7a1619c3f3ce",
+      key: "pk_live_689cd76b33c137c295bfbf58e38d9205627b0ea6",
       amount: amounts * 100,
       email: formData.email,
       onSuccess(transaction) {
