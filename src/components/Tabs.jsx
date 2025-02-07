@@ -3,50 +3,40 @@ import { toast } from "react-toastify";
 import PaystackPop from "@paystack/inline-js";
 import Check from "../assets/check.png";
 import CurveArrow from "../assets/curve-arrow.png";
+import MiniForm from "./MiniForm";
+import axios from "axios";
+import { LuLoader2 } from "react-icons/lu";
+
+const API_URL = import.meta.env.VITE_API_URL;
 
 const Tabs = () => {
   const [activeTab, setActiveTab] = useState("tab1");
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [userEmail, setUserEmail] = useState("");
-  const [emailError, setEmailError] = useState("");
-
-  // const paystackApiKey = import.meta.env.VITE_APP_PAYSTACK_API_KEY;
-  // const API_URL = import.meta.env.VITE_PAYSTACK_API_KEY;
+  const [userData, setUserData] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleTabClick = (tab) => {
     setActiveTab(tab);
   };
 
-  const payWithPayStack = (amounts) => {
-    setIsModalOpen(false);
-    const paystack = new PaystackPop();
-    paystack.newTransaction({
-      key: "pk_live_689cd76b33c137c295bfbf58e38d9205627b0ea6",
-      amount: amounts * 100,
-      email: userEmail,
-      onSuccess(transaction) {
-        handlePayment(formData);
-        toast.success(`Payment successful ${transaction.reference}`);
-      },
-      onClose() {
-        toast.error("Payment canceled");
-      },
-    });
-  };
-
-  const handlePayment = () => {
-    let newDiscountedPrice = 158000;
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-    if (userEmail === "") {
-      setEmailError("Email address cannot be empty");
-      return;
-    } else if (!emailRegex.test(userEmail)) {
-      setEmailError("Enter a valid email address");
-      return;
+  const getFormData = async () => {
+    if (userEmail) {
+      setIsLoading(true);
+      try {
+        const response = await axios.get(
+          `${API_URL}onboarding-candidate/s/${userEmail}/`
+        );
+        setUserData(response.data);
+      } catch (error) {
+        console.error(
+          "Error updating payment status:",
+          error.response?.data || error.message
+        );
+      } finally {
+        setIsLoading(false);
+      }
     }
-    setEmailError("");
-    payWithPayStack(newDiscountedPrice);
   };
 
   return (
@@ -74,33 +64,45 @@ const Tabs = () => {
 
       {isModalOpen && (
         <div className="modal-overlay fixed left-0 top-0 z-40 bg-blue-100 bg-opacity-30 h-full flex items-center justify-center border p-8 shadow-lg w-full">
-          <div className="modal-content p-8 rounded-md shadow-lg flex flex-col gap-4 bg-white max-w-[350px] md:w-[500px] items-start">
+          <div className="modal-content p-4 rounded-md shadow-lg flex flex-col gap-4 bg-white overflow-y-scroll h-[500px]">
             <span
               className="close-button flex items-start justify-end w-full cursor-pointer text-2xl"
               onClick={() => setIsModalOpen(false)}
             >
               &times;
             </span>
-            <span className="flex flex-col gap-2 mb-4 w-full">
-              <p className="font-semibold">Your Email Address *</p>
-              <input
-                value={userEmail}
-                onChange={(event) => setUserEmail(event.target.value)}
-                className="border w-full rounded-md p-3 text-sm"
-                required
-                type="email"
-                placeholder="Your valid email address"
-              />
-              {emailError && (
-                <p className="text-sm text-red-600">{emailError}</p>
-              )}
-            </span>
-            <button
-              className="w-full border rounded-md bg-[#db251A] text-white py-2 px-4"
-              onClick={handlePayment}
-            >
-              Proceed To Payment
-            </button>
+            <div className="border rounded-2xl border-[#F8D3D1] flex flex-col gap-4 p-3 md:py-5 md:px-10">
+              <h2 className="font-bold text-2xl">Filled Before ?</h2>
+              <div className="flex flex-col gap-1">
+                <label htmlFor="email" className="text-[#646464] font-medium">
+                  Enter email used to fill
+                </label>
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  value={userEmail}
+                  onChange={(e) => setUserEmail(e.target.value)}
+                  className="w-full md:w-1/2 h-10 p-4 text-black rounded-md border"
+                />
+              </div>
+              <button
+                onClick={getFormData}
+                disabled={isLoading}
+                className="font-semibold bg-[#DB251A] text-white rounded-md p-2 hover:bg-white hover:border-[#DB251A] hover:text-[#DB251A] hover:border transition-colors duration-200"
+              >
+                {isLoading ? (
+                  <div className="flex gap-2 items-center justify-center">
+                    Retrieving your data <LuLoader2 className="animate-spin" />
+                  </div>
+                ) : (
+                  "Proceed"
+                )}
+              </button>
+            </div>
+            <div className="w-full">
+              <MiniForm prefillData={userData} />
+            </div>
           </div>
         </div>
       )}

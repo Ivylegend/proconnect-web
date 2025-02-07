@@ -294,8 +294,8 @@ const Banks = ({ bankName, miniName }) => {
       <div className="mx-auto py-10 px-6 lg:px-20 flex flex-col items-center justify-center pb-20">
         <h2 className="text-3xl font-bold text-center mb-10">Key Resources</h2>
         <div className="grid gap-6 grid-cols-1 sm:grid-cols-2 xl:grid-cols-4">
-          {keyFeatures.map((item) => (
-            <SmallBox title={item.title} img={item.img} linkTo={item.url} />
+          {keyFeatures.map((item, index) => (
+            <SmallBox key={index} title={item.title} img={item.img} linkTo={item.url} />
           ))}
         </div>
       </div>

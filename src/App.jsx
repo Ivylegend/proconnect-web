@@ -3,16 +3,14 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import {
   CorporateProfile,
   Ecobank,
-  // GlobalLoan,
   Home,
-  // LocalLoan,
+  NIM,
+  PolarisBank,
   RevolutionCommunity,
   Sycamore,
   UnionBank,
   WemaBank,
 } from "./pages";
-import Navbar from "./components/Navbar";
-import Footer from "./components/Footer";
 import AfterFooter from "./components/AfterFooter";
 import { useState } from "react";
 import Contact from "./pages/Contact";
@@ -21,7 +19,6 @@ import PrivacyPolicy from "./pages/PrivacyPolicy";
 import Interest from "./pages/Interest";
 import SupportedSchools from "./pages/SupportedSchools";
 import UniversityAdmission from "./pages/UniversityAdmission";
-import WhatsappIcon from "./components/WhatsappIcon";
 import Calculator from "./pages/Calculator";
 import NelfundFinancing from "./pages/NelfundFinancing";
 import FAQs from "./pages/FAQs";
@@ -68,6 +65,8 @@ function App() {
           <Route path="/banks/union" element={<UnionBank />} />
           <Route path="/banks/ecobank" element={<Ecobank />} />
           <Route path="/banks/sycamore" element={<Sycamore />} />
+          <Route path="/banks/polaris" element={<PolarisBank />} />
+          <Route path="/banks/nim" element={<NIM />} />
 
           <Route path="*" element={<Error />} />
         </Routes>

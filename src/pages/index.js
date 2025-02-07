@@ -7,3 +7,5 @@ export { default as WemaBank } from "./Banks/Wema.jsx";
 export { default as Ecobank } from "./Banks/Ecobank.jsx";
 export { default as UnionBank } from "./Banks/Union.jsx";
 export { default as Sycamore } from "./Banks/Sycamore.jsx";
+export { default as PolarisBank } from "./Banks/Polaris.jsx";
+export { default as NIM } from "./Banks/NIM.jsx";

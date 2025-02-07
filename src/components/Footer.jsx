@@ -117,6 +117,14 @@ const bankPartners = [
     url: "/banks/sycamore",
     name: "Sycamore",
   },
+  {
+    url: "/banks/polaris",
+    name: "Polaris Bank",
+  },
+  {
+    url: "/banks/nim",
+    name: "Nigerian Institute of Management",
+  },
 ];
 
 const socialIcons = [
