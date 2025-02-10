@@ -298,6 +298,9 @@ const Banks = ({ bankName, miniName }) => {
             <SmallBox key={index} title={item.title} img={item.img} linkTo={item.url} />
           ))}
         </div>
+        <a className="w-full px-6 lg:px-20" href="https://elda.cloud/candidate/otp" target="_blank">
+          <button className="bg-[#db251a] border hover:bg-transparent transition-all font-semibold duration-300 hover:text-[#db251a] hover:border-[#db251a] text-white py-2 px-4 rounded-md mt-10 w-full">Click to Provide Your Details</button>
+        </a>
       </div>
 
       <div className="mx-auto py-10 px-6 lg:px-20 md:w-[80%] flex flex-col items-center justify-center">

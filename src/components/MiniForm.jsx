@@ -2,12 +2,13 @@ import React, { useEffect, useState } from "react";
 import { nigerianStates } from "../constants";
 import axios from "axios";
 import { LuLoader2 } from "react-icons/lu";
-import PaystackPop from "@paystack/inline-js";
-import { toast } from "react-toastify";
+import { closePaymentModal, useFlutterwave } from "flutterwave-react-v3";
+import { toast } from "react-hot-toast";
 
 const API_URL = import.meta.env.VITE_API_URL;
+const FLUTTER_KEY = import.meta.env.VITE_API_FLUTTER_KEY;
 
-const MiniForm = ({ bankName, prefillData }) => {
+const MiniForm = ({ bankName, prefillData, amount, currency }) => {
   const [formData, setFormData] = useState({
     email: "",
     full_name: "",
@@ -26,42 +27,40 @@ const MiniForm = ({ bankName, prefillData }) => {
     if (prefillData) {
       setFormData((prev) => ({
         ...prev,
-        ...prefillData, // Overwrite default values with fetched data
+        ...prefillData,
       }));
     }
   }, [prefillData]);
 
-  const payWithPayStack = (amounts) => {
-    const paystack = new PaystackPop();
-    paystack.newTransaction({
-      // key: "pk_test_8bf2b4700c3fcc36408da11bebbb7a1619c3f3ce",
-      key: "pk_live_689cd76b33c137c295bfbf58e38d9205627b0ea6",
-      amount: amounts * 100,
+  const config = {
+    public_key: FLUTTER_KEY,
+    tx_ref: Date.now(),
+    amount: amount,
+    currency: currency,
+    payment_options: "card,mobilemoney,ussd",
+    customer: {
       email: formData.email,
-      onSuccess(transaction) {
-        toast.success(`Payment successful ${transaction.reference}`);
-        updatePaymentStatus(formData.email);
-      },
-      onClose() {
-        toast.error("Payment canceled");
-      },
-    });
+      phone_number: formData.phone_number,
+      name: formData.full_name,
+    },
+    customizations: {
+      title: "Proconnect",
+      description: "Payment for education counselling",
+      logo: "https://st2.depositphotos.com/4403291/7418/v/450/depositphotos_74189661-stock-illustration-online-shop-log.jpg",
+    },
   };
 
-  // Function to update has_paid to true
-  const updatePaymentStatus = async (email) => {
+  const handleFlutterPayment = useFlutterwave(config);
+
+  const updatePaymentStatus = async (userId) => {
     try {
-      const response = await axios.patch(
-        `${API_URL}onboarding-candidate/s/${email}/`,
-        {
-          email,
-          has_paid: true,
-        }
-      );
-      console.log("Payment status updated:", response.data);
+      await axios.patch(`${API_URL}onboarding-candidate/${userId}/`, {
+        has_paid: true,
+      });
+      toast.success("Payment status updated");
     } catch (error) {
-      console.error(
-        "Error updating payment status:",
+      toast.error(
+        "Error updating payment status",
         error.response?.data || error.message
       );
     }
@@ -79,27 +78,38 @@ const MiniForm = ({ bankName, prefillData }) => {
 
     try {
       let response;
+      let userId;
+
       if (prefillData && prefillData.email) {
-        // If prefillData exists, update the existing record with PATCH
         response = await axios.patch(
-          `${API_URL}onboarding-candidate/s/${prefillData.email}/`,
+          `${API_URL}onboarding-candidate/${prefillData.id}/`,
           formData
         );
+        userId = prefillData.id;
       } else {
-        // If no prefillData, create a new record with POST
         response = await axios.post(
           `${API_URL}onboarding-candidate/`,
           formData
         );
+        userId = response?.data?.id;
       }
 
-      console.log("Success:", response.data);
-      payWithPayStack(158000);
+      handleFlutterPayment({
+        callback: (flutterResponse) => {
+          toast.success(flutterResponse.status);
+          if (flutterResponse.status !== "completed") {
+            toast.error("Failed Transaction");
+          } else {
+            updatePaymentStatus(userId);
+          }
+          closePaymentModal();
+        },
+        onClose: () => {
+          toast.error("Payment cancelled");
+        },
+      });
     } catch (error) {
-      console.error(
-        "Error submitting form:",
-        error.response?.data || error.message
-      );
+      toast.error("Error submitting form", error.response?.data || error);
     } finally {
       setIsLoading(false);
     }
@@ -320,6 +330,8 @@ const MiniForm = ({ bankName, prefillData }) => {
               <div className="flex gap-2 items-center justify-center">
                 Submitting <LuLoader2 className="animate-spin" />
               </div>
+            ) : prefillData ? (
+              "Proceed to Payment"
             ) : (
               "Submit"
             )}

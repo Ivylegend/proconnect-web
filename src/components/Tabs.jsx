@@ -1,11 +1,10 @@
 import { useState } from "react";
-import { toast } from "react-toastify";
-import PaystackPop from "@paystack/inline-js";
 import Check from "../assets/check.png";
 import CurveArrow from "../assets/curve-arrow.png";
 import MiniForm from "./MiniForm";
 import axios from "axios";
 import { LuLoader2 } from "react-icons/lu";
+import toast from "react-hot-toast";
 
 const API_URL = import.meta.env.VITE_API_URL;
 
@@ -29,14 +28,23 @@ const Tabs = () => {
         );
         setUserData(response.data);
       } catch (error) {
-        console.error(
-          "Error updating payment status:",
-          error.response?.data || error.message
+        toast.error(
+          "Error getting user data",
+          error || error.message
         );
       } finally {
         setIsLoading(false);
       }
     }
+  };
+
+  const getPaymentDetails = () => {
+    if (activeTab === "tab1") {
+      return { amount: 158000, currency: "NGN" }; // Naira tab
+    } else if (activeTab === "tab2") {
+      return { amount: 58, currency: "USD" }; // USD tab
+    }
+    return { amount: 158000, currency: "NGN" }; // Default fallback
   };
 
   return (
@@ -101,7 +109,11 @@ const Tabs = () => {
               </button>
             </div>
             <div className="w-full">
-              <MiniForm prefillData={userData} />
+              <MiniForm
+                prefillData={userData}
+                amount={getPaymentDetails().amount}
+                currency={getPaymentDetails().currency}
+              />
             </div>
           </div>
         </div>
@@ -185,11 +197,14 @@ const Tabs = () => {
                     Admission Processing to any of our 17 supported countries
                   </p>
                 </div>
-                <a href="https://buy.stripe.com/fZe9Cx9G30Z6fficMN">
-                  <button className="w-full border h-14 font-bold mt-8 border-[#db251A] rounded-lg text-[#db251A] hover:bg-[#db251A] hover:text-white transition duration-300 ease-in-out flex items-center justify-center">
-                    Join Now
-                  </button>
-                </a>
+                {/* <a href="https://buy.stripe.com/fZe9Cx9G30Z6fficMN"> */}
+                <button
+                  onClick={() => setIsModalOpen(true)}
+                  className="w-full border h-14 font-bold mt-8 border-[#db251A] rounded-lg text-[#db251A] hover:bg-[#db251A] hover:text-white transition duration-300 ease-in-out flex items-center justify-center"
+                >
+                  Join Now
+                </button>
+                {/* </a> */}
               </div>
             </div>
           )}

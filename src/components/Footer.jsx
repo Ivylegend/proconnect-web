@@ -63,10 +63,6 @@ const businessLinks = [
     url: "/nelfund-financing",
     name: "Nelfund Financing",
   },
-  {
-    url: "/new-members",
-    name: "New Members",
-  },
 ];
 
 const locationLinks = [
