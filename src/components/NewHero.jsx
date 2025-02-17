@@ -24,7 +24,7 @@ const NewHero = () => {
             <span className="text-[#DB251A]">100K USD</span> SUPPORT
           </h1>
           <p className="text-center font-semibold text-base md:text-lg">
-           <span className="text-[#DB251A]">Proconnect</span> provides tailored, non-collateral financing for students
+           <span className="text-[#DB251A]">Pro</span><span className="text-[#1E4580]">connect</span> facilitates tailored, non-collateral financing for students
             to access over 5,000 universities across 17 countries, powered by
             the innovative eLDa AI platform that ensures 99% success and
             accuracy in automating resume refinement, SOP creation, and

@@ -159,26 +159,31 @@ const Footer = () => {
             />
           </div>
           <p className="font-semibold text-justify">
-            <span className="text-[#DB251A]">Proconnect</span> is a global
-            financial services provider specializing in education and mobility
-            solutions. We help students gain access to over 5,000 universities
-            in 17 countries, offering tailored financing that makes studying
-            abroad more accessible. Additionally, we streamline the relocation
-            process by covering essential expenses such as flights, living
-            costs, and rent, ensuring a smooth transition for individuals
+            <span className="text-[#DB251A]">Pro</span>
+            <span className="text-[#1E4580]">connect</span> is a global
+            financial services facilitator specializing in education and
+            mobility solutions. We help students gain access to over 5,000
+            universities in 17 countries, offering tailored financing that makes
+            studying abroad more accessible. Additionally, we streamline the
+            relocation process by covering essential expenses such as flights,
+            living costs, and rent, ensuring a smooth transition for individuals
             pursuing global opportunities. With our comprehensive approach and
             global partnerships, Proconnect empowers students and professionals
             to focus on their ambitions while we manage the financial logistics.
           </p>
           <p className="text-justify font-semibold">
-            Proconnect is legally registered in Nigeria and the United States.
-            RC Number in Nigeria is{" "}
+            <span className="text-[#DB251A]">Pro</span>
+            <span className="text-[#1E4580]">connect</span> is legally
+            registered in Nigeria and the United States. RC Number in Nigeria is{" "}
             <span className="text-[#1E4580]">
-              1884617 (Proconnect Tech Solutions Limited) ,
+              1884617 (<span className="text-[#DB251A]">Pro</span>
+              <span className="text-[#1E4580]">connect</span> Tech Solutions
+              Limited) ,
             </span>{" "}
             Assigned Filling No in the United States is{" "}
             <span className="text-[#DB251A]">
-              7044965 (Proconnect EduFinTech Inc.)
+              7044965 (<span className="text-[#DB251A]">Pro</span>
+              <span className="text-[#1E4580]">connect</span> EduFinTech Inc.)
             </span>
           </p>
         </div>

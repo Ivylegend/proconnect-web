@@ -42,7 +42,7 @@ const Tabs = () => {
     if (activeTab === "tab1") {
       return { amount: 158000, currency: "NGN" }; // Naira tab
     } else if (activeTab === "tab2") {
-      return { amount: 58, currency: "USD" }; // USD tab
+      return { amount: 45, currency: "USD" }; // USD tab
     }
     return { amount: 158000, currency: "NGN" }; // Default fallback
   };

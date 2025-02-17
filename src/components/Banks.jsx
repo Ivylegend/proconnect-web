@@ -303,7 +303,8 @@ const Banks = ({ bankName, miniName }) => {
         </a>
       </div>
 
-      <div className="mx-auto py-10 px-6 lg:px-20 md:w-[80%] flex flex-col items-center justify-center">
+      <div id="form" className="mx-auto py-10 px-6 lg:px-20 md:w-[80%] flex flex-col items-center justify-center">
+        <p className="font-semibold text-lg">Filled Before ? <a href="/global-community" className="underline text-red-500">Click here</a> </p>
         <MiniForm bankName={bankName} />
       </div>
     </section>

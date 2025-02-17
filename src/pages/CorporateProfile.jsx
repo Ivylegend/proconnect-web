@@ -132,7 +132,7 @@ const CorporateProfile = () => {
               <p className="text-base md:text-xl leading-8 text-justify">
                 <span className="text-[#db251A] font-bold">Pro</span>
                 <span className="text-[#1E4580] font-bold">connect</span> is a
-                global financial services provider specializing in education and
+                global financial services facilitator specializing in education and
                 mobility solutions. We help students gain access to over 5,000
                 universities in 17 countries, offering tailored financing that
                 makes studying abroad more accessible. Additionally, we

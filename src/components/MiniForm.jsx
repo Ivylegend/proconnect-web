@@ -10,16 +10,29 @@ const FLUTTER_KEY = import.meta.env.VITE_API_FLUTTER_KEY;
 
 const MiniForm = ({ bankName, prefillData, amount, currency }) => {
   const [formData, setFormData] = useState({
-    email: "",
     full_name: "",
+    email: "",
+    otp: "123456",
+    has_paid: false,
+    otp_used: false,
     phone_number: "",
+    whatsapp: "0",
     gender: "",
     graduate_of: "",
     state_of_residence: "",
     date_of_birth: "",
     age: "",
     class_of_degree: "",
-    otp: "123456",
+
+    // resume: "",
+    degree: [],
+
+    countries: [],
+
+    interest: {},
+
+    has_masters_degree: false,
+    specific_cgpa: "0",
   });
   const [isLoading, setIsLoading] = useState(false);
 
@@ -52,13 +65,19 @@ const MiniForm = ({ bankName, prefillData, amount, currency }) => {
 
   const handleFlutterPayment = useFlutterwave(config);
 
-  const updatePaymentStatus = async (userId) => {
+  const updatePaymentStatus = async () => {
     try {
-      await axios.patch(`${API_URL}onboarding-candidate/${userId}/`, {
+      await axios.put(`${API_URL}onboarding-candidate/s/${formData.email}/`, {
         has_paid: true,
+        degree: [],
+
+        countries: [],
+
+        interest: {},
       });
       toast.success("Payment status updated");
     } catch (error) {
+      console.error(error);
       toast.error(
         "Error updating payment status",
         error.response?.data || error.message
@@ -81,8 +100,10 @@ const MiniForm = ({ bankName, prefillData, amount, currency }) => {
       let userId;
 
       if (prefillData && prefillData.email) {
-        response = await axios.patch(
-          `${API_URL}onboarding-candidate/${prefillData.id}/`,
+        console.log(formData);
+
+        response = await axios.put(
+          `${API_URL}onboarding-candidate/s/${prefillData.email}/`,
           formData
         );
         userId = prefillData.id;
@@ -100,7 +121,7 @@ const MiniForm = ({ bankName, prefillData, amount, currency }) => {
           if (flutterResponse.status !== "completed") {
             toast.error("Failed Transaction");
           } else {
-            updatePaymentStatus(userId);
+            updatePaymentStatus();
           }
           closePaymentModal();
         },
@@ -109,7 +130,22 @@ const MiniForm = ({ bankName, prefillData, amount, currency }) => {
         },
       });
     } catch (error) {
-      toast.error("Error submitting form", error.response?.data || error);
+      const errorData = error.response?.data;
+      if (errorData && typeof errorData === "object") {
+        const errorMessages = Object.entries(errorData)
+          .map(
+            ([key, value]) =>
+              `${key}: ${Array.isArray(value) ? value.join(", ") : value}`
+          )
+          .join("\n");
+
+        toast.error(`Error submitting form:\n${errorMessages}`);
+      } else {
+        toast.error(
+          `Error submitting form: ${error.message || "Something went wrong"}`
+        );
+      }
+      console.error(error);
     } finally {
       setIsLoading(false);
     }
@@ -183,8 +219,8 @@ const MiniForm = ({ bankName, prefillData, amount, currency }) => {
                 className="w-full h-10 px-2 text-black rounded-md border bg-white"
               >
                 <option value="">--Select gender--</option>
-                <option value="male">Male</option>
-                <option value="female">Female</option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
               </select>
             </div>
             <div className="mb-6 flex flex-col gap-1 w-full md:w-1/2">
