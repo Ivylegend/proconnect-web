@@ -100,8 +100,6 @@ const MiniForm = ({ bankName, prefillData, amount, currency }) => {
       let userId;
 
       if (prefillData && prefillData.email) {
-        console.log(formData);
-
         response = await axios.put(
           `${API_URL}onboarding-candidate/s/${prefillData.email}/`,
           formData
