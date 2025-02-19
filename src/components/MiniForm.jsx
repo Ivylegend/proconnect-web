@@ -115,8 +115,8 @@ const MiniForm = ({ bankName, prefillData, amount, currency }) => {
 
       handleFlutterPayment({
         callback: (flutterResponse) => {
-          toast.success(flutterResponse.status);
-          if (flutterResponse.status !== "completed") {
+          toast.success(flutterResponse.status);          
+          if (flutterResponse.status !== "completed" && flutterResponse.status !== "successful") {
             toast.error("Failed Transaction");
           } else {
             updatePaymentStatus();
@@ -317,11 +317,11 @@ const MiniForm = ({ bankName, prefillData, amount, currency }) => {
                 className="w-full h-10 px-2 text-black rounded-md border bg-white"
               >
                 <option value="">--Select class of degree--</option>
-                <option value="first_class">First Class / Distinction</option>
-                <option value="second_upper">Second Class Upper</option>
-                <option value="second_lower">Second Class Lower</option>
-                <option value="third_class">Third Class</option>
-                <option value="pass">Pass</option>
+                <option value="First class">First Class / Distinction</option>
+                <option value="Second upper">Second Class Upper</option>
+                <option value="Second lower">Second Class Lower</option>
+                <option value="Third class">Third Class</option>
+                <option value="Pass">Pass</option>
               </select>
             </div>
           </div>

@@ -40,11 +40,11 @@ const Tabs = () => {
 
   const getPaymentDetails = () => {
     if (activeTab === "tab1") {
-      return { amount: 158000, currency: "NGN" }; // Naira tab
+      return { amount: 138000, currency: "NGN" }; // Naira tab
     } else if (activeTab === "tab2") {
-      return { amount: 45, currency: "USD" }; // USD tab
+      return { amount: 58, currency: "USD" }; // USD tab
     }
-    return { amount: 158000, currency: "NGN" }; // Default fallback
+    return { amount: 60000, currency: "NGN" }; // Default fallback
   };
 
   return (
@@ -138,7 +138,7 @@ const Tabs = () => {
                   alt="curved arrow"
                   className="absolute w-1/4 lg:w-1/3 right-6"
                 />
-                <p className="text-4xl font-bold my-10">₦ 158,000</p>
+                <p className="text-4xl font-bold my-10">₦ 138,000</p>
                 <p className="text-[#db251A] text-xl font-normal mb-5">
                   What's Included
                 </p>
@@ -183,7 +183,7 @@ const Tabs = () => {
                   alt="curved arrow"
                   className="absolute w-1/4 lg:w-1/3 right-6"
                 />
-                <p className="text-4xl font-bold my-10">$45 USD</p>
+                <p className="text-4xl font-bold my-10">$58 USD</p>
                 <p className="text-[#db251A] text-xl font-normal mb-5">
                   What's Included
                 </p>

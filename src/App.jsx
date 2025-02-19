@@ -5,6 +5,7 @@ import {
   Ecobank,
   Home,
   NIM,
+  OnboardTable,
   PolarisBank,
   RevolutionCommunity,
   Sycamore,
@@ -59,6 +60,9 @@ function App() {
           />
           <Route path="/nelfund-financing" element={<NelfundFinancing />} />
           <Route path="/faqs" element={<FAQs />} />
+
+          {/* ONBOARD TABLE */}
+          <Route path="/onboarded-candidates" element={<OnboardTable />} />
           
           {/* BANKS */}
           <Route path="/banks/wema" element={<WemaBank />} />

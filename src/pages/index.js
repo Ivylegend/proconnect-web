@@ -9,3 +9,4 @@ export { default as UnionBank } from "./Banks/Union.jsx";
 export { default as Sycamore } from "./Banks/Sycamore.jsx";
 export { default as PolarisBank } from "./Banks/Polaris.jsx";
 export { default as NIM } from "./Banks/NIM.jsx";
+export { default as OnboardTable } from "./OnboardTable.jsx";

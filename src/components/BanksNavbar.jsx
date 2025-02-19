@@ -20,11 +20,6 @@ const navItems = [
     name: "Elda AI",
     url: "/elda-ai",
   },
-
-  {
-    name: "Join Global Education Community",
-    url: "/global-community",
-  },
 ];
 
 const BanksNavbar = ({ bankLogo }) => {
@@ -107,11 +102,11 @@ const BanksNavbar = ({ bankLogo }) => {
         </div>
       </div>
       <div className="flex items-center gap-4 sm:gap-8">
-        <Link to="/interest">
+        <a href="#form">
           <button className="hidden rounded-lg font-medium sm:flex items-center gap-4 justify-center bg-[#DB251A] text-white py-3 px-6 cursor-pointer hover:bg-white hover:text-[#db251A] hover:border-[#db251A] hover:border transition-colors">
             Get Started
           </button>
-        </Link>
+        </a>
         <img
           src={NavBtn}
           alt="navbar button"

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import PcpCountries from "../assets/pcp-countries.svg";
 import CardShadow from "./small-components/CardShadow";
 import SmallBox from "./SmallBox";
@@ -22,6 +22,11 @@ import personalizedCounseling from "../assets/personalized-counseling.svg";
 import financialSupport from "../assets/financial-support.svg";
 import careerAdvancement from "../assets/career-advancement.svg";
 import Networking from "../assets/networking.svg";
+import { LuLoader2 } from "react-icons/lu";
+import toast from "react-hot-toast";
+import axios from "axios";
+
+const API_URL = import.meta.env.VITE_API_URL;
 
 const cardText = [
   {
@@ -76,6 +81,34 @@ const keyFeatures = [
 ];
 
 const Banks = ({ bankName, miniName }) => {
+  const [userEmail, setUserEmail] = useState("");
+  const [userData, setUserData] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
+
+  const getFormData = async () => {
+    if (userEmail) {
+      setIsLoading(true);
+      try {
+        const response = await axios.get(
+          `${API_URL}onboarding-candidate/s/${userEmail}/`
+        );
+        setUserData(response.data);
+
+        if (response.status == 200) {
+          toast.success(`Successfully retrieved`);
+        }
+      } catch (error) {
+        console.log(error);
+
+        toast.error(
+          `${error?.response?.data?.error}. You need to fill the form`
+        );
+      } finally {
+        setIsLoading(false);
+      }
+    }
+  };
+
   return (
     <section className="w-full">
       <div className="mx-auto py-10 px-6 lg:px-20 text-center w-full flex flex-col items-center justify-center pb-20">
@@ -295,17 +328,62 @@ const Banks = ({ bankName, miniName }) => {
         <h2 className="text-3xl font-bold text-center mb-10">Key Resources</h2>
         <div className="grid gap-6 grid-cols-1 sm:grid-cols-2 xl:grid-cols-4">
           {keyFeatures.map((item, index) => (
-            <SmallBox key={index} title={item.title} img={item.img} linkTo={item.url} />
+            <SmallBox
+              key={index}
+              title={item.title}
+              img={item.img}
+              linkTo={item.url}
+            />
           ))}
         </div>
-        <a className="w-full px-6 lg:px-20" href="https://elda.cloud/candidate/otp" target="_blank">
-          <button className="bg-[#db251a] border hover:bg-transparent transition-all font-semibold duration-300 hover:text-[#db251a] hover:border-[#db251a] text-white py-2 px-4 rounded-md mt-10 w-full">Click to Provide Your Details</button>
+        <a
+          className="w-full px-6 lg:px-20"
+          href="https://elda.cloud/candidate/otp"
+          target="_blank"
+        >
+          <button className="bg-[#db251a] border hover:bg-transparent transition-all font-semibold duration-300 hover:text-[#db251a] hover:border-[#db251a] text-white py-2 px-4 rounded-md mt-10 w-full">
+            Click to Provide Your Details
+          </button>
         </a>
       </div>
 
-      <div id="form" className="mx-auto py-10 px-6 lg:px-20 md:w-[80%] flex flex-col items-center justify-center">
-        <p className="font-semibold text-lg">Filled Before ? <a href="/global-community" className="underline text-red-500">Click here</a> </p>
-        <MiniForm bankName={bankName} />
+      <div
+        id="form"
+        className="mx-auto py-10 px-6 lg:px-20 md:w-[80%] flex flex-col items-center justify-center"
+      >
+        <MiniForm
+          prefillData={userData}
+          bankName={bankName}
+          amount={60000}
+          currency={"NGN"}
+        />
+        <div className="w-full my-5 border rounded-2xl border-[#F8D3D1] py-5 px-3 md:px-10">
+          <p className="font-semibold text-lg">Filled Before ?</p>
+          <label htmlFor="email" className="text-[#646464] font-medium">
+            Enter email used to fill
+          </label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            value={userEmail}
+            onChange={(e) => setUserEmail(e.target.value)}
+            className="w-full my-2 md:mx-2 md:w-1/2 h-10 p-4 text-black rounded-md border"
+          />
+          <button
+            onClick={getFormData}
+            disabled={isLoading}
+            className="font-medium bg-[#DB251A] text-white rounded-md p-2 hover:bg-white hover:border-[#DB251A] hover:text-[#DB251A] hover:border transition-colors duration-200"
+          >
+            {isLoading ? (
+              <div className="flex gap-2 items-center justify-center">
+                Retrieving your data <LuLoader2 className="animate-spin" />
+              </div>
+            ) : (
+              "Proceed"
+            )}
+          </button>
+        </div>
       </div>
     </section>
   );
