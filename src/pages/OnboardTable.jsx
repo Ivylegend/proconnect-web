@@ -44,7 +44,7 @@ const OnboardTable = () => {
 
   return (
     <div className="p-4">
-      <div className="border rounded-md overflow-hidden">
+      <div className="border rounded-md overflow-hidden overflow-x-auto">
         <table className="w-full border border-gray-500 rounded-2xl">
           {/* TABLE HEAD */}
           <thead className="bg-gray-200">
