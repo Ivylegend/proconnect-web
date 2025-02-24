@@ -5,33 +5,119 @@ import Select from "react-select";
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
 import MainLayout from "../layouts/MainLayout";
+import axios from "axios";
+
+const countryOptions = [
+  { value: "United States", label: "United States" },
+  { value: "Canada", label: "Canada" },
+  {
+    value: "United Kingdom (Scotland, Wales, Ireland and England)",
+    label: "United Kingdom (Scotland, Wales, Ireland and England)",
+  },
+  { value: "HongKong", label: "HongKong" },
+  { value: "Singapore", label: "Singapore" },
+  { value: "France", label: "France" },
+  { value: "Germany", label: "Germany" },
+  { value: "Australia", label: "Australia" },
+  { value: "South-Africa", label: "South-Africa" },
+  { value: "China", label: "China" },
+  { value: "Denmark", label: "Denmark" },
+  { value: "Belgium", label: "Belgium" },
+  { value: "Spain", label: "Spain" },
+  { value: "Italy", label: "Italy" },
+  { value: "Netherlands", label: "Netherlands" },
+  { value: "Portugal", label: "Portugal" },
+];
 
 const Interest = () => {
-  const [fullName, setFullName] = useState("");
-  const [enquiryFor, setEnquiryFor] = useState("");
-  const [productInterested, setProductInterested] = useState("");
-  const [email, setEmail] = useState("");
-  const [phoneNumber, setPhoneNumber] = useState("");
-  const [gender, setGender] = useState("");
-  const [country, setCountry] = useState("");
-  const [subscribe, setSubscribe] = useState(false);
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [errors, setErrors] = useState(false);
-  const [countries, setCountries] = useState([]);
-  const [countryAbroad, setcountryAbroad] = useState("");
+  const [formData, setFormData] = useState({
+    full_name: "",
+    enquiries: "",
+    product: "",
+    email: "",
+    phone: "",
+    gender: "",
+    residence_country: "",
+    country_interested_in: "",
+    completed: false,
+  });
 
-  // State variables for form field validity
-  const [fullNameValid, setFullNameValid] = useState(true);
-  const [enquiryForValid, setEnquiryForValid] = useState(true);
-  const [productInterestedValid, setProductInterestedValid] = useState(true);
-  const [emailValid, setEmailValid] = useState(true);
-  const [phoneNumberValid, setPhoneNumberValid] = useState(true);
-  const [genderValid, setGenderValid] = useState(true);
-  const [countryValid, setCountryValid] = useState(true);
+  const [countries, setCountries] = useState([]);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [errors, setErrors] = useState({});
   const [loading, setLoading] = useState(false);
 
-  const closeModal = () => {
-    setIsModalOpen(false);
+  const closeModal = () => setIsModalOpen(false);
+
+  useEffect(() => {
+    const fetchCountries = async () => {
+      try {
+        const response = await fetch(
+          "https://restcountries.com/v3.1/all?fields=name"
+        );
+        const data = await response.json();
+        setCountries(
+          data.map((country) => ({
+            label: country.name.common,
+            value: country.name.common,
+          }))
+        );
+      } catch (error) {
+        console.error("Error fetching countries", error);
+      }
+    };
+
+    fetchCountries();
+  }, []);
+
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handlePhoneChange = (value) => {
+    setFormData({ ...formData, phone: value });
+  };
+
+  const validateForm = () => {
+    let newErrors = {};
+    if (!formData.full_name) newErrors.full_name = "Full Name is required";
+    if (!formData.email) newErrors.email = "Email is required";
+    if (!formData.phone) newErrors.phone = "Phone number is required";
+    if (!formData.product) newErrors.product = "Please select a product";
+    if (!formData.enquiries)
+      newErrors.enquires = "Please specify who you're enquiring for";
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+
+  const handleFormSubmit = async (e) => {
+    e.preventDefault();
+    if (!validateForm()) return;
+    setLoading(true);
+
+    try {
+      const response = await axios.post(
+        "https://elda-ai-drf.onrender.com/api/interested-candidates/",
+        formData
+      );
+
+      setFormData({
+        full_name: "",
+        enquiries: "",
+        product: "",
+        email: "",
+        phone: "",
+        gender: "",
+        residence_country: "",
+        country_interested_in: "",
+        completed: false,
+      });
+      setIsModalOpen(true);
+    } catch (error) {
+      console.error("Error submitting form", error);
+    } finally {
+      setLoading(false);
+    }
   };
 
   const customStyles = {
@@ -42,175 +128,6 @@ const Interest = () => {
       boxShadow: state.isFocused ? "none" : "none",
       padding: state.isFocused ? "6px" : "6px",
     }),
-  };
-
-  const fetchCountries = async () => {
-    try {
-      const response = await fetch(
-        "https://restcountries.com/v3.1/all?fields=name"
-      );
-      const data = await response.json();
-      return data.map((country) => ({
-        label: country.name.common,
-        value: country.name.common,
-      }));
-    } catch (error) {
-      console.error("Error fetching countries", error);
-      return [];
-    }
-  };
-
-  useEffect(() => {
-    const fetchCountriesData = async () => {
-      const countriesData = await fetchCountries();
-      setCountries(countriesData);
-    };
-
-    fetchCountriesData();
-  }, []);
-
-  const initialValues = {
-    contactno: "",
-    country_code: "",
-  };
-  const [referenceData, setReferenceData] = useState(initialValues);
-
-  // CHANGING PHONE NUMBER
-  const handleChange = (e, value, name) => {
-    if (name === "contactno") {
-      let splitMobile = e?.split(value?.dialCode);
-      setReferenceData({
-        ...referenceData,
-        country_code: value?.dialCode,
-        contactno: splitMobile?.[1] || "",
-      });
-    } else
-      setReferenceData({ ...referenceData, [e.target.name]: e.target.value });
-  };
-
-  const countryOptions = [
-    { value: "United States", label: "United States" },
-    { value: "Canada", label: "Canada" },
-    {
-      value: "United Kingdom (Scotland, Wales, Ireland and England)",
-      label: "United Kingdom (Scotland, Wales, Ireland and England)",
-    },
-    { value: "HongKong", label: "HongKong" },
-    { value: "Singapore", label: "Singapore" },
-    { value: "France", label: "France" },
-    { value: "Germany", label: "Germany" },
-    { value: "Australia", label: "Australia" },
-    { value: "South-Africa", label: "South-Africa" },
-    { value: "China", label: "China" },
-    { value: "Denmark", label: "Denmark" },
-    { value: "Belgium", label: "Belgium" },
-    { value: "Spain", label: "Spain" },
-    { value: "Italy", label: "Italy" },
-    { value: "Netherlands", label: "Netherlands" },
-    { value: "Portugal", label: "Portugal" },
-  ];
-
-  // SUBMITTING FORM
-  const handleFormSubmit = (e) => {
-    e.preventDefault();
-
-    // Validate all form fields
-    validateFullName();
-    validateEnquiryFor();
-    validateProductInterested();
-    validateEmail();
-    validateGender();
-    validateCountry();
-
-    // Check form field validity before submitting
-    if (
-      fullNameValid &&
-      enquiryForValid &&
-      productInterestedValid &&
-      emailValid &&
-      genderValid &&
-      countryValid
-    ) {
-      setLoading(true);
-      // Submit the form with actual form values
-      var myHeaders = new Headers();
-      myHeaders.append("Content-Type", "application/json");
-
-      var raw = JSON.stringify({
-        full_name: fullName,
-        enquiry_on: enquiryFor,
-        email: email,
-        phone: `${referenceData.country_code}${referenceData.contactno}`, // Use referenceData for the phone number
-        gender: gender,
-        country: country,
-        interested_in: productInterested,
-        country_interested_in: countryAbroad,
-      });
-
-      var requestOptions = {
-        method: "POST",
-        headers: myHeaders,
-        body: raw,
-        redirect: "follow",
-      };
-
-      // Make the API call
-      // fetch("https://elda-ai-drf.onrender.com/api/new-leads/", requestOptions)
-      fetch("https://form.eldanic.com/api/contact/", requestOptions)
-        .then((response) => response.json())
-        .then((result) => {
-          if (result.status === true) {
-            console.log(result);
-            // console.log("Form submitted successfully");
-            setIsModalOpen(true);
-            setLoading(false);
-          } else {
-            console.log(result);
-            setLoading(false);
-          }
-        })
-        .catch((error) => console.log("error", error));
-
-      setErrors("");
-    } else {
-      setErrors("Make sure to fill the form with the correct details");
-    }
-  };
-
-  // Validation functions
-  const validateFullName = () => {
-    setFullNameValid(fullName.trim() !== "");
-  };
-
-  const validateEnquiryFor = () => {
-    setEnquiryForValid(enquiryFor.trim() !== "");
-  };
-
-  const validateProductInterested = () => {
-    setProductInterestedValid(productInterested.trim() !== "");
-  };
-
-  const validateEmail = () => {
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    setEmailValid(emailRegex.test(email));
-  };
-
-  const validatePhoneNumber = () => {
-    const phoneRegex = /^[0-9]{8,15}$/;
-
-    setPhoneNumberValid(phoneRegex.test(phoneNumber));
-  };
-
-  const validateGender = () => {
-    setGenderValid(gender.trim() !== "");
-  };
-
-  const validateCountry = () => {
-    setCountryValid(country.trim() !== "");
-  };
-
-  const handleInterest = (e) => {
-    setProductInterested(e.target.value);
   };
 
   return (
@@ -232,40 +149,45 @@ const Interest = () => {
             {/* FULL NAME */}
             <div className="mb-6 flex flex-col gap-3">
               <label
-                htmlFor="fullName"
+                htmlFor="full_name"
                 className="text-[#646464] font-semibold"
               >
                 Full Name <span className="text-red-600">*</span>
               </label>
               <input
                 type="text"
-                id="fullName"
-                value={fullName}
-                onChange={(e) => setFullName(e.target.value)}
-                onBlur={validateFullName}
+                name="full_name"
+                id="full_name"
+                value={formData.full_name}
+                onChange={handleChange}
                 required
-                className={`w-full h-12 p-4 text-black rounded-lg border ${
-                  fullNameValid ? "border-[#666666]" : "border-red-500"
-                }`}
+                className={`w-full h-12 p-4 text-black rounded-lg border border-[#666666]`}
               />
+              {errors.full_name && (
+                <p className="text-red-500 text-sm">{errors.full_name}</p>
+              )}
             </div>
 
             {/* ENQUIRIES */}
             <div className="mb-6 flex flex-col gap-3">
-              <label htmlFor="" className="text-[#646464] font-semibold">
+              <label
+                htmlFor="enquiries"
+                className="text-[#646464] font-semibold"
+              >
                 Who are you making enquiries for{" "}
                 <span className="text-red-600">*</span>
               </label>
               <select
-                name="enquiryFor"
-                id="enquiryFor"
-                value={enquiryFor}
-                onChange={(e) => setEnquiryFor(e.target.value)}
-                onBlur={validateEnquiryFor}
-                className={`w-full h-12 px-4 bg-white text-black rounded-lg border ${
-                  enquiryForValid ? "border-[#666666]" : "border-red-500"
-                }`}
+                name="enquiries"
+                id="enquiries"
+                value={formData.enquiries}
+                onChange={handleChange}
+                required
+                className="w-full h-12 px-4 bg-white text-black rounded-lg border border-[#666666]"
               >
+                {errors.enquiries && (
+                  <p className="text-red-500 text-sm">{errors.enquiries}</p>
+                )}
                 <option value="">--Select an option--</option>
                 <option value="Myself">Myself</option>
                 <option value="My Child / Minor">My Child / Minor</option>
@@ -275,21 +197,16 @@ const Interest = () => {
 
             {/* PRODUCT INTERESTED */}
             <div className="mb-6 flex flex-col gap-3">
-              <label
-                htmlFor="productInterested"
-                className="text-[#646464] font-semibold"
-              >
+              <label htmlFor="product" className="text-[#646464] font-semibold">
                 Product Interested In <span className="text-red-600">*</span>
               </label>
               <select
-                name="productInterested"
-                id="productInterested"
-                value={productInterested}
-                onChange={handleInterest}
-                onBlur={validateProductInterested}
-                className={`w-full h-12 px-4 bg-white text-black rounded-lg border ${
-                  productInterestedValid ? "border-[#666666]" : "border-red-500"
-                }`}
+                name="product"
+                id="product"
+                value={formData.product}
+                onChange={handleChange}
+                required
+                className={`w-full h-12 px-4 bg-white text-black rounded-lg border border-[#666666]`}
               >
                 <option value="">--Select an option--</option>
                 <option value="MBA/MSC Pathway">MBA/MSC Pathway</option>
@@ -307,20 +224,21 @@ const Interest = () => {
 
             {/* EMAIL ID */}
             <div className="mb-6 flex flex-col gap-3">
-              <label htmlFor="" className="text-[#646464] font-semibold">
+              <label htmlFor="email" className="text-[#646464] font-semibold">
                 Active Email ID <span className="text-red-600">*</span>
               </label>
               <input
                 type="email"
                 id="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                onBlur={validateEmail}
+                name="email"
+                value={formData.email}
+                onChange={handleChange}
                 required
-                className={`w-full h-12 p-4 text-black rounded-lg border ${
-                  emailValid ? "border-[#666666]" : "border-red-500"
-                }`}
+                className={`w-full h-12 p-4 text-black rounded-lg border border-[#666666]`}
               />
+              {errors.email && (
+                <p className="text-red-500 text-sm">{errors.email}</p>
+              )}
             </div>
 
             {/* PHONE NUMBER */}
@@ -330,6 +248,10 @@ const Interest = () => {
               </label>
               <PhoneInput
                 country="ng"
+                value={formData.phone}
+                onChange={handlePhoneChange}
+                required
+                className="w-full"
                 regions={[
                   "america",
                   "europe",
@@ -338,7 +260,6 @@ const Interest = () => {
                   "oceania",
                   "austrailia",
                 ]}
-                required
                 inputStyle={{
                   height: "52px",
                   width: "100%",
@@ -350,95 +271,121 @@ const Interest = () => {
                   borderRadius: "8px 0 0 8px",
                   borderColor: "#666666",
                 }}
-                onBlur={validatePhoneNumber} // Trigger validation on blur
-                onChange={(e, phone) => handleChange(e, phone, "contactno")}
-                value={`${referenceData.country_code}${referenceData.contactno}`}
               />
+              {errors.phone && (
+                <p className="text-red-500 text-sm">{errors.phone}</p>
+              )}
             </div>
 
             {/* GENDER */}
             <div className="mb-6 flex flex-col gap-3">
-              <label htmlFor="" className="text-[#646464] font-semibold">
+              <label htmlFor="gender" className="text-[#646464] font-semibold">
                 Gender <span className="text-red-600">*</span>
               </label>
               <select
                 name="gender"
                 id="gender"
-                value={gender}
-                onChange={(e) => setGender(e.target.value)}
-                onBlur={validateGender}
-                className={`w-full h-12 px-4 bg-white text-black rounded-lg border ${
-                  genderValid ? "border-[#666666]" : "border-red-500"
-                }`}
+                value={formData.gender}
+                onChange={handleChange}
+                required
+                className={`w-full h-12 px-4 bg-white text-black rounded-lg border border-[#666666]`}
               >
                 <option value="">Select an option</option>
-                <option value="male">Male</option>
-                <option value="female">Female</option>
-                <option value="others">Others</option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
               </select>
             </div>
 
             {/* COUNTRY */}
             <div className="mb-8 flex flex-col gap-4">
-              <label htmlFor="" className="text-[#646464] font-semibold">
+              <label
+                htmlFor="residence_country"
+                className="text-[#646464] font-semibold"
+              >
                 Country of Residence <span className="text-red-600">*</span>
               </label>
 
               <Select
                 options={countries}
-                value={countries.find((option) => option.value === country)}
-                onChange={(selectedOption) => setCountry(selectedOption.value)}
-                onBlur={validateCountry}
+                name="residence_country"
+                value={countries.find(
+                  (c) => c.value === formData.residence_country
+                )}
+                onChange={(selectedOption) =>
+                  setFormData({
+                    ...formData,
+                    residence_country: selectedOption
+                      ? selectedOption.value
+                      : "",
+                  })
+                }
                 styles={customStyles}
+                required
               />
             </div>
 
             {/* COUNTRY INTERESTED IN ABROAD */}
             <div className="mb-8 flex flex-col gap-4">
-              <label htmlFor="" className="text-[#646464] font-semibold">
+              <label
+                htmlFor="country_interested_in"
+                className="text-[#646464] font-semibold"
+              >
                 Study Abroad Country Interested In{" "}
                 <span className="text-red-600">*</span>
               </label>
 
               <Select
                 options={countryOptions}
+                name="country_interested_in"
                 value={countryOptions.find(
-                  (option) => option.value === countryAbroad
+                  (c) => c.value === formData.country_interested_in
                 )}
                 onChange={(selectedOption) =>
-                  setcountryAbroad(selectedOption.value)
+                  setFormData({
+                    ...formData,
+                    country_interested_in: selectedOption
+                      ? selectedOption.value
+                      : "",
+                  })
                 }
-                onBlur={validateCountry}
                 styles={customStyles}
+                required
               />
             </div>
 
             {/* SUBSCRIBE CHECKBOX */}
-            <div className="flex items-center gap-2 my-4">
+            <div className="flex items-center gap-2 my-4 cursor-pointer">
               <input
                 type="checkbox"
-                id="subscribe"
-                checked={subscribe}
-                onChange={() => setSubscribe(!subscribe)}
+                id="completed"
+                name="completed"
+                checked={formData.completed}
+                onChange={(e) =>
+                  setFormData({ ...formData, completed: e.target.checked })
+                }
               />
-              <p className="text-left lg:text-center text-[#1E4580] font-medium text-sm">
+              <p
+                onClick={() =>
+                  setFormData({ ...formData, completed: !formData.completed })
+                }
+                className="text-left lg:text-center text-[#1E4580] font-medium text-sm"
+              >
                 Keep me up to date with more information about this product,
                 services, and offers
               </p>
             </div>
 
-            {/* ERROR MESSAGE */}
-            <p className="text-red-500 mb-4">{errors}</p>
-
             {/* SUBMIT BUTTON */}
             <button
               type="submit"
-              className="bg-[#DB251A] font-medium text-white rounded-lg text-center w-full h-12"
+              className="bg-[#DB251A] hover:bg-transparent hover:text-[#DB251A] transition-all duration-300 border border-[#DB251A] font-medium text-white rounded-lg text-center w-full h-12"
             >
               {loading ? "Loading..." : "Submit"}
             </button>
           </form>
         </div>
+
+        {/* SECOND HALF */}
         <div className="hidden lg:flex lg:w-1/2">
           <img
             className="h-full object-cover"

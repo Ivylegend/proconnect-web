@@ -27,6 +27,7 @@ import EldaAi from "./pages/EldaAi";
 import GlobalFinancing from "./pages/GlobalFinancing";
 import Error from "./pages/Error";
 import LandingPageForNew from "./pages/LandingPageForNew";
+import InterestTable from "./pages/InterestTable";
 
 function App() {
   const [showAfterFooter, setShowAfterFooter] = useState(false);
@@ -63,6 +64,8 @@ function App() {
 
           {/* ONBOARD TABLE */}
           <Route path="/onboarded-candidates" element={<OnboardTable />} />
+          {/* INTERESTED CANDIDATES TABLE */}
+          <Route path="/interested-candidates" element={<InterestTable />} />
           
           {/* BANKS */}
           <Route path="/banks/wema" element={<WemaBank />} />
