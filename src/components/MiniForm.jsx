@@ -4,11 +4,19 @@ import axios from "axios";
 import { LuLoader2 } from "react-icons/lu";
 import { closePaymentModal, useFlutterwave } from "flutterwave-react-v3";
 import { toast } from "react-hot-toast";
+import Logo from "../assets/proconnect-logo-new.jpg";
+import { useLocation, useParams } from "react-router-dom";
 
 const API_URL = import.meta.env.VITE_API_URL;
 const FLUTTER_KEY = import.meta.env.VITE_API_FLUTTER_KEY;
 
-const MiniForm = ({ bankName, prefillData, amount, currency }) => {
+const MiniForm = ({
+  bankName,
+  prefillData,
+  amount,
+  currency,
+  onDiscountChange,
+}) => {
   const [formData, setFormData] = useState({
     full_name: "",
     email: "",
@@ -35,6 +43,12 @@ const MiniForm = ({ bankName, prefillData, amount, currency }) => {
     specific_cgpa: "0",
   });
   const [isLoading, setIsLoading] = useState(false);
+  const [discountCode, setDiscountCode] = useState("");
+  const [discount, setDiscount] = useState(0);
+  const location = useLocation();
+  const route = location.pathname === "/global-community";
+
+  const discountedAmount = amount - discount;
 
   useEffect(() => {
     if (prefillData) {
@@ -45,10 +59,35 @@ const MiniForm = ({ bankName, prefillData, amount, currency }) => {
     }
   }, [prefillData]);
 
+  const calculateDiscount = (e) => {
+    e.preventDefault();
+    const today = new Date().getDay();
+    let discountAmount = 0;
+    const upperCode = discountCode.toUpperCase();
+
+    if (upperCode === "LEGACY" && today === 6) {
+      discountAmount = 0.48 * amount; // 48% discount
+    } else if (upperCode === "ELDANIC" && today === 0) {
+      discountAmount = 0.65 * amount; // 65% discount
+    } else {
+      if (upperCode === "LEGACY" && today !== 6) {
+        toast.error("This discount is only valid on Saturdays.");
+      } else if (upperCode === "ELDANIC" && today !== 0) {
+        toast.error("This discount is only valid on Sundays.");
+      } else {
+        toast.error("Invalid discount code. Please enter a valid one.");
+      }
+      discountAmount = 0;
+    }
+
+    setDiscount(discountAmount);
+    onDiscountChange(discountAmount);
+  };
+
   const config = {
     public_key: FLUTTER_KEY,
     tx_ref: Date.now(),
-    amount: amount,
+    amount: discountedAmount > 0 ? discountedAmount : 0,
     currency: currency,
     payment_options: "card,mobilemoney,ussd",
     customer: {
@@ -57,9 +96,9 @@ const MiniForm = ({ bankName, prefillData, amount, currency }) => {
       name: formData.full_name,
     },
     customizations: {
-      title: "Proconnect",
-      description: "Payment for education counselling",
-      logo: "https://st2.depositphotos.com/4403291/7418/v/450/depositphotos_74189661-stock-illustration-online-shop-log.jpg",
+      title: `To Proconnect ${bankName ? `through ${bankName}` : ""}`,
+      description: "Payment for academic counselling",
+      logo: Logo,
     },
   };
 
@@ -115,8 +154,11 @@ const MiniForm = ({ bankName, prefillData, amount, currency }) => {
 
       handleFlutterPayment({
         callback: (flutterResponse) => {
-          toast.success(flutterResponse.status);          
-          if (flutterResponse.status !== "completed" && flutterResponse.status !== "successful") {
+          toast.success(flutterResponse.status);
+          if (
+            flutterResponse.status !== "completed" &&
+            flutterResponse.status !== "successful"
+          ) {
             toast.error("Failed Transaction");
           } else {
             updatePaymentStatus();
@@ -317,9 +359,11 @@ const MiniForm = ({ bankName, prefillData, amount, currency }) => {
                 className="w-full h-10 px-2 text-black rounded-md border bg-white"
               >
                 <option value="">--Select class of degree--</option>
-                <option value="First class">First Class / Distinction</option>
-                <option value="Second upper">Second Class Upper</option>
-                <option value="Second lower">Second Class Lower</option>
+                <option value="First class / Distinction">
+                  First Class / Distinction
+                </option>
+                <option value="Second class upper">Second Class Upper</option>
+                <option value="Second class lower">Second Class Lower</option>
                 <option value="Third class">Third Class</option>
                 <option value="Pass">Pass</option>
               </select>
@@ -353,6 +397,34 @@ const MiniForm = ({ bankName, prefillData, amount, currency }) => {
             </p>
           </div>
         </div>
+
+        {/* Discount Code Input */}
+        {route && (
+          <div className="mb-8">
+            <label
+              htmlFor="discountCode"
+              className="text-[#646464] font-medium mt-4 block"
+            >
+              Have a discount code?
+            </label>
+            <input
+              type="text"
+              id="discountCode"
+              name="discountCode"
+              value={discountCode}
+              onChange={(e) => setDiscountCode(e.target.value)}
+              onBlur={calculateDiscount}
+              placeholder="Enter discount code"
+              className="w-full my-2 md:mx-2 md:w-1/2 h-10 p-4 text-black rounded-md border"
+            />
+            <button
+              onClick={calculateDiscount}
+              className="hover:bg-[#DB251A] hover:text-white rounded-md p-2 bg-white border border-[#DB251A] text-[#DB251A] transition-colors duration-200"
+            >
+              Apply code
+            </button>
+          </div>
+        )}
 
         <div className="w-full">
           <button

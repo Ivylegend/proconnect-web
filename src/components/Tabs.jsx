@@ -10,10 +10,14 @@ const API_URL = import.meta.env.VITE_API_URL;
 
 const Tabs = () => {
   const [activeTab, setActiveTab] = useState("tab1");
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [discount, setDiscount] = useState(0);
   const [userEmail, setUserEmail] = useState("");
   const [userData, setUserData] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
+
+  const handleDiscountChange = (newDiscount) => {
+    setDiscount(newDiscount);
+  };
 
   const handleTabClick = (tab) => {
     setActiveTab(tab);
@@ -28,10 +32,7 @@ const Tabs = () => {
         );
         setUserData(response.data);
       } catch (error) {
-        toast.error(
-          "Error getting user data",
-          error || error.message
-        );
+        toast.error("Error getting user data", error || error.message);
       } finally {
         setIsLoading(false);
       }
@@ -40,11 +41,11 @@ const Tabs = () => {
 
   const getPaymentDetails = () => {
     if (activeTab === "tab1") {
-      return { amount: 138000, currency: "NGN" }; // Naira tab
+      return { amount: 138000, currency: "NGN" };
     } else if (activeTab === "tab2") {
-      return { amount: 58, currency: "USD" }; // USD tab
+      return { amount: 58, currency: "USD" };
     }
-    return { amount: 60000, currency: "NGN" }; // Default fallback
+    return { amount: 138000, currency: "NGN" };
   };
 
   return (
@@ -67,57 +68,6 @@ const Tabs = () => {
           USD
         </div>
       </div>
-
-      {/* CHECKOUT / COUPON MODAL */}
-
-      {isModalOpen && (
-        <div className="modal-overlay fixed left-0 top-0 z-40 bg-blue-100 bg-opacity-30 h-full flex items-center justify-center border p-8 shadow-lg w-full">
-          <div className="modal-content p-4 rounded-md shadow-lg flex flex-col gap-4 bg-white overflow-y-scroll h-[500px]">
-            <span
-              className="close-button flex items-start justify-end w-full cursor-pointer text-2xl"
-              onClick={() => setIsModalOpen(false)}
-            >
-              &times;
-            </span>
-            <div className="border rounded-2xl border-[#F8D3D1] flex flex-col gap-4 p-3 md:py-5 md:px-10">
-              <h2 className="font-bold text-2xl">Filled Before ?</h2>
-              <div className="flex flex-col gap-1">
-                <label htmlFor="email" className="text-[#646464] font-medium">
-                  Enter email used to fill
-                </label>
-                <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  value={userEmail}
-                  onChange={(e) => setUserEmail(e.target.value)}
-                  className="w-full md:w-1/2 h-10 p-4 text-black rounded-md border"
-                />
-              </div>
-              <button
-                onClick={getFormData}
-                disabled={isLoading}
-                className="font-semibold bg-[#DB251A] text-white rounded-md p-2 hover:bg-white hover:border-[#DB251A] hover:text-[#DB251A] hover:border transition-colors duration-200"
-              >
-                {isLoading ? (
-                  <div className="flex gap-2 items-center justify-center">
-                    Retrieving your data <LuLoader2 className="animate-spin" />
-                  </div>
-                ) : (
-                  "Proceed"
-                )}
-              </button>
-            </div>
-            <div className="w-full">
-              <MiniForm
-                prefillData={userData}
-                amount={getPaymentDetails().amount}
-                currency={getPaymentDetails().currency}
-              />
-            </div>
-          </div>
-        </div>
-      )}
 
       {/* TAB CONTENT */}
       <div className="tab-content-container overflow-hidden relative">
@@ -153,13 +103,11 @@ const Tabs = () => {
                   </p>
                 </div>
 
-                <button
-                  // onClick={() => payWithPayStack(300000)}
-                  onClick={() => setIsModalOpen(true)}
-                  className="w-full border h-14 font-bold mt-8 border-[#db251A] rounded-lg text-[#db251A] hover:bg-[#db251A] hover:text-white transition duration-300 ease-in-out flex items-center justify-center"
-                >
-                  Join Now
-                </button>
+                <a href="/global-community#checkout">
+                  <button className="w-full border h-14 font-bold mt-8 border-[#db251A] rounded-lg text-[#db251A] hover:bg-[#db251A] hover:text-white transition duration-300 ease-in-out flex items-center justify-center">
+                    Join Now
+                  </button>
+                </a>
               </div>
             </div>
           )}
@@ -197,17 +145,57 @@ const Tabs = () => {
                     Admission Processing to any of our 17 supported countries
                   </p>
                 </div>
-                {/* <a href="https://buy.stripe.com/fZe9Cx9G30Z6fficMN"> */}
-                <button
-                  onClick={() => setIsModalOpen(true)}
-                  className="w-full border h-14 font-bold mt-8 border-[#db251A] rounded-lg text-[#db251A] hover:bg-[#db251A] hover:text-white transition duration-300 ease-in-out flex items-center justify-center"
-                >
-                  Join Now
-                </button>
-                {/* </a> */}
+                <a href="/global-community#checkout">
+                  <button className="w-full border h-14 font-bold mt-8 border-[#db251A] rounded-lg text-[#db251A] hover:bg-[#db251A] hover:text-white transition duration-300 ease-in-out flex items-center justify-center">
+                    Join Now
+                  </button>
+                </a>
               </div>
             </div>
           )}
+        </div>
+      </div>
+
+      {/* CHECKOUT / COUPON MODAL */}
+
+      <div
+        id="checkout"
+        className="mx-auto py-10 px-6 lg:px-20 md:w-[80%] flex flex-col items-center justify-center"
+      >
+        <MiniForm
+          prefillData={userData}
+          amount={getPaymentDetails().amount}
+          currency={getPaymentDetails().currency}
+          onDiscountChange={handleDiscountChange}
+        />
+
+        <div className="w-full my-5 mt-8 border rounded-2xl border-[#F8D3D1] py-5 px-3 md:px-10">
+          <p className="font-semibold text-lg">Filled Before?</p>
+          <label htmlFor="email" className="text-[#646464] font-medium">
+            Enter email used to fill
+          </label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            value={userEmail}
+            onChange={(e) => setUserEmail(e.target.value)}
+            className="w-full my-2 md:mx-2 md:w-1/2 h-10 p-4 text-black rounded-md border"
+          />
+
+          <button
+            onClick={getFormData}
+            disabled={isLoading}
+            className="font-medium bg-[#DB251A] text-white rounded-md p-2 hover:bg-white hover:border-[#DB251A] hover:text-[#DB251A] hover:border transition-colors duration-200"
+          >
+            {isLoading ? (
+              <div className="flex gap-2 items-center justify-center">
+                Retrieving your data <LuLoader2 className="animate-spin" />
+              </div>
+            ) : (
+              "Proceed"
+            )}
+          </button>
         </div>
       </div>
     </div>

@@ -1,6 +1,5 @@
 import { Link, NavLink, useLocation } from "react-router-dom";
 import Logo from "../assets/proconnect-logo-new.jpg";
-import { BiMenu } from "react-icons/bi";
 import React, { useEffect, useState } from "react";
 import NavBtn from "../assets/navbtn.png";
 
