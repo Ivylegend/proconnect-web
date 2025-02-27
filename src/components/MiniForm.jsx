@@ -31,6 +31,7 @@ const MiniForm = ({
     date_of_birth: "",
     age: "",
     class_of_degree: "",
+    bank: "",
 
     // resume: "",
     degree: [],
@@ -141,14 +142,14 @@ const MiniForm = ({
       if (prefillData && prefillData.email) {
         response = await axios.put(
           `${API_URL}onboarding-candidate/s/${prefillData.email}/`,
-          formData
+          { ...formData, bank: bankName ? bankName : "Paid through website" }
         );
         userId = prefillData.id;
       } else {
-        response = await axios.post(
-          `${API_URL}onboarding-candidate/`,
-          formData
-        );
+        response = await axios.post(`${API_URL}onboarding-candidate/`, {
+          ...formData,
+          bank: bankName ? bankName : "Paid through website",
+        });
         userId = response?.data?.id;
       }
 
