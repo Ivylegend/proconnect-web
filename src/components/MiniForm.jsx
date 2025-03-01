@@ -93,7 +93,7 @@ const MiniForm = ({
     if (upperCode === "LEGACY" && today === 6) {
       discountAmount = 0.48 * amount; // 48% discount
     } else if (upperCode === "ELDANIC" && today === 0) {
-      discountAmount = 0.65 * amount; // 65% discount
+      discountAmount = 0.35 * amount; // 35% discount
     } else {
       if (upperCode === "LEGACY" && today !== 6) {
         toast.error("This discount is only valid on Saturdays.");
