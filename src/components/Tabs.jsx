@@ -30,8 +30,8 @@ const Tabs = () => {
         const response = await axios.get(
           `${API_URL}onboarding-candidate/s/${userEmail}/`
         );
-        setUserData(response.data);console.log(response.data);
-
+        setUserData(response.data);
+        toast.success("Data retrieved successfully");
       } catch (error) {
         toast.error("Error getting user data", error || error.message);
       } finally {
