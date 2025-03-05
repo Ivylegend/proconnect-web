@@ -109,7 +109,7 @@ const MiniForm = ({
     try {
       await axios.put(`${API_URL}onboarding-candidate/s/${formData.email}/`, {
         has_paid: true,
-
+        bank: bankName ? bankName : "Paid through website",
         interest: {},
       });
       toast.success("Payment status updated");
@@ -144,14 +144,13 @@ const MiniForm = ({
       if (prefillData && prefillData.email) {
         response = await axios.put(
           `${API_URL}onboarding-candidate/s/${prefillData.email}/`,
-          { ...updatedData, bank: bankName ? bankName : "Paid through website" }
+          { ...updatedData }
         );
 
         userId = prefillData.id;
       } else {
         response = await axios.post(`${API_URL}onboarding-candidate/`, {
           ...formData,
-          bank: bankName ? bankName : "Paid through website",
         });
         userId = response?.data?.id;
       }
