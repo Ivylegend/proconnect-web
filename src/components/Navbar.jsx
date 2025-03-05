@@ -16,10 +16,6 @@ const navItems = [
     name: "Global Financing",
     url: "/global-financing",
   },
-  // {
-  //   name: "Global Financing",
-  //   url: "/study-abroad-financing-services",
-  // },
   {
     name: "Elda AI",
     url: "/elda-ai",
@@ -28,13 +24,13 @@ const navItems = [
   //   name: "Global Loan",
   //   url: "/global-loan",
   // },
-  // {
-  //   name: "Local Loan",
-  //   url: "/local-loan",
-  // },
   {
     name: "Join Global Education Community",
     url: "/global-community",
+  },
+  {
+    name: "Webinar",
+    url: "https://bit.ly/study-and-work-in-17-countries",
   },
 ];
 
@@ -46,20 +42,17 @@ const Navbar = () => {
 
   const handleClickOutside = (event) => {
     if (navbarRef.current && !navbarRef.current.contains(event.target)) {
-      // Clicked outside the navbar, so close it
       setToggle(false);
     }
   };
 
   useEffect(() => {
-    // Attach the event listener when the component mounts
     document.addEventListener("click", handleClickOutside);
 
-    // Clean up the event listener when the component unmounts
     return () => {
       document.removeEventListener("click", handleClickOutside);
     };
-  }, []); // Empty dependency array ensures that the effect runs only once
+  }, []);
 
   const handleMenu = () => {
     setToggle((prev) => !prev);

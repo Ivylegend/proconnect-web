@@ -6,11 +6,9 @@ import { closePaymentModal, useFlutterwave } from "flutterwave-react-v3";
 import { toast } from "react-hot-toast";
 import Logo from "../assets/proconnect-logo-new.jpg";
 import { useLocation } from "react-router-dom";
-import Paystack from "@paystack/inline-js";
 
 const API_URL = import.meta.env.VITE_API_URL;
 const FLUTTER_KEY = import.meta.env.VITE_API_FLUTTER_KEY;
-const PAYSTACK_KEY = import.meta.env.VITE_API_PAYSTACK_TEST_KEY;
 
 const MiniForm = ({
   bankName,
@@ -53,27 +51,25 @@ const MiniForm = ({
 
   const discountedAmount = amount - discount;
 
-  const payWithPaystack = () => {
-    const popup = new Paystack();
-    popup.newTransaction({
-      key: "pk_live_689cd76b33c137c295bfbf58e38d9205627b0ea6",
+  const config = {
+    public_key: FLUTTER_KEY,
+    tx_ref: Date.now(),
+    amount: discountedAmount > 0 ? discountedAmount : 0,
+    currency: currency,
+    payment_options: "card,mobilemoney,ussd",
+    customer: {
       email: formData.email,
-      amount: (discountedAmount > 0 ? discountedAmount : 0) * 100,
-      currency: currency || "NGN",
-      onSuccess: async (transaction) => {
-        console.log("Payment Success:", transaction);
-        await updatePaymentStatus();
-        toast.success("Payment successful!");
-      },
-      onCancel: () => {
-        toast.error("Payment was cancelled.");
-      },
-      onError: (error) => {
-        console.log("Payment Error:", error);
-        toast.error("Payment failed. Please try again.");
-      },
-    });
+      phone_number: formData.phone_number,
+      name: formData.full_name,
+    },
+    customizations: {
+      title: `To Proconnect ${bankName ? `through ${bankName}` : ""}`,
+      description: "Payment for academic counselling",
+      logo: Logo,
+    },
   };
+
+  const handleFlutterPayment = useFlutterwave(config);
 
   useEffect(() => {
     if (prefillData) {
@@ -113,9 +109,6 @@ const MiniForm = ({
     try {
       await axios.put(`${API_URL}onboarding-candidate/s/${formData.email}/`, {
         has_paid: true,
-        degree: [],
-
-        countries: [],
 
         interest: {},
       });
@@ -143,11 +136,17 @@ const MiniForm = ({
       let response;
       let userId;
 
+      const updatedData = { ...formData };
+
+      delete updatedData.countries;
+      delete updatedData.degree;
+
       if (prefillData && prefillData.email) {
         response = await axios.put(
           `${API_URL}onboarding-candidate/s/${prefillData.email}/`,
-          { ...formData, bank: bankName ? bankName : "Paid through website" }
+          { ...updatedData, bank: bankName ? bankName : "Paid through website" }
         );
+
         userId = prefillData.id;
       } else {
         response = await axios.post(`${API_URL}onboarding-candidate/`, {
@@ -157,7 +156,23 @@ const MiniForm = ({
         userId = response?.data?.id;
       }
 
-      payWithPaystack();
+      handleFlutterPayment({
+        callback: (flutterResponse) => {
+          toast.success(flutterResponse.status);
+          if (
+            flutterResponse.status !== "completed" &&
+            flutterResponse.status !== "successful"
+          ) {
+            toast.error("Failed Transaction");
+          } else {
+            updatePaymentStatus();
+          }
+          closePaymentModal();
+        },
+        onClose: () => {
+          toast.error("Payment cancelled");
+        },
+      });
     } catch (error) {
       const errorData = error.response?.data;
       if (errorData && typeof errorData === "object") {
