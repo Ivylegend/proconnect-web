@@ -1,4 +1,3 @@
-import React from "react";
 import contactImg from "../assets/contact-img.png";
 import Phone from "../assets/phone.png";
 import LocationImg from "../assets/location-img.png";
@@ -50,9 +49,9 @@ const Contact = () => {
         <div className="w-full md:w-1/2">
           <p className="font-bold text-3xl mb-6">Contact Information</p>
 
-          {ContactInfo.map((info) => {
+          {ContactInfo.map((info, index) => {
             return (
-              <div className="border-b py-4 flex flex-col justify-start gap-2 border-b-gray-400">
+              <div key={index} className="border-b py-4 flex flex-col justify-start gap-2 border-b-gray-400">
                 <div className="flex items-center gap-2">
                   <img src={LocationImg} alt="location-image" />
                   <p className="font-bold text-[#323232]">{info.location}</p>

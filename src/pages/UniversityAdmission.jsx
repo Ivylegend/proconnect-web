@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import InterestImg from "../assets/interest-img.png";
 import ReusableModal from "../components/small-components/ReusableModal";
 import MainLayout from "../layouts/MainLayout";

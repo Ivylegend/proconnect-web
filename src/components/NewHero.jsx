@@ -4,7 +4,7 @@ import HeroIcons from "../assets/hero-icons.svg";
 import HeroIconsLeft from "../assets/hero-icons-left.svg";
 import { Link } from "react-router-dom";
 
-const NewHero = () => {
+const NewHero = ({ bank }) => {
   return (
     <section className="py-10 px-6 lg:px-20 mb-8 md:mb-24 flex items-center justify-center w-full flex-col gap-10">
       <div className="relative flex items-center justify-center">
@@ -19,16 +19,16 @@ const NewHero = () => {
             <span className="text-[#DB251A]">MIGRATE</span> TO THESE{" "}
             <br className="lg:hidden" />
             <span className="text-[#DB251A]">17</span> COUNTRIES{" "}
-            <br className="lg:hidden" /> WITH OUR{" "}
-            {/* <br /> */}
+            <br className="lg:hidden" /> WITH OUR {/* <br /> */}
             <span className="text-[#DB251A]">100K USD</span> SUPPORT
           </h1>
           <p className="text-center font-semibold text-base md:text-lg">
-           <span className="text-[#DB251A]">Pro</span><span className="text-[#1E4580]">connect</span> facilitates tailored, non-collateral financing for students
-            to access over 5,000 universities across 17 countries, powered by
-            the innovative eLDa AI platform that ensures 99% success and
-            accuracy in automating resume refinement, SOP creation, and
-            personalized study-abroad guidance.
+            <span className="text-[#DB251A]">Pro</span>
+            <span className="text-[#1E4580]">connect</span> facilitates
+            tailored, non-collateral financing for students to access over 5,000
+            universities across 17 countries, powered by the innovative eLDa AI
+            platform that ensures 99% success and accuracy in automating resume
+            refinement, SOP creation, and personalized study-abroad guidance.
           </p>
         </div>
         <img
@@ -40,14 +40,16 @@ const NewHero = () => {
       <div>
         <img src={PcpCountries} alt="supported countries" />
       </div>
-      <div className="flex gap-4">
-        <button className="w-fit md:w-40 h-14 hover:bg-transparent hover:text-[#db251A] border-2 border-[#db251A] rounded-lg font-medium flex items-center justify-center bg-[#DB251A] text-white py-2 px-4 transition-all">
-          <Link to="/interest">Get Started</Link>
-        </button>
-        <button className="w-fit md:w-40 flex border-2 h-14 justify-center font-medium text-[#db251A] border-[#db251A] items-center rounded-lg px-4 py-2 cursor-pointer hover:bg-[#db251A] hover:text-white transition-all">
-          <a href="mailto:grace@proconnectpay.com">Contact Sales</a>
-        </button>
-      </div>
+      {!bank && (
+        <div className="flex gap-4">
+          <button className="w-fit md:w-40 h-14 hover:bg-transparent hover:text-[#db251A] border-2 border-[#db251A] rounded-lg font-medium flex items-center justify-center bg-[#DB251A] text-white py-2 px-4 transition-all">
+            <Link to="/interest">Get Started</Link>
+          </button>
+          <button className="w-fit md:w-40 flex border-2 h-14 justify-center font-medium text-[#db251A] border-[#db251A] items-center rounded-lg px-4 py-2 cursor-pointer hover:bg-[#db251A] hover:text-white transition-all">
+            <a href="mailto:grace@proconnectpay.com">Contact Sales</a>
+          </button>
+        </div>
+      )}
     </section>
   );
 };

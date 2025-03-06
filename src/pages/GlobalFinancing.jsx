@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import twelve from "../assets/12.svg";
 import robot from "../assets/robot.png";
 import resumeSopImage from "../assets/resume-sop.png";
@@ -19,7 +19,7 @@ const GlobalFinancing = ({ setShowAfterFooter }) => {
   useEffect(() => {
     setShowAfterFooter(true);
     return () => setShowAfterFooter(false);
-  }, []);
+  }, [setShowAfterFooter]);
   return (
     <MainLayout>
       <div className="py-4 sm:py-10 md:px-20 bg-[#F4F4F4]">

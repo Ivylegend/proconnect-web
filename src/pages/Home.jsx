@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 // import Hero from "../components/Hero";
 import Partners from "../components/Partners";
 import TextImage from "../components/TextImage";
@@ -10,7 +10,6 @@ import people from "../assets/people.png";
 import globe from "../assets/globe.png";
 import education from "../assets/education.png";
 import LoanCalculator from "../components/Calculator";
-import CTA from "../components/CTA";
 import NewHero from "../components/NewHero";
 import MainLayout from "../layouts/MainLayout";
 

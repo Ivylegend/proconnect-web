@@ -105,6 +105,26 @@ const MiniForm = ({
     onDiscountChange(discountAmount);
   };
 
+  const processPayment = () => {
+    handleFlutterPayment({
+      callback: (flutterResponse) => {
+        toast.success(flutterResponse.status);
+        if (
+          flutterResponse.status !== "completed" &&
+          flutterResponse.status !== "successful"
+        ) {
+          toast.error("Failed Transaction");
+        } else {
+          updatePaymentStatus();
+        }
+        closePaymentModal();
+      },
+      onClose: () => {
+        toast.error("Payment cancelled");
+      },
+    });
+  };
+
   const updatePaymentStatus = async () => {
     try {
       await axios.put(`${API_URL}onboarding-candidate/s/${formData.email}/`, {
@@ -135,20 +155,20 @@ const MiniForm = ({
     try {
       let response;
       let userId;
-
       const updatedData = { ...formData };
 
       delete updatedData.countries;
       delete updatedData.degree;
 
       if (prefillData && prefillData.email) {
+        // If prefilled data exists, update existing entry
         response = await axios.put(
           `${API_URL}onboarding-candidate/s/${prefillData.email}/`,
           { ...updatedData, bank: "Not paid" }
         );
-
         userId = prefillData.id;
       } else {
+        // Try to create a new entry
         response = await axios.post(`${API_URL}onboarding-candidate/`, {
           ...formData,
           bank: "Not paid",
@@ -156,40 +176,46 @@ const MiniForm = ({
         userId = response?.data?.id;
       }
 
-      handleFlutterPayment({
-        callback: (flutterResponse) => {
-          toast.success(flutterResponse.status);
-          if (
-            flutterResponse.status !== "completed" &&
-            flutterResponse.status !== "successful"
-          ) {
-            toast.error("Failed Transaction");
-          } else {
-            updatePaymentStatus();
-          }
-          closePaymentModal();
-        },
-        onClose: () => {
-          toast.error("Payment cancelled");
-        },
-      });
+      // Proceed to payment after successful POST or PUT
+      processPayment();
     } catch (error) {
+      // Handle POST error
       const errorData = error.response?.data;
-      if (errorData && typeof errorData === "object") {
-        const errorMessages = Object.entries(errorData)
-          .map(
-            ([key, value]) =>
-              `${key}: ${Array.isArray(value) ? value.join(", ") : value}`
-          )
-          .join("\n");
+      if (error.response?.status === 400 && errorData?.email) {
+        try {
+          const updatedData = { ...formData };
 
-        toast.error(`Error submitting form:\n${errorMessages}`);
+          delete updatedData.countries;
+          delete updatedData.degree;
+          // If email already exists, update instead
+          await axios.put(
+            `${API_URL}onboarding-candidate/s/${formData.email}/`,
+            { ...updatedData, bank: "Not paid" }
+          );
+
+          processPayment();
+        } catch (putError) {
+          toast.error(`Error updating user: ${putError.message}`);
+          console.error(putError);
+        }
       } else {
-        toast.error(
-          `Error submitting form: ${error.message || "Something went wrong"}`
-        );
+        // Handle other errors
+        if (errorData && typeof errorData === "object") {
+          const errorMessages = Object.entries(errorData)
+            .map(
+              ([key, value]) =>
+                `${key}: ${Array.isArray(value) ? value.join(", ") : value}`
+            )
+            .join("\n");
+
+          toast.error(`Error submitting form:\n${errorMessages}`);
+        } else {
+          toast.error(
+            `Error submitting form: ${error.message || "Something went wrong"}`
+          );
+        }
+        console.error(error);
       }
-      console.error(error);
     } finally {
       setIsLoading(false);
     }

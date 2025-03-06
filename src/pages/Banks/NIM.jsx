@@ -1,4 +1,3 @@
-import React from 'react'
 import BanksLayout from '../../layouts/BanksLayout'
 import Banks from '../../components/Banks'
 import NIMLogo from '../../assets/NIM-Logo.svg';

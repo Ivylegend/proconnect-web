@@ -1,4 +1,3 @@
-import React from 'react'
 import PolarisLogo from '../../assets/polaris.svg'
 import BanksLayout from '../../layouts/BanksLayout'
 import Banks from '../../components/Banks'

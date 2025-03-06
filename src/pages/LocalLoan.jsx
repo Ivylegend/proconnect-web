@@ -1,9 +1,8 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import Check from "../assets/check.png";
 import LayerDetails from "../assets/local-loan.png";
 import line from "../assets/line.png";
 import people from "../assets/people.png";
-import Macbook from "../assets/Macbook.png";
 import Book from "../assets/Frame 53023 (1).png";
 import Law from "../assets/Frame 53023 (2).png";
 import First from "../assets/Frame 53023.png";

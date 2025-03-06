@@ -1,4 +1,3 @@
-import React from "react";
 import Description from "../assets/description.png";
 import vision from "../assets/vision.png";
 import mission from "../assets/mission.png";

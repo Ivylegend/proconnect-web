@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import InterestImg from "../assets/interest-img.png";
 import ReusableModal from "../components/small-components/ReusableModal";
 import Select from "react-select";
@@ -96,7 +96,7 @@ const Interest = () => {
     setLoading(true);
 
     try {
-      const response = await axios.post(
+      await axios.post(
         "https://elda-ai-drf.onrender.com/api/interested-candidates/",
         formData
       );

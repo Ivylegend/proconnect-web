@@ -1,4 +1,3 @@
-import React from "react";
 import EldaAI from "../assets/elda-pamphlet.png";
 import MainLayout from "../layouts/MainLayout";
 

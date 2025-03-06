@@ -1,4 +1,3 @@
-import React from "react";
 import Check from "../assets/check.png";
 import MainLayout from "../layouts/MainLayout";
 

@@ -1,4 +1,3 @@
-import React from "react";
 import SmallBox from "../components/SmallBox";
 import applicationSupport from "../assets/application-support.svg";
 import personalizedCounseling from "../assets/personalized-counseling.svg";
@@ -130,12 +129,23 @@ const LandingPageForNew = () => {
       <div className="mx-auto py-10 px-6 lg:px-20 flex flex-col items-center justify-center pb-20">
         <h2 className="text-3xl font-bold text-center mb-10">Key Resources</h2>
         <div className="grid gap-6 grid-cols-1 sm:grid-cols-2 xl:grid-cols-4">
-          {keyFeatures.map((item) => (
-            <SmallBox title={item.title} img={item.img} linkTo={item.url} />
+          {keyFeatures.map((item, index) => (
+            <SmallBox
+              key={index}
+              title={item.title}
+              img={item.img}
+              linkTo={item.url}
+            />
           ))}
         </div>
-        <a className="w-full px-6 lg:px-20" href="https://elda.cloud/candidate/otp" target="_blank">
-          <button className="bg-[#db251a] border hover:bg-transparent transition-all font-semibold duration-300 hover:text-[#db251a] hover:border-[#db251a] text-white py-2 px-4 rounded-md mt-10 w-full">Click to Provide Your Details</button>
+        <a
+          className="w-full px-6 lg:px-20"
+          href="https://elda.cloud/candidate/otp"
+          target="_blank"
+        >
+          <button className="bg-[#db251a] border hover:bg-transparent transition-all font-semibold duration-300 hover:text-[#db251a] hover:border-[#db251a] text-white py-2 px-4 rounded-md mt-10 w-full">
+            Click to Provide Your Details
+          </button>
         </a>
       </div>
     </MainLayout>

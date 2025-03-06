@@ -1,4 +1,3 @@
-import React from "react";
 import Botswana from "../assets/twemoji_flag-botswana.png";
 import nigeria from "../assets/twemoji_flag-nigeria.png";
 import ghana from "../assets/twemoji_flag-ghana.png";

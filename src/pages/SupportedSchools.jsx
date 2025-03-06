@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import blueLine from "../assets/blue-line.png";
 import {
   Australia,

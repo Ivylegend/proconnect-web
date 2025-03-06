@@ -1,4 +1,3 @@
-import React from "react";
 import Banks from "../../components/Banks";
 import BanksLayout from "../../layouts/BanksLayout";
 import WemaLogo from '../../assets/wema-bank.svg'

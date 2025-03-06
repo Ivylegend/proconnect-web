@@ -1,8 +1,7 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import Check from "../assets/check.png";
 import LayerDetails from "../assets/image 17.png";
 import Visa from "../assets/image 20.png";
-import inscription from "../assets/inscription.png";
 import line from "../assets/line.png";
 import Book from "../assets/Frame 53023 (1).png";
 import Law from "../assets/Frame 53023 (2).png";
@@ -17,7 +16,7 @@ const GlobalLoan = ({ setShowAfterFooter }) => {
 
     // Clear the state when the component unmounts
     return () => setShowAfterFooter(false);
-  }, []);
+  }, [setShowAfterFooter]);
 
   return (
     <div className="py-4 sm:py-10 md:px-20 bg-[#F4F4F4]">

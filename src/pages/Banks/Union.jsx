@@ -1,4 +1,3 @@
-import React from "react";
 import BanksLayout from "../../layouts/BanksLayout";
 import unionLogo from "../../assets/union-bank.svg";
 import Banks from "../../components/Banks";
