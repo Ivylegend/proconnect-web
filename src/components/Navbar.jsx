@@ -93,6 +93,7 @@ const Navbar = () => {
               <NavLink
                 to={navItem.url}
                 key={navItem.name}
+                target="_blank"
                 className={({ isActive }) => {
                   return isActive ? "active-nav" : "active hover:text-red-500";
                 }}
@@ -104,7 +105,7 @@ const Navbar = () => {
         </div>
       </div>
       <div className="flex items-center gap-4 sm:gap-8">
-        <Link to="/interest">
+        <Link to="/interest" target="_blank">
           <button className="hidden rounded-lg font-medium sm:flex items-center gap-4 justify-center bg-[#DB251A] text-white py-3 px-6 cursor-pointer hover:bg-white hover:text-[#db251A] hover:border-[#db251A] hover:border transition-colors">
             Get Started
           </button>
@@ -132,6 +133,7 @@ const Navbar = () => {
               <NavLink
                 to={navItem.url}
                 key={navItem.name}
+                target="_blank"
                 className={({ isActive }) => {
                   return isActive ? "active-nav" : "active hover:text-red-500";
                 }}
