@@ -51,7 +51,7 @@ const Tabs = () => {
 
   return (
     <div>
-      <div className="tab-container mx-auto w-60 justify-between flex border border-red-500 items-center rounded-lg px-4 py-2 gap-2">
+      <div className="mx-auto w-60 justify-between flex border border-red-500 items-center rounded-lg px-4 py-2 gap-2">
         <div
           className={`tab cursor-pointer p-4 rounded-lg w-1/2 flex items-center justify-center text-xl font-bold text-[#db251a] ${
             activeTab === "tab1" ? "bg-[#db251a] text-white" : ""
@@ -161,7 +161,7 @@ const Tabs = () => {
 
       <div
         id="checkout"
-        className="mx-auto py-10 px-6 lg:px-20 md:w-[80%] flex flex-col items-center justify-center"
+        className="mx-auto lg:px-20 md:w-[80%] flex flex-col items-center justify-center"
       >
         <MiniForm
           prefillData={userData}
