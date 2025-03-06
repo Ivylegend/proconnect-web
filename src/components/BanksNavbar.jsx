@@ -20,6 +20,10 @@ const navItems = [
     name: "Elda AI",
     url: "/elda-ai",
   },
+  {
+    name: "Webinar",
+    url: "https://bit.ly/study-and-work-in-17-countries",
+  },
 ];
 
 const BanksNavbar = ({ bankLogo }) => {
@@ -91,6 +95,7 @@ const BanksNavbar = ({ bankLogo }) => {
               <NavLink
                 to={navItem.url}
                 key={navItem.name}
+                target="_blank"
                 className={({ isActive }) => {
                   return isActive ? "active-nav" : "active hover:text-red-500";
                 }}
@@ -130,6 +135,7 @@ const BanksNavbar = ({ bankLogo }) => {
               <NavLink
                 to={navItem.url}
                 key={navItem.name}
+                target="_blank"
                 className={({ isActive }) => {
                   return isActive ? "active-nav" : "active hover:text-red-500";
                 }}

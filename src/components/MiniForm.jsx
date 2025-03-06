@@ -144,13 +144,14 @@ const MiniForm = ({
       if (prefillData && prefillData.email) {
         response = await axios.put(
           `${API_URL}onboarding-candidate/s/${prefillData.email}/`,
-          { ...updatedData }
+          { ...updatedData, bank: "Not paid" }
         );
 
         userId = prefillData.id;
       } else {
         response = await axios.post(`${API_URL}onboarding-candidate/`, {
           ...formData,
+          bank: "Not paid",
         });
         userId = response?.data?.id;
       }
