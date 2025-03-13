@@ -1,41 +1,9 @@
 import BanksLayout from "../../layouts/BanksLayout";
 import sycamoreLogo from "../../assets/sycamore-logo.svg";
 import NewHero from "../../components/NewHero";
-import applicationSupport from "../../assets/application-support.svg";
-import personalizedCounseling from "../../assets/personalized-counseling.svg";
-import financialSupport from "../../assets/financial-support.svg";
-import careerAdvancement from "../../assets/career-advancement.svg";
-import Networking from "../../assets/networking.svg";
 import MiniForm from "../../components/MiniForm";
+import { cardText } from "../../constants";
 
-const cardText = [
-  {
-    title: "Personalized Counseling",
-    text: "eLDa AI recommends the best courses, schools, and countries for you.",
-    icon: personalizedCounseling,
-  },
-
-  {
-    title: "Financial Support",
-    text: "Get up to $100,000 in student loans with no collateral or guarantor.",
-    icon: financialSupport,
-  },
-  {
-    title: "Career Growth",
-    text: "Gain global skills for top jobs, business, or public sector roles.",
-    icon: careerAdvancement,
-  },
-  {
-    title: "Networking",
-    text: "Connect with professionals and diplomats at monthly mixers.",
-    icon: Networking,
-  },
-  {
-    title: " Application Help",
-    text: "Proconnect refines your resume, crafts your SOP, and submits your applications.",
-    icon: applicationSupport,
-  },
-];
 
 const Sycamore = () => {
   return (
@@ -51,7 +19,7 @@ const Sycamore = () => {
           </div>
           <p className="font-semibold text-lg md:text-2xl text-center">
             Pay <span className="text-[#db251a]"> N60,000</span> rather than{" "}
-            <span className="text-[#db251a] line-through">₦̶2̶0̶0̶,̶0̶0̶0̶</span>
+            <span className="text-[#db251a] line-through">N200,000</span>
           </p>
           <p className="font-extrabold text-lg md:text-2xl text-center">MASSIVE 70% DISCOUNT</p>
           <p className="text-[#db251a] font-bold text-lg md:text-2xl">

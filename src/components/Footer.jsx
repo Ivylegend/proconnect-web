@@ -27,10 +27,6 @@ const businessLinks = [
     url: "/interest",
     name: "Signify your interest",
   },
-  // {
-  //   url: "/local-loan",
-  //   name: "Local loan",
-  // },
   {
     url: "/faqs",
     name: "FAQs",
@@ -39,10 +35,6 @@ const businessLinks = [
     name: "Global Financing",
     url: "/global-financing",
   },
-  // {
-  //   name: "Study Abroad Financing Services",
-  //   url: "/study-abroad-financing-services",
-  // },
   {
     url: "/privacy-policy",
     name: "Privacy Policy",

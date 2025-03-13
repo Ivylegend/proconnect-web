@@ -1,3 +1,9 @@
+import applicationSupport from "./assets/application-support.svg";
+import personalizedCounseling from "./assets/personalized-counseling.svg";
+import financialSupport from "./assets/financial-support.svg";
+import careerAdvancement from "./assets/career-advancement.svg";
+import Networking from "./assets/networking.svg";
+
 export const Germany = [
   { id: 0, name: "Carl von Ossietzky Universitat Oldenburg" },
   { id: 1, name: "Constructor University" },
@@ -1405,7 +1411,7 @@ export const nigerianStates = [
   "Cross River",
   "Delta",
   "Ebonyi",
-  "Edo", 
+  "Edo",
   "Ekiti",
   "Enugu",
   "Gombe",
@@ -1430,5 +1436,34 @@ export const nigerianStates = [
   "Taraba",
   "Yobe",
   "Zamfara",
-  "FCT Abuja"
-]
+  "FCT Abuja",
+];
+
+export const cardText = [
+  {
+    title: "Personalized Counseling",
+    text: "eLDa AI recommends the best courses, schools, and countries for you.",
+    icon: personalizedCounseling,
+  },
+
+  {
+    title: "Financial Support",
+    text: "Get up to $100,000 in student loans with no collateral or guarantor.",
+    icon: financialSupport,
+  },
+  {
+    title: "Career Growth",
+    text: "Gain global skills for top jobs, business, or public sector roles.",
+    icon: careerAdvancement,
+  },
+  {
+    title: "Networking",
+    text: "Connect with professionals and diplomats at monthly mixers.",
+    icon: Networking,
+  },
+  {
+    title: " Application Help",
+    text: "Proconnect refines your resume, crafts your SOP, and submits your applications.",
+    icon: applicationSupport,
+  },
+];

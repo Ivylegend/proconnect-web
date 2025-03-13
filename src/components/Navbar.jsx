@@ -20,10 +20,6 @@ const navItems = [
     name: "Elda AI",
     url: "/elda-ai",
   },
-  // {
-  //   name: "Global Loan",
-  //   url: "/global-loan",
-  // },
   {
     name: "Join Global Education Community",
     url: "/global-community",
@@ -143,6 +139,11 @@ const Navbar = () => {
               </NavLink>
             );
           })}
+          <Link to="/interest" target="_blank">
+            <button className="rounded-md font-medium w-full items-center justify-center bg-[#DB251A] text-white py-2 px-6 cursor-pointer hover:bg-white hover:text-[#db251A] hover:border-[#db251A] hover:border transition-colors">
+              Get Started
+            </button>
+          </Link>
         </div>
       )}
     </div>
