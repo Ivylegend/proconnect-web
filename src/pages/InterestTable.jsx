@@ -21,17 +21,22 @@ const InterestTable = () => {
   const [nextPage, setNextPage] = useState(null);
   const [prevPage, setPrevPage] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
 
-  const getAllCandidates = async (url = `${API_URL}interested-candidates/`) => {
+  const getAllCandidates = async (page = 1) => {
+    setLoading(true);
     try {
-      setLoading(true);
-      const response = await axios.get(url);
-      console.log(response.data);
+      const response = await axios.get(`${API_URL}interested-candidates/`, {
+        params: { page },
+        headers: { "Content-Type": "application/json" },
+      });
 
       setAllCandidates(response.data.results);
-      setNextPage(response.data.next);
-      setPrevPage(response.data.previous);
+      setNextPage(response.data.next ? page + 1 : null);
+      setPrevPage(response.data.previous ? page - 1 : null);
+      setCurrentPage(page);
     } catch (error) {
+      console.error("API Error:", error);
       toast.error("Error fetching candidates");
     } finally {
       setLoading(false);
@@ -101,6 +106,8 @@ const InterestTable = () => {
         >
           Previous
         </button>
+
+        <span className="px-4 py-2 font-semibold">Page {currentPage}</span>
 
         <button
           className={`px-4 py-2 rounded-md ${
