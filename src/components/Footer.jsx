@@ -110,8 +110,36 @@ const bankPartners = [
     name: "Polaris Bank",
   },
   {
+    url: "/",
+    name: "And 15 other Financial Institutions",
+  },
+  {
     url: "/banks/nim",
-    name: "Nigerian Institute of Management",
+    name: "Nigerian Institute of Management and 63 other Professional Bodies",
+  },
+  {
+    url: "/",
+    name: "UNILAG",
+  },
+  {
+    url: "/",
+    name: "LASU and 98 other Federal Universities",
+  },
+  {
+    url: "/",
+    name: "YabaTECH",
+  },
+  {
+    url: "/",
+    name: "LASPOTECH and 35 other Polytechnics",
+  },
+  {
+    url: "",
+    name: " NYSC Lagos Secretariat and 36 other States Secretariats",
+  },
+  {
+    url: "/",
+    name: " 3 Global Bank Partners",
   },
 ];
 
@@ -195,7 +223,7 @@ const Footer = () => {
             })}
           </ul>
         </div>
-        <div>
+        <div className="lg:w-1/4">
           <p className="text-lg font-medium capitalize my-6 flex items-center gap-2">
             <img src={business} alt="business" /> PARTNERS
           </p>
