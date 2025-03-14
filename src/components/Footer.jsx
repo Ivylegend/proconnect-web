@@ -197,16 +197,16 @@ const Footer = () => {
         </div>
         <div>
           <p className="text-lg font-medium capitalize my-6 flex items-center gap-2">
-            <img src={business} alt="business" /> BANK PARTNERS
+            <img src={business} alt="business" /> PARTNERS
           </p>
           <ul className="flex gap-5 flex-col">
             {bankPartners.map((footerLink) => {
               return (
-                <Link to={footerLink.url} key={footerLink.url} target="_blank">
-                  <li className="font-bold hover:text-[#db251A]">
-                    {footerLink.name}
-                  </li>
-                </Link>
+                // <Link to={footerLink.url} key={footerLink.url} target="_blank">
+                <li className="font-bold cursor-not-allowed">
+                  {footerLink.name}
+                </li>
+                // </Link>
               );
             })}
           </ul>

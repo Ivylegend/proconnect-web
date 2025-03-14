@@ -23,15 +23,22 @@ const OnboardTable = () => {
   const [nextPage, setNextPage] = useState(null);
   const [prevPage, setPrevPage] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
 
-  const getAllCandidates = async (url = `${API_URL}onboarding-candidate/`) => {
+  const getAllCandidates = async (page = 1) => {
+    setLoading(true);
     try {
-      setLoading(true);
-      const response = await axios.get(url);
+      const response = await axios.get(`${API_URL}onboarding-candidate/`, {
+        params: { page },
+        headers: { "Content-Type": "application/json" },
+      });
+
       setAllCandidates(response.data.results);
-      setNextPage(response.data.next);
-      setPrevPage(response.data.previous);
+      setNextPage(response.data.next ? page + 1 : null);
+      setPrevPage(response.data.previous ? page - 1 : null);
+      setCurrentPage(page);
     } catch (error) {
+      console.error("API Error:", error);
       toast.error("Error fetching candidates");
     } finally {
       setLoading(false);
@@ -74,12 +81,14 @@ const OnboardTable = () => {
                   <td className="p-4">{candidate.phone_number || "N/A"}</td>
                   <td className="p-4">{candidate.gender || "N/A"}</td>
                   <td className="p-4">{candidate.graduate_of || "N/A"}</td>
-                  <td className="p-4">{candidate.state_of_residence || "N/A"}</td>
+                  <td className="p-4">
+                    {candidate.state_of_residence || "N/A"}
+                  </td>
                   <td className="p-4">{candidate.date_of_birth || "N/A"}</td>
                   <td className="p-4">{candidate.age || "N/A"}</td>
                   <td className="p-4">{candidate.class_of_degree || "N/A"}</td>
                   <td className="p-4">{candidate.has_paid ? "Yes" : "No"}</td>
-                  </tr>
+                </tr>
               ))
             )}
           </tbody>
@@ -97,6 +106,8 @@ const OnboardTable = () => {
         >
           Previous
         </button>
+
+        <span className="px-4 py-2 font-semibold">Page {currentPage}</span>
 
         <button
           className={`px-4 py-2 rounded-md ${
