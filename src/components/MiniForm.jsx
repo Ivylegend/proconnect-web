@@ -16,6 +16,7 @@ const MiniForm = ({
   amount,
   currency,
   onDiscountChange,
+  manualOnboard = false,
 }) => {
   const [formData, setFormData] = useState({
     full_name: "",
@@ -164,20 +165,27 @@ const MiniForm = ({
         // If prefilled data exists, update existing entry
         response = await axios.put(
           `${API_URL}onboarding-candidate/s/${prefillData.email}/`,
-          { ...updatedData, bank: "Not paid" }
+          { ...updatedData, bank: bankName ? bankName : "Paid through website" }
         );
         userId = prefillData.id;
       } else {
         // Try to create a new entry
         response = await axios.post(`${API_URL}onboarding-candidate/`, {
           ...formData,
-          bank: "Not paid",
+          bank: bankName ? bankName : "Paid through website",
         });
         userId = response?.data?.id;
       }
 
       // Proceed to payment after successful POST or PUT
-      processPayment();
+      if (manualOnboard) {
+        updatePaymentStatus();
+        toast.success(
+          "You have successfully signed up. You will be notified soon for the next steps."
+        );
+      } else {
+        processPayment();
+      }
     } catch (error) {
       // Handle POST error
       const errorData = error.response?.data;
@@ -190,10 +198,20 @@ const MiniForm = ({
           // If email already exists, update instead
           await axios.put(
             `${API_URL}onboarding-candidate/s/${formData.email}/`,
-            { ...updatedData, bank: "Not paid" }
+            {
+              ...updatedData,
+              bank: bankName ? bankName : "Paid through website",
+            }
           );
 
-          processPayment();
+          if (manualOnboard) {
+            updatePaymentStatus();
+            toast.success(
+              "You have successfully signed up. You will be notified soon for the next steps."
+            );
+          } else {
+            processPayment();
+          }
         } catch (putError) {
           toast.error(`Error updating user: ${putError.message}`);
           console.error(putError);
@@ -401,32 +419,34 @@ const MiniForm = ({
           </div>
         </div>
 
-        <div className="flex flex-col gap-4 my-8">
-          <div className="flex gap-2">
-            <input type="checkbox" required />
-            <p className="text-sm">
-              I confirm that I have read and understand the loan terms and
-              conditions before making this non-refundable payment of the
-              Proconnect Service Fee.
-            </p>
+        {!manualOnboard && (
+          <div className="flex flex-col gap-4 my-8">
+            <div className="flex gap-2">
+              <input type="checkbox" required />
+              <p className="text-sm">
+                I confirm that I have read and understand the loan terms and
+                conditions before making this non-refundable payment of the
+                Proconnect Service Fee.
+              </p>
+            </div>
+            <div className="flex gap-2">
+              <input type="checkbox" required />
+              <p className="text-sm">
+                I confirm that I have read and understand the Proconnect Service
+                terms and conditions before making this non-refundable payment
+                of the Proconnect Service Fee.
+              </p>
+            </div>
+            <div className="flex gap-2">
+              <input type="checkbox" required />
+              <p className="text-sm">
+                I confirm that I understand that neither Proconnect, {bankName},
+                nor its International Banking Partners influence the visa
+                decision process in any country where this loan is applicable.
+              </p>
+            </div>
           </div>
-          <div className="flex gap-2">
-            <input type="checkbox" required />
-            <p className="text-sm">
-              I confirm that I have read and understand the Proconnect Service
-              terms and conditions before making this non-refundable payment of
-              the Proconnect Service Fee.
-            </p>
-          </div>
-          <div className="flex gap-2">
-            <input type="checkbox" required />
-            <p className="text-sm">
-              I confirm that I understand that neither Proconnect, {bankName},
-              nor its International Banking Partners influence the visa decision
-              process in any country where this loan is applicable.
-            </p>
-          </div>
-        </div>
+        )}
 
         {/* Discount Code Input */}
         {route && (
@@ -456,7 +476,7 @@ const MiniForm = ({
           </div>
         )}
 
-        <div className="w-full">
+        <div className={`w-full ${manualOnboard ? "my-5" : ""}`}>
           <button
             type="submit"
             disabled={isLoading}
@@ -468,6 +488,8 @@ const MiniForm = ({
               </div>
             ) : prefillData ? (
               "Proceed to Payment"
+            ) : manualOnboard ? (
+              "Sign me up"
             ) : (
               "Submit"
             )}

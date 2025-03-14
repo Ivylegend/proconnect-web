@@ -28,6 +28,7 @@ import GlobalFinancing from "./pages/GlobalFinancing";
 import Error from "./pages/Error";
 import LandingPageForNew from "./pages/LandingPageForNew";
 import InterestTable from "./pages/InterestTable";
+import ManualOnboard from "./pages/ManualOnboard";
 
 function App() {
   const [showAfterFooter, setShowAfterFooter] = useState(false);
@@ -39,6 +40,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/new-members" element={<LandingPageForNew />} />
+          <Route path="/manual-onboard" element={<ManualOnboard />} />
           <Route path="/elda-ai" element={<EldaAi />} />
           <Route path="/corporate-profile" element={<CorporateProfile />} />
 
