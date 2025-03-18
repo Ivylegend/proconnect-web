@@ -128,11 +128,9 @@ const MiniForm = ({
 
   const updatePaymentStatus = async () => {
     try {
-      await axios.put(`${API_URL}onboarding-candidate/s/${formData.email}/`, {
-        has_paid: true,
-        bank: bankName ? bankName : "Paid through website",
-        interest: {},
-      });
+      await axios.post(
+        `${API_URL}onboarding-candidate/s/${formData.email}/payment`
+      );
       toast.success("Payment status updated");
     } catch (error) {
       console.error(error);
