@@ -1400,6 +1400,7 @@ export const faqs = [
 ];
 
 export const nigerianStates = [
+  "Not Nigerian",
   "Abia",
   "Adamawa",
   "Akwa-Ibom",
