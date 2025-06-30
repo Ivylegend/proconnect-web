@@ -40,7 +40,7 @@ const businessLinks = [
     name: "Privacy Policy",
   },
   {
-    url: "/global-loan#terms-conditions",
+    url: "",
     name: "Terms and Conditions",
   },
   {

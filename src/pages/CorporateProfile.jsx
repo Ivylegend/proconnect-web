@@ -10,7 +10,7 @@ import { useInView } from "react-intersection-observer";
 import CardShadow from "../components/small-components/CardShadow";
 import LeaderImage from "../components/small-components/LeaderImage";
 import EldaImage from "../assets/elda.png";
-import DolapoImage from "../assets/dolapo.png";
+// import DolapoImage from "../assets/dolapo.png";
 import GraceImage from "../assets/grace.png";
 import YvonneImage from "../assets/yvonne.png";
 import VictorImage from "../assets/victor.png";
@@ -51,11 +51,11 @@ const data = [
 
 const managerList = [
   { name: "Elda", position: "Global CEO 🌍", imgURL: EldaImage },
-  {
-    name: "Dolapo",
-    position: "Senior Vice-President, Business Operations",
-    imgURL: DolapoImage,
-  },
+  // {
+  //   name: "Dolapo",
+  //   position: "Senior Vice-President, Business Operations",
+  //   imgURL: DolapoImage,
+  // },
   { name: "Grace", position: "Global Head of Sales", imgURL: GraceImage },
   {
     name: "Yvonne",
