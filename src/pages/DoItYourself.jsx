@@ -7,6 +7,10 @@ import WhoShouldAttend from "../components/WhoShouldAttend";
 import WhatYouCanget from "../components/WhatYouCanget";
 import Testimonial from "../components/Testimonial";
 import EventDetails from "../components/EventDetails";
+import CallToAction from "../components/CallToAction";
+import PersonalDetailsForm from "../components/PersonalDetailsForm";
+import Questions from "../components/Questions";
+import Footer from "../components/Footer";
 
 export default function DoItYourself() {
   return (
@@ -105,17 +109,22 @@ export default function DoItYourself() {
           </div>
         </div>
         <section className="flex flex-col gap-10">
-          <ProgramMatters/>
-          <WhatYouWillLearn/>
-          <WhatYouCanget/>
-          <WhoShouldAttend/>
+          <ProgramMatters className="animate-fade-in"/>
+          <WhatYouWillLearn className="animate-slide-up"/>
+          <WhatYouCanget className="animate-fade-in"/>
+          <WhoShouldAttend className="animate-slide-up"/>
         </section>
         <section>
           <Testimonial/>
         </section>
+        <section className="w-full flex flex-col gap-10">
         <EventDetails/>
+        <CallToAction/>
+        <PersonalDetailsForm/>
+        <Questions/>
+        </section>
       </div>
-     
+     <Footer/>
     </>
   );
 }

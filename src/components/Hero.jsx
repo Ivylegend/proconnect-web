@@ -1,4 +1,3 @@
-import React from "react";
 import Line from "../assets/line.png";
 import Girl from "../assets/girl.png";
 import bulb from "../assets/Ellipse.png";
