@@ -29,6 +29,7 @@ import Error from "./pages/Error";
 import LandingPageForNew from "./pages/LandingPageForNew";
 import InterestTable from "./pages/InterestTable";
 import ManualOnboard from "./pages/ManualOnboard";
+import DoItYourself from "./pages/DoItYourself";
 
 function App() {
   const [showAfterFooter, setShowAfterFooter] = useState(false);
@@ -76,6 +77,9 @@ function App() {
           <Route path="/banks/sycamore" element={<Sycamore />} />
           <Route path="/banks/polaris" element={<PolarisBank />} />
           <Route path="/banks/nim" element={<NIM />} />
+
+          {/* DIY */}
+          <Route path="/diy" element={<DoItYourself />} />
 
           <Route path="*" element={<Error />} />
         </Routes>
