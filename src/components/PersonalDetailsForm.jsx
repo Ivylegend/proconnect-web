@@ -110,7 +110,7 @@ export default function PersonalDetailsForm() {
   };
 
   return (
-    <div className="border border-red-600 rounded-lg p-4 flex flex-col gap-4 w-full">
+    <div id="register" className="border border-red-600 rounded-lg p-4 flex flex-col gap-4 w-full">
       <h1 className="flex gap-2 text-xl md:text-3xl font-bold text-center md:text-left">
         Personal Details
       </h1>

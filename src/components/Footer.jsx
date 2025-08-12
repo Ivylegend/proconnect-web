@@ -231,7 +231,10 @@ const Footer = () => {
             {bankPartners.map((footerLink) => {
               return (
                 // <Link to={footerLink.url} key={footerLink.url} target="_blank">
-                <li className="font-bold cursor-not-allowed">
+                <li
+                  key={footerLink.name}
+                  className="font-bold cursor-not-allowed"
+                >
                   {footerLink.name}
                 </li>
                 // </Link>

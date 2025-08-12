@@ -2,7 +2,7 @@ import race from "../assets/race.png";
 
 export default function WhatYouCanget() {
   return (
-    <section className="bg-white px-4 py-8">
+    <section className="bg-white md:px-4 py-8">
       <div className="max-w-7xl mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
           <div className="relative">
@@ -15,42 +15,42 @@ export default function WhatYouCanget() {
           </div>
 
           {/* Left content */}
-          <div className="space-y-6">
-            <h1 className="text-3xl md:text-4xl font-bold text-center md:text-left text-red-600">
-              WHAT YOU WILL GET{" "}
-            </h1>
-            <p className="text-xl md:text-3xl font-bold text-center md:text-left">
+          <div className="space-y-4 md:space-y-6">
+            <h2 className="text-2xl lg:text-4xl font-bold text-center text-red-600">
+              WHAT YOU WILL GET
+            </h2>
+            <p className="text-xl md:text-2xl font-bold text-center md:text-left">
               When you sign up, you will receive:
             </p>
             <div className="space-y-4">
               <div className="flex items-start gap-4">
                 <span className="text-xl md:text-2xl font-bold">📝</span>
                 <p className="text-base md:text-lg leading-relaxed">
-                A downloadable Global Action Planner template
+                  A downloadable Global Action Planner template
                 </p>
               </div>
               <div className="flex items-start gap-4">
                 <span className="text-xl md:text-2xl font-bold">🌐</span>
                 <p className="text-base md:text-lg leading-relaxed">
-                Our Global Opportunities Masterlist (140+ links!)
+                  Our Global Opportunities Masterlist (140+ links!)
                 </p>
               </div>
               <div className="flex items-start gap-4">
                 <span className="text-xl md:text-2xl font-bold">📹</span>
                 <p className="text-base md:text-lg leading-relaxed">
-                Session recording + replay access
+                  Session recording + replay access
                 </p>
               </div>
               <div className="flex items-start gap-4">
                 <span className="text-xl md:text-2xl font-bold">🪪</span>
                 <p className="text-base md:text-lg leading-relaxed">
-                Certificate of Participation
+                  Certificate of Participation
                 </p>
               </div>
               <div className="flex items-start gap-4">
                 <span className="text-xl md:text-2xl font-bold">💬</span>
                 <p className="text-base md:text-lg leading-relaxed">
-                Access to our private LinkedIn community for monthly check-ins
+                  Access to our private LinkedIn community for monthly check-ins
                 </p>
               </div>
             </div>

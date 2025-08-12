@@ -1,15 +1,15 @@
 import lady from "../assets/lady.png";
 export default function WhatYouWillLearn() {
   return (
-    <section className="bg-white px-4 py-8">
+    <section className="bg-white md:px-4 py-8">
       <div className="max-w-7xl mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-            {/* Left content */}
-          <div className="space-y-6">
-            <h1 className="text-3xl md:text-4xl font-bold text-center md:text-left text-red-600">
+          {/* Left content */}
+          <div className="space-y-4 md:space-y-6">
+            <h2 className="text-2xl lg:text-4xl font-bold text-center text-red-600">
               WHAT YOU WILL LEARN
-            </h1>
-            <p className="text-xl md:text-3xl font-bold text-center md:text-left">
+            </h2>
+            <p className="text-xl md:text-2xl font-bold text-center md:text-left">
               In just one day, you will gain access to:
             </p>
             <div className="space-y-4">
