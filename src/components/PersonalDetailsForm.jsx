@@ -1,379 +1,646 @@
+import Logo from "../assets/proconnect-logo-new.jpg";
+import { closePaymentModal, useFlutterwave } from "flutterwave-react-v3";
+import { toast } from "react-hot-toast";
+
+// // const API_URL = import.meta.env.VITE_API_URL;
+const FLUTTER_KEY = import.meta.env.VITE_API_FLUTTER_KEY;
+
 import { useEffect, useState } from "react";
-import PhoneInput from "react-phone-input-2";
-import Select from "react-select";
-import "react-phone-input-2/lib/style.css";
-import axios from "axios";
+import PaymentConfirmationModal from "./small-components/payment-confirmation-modal";
+import PaymentSuccessfulModal from "./small-components/payment-successful-modal";
 
 export default function PersonalDetailsForm() {
+  const [countries, setCountries] = useState([]);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isPaymentModalOpen, setIsPaymentModalOpen] = useState(false);
+  const [errors, setErrors] = useState({});
+  const [loading, setLoading] = useState(false);
+  const [paymentLoading, setPaymentLoading] = useState(false);
+
+  const [formData, setFormData] = useState({
+    full_name: "",
+    enquiries: "",
+    degree: "",
+    age: "",
+    email: "",
+    phone: "",
+    gender: "",
+    residence_country: "Nigeria",
+    residence_state: "",
+    date: "",
+    completed: false,
+    payment_status: "pending",
+  });
+
+  // Flutterwave configuration
+  const config = {
+    public_key: FLUTTER_KEY,
+    tx_ref: `PC_${Date.now()}`,
+    amount: 20000, // ₦20000.00
+    currency: "NGN",
+    payment_options: "card,mobilemoney,ussd",
+    customer: {
+      email: formData.email,
+      phone_number: formData.phone,
+      name: formData.full_name,
+    },
+    customizations: {
+      title: "Proconnect Service Payment",
+      description: "Payment for DIY Program",
+      logo: Logo,
+    },
+  };
+
+  const handleFlutterPayment = useFlutterwave(config);
+
   useEffect(() => {
     const fetchCountries = async () => {
       try {
         const response = await fetch(
-        //   "https://restcountries.com/v3.1/all?fields=name"
+          "https://restcountries.com/v3.1/all?fields=name"
         );
         const data = await response.json();
-        setCountries(
-          data.map((country) => ({
+        const sortedCountries = data
+          .map((country) => ({
             label: country.name.common,
             value: country.name.common,
           }))
-        );
+          .sort((a, b) => a.label.localeCompare(b.label));
+
+        setCountries(sortedCountries);
       } catch (error) {
         console.error("Error fetching countries", error);
+        // Fallback countries list
+        setCountries([
+          { label: "Nigeria", value: "Nigeria" },
+          { label: "United States", value: "United States" },
+          { label: "United Kingdom", value: "United Kingdom" },
+          { label: "Canada", value: "Canada" },
+        ]);
       }
     };
 
     fetchCountries();
   }, []);
 
-  const [formData, setFormData] = useState({
-    full_name: "",
-    enquiries: "",
-    product: "",
-    email: "",
-    phone: "",
-    gender: "",
-    residence_country: "",
-    country_interested_in: "",
-    completed: false,
-    residence_state: "",
-    degree: "",
-    age: "",
-  });
-
-  const customStyles = {
-    control: (provided, state) => ({
-      ...provided,
-      border: state.isFocused ? "1px solid black" : "1px solid #666666",
-      borderRadius: state.isFocused ? "8px" : "8px",
-      boxShadow: state.isFocused ? "none" : "none",
-      padding: state.isFocused ? "6px" : "6px",
-    }),
-  };
-
-  const [countries, setCountries] = useState([]);
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [errors, setErrors] = useState({});
-  const [loading, setLoading] = useState(false);
   const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+    // Clear error when user starts typing
+    if (errors[name]) {
+      setErrors((prev) => ({ ...prev, [name]: "" }));
+    }
   };
+
   const handlePhoneChange = (value) => {
-    setFormData({ ...formData, phone: value });
+    setFormData((prev) => ({ ...prev, phone: value }));
+    if (errors.phone) {
+      setErrors((prev) => ({ ...prev, phone: "" }));
+    }
   };
 
   const validateForm = () => {
     let newErrors = {};
-    if (!formData.full_name) newErrors.full_name = "Full Name is required";
-    if (!formData.email) newErrors.email = "Email is required";
-    if (!formData.phone) newErrors.phone = "Phone number is required";
-    if (!formData.product) newErrors.product = "Please select a product";
-    if (!formData.enquiries)
-      newErrors.enquires = "Please the institution you attended";
-    if (!formData.degree) newErrors.degree = "Please select your degree";
-    if (!formData.age) newErrors.age = "Please enter your age";
+
+    // Required field validations
+    if (!formData.full_name.trim()) {
+      newErrors.full_name = "Full Name is required";
+    } else if (formData.full_name.trim().length < 2) {
+      newErrors.full_name = "Full Name must be at least 2 characters";
+    }
+
+    if (!formData.email.trim()) {
+      newErrors.email = "Email is required";
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
+      newErrors.email = "Please enter a valid email address";
+    }
+
+    if (!formData.phone.trim()) {
+      newErrors.phone = "Phone number is required";
+    } else if (formData.phone.length < 10) {
+      newErrors.phone = "Please enter a valid phone number";
+    }
+
+    if (!formData.enquiries) {
+      newErrors.enquiries = "Please select an institution";
+    }
+
+    if (!formData.degree) {
+      newErrors.degree = "Please select your degree";
+    }
+
+    if (!formData.age) {
+      newErrors.age = "Please enter your age";
+    } else if (formData.age < 18 || formData.age > 100) {
+      newErrors.age = "Age must be between 18 and 100";
+    }
+
+    if (!formData.residence_state.trim()) {
+      newErrors.residence_state = "State of residence is required";
+    }
+
+    if (!formData.date) {
+      newErrors.date = "Date of birth is required";
+    }
+
+    if (!formData.gender) {
+      newErrors.gender = "Please select your gender";
+    }
+
+    if (!formData.residence_country) {
+      newErrors.residence_country = "Please select your country of residence";
+    }
+
+    if (!formData.completed) {
+      newErrors.completed = "Please accept the terms and conditions";
+    }
+
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleFormSubmit = async (e) => {
-    e.preventDefault();
-    if (!validateForm()) return;
+  // Flutterwave payment
+
+  const processPayment = async () => {
+    handleFlutterPayment({
+      callback: async (flutterResponse) => {
+        toast.success(flutterResponse.status);
+        if (
+          flutterResponse.status !== "completed" &&
+          flutterResponse.status !== "successful"
+        ) {
+          toast.error("Failed Transaction");
+        } else {
+          setFormData({ payment_status: "successful" });
+          // If payment successful, submit to database
+          await submitToDatabase();
+
+          // Reset form
+          setFormData({
+            full_name: "",
+            enquiries: "",
+            degree: "",
+            age: "",
+            email: "",
+            phone: "",
+            gender: "",
+            residence_country: "Nigeria",
+            residence_state: "",
+            date: "",
+            completed: false,
+            payment_status: "pending",
+          });
+
+          setErrors({});
+          setIsModalOpen(true);
+        }
+        closePaymentModal();
+      },
+      onClose: () => {
+        toast.error("Payment cancelled");
+      },
+    });
+  };
+
+  // Submit data to database
+  const submitToDatabase = async () => {
+    try {
+      const dataToSubmit = {
+        ...formData,
+        payment_status: "paid",
+      };
+
+      // Replace with your actual API endpoint
+      const response = await fetch(
+        "https://elda-ai-drf.onrender.com/api/interested-candidates/",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(dataToSubmit),
+        }
+      );
+
+      if (!response.ok) {
+        throw new Error("Failed to submit data to database");
+      }
+
+      return await response.json();
+    } catch (error) {
+      toast.error("Failed to submit data to database");
+      throw error;
+    }
+  };
+
+  const handleFormSubmit = async () => {
+    if (!validateForm()) {
+      // Scroll to first error
+      const firstErrorField = document.querySelector(".border-red-500");
+      if (firstErrorField) {
+        firstErrorField.scrollIntoView({ behavior: "smooth", block: "center" });
+        firstErrorField.focus();
+      }
+      return;
+    }
+
+    // Show payment confirmation modal
+    setIsPaymentModalOpen(true);
+  };
+
+  const handlePaymentConfirm = async () => {
+    setIsPaymentModalOpen(false);
     setLoading(true);
 
     try {
-      await axios.post(
-        // "https://elda-ai-drf.onrender.com/api/interested-candidates/",
-        formData
-      );
-
-      setFormData({
-        residence_state: "",
-        full_name: "",
-        enquiries: "",
-        product: "",
-        email: "",
-        phone: "",
-        gender: "",
-        residence_country: "",
-        country_interested_in: "",
-        completed: false,
-        degree: "",
-        age: "",
-      });
-      setIsModalOpen(true);
+      // Process payment first
+      processPayment();
     } catch (error) {
-      console.error("Error submitting form", error);
+      console.error("Payment or submission error:", error);
+      setErrors({
+        submit:
+          "An error occurred during payment processing. Please try again.",
+      });
     } finally {
       setLoading(false);
     }
   };
 
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
+
+  const closePaymentModal = () => {
+    setIsPaymentModalOpen(false);
+  };
+
+  const inputClasses = (fieldName) => `
+    w-full h-10 px-3 text-sm text-gray-900 placeholder-gray-500
+    border rounded-md transition-colors duration-200
+    focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500
+    disabled:bg-gray-50 disabled:text-gray-500 disabled:cursor-not-allowed
+    ${
+      errors[fieldName]
+        ? "border-red-500 bg-red-50"
+        : "border-[#CFD3D4] bg-white hover:border-gray-400"
+    }
+  `;
+
+  const selectClasses = (fieldName) => `
+    w-full h-10 px-3 text-sm text-gray-900 bg-white
+    border rounded-md transition-colors duration-200
+    focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500
+    disabled:bg-gray-50 disabled:text-gray-500 disabled:cursor-not-allowed
+    ${
+      errors[fieldName]
+        ? "border-red-500 bg-red-50"
+        : "border-[#CFD3D4] hover:border-gray-400"
+    }
+  `;
+
   return (
-    <div id="register" className="border border-red-600 rounded-lg p-4 flex flex-col gap-4 w-full">
-      <h1 className="flex gap-2 text-xl md:text-3xl font-bold text-center md:text-left">
-        Personal Details
-      </h1>
-      <form onSubmit={handleFormSubmit} className="grid md:grid-cols-2 grid-cols-1 gap-4 w-full">
-        {/* FULL NAME */}
-        <div className="mb-6 flex flex-col gap-3">
-          <label htmlFor="full_name" className="text-[#646464] font-semibold">
-            Full Name <span className="text-red-600">*</span>
-          </label>
-          <input
-            type="text"
-            name="full_name"
-            id="full_name"
-            value={formData.full_name}
-            onChange={handleChange}
-            required
-            className={`w-full h-12 p-4 text-black rounded-lg border border-[#666666]`}
-          />
-          {errors.full_name && (
-            <p className="text-red-500 text-sm">{errors.full_name}</p>
-          )}
-        </div>
+    <>
+      <div
+        id="register"
+        className="border border-[#F8D3D1] rounded-xl p-6 flex flex-col gap-6 w-full max-w-4xl mx-auto"
+      >
+        <h2 className="text-xl md:text-3xl font-bold text-center md:text-left text-gray-900">
+          Personal Details
+        </h2>
 
-        {/* ENQUIRIES */}
-        <div className="mb-6 flex flex-col gap-3">
-          <label htmlFor="enquiries" className="text-[#646464] font-semibold">
-            Graduate of <span className="text-red-600">*</span>
-          </label>
-          <select
-            name="enquiries"
-            id="enquiries"
-            value={formData.enquiries}
-            onChange={handleChange}
-            required
-            className="w-full h-12 px-4 bg-white text-black rounded-lg border border-[#666666]"
-          >
-            {errors.enquiries && (
-              <p className="text-red-500 text-sm">{errors.enquiries}</p>
-            )}
-            <option value="">--Select an option--</option>
-            <option value="university">University</option>
-            <option value="polytechnic">Polytechnic / Minor</option>
-            <option value="college">College of Education</option>
-          </select>
-        </div>
+        <div className="space-y-6">
+          <div className="grid md:grid-cols-2 grid-cols-1 gap-6">
+            {/* FULL NAME */}
+            <div className="space-y-2">
+              <label
+                htmlFor="full_name"
+                className="block text-sm font-medium text-gray-700"
+              >
+                Full Name <span className="text-red-500">*</span>
+              </label>
+              <input
+                type="text"
+                name="full_name"
+                id="full_name"
+                value={formData.full_name}
+                onChange={handleChange}
+                placeholder="Enter your full name"
+                className={inputClasses("full_name")}
+                aria-invalid={errors.full_name ? "true" : "false"}
+                aria-describedby={
+                  errors.full_name ? "full_name-error" : undefined
+                }
+              />
+              {errors.full_name && (
+                <p id="full_name-error" className="text-red-600 text-sm mt-1">
+                  {errors.full_name}
+                </p>
+              )}
+            </div>
 
-        {/* DEGREE */}
-        <div className="mb-6 flex flex-col gap-3">
-          <label htmlFor="degree" className="text-[#646464] font-semibold">
-            Degree <span className="text-red-600">*</span>
-          </label>
-          <select
-            name="degree"
-            id="degree"
-            value={formData.degree}
-            onChange={handleChange}
-            required
-            className={`w-full h-12 px-4 bg-white text-black rounded-lg border border-[#666666]`}
-          >
-            <option value="">--Select an option--</option>
-            <option value="BSc">Bachelor&apos;s Degree (BSc)</option>
-            <option value="MSc">Master&apos;s Degree (MSc)</option>
-            <option value="PhD">Doctorate (PhD)</option>
-          </select>
-          {errors.degree && (
-            <p className="text-red-500 text-sm">{errors.degree}</p>
-          )}
-        </div>
+            {/* ENQUIRIES */}
+            <div className="space-y-2">
+              <label
+                htmlFor="enquiries"
+                className="block text-sm font-medium text-gray-700"
+              >
+                Graduate of <span className="text-red-500">*</span>
+              </label>
+              <select
+                name="enquiries"
+                id="enquiries"
+                value={formData.enquiries}
+                onChange={handleChange}
+                className={selectClasses("enquiries")}
+                aria-invalid={errors.enquiries ? "true" : "false"}
+              >
+                <option value="">Select an institution</option>
+                <option value="university">University</option>
+                <option value="polytechnic">Polytechnic</option>
+                <option value="college">College of Education</option>
+              </select>
+              {errors.enquiries && (
+                <p className="text-red-600 text-sm mt-1">{errors.enquiries}</p>
+              )}
+            </div>
 
-        {/* AGE */}
-        <div className="mb-6 flex flex-col gap-3">
-          <label htmlFor="age" className="text-[#646464] font-semibold">
-            Age <span className="text-red-600">*</span>
-          </label>
-          <input
-            type="number"
-            name="age"
-            id="age"
-            value={formData.age}
-            onChange={handleChange}
-            required
-            min="18"
-            max="100"
-            className={`w-full h-12 px-4 text-black rounded-lg border border-[#666666]`}
-          />
-          {errors.age && (
-            <p className="text-red-500 text-sm">{errors.age}</p>
-          )}
-        </div>
+            {/* DEGREE */}
+            <div className="space-y-2">
+              <label
+                htmlFor="degree"
+                className="block text-sm font-medium text-gray-700"
+              >
+                Degree <span className="text-red-500">*</span>
+              </label>
+              <select
+                name="degree"
+                id="degree"
+                value={formData.degree}
+                onChange={handleChange}
+                className={selectClasses("degree")}
+                aria-invalid={errors.degree ? "true" : "false"}
+              >
+                <option value="">Select your degree</option>
+                <option value="BSc">Bachelor's Degree (BSc)</option>
+                <option value="MSc">Master's Degree (MSc)</option>
+                <option value="PhD">Doctorate (PhD)</option>
+              </select>
+              {errors.degree && (
+                <p className="text-red-600 text-sm mt-1">{errors.degree}</p>
+              )}
+            </div>
 
-        {/* EMAIL ID */}
-        <div className="mb-6 flex flex-col gap-3">
-          <label htmlFor="email" className="text-[#646464] font-semibold">
-            Active Email ID <span className="text-red-600">*</span>
-          </label>
-          <input
-            type="email"
-            id="email"
-            name="email"
-            value={formData.email}
-            onChange={handleChange}
-            required
-            className={`w-full h-12 p-4 text-black rounded-lg border border-[#666666]`}
-          />
-          {errors.email && (
-            <p className="text-red-500 text-sm">{errors.email}</p>
-          )}
-        </div>
+            {/* AGE */}
+            <div className="space-y-2">
+              <label
+                htmlFor="age"
+                className="block text-sm font-medium text-gray-700"
+              >
+                Age <span className="text-red-500">*</span>
+              </label>
+              <input
+                type="number"
+                name="age"
+                id="age"
+                value={formData.age}
+                onChange={handleChange}
+                placeholder="Enter your age"
+                min="18"
+                max="100"
+                className={inputClasses("age")}
+                aria-invalid={errors.age ? "true" : "false"}
+              />
+              {errors.age && (
+                <p className="text-red-600 text-sm mt-1">{errors.age}</p>
+              )}
+            </div>
 
-        {/* State of Residence */}
-        <div className="mb-6 flex flex-col gap-3">
-          <label
-            htmlFor="residence_state"
-            className="text-[#646464] font-semibold"
-          >
-            State of Residence <span className="text-red-600">*</span>
-          </label>
-          <input
-            type="text"
-            id="residence_state"
-            name="residence_state"
-            value={formData.residence_state}
-            onChange={handleChange}
-            required
-            className={`w-full h-12 p-4 text-black rounded-lg border border-[#666666]`}
-          />
-          {errors.residence_state && (
-            <p className="text-red-500 text-sm">{errors.residence_state}</p>
-          )}
-        </div>
+            {/* EMAIL ID */}
+            <div className="space-y-2">
+              <label
+                htmlFor="email"
+                className="block text-sm font-medium text-gray-700"
+              >
+                Active Email ID <span className="text-red-500">*</span>
+              </label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                value={formData.email}
+                onChange={handleChange}
+                placeholder="Enter your email address"
+                className={inputClasses("email")}
+                aria-invalid={errors.email ? "true" : "false"}
+              />
+              {errors.email && (
+                <p className="text-red-600 text-sm mt-1">{errors.email}</p>
+              )}
+            </div>
 
-        {/* Date of birth */}
-        <div className="mb-6 flex flex-col gap-3">
-          <label htmlFor="date" className="text-[#646464] font-semibold">
-            Select Date of Birth <span className="text-red-600">*</span>
-          </label>
-          <input
-            type="date"
-            id="date"
-            name="date"
-            value={formData.date}
-            onChange={handleChange}
-            required
-            className="w-full h-12 p-4 text-black rounded-lg border border-[#666666]"
-          />
-          {errors.date && (
-            <p className="text-red-500 text-sm">{errors.date}</p>
-          )}
-        </div>
+            {/* PHONE NUMBER */}
+            <div className="space-y-2">
+              <label
+                htmlFor="phone"
+                className="block text-sm font-medium text-gray-700"
+              >
+                Active Phone Number <span className="text-red-500">*</span>
+              </label>
+              <input
+                type="tel"
+                id="phone"
+                name="phone"
+                value={formData.phone}
+                onChange={(e) => handlePhoneChange(e.target.value)}
+                placeholder="Enter your phone number"
+                className={inputClasses("phone")}
+                aria-invalid={errors.phone ? "true" : "false"}
+              />
+              {errors.phone && (
+                <p className="text-red-600 text-sm mt-1">{errors.phone}</p>
+              )}
+            </div>
 
-        {/* PHONE NUMBER */}
-        <div className="mb-6 flex flex-col gap-3">
-          <label htmlFor="" className="text-[#646464] font-semibold">
-            Active Phone Number <span className="text-red-600">*</span>
-          </label>
-          <PhoneInput
-            country="ng"
-            value={formData.phone}
-            onChange={handlePhoneChange}
-            required
-            className="w-full"
-            regions={[
-              "america",
-              "europe",
-              "asia",
-              "africa",
-              "oceania",
-              "austrailia",
-            ]}
-            inputStyle={{
-              height: "52px",
-              width: "100%",
-              borderRadius: "8px",
-              borderColor: "#666666",
-            }}
-            buttonStyle={{
-              backgroundColor: "white",
-              borderRadius: "8px 0 0 8px",
-              borderColor: "#666666",
-            }}
-          />
-          {errors.phone && (
-            <p className="text-red-500 text-sm">{errors.phone}</p>
-          )}
-        </div>
+            {/* RESIDENCE STATE */}
+            <div className="space-y-2">
+              <label
+                htmlFor="residence_state"
+                className="block text-sm font-medium text-gray-700"
+              >
+                State of Residence <span className="text-red-500">*</span>
+              </label>
+              <input
+                type="text"
+                id="residence_state"
+                name="residence_state"
+                value={formData.residence_state}
+                onChange={handleChange}
+                placeholder="Enter your state"
+                className={inputClasses("residence_state")}
+                aria-invalid={errors.residence_state ? "true" : "false"}
+              />
+              {errors.residence_state && (
+                <p className="text-red-600 text-sm mt-1">
+                  {errors.residence_state}
+                </p>
+              )}
+            </div>
 
-        {/* GENDER */}
-        <div className="mb-6 flex flex-col gap-3">
-          <label htmlFor="gender" className="text-[#646464] font-semibold">
-            Gender <span className="text-red-600">*</span>
-          </label>
-          <select
-            name="gender"
-            id="gender"
-            value={formData.gender}
-            onChange={handleChange}
-            required
-            className={`w-full h-12 px-4 bg-white text-black rounded-lg border border-[#666666]`}
-          >
-            <option value="">Select an option</option>
-            <option value="Male">Male</option>
-            <option value="Female">Female</option>
-          </select>
-        </div>
+            {/* DATE OF BIRTH */}
+            <div className="space-y-2">
+              <label
+                htmlFor="date"
+                className="block text-sm font-medium text-gray-700"
+              >
+                Date of Birth <span className="text-red-500">*</span>
+              </label>
+              <input
+                type="date"
+                id="date"
+                name="date"
+                value={formData.date}
+                onChange={handleChange}
+                className={inputClasses("date")}
+                aria-invalid={errors.date ? "true" : "false"}
+              />
+              {errors.date && (
+                <p className="text-red-600 text-sm mt-1">{errors.date}</p>
+              )}
+            </div>
 
-        {/* COUNTRY */}
-        <div className="mb-8 flex flex-col gap-4">
-          <label
-            htmlFor="residence_country"
-            className="text-[#646464] font-semibold"
-          >
-            Country of Residence <span className="text-red-600">*</span>
-          </label>
+            {/* GENDER */}
+            <div className="space-y-2">
+              <label
+                htmlFor="gender"
+                className="block text-sm font-medium text-gray-700"
+              >
+                Gender <span className="text-red-500">*</span>
+              </label>
+              <select
+                name="gender"
+                id="gender"
+                value={formData.gender}
+                onChange={handleChange}
+                className={selectClasses("gender")}
+                aria-invalid={errors.gender ? "true" : "false"}
+              >
+                <option value="">Select gender</option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+              </select>
+              {errors.gender && (
+                <p className="text-red-600 text-sm mt-1">{errors.gender}</p>
+              )}
+            </div>
 
-          <Select
-            options={countries}
-            name="residence_country"
-            value={countries.find(
-              (c) => c.value === formData.residence_country
-            )}
-            onChange={(selectedOption) =>
-              setFormData({
-                ...formData,
-                residence_country: selectedOption ? selectedOption.value : "",
-              })
-            }
-            styles={customStyles}
-            required
-          />
-        </div>
-
-        {/* SUBSCRIBE CHECKBOX */}
-        <div className=" w-full">
-          <div className="flex items-center gap-2 my-4 cursor-pointer">
-            <input
-              type="checkbox"
-              id="completed"
-              name="completed"
-              checked={formData.completed}
-              onChange={(e) =>
-                setFormData({ ...formData, completed: e.target.checked })
-              }
-            />
-            <p
-              onClick={() =>
-                setFormData({ ...formData, completed: !formData.completed })
-              }
-              className="text-left lg:text-center text-[#1E4580] font-medium text-sm"
-            >
-              Keep me up to date with more information about this product,
-              services, and offers
-            </p>
+            {/* COUNTRY OF RESIDENCE */}
+            <div className="space-y-2">
+              <label
+                htmlFor="residence_country"
+                className="block text-sm font-medium text-gray-700"
+              >
+                Country of Residence <span className="text-red-500">*</span>
+              </label>
+              <select
+                name="residence_country"
+                id="residence_country"
+                value={formData.residence_country}
+                onChange={handleChange}
+                className={selectClasses("residence_country")}
+                aria-invalid={errors.residence_country ? "true" : "false"}
+              >
+                <option value="">Select a country</option>
+                {countries.map((country) => (
+                  <option key={country.value} value={country.value}>
+                    {country.label}
+                  </option>
+                ))}
+              </select>
+              {errors.residence_country && (
+                <p className="text-red-600 text-sm mt-1">
+                  {errors.residence_country}
+                </p>
+              )}
+            </div>
           </div>
 
-          {/* SUBMIT BUTTON */}
-          <button
-            type="submit"
-            className="bg-[#DB251A] hover:bg-transparent hover:text-[#DB251A] transition-all duration-300 border border-[#DB251A] font-medium text-white rounded-lg text-center w-full h-12 mt-4"
-          >
-            {loading ? "Loading..." : "Submit"}
-          </button>
+          {/* FULL WIDTH SECTION */}
+          <div className="space-y-6">
+            {/* SUBSCRIBE CHECKBOX */}
+            <div className="space-y-3">
+              <div className="flex items-start gap-3">
+                <input
+                  type="checkbox"
+                  id="completed"
+                  name="completed"
+                  checked={formData.completed}
+                  onChange={(e) =>
+                    setFormData((prev) => ({
+                      ...prev,
+                      completed: e.target.checked,
+                    }))
+                  }
+                  className="mt-1 h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
+                  aria-invalid={errors.completed ? "true" : "false"}
+                />
+                <label
+                  htmlFor="completed"
+                  className="text-sm text-gray-700 leading-relaxed cursor-pointer"
+                >
+                  I confirm that I have read and understand the Proconnect
+                  Service terms and conditions before making this non-refundable
+                  payment of the Proconnect Service Fee.{" "}
+                  <span className="text-red-500">*</span>
+                </label>
+              </div>
+              {errors.completed && (
+                <p className="text-red-600 text-sm">{errors.completed}</p>
+              )}
+            </div>
+
+            {/* SUBMIT BUTTON */}
+            <div className="w-full">
+              {errors.submit && (
+                <div className="mb-4 p-3 bg-red-50 border border-red-200 rounded-md">
+                  <p className="text-red-600 text-sm">{errors.submit}</p>
+                </div>
+              )}
+              <button
+                type="button"
+                onClick={handleFormSubmit}
+                disabled={loading}
+                className="w-full h-12 bg-[#DB251A] hover:bg-red-700 disabled:bg-gray-400 
+                         text-white font-medium rounded-lg transition-colors duration-200
+                         focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2
+                         disabled:cursor-not-allowed flex items-center justify-center gap-2"
+              >
+                {loading ? (
+                  <>
+                    <div className="animate-spin h-4 w-4 border-2 border-white border-t-transparent rounded-full"></div>
+                    Processing...
+                  </>
+                ) : (
+                  <>Submit</>
+                )}
+              </button>
+            </div>
+          </div>
         </div>
-      </form>
-    </div>
+      </div>
+
+      {/* PAYMENT CONFIRMATION MODAL */}
+      {isPaymentModalOpen && (
+        <PaymentConfirmationModal
+          closePaymentModal={closePaymentModal}
+          full_name={formData.full_name}
+          email={formData.email}
+          paymentLoading={paymentLoading}
+          handlePaymentConfirm={handlePaymentConfirm}
+        />
+      )}
+
+      {/* SUCCESS MODAL */}
+      {isModalOpen && <PaymentSuccessfulModal closeModal={closeModal} />}
+    </>
   );
 }

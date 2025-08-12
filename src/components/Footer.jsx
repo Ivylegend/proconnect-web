@@ -55,6 +55,10 @@ const businessLinks = [
     url: "/nelfund-financing",
     name: "Nelfund Financing",
   },
+  {
+    url: "/diy",
+    name: "DIY Program",
+  },
 ];
 
 const locationLinks = [

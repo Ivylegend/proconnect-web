@@ -12,8 +12,8 @@ export default function CallToAction() {
       <div className="max-w-2xl mx-auto text-center md:text-xl font-medium">
         <p className="text-[#323232]">
           👉🏽 Click the button below to secure your slot.
-          <p> Limited spots available to ensure personalized guidance.</p>
         </p>
+        <p> Limited spots available to ensure personalized guidance.</p>
       </div>
       <DIYButton btnText={"Register Now"} />
     </div>
