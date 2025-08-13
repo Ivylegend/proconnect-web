@@ -1,7 +1,34 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import Logo from "../assets/proconnect-logo-new.jpg";
 import DIYButton from "./DIYButton";
+
+const navItems = [
+  {
+    name: "Home",
+    url: "/",
+  },
+  {
+    name: "Corporate Profile",
+    url: "/corporate-profile",
+  },
+  {
+    name: "Global Financing",
+    url: "/global-financing",
+  },
+  {
+    name: "Elda AI",
+    url: "/elda-ai",
+  },
+  {
+    name: "Join Global Education Community",
+    url: "/global-community",
+  },
+  {
+    name: "Webinar",
+    url: "https://bit.ly/study-and-work-in-17-countries",
+  },
+];
 
 export default function DIYNavBar() {
   const [scrolling, setScrolling] = useState(false);
@@ -29,6 +56,23 @@ export default function DIYNavBar() {
       <Link to="/" className="overflow-hidden">
         <img src={Logo} className="w-48 lg:w-64 relative -left-10" alt="logo" />
       </Link>
+
+<div className="hidden lg:flex gap-6 font-semibold">
+          {navItems.map((navItem) => {
+            return (
+              <NavLink
+                to={navItem.url}
+                key={navItem.name}
+                target="_blank"
+                className={({ isActive }) => {
+                  return isActive ? "active-nav" : "active hover:text-red-500";
+                }}
+              >
+                {navItem.name}
+              </NavLink>
+            );
+          })}
+        </div>
 
       <div className="flex items-center gap-4">
         <DIYButton btnText="Register Now" />
