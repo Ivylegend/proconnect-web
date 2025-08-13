@@ -28,6 +28,10 @@ const navItems = [
     name: "Webinar",
     url: "https://bit.ly/study-and-work-in-17-countries",
   },
+  {
+    name: "DIY",
+    url: "/diy",
+  },
 ];
 
 const Navbar = () => {
