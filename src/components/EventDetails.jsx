@@ -20,7 +20,7 @@ export default function EventDetails() {
               <span className="bg-red-600 p-3 rounded-full font-bold">
                 <BsCalendar2MonthFill className="text-white text-xl font-extrabold" />
               </span>
-              <p className="md:text-xl">Saturday, August 16th, 2025</p>
+              <p className="md:text-xl">Saturday, August 30th, 2025</p>
             </div>
             <div className="flex items-center gap-3">
               <span className="bg-red-600 p-3 rounded-full">

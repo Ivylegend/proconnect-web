@@ -8,6 +8,7 @@ const FLUTTER_KEY = import.meta.env.VITE_API_FLUTTER_KEY;
 import { useEffect, useState } from "react";
 import PaymentConfirmationModal from "./small-components/payment-confirmation-modal";
 import PaymentSuccessfulModal from "./small-components/payment-successful-modal";
+import axios from "axios";
 
 export default function PersonalDetailsForm() {
   const [countries, setCountries] = useState([]);
@@ -32,10 +33,9 @@ export default function PersonalDetailsForm() {
     payment_status: "pending",
   });
 
-  // Flutterwave configuration
   const config = {
     public_key: FLUTTER_KEY,
-    tx_ref: `PC_${Date.now()}`,
+    tx_ref: Date.now(),
     amount: 20000, // ₦20000.00
     currency: "NGN",
     payment_options: "card,mobilemoney,ussd",
@@ -161,9 +161,9 @@ export default function PersonalDetailsForm() {
 
   // Flutterwave payment
 
-  const processPayment = async () => {
+  const processPayment = () => {
     handleFlutterPayment({
-      callback: async (flutterResponse) => {
+      callback: (flutterResponse) => {
         toast.success(flutterResponse.status);
         if (
           flutterResponse.status !== "completed" &&
@@ -171,9 +171,8 @@ export default function PersonalDetailsForm() {
         ) {
           toast.error("Failed Transaction");
         } else {
-          setFormData({ payment_status: "successful" });
           // If payment successful, submit to database
-          await submitToDatabase();
+          submitToDatabase();
 
           // Reset form
           setFormData({
@@ -205,29 +204,24 @@ export default function PersonalDetailsForm() {
   // Submit data to database
   const submitToDatabase = async () => {
     try {
+      const { completed, ...restOfFormData } = formData;
       const dataToSubmit = {
-        ...formData,
+        ...restOfFormData,
         payment_status: "paid",
       };
 
-      // Replace with your actual API endpoint
-      const response = await fetch(
-        "https://elda-ai-drf.onrender.com/api/interested-candidates/",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(dataToSubmit),
-        }
+      const response = await axios.post(
+        "http://elda-ai-drf.onrender.com/api/coaching-event-leads/",
+        dataToSubmit
       );
 
-      if (!response.ok) {
+      if (response.status < 200 || response.status >= 300) {
         throw new Error("Failed to submit data to database");
       }
 
-      return await response.json();
+      return response.data;
     } catch (error) {
+      console.error("Database submission error:", error);
       toast.error("Failed to submit data to database");
       throw error;
     }
@@ -270,7 +264,7 @@ export default function PersonalDetailsForm() {
     setIsModalOpen(false);
   };
 
-  const closePaymentModal = () => {
+  const closePayModal = () => {
     setIsPaymentModalOpen(false);
   };
 
@@ -524,9 +518,9 @@ export default function PersonalDetailsForm() {
                 className={selectClasses("gender")}
                 aria-invalid={errors.gender ? "true" : "false"}
               >
-                <option value="">Select gender</option>
-                <option value="Male">Male</option>
-                <option value="Female">Female</option>
+                <option value="O">Select gender</option>
+                <option value="M">Male</option>
+                <option value="F">Female</option>
               </select>
               {errors.gender && (
                 <p className="text-red-600 text-sm mt-1">{errors.gender}</p>
@@ -631,7 +625,7 @@ export default function PersonalDetailsForm() {
       {/* PAYMENT CONFIRMATION MODAL */}
       {isPaymentModalOpen && (
         <PaymentConfirmationModal
-          closePaymentModal={closePaymentModal}
+          closePaymentModal={closePayModal}
           full_name={formData.full_name}
           email={formData.email}
           paymentLoading={paymentLoading}

@@ -53,7 +53,7 @@ export default function DoItYourself() {
 
               <div className="mt-6 space-y-3 text-gray-800">
                 <div className="flex items-center gap-2 font-bold">
-                  📅 Saturday, August 16th, 2025
+                  📅 Saturday, August 30th, 2025
                 </div>
                 <div className="flex items-center gap-2 font-bold">📍 ZOOM</div>
                 <div className="flex items-center gap-2 font-bold">
