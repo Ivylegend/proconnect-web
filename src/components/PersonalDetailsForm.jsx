@@ -2,21 +2,18 @@ import Logo from "../assets/proconnect-logo-new.jpg";
 import { closePaymentModal, useFlutterwave } from "flutterwave-react-v3";
 import { toast } from "react-hot-toast";
 
-// // const API_URL = import.meta.env.VITE_API_URL;
 const FLUTTER_KEY = import.meta.env.VITE_API_FLUTTER_KEY;
 
 import { useEffect, useState } from "react";
-import PaymentConfirmationModal from "./small-components/payment-confirmation-modal";
 import PaymentSuccessfulModal from "./small-components/payment-successful-modal";
 import axios from "axios";
 
 export default function PersonalDetailsForm() {
   const [countries, setCountries] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [isPaymentModalOpen, setIsPaymentModalOpen] = useState(false);
   const [errors, setErrors] = useState({});
   const [loading, setLoading] = useState(false);
-  const [paymentLoading, setPaymentLoading] = useState(false);
+  const [recordId, setRecordId] = useState(null);
 
   const [formData, setFormData] = useState({
     full_name: "",
@@ -30,7 +27,7 @@ export default function PersonalDetailsForm() {
     residence_state: "",
     date: "",
     completed: false,
-    payment_status: "pending",
+    payment_status: "pending" || "paid" || "failed",
   });
 
   const config = {
@@ -161,7 +158,7 @@ export default function PersonalDetailsForm() {
 
   // Flutterwave payment
 
-  const processPayment = () => {
+  const processPayment = (dbRecordId) => {
     handleFlutterPayment({
       callback: (flutterResponse) => {
         toast.success(flutterResponse.status);
@@ -170,26 +167,10 @@ export default function PersonalDetailsForm() {
           flutterResponse.status !== "successful"
         ) {
           toast.error("Failed Transaction");
+          changePaymentStatus(dbRecordId, "failed"); // Use the passed ID
         } else {
-          // If payment successful, submit to database
-          submitToDatabase();
-
-          // Reset form
-          setFormData({
-            full_name: "",
-            enquiries: "",
-            degree: "",
-            age: "",
-            email: "",
-            phone: "",
-            gender: "",
-            residence_country: "Nigeria",
-            residence_state: "",
-            date: "",
-            completed: false,
-            payment_status: "pending",
-          });
-
+          // If payment successful, update payment status
+          changePaymentStatus(dbRecordId, "paid"); // Use the passed ID
           setErrors({});
           setIsModalOpen(true);
         }
@@ -201,22 +182,45 @@ export default function PersonalDetailsForm() {
     });
   };
 
+  const changePaymentStatus = async (id, status) => {
+    try {
+      await axios.patch(
+        `https://elda-ai-drf.onrender.com/api/coaching-event-leads/${id}/`,
+        { payment_status: status }
+      );
+      toast.success("Payment status updated");
+    } catch (error) {
+      console.error(error);
+      toast.error(
+        "Error updating payment status",
+        error.response?.data || error.message
+      );
+    }
+  };
+
   // Submit data to database
   const submitToDatabase = async () => {
+    setLoading(true);
     try {
       const { completed, ...restOfFormData } = formData;
       const dataToSubmit = {
         ...restOfFormData,
-        payment_status: "paid",
       };
 
       const response = await axios.post(
-        "http://elda-ai-drf.onrender.com/api/coaching-event-leads/",
+        "https://elda-ai-drf.onrender.com/api/coaching-event-leads/",
         dataToSubmit
       );
 
       if (response.status < 200 || response.status >= 300) {
         throw new Error("Failed to submit data to database");
+      } else {
+        // Storing the ID from the database response
+        const dbRecordId = response.data.id;
+        setRecordId(dbRecordId);
+
+        // Process payment with the database ID
+        processPayment(dbRecordId);
       }
 
       return response.data;
@@ -224,6 +228,8 @@ export default function PersonalDetailsForm() {
       console.error("Database submission error:", error);
       toast.error("Failed to submit data to database");
       throw error;
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -238,34 +244,11 @@ export default function PersonalDetailsForm() {
       return;
     }
 
-    // Show payment confirmation modal
-    setIsPaymentModalOpen(true);
-  };
-
-  const handlePaymentConfirm = async () => {
-    setIsPaymentModalOpen(false);
-    setLoading(true);
-
-    try {
-      // Process payment first
-      processPayment();
-    } catch (error) {
-      console.error("Payment or submission error:", error);
-      setErrors({
-        submit:
-          "An error occurred during payment processing. Please try again.",
-      });
-    } finally {
-      setLoading(false);
-    }
+    await submitToDatabase();
   };
 
   const closeModal = () => {
     setIsModalOpen(false);
-  };
-
-  const closePayModal = () => {
-    setIsPaymentModalOpen(false);
   };
 
   const inputClasses = (fieldName) => `
@@ -349,9 +332,9 @@ export default function PersonalDetailsForm() {
                 aria-invalid={errors.enquiries ? "true" : "false"}
               >
                 <option value="">Select an institution</option>
-                <option value="university">University</option>
-                <option value="polytechnic">Polytechnic</option>
-                <option value="college">College of Education</option>
+                <option value="University">University</option>
+                <option value="Polytechnic">Polytechnic</option>
+                <option value="College of Education">College of Education</option>
               </select>
               {errors.enquiries && (
                 <p className="text-red-600 text-sm mt-1">{errors.enquiries}</p>
@@ -375,9 +358,13 @@ export default function PersonalDetailsForm() {
                 aria-invalid={errors.degree ? "true" : "false"}
               >
                 <option value="">Select your degree</option>
-                <option value="BSc">Bachelor's Degree (BSc)</option>
-                <option value="MSc">Master's Degree (MSc)</option>
-                <option value="PhD">Doctorate (PhD)</option>
+                <option value="Bachelor's Degree (BSc)">
+                  Bachelor's Degree (BSc)
+                </option>
+                <option value="Master's Degree (MSc)">
+                  Master's Degree (MSc)
+                </option>
+                <option value="Doctorate (PhD)">Doctorate (PhD)</option>
               </select>
               {errors.degree && (
                 <p className="text-red-600 text-sm mt-1">{errors.degree}</p>
@@ -621,17 +608,6 @@ export default function PersonalDetailsForm() {
           </div>
         </div>
       </div>
-
-      {/* PAYMENT CONFIRMATION MODAL */}
-      {isPaymentModalOpen && (
-        <PaymentConfirmationModal
-          closePaymentModal={closePayModal}
-          full_name={formData.full_name}
-          email={formData.email}
-          paymentLoading={paymentLoading}
-          handlePaymentConfirm={handlePaymentConfirm}
-        />
-      )}
 
       {/* SUCCESS MODAL */}
       {isModalOpen && <PaymentSuccessfulModal closeModal={closeModal} />}

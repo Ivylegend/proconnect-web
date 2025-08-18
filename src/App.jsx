@@ -30,6 +30,7 @@ import LandingPageForNew from "./pages/LandingPageForNew";
 import InterestTable from "./pages/InterestTable";
 import ManualOnboard from "./pages/ManualOnboard";
 import DoItYourself from "./pages/DoItYourself";
+import DoItYourselfTable from "./pages/DoItYourselfTable";
 
 function App() {
   const [showAfterFooter, setShowAfterFooter] = useState(false);
@@ -69,7 +70,7 @@ function App() {
           <Route path="/onboarded-candidates" element={<OnboardTable />} />
           {/* INTERESTED CANDIDATES TABLE */}
           <Route path="/interested-candidates" element={<InterestTable />} />
-          
+
           {/* BANKS */}
           <Route path="/banks/wema" element={<WemaBank />} />
           <Route path="/banks/union" element={<UnionBank />} />
@@ -80,6 +81,8 @@ function App() {
 
           {/* DIY */}
           <Route path="/diy" element={<DoItYourself />} />
+          {/* DIY TABLE*/}
+          <Route path="/diy-table" element={<DoItYourselfTable />} />
 
           <Route path="*" element={<Error />} />
         </Routes>
