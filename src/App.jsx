@@ -1,45 +1,52 @@
 import "./App.css";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import {
-  CorporateProfile,
-  Ecobank,
-  Home,
-  NIM,
-  OnboardTable,
-  PolarisBank,
-  RevolutionCommunity,
-  Sycamore,
-  UnionBank,
-  WemaBank,
-} from "./pages";
 import AfterFooter from "./components/AfterFooter";
-import { useState } from "react";
-import Contact from "./pages/Contact";
-import Pricing from "./pages/Pricing";
-import PrivacyPolicy from "./pages/PrivacyPolicy";
-import Interest from "./pages/Interest";
-import SupportedSchools from "./pages/SupportedSchools";
-import UniversityAdmission from "./pages/UniversityAdmission";
-import Calculator from "./pages/Calculator";
-import NelfundFinancing from "./pages/NelfundFinancing";
-import FAQs from "./pages/FAQs";
-import EldaAi from "./pages/EldaAi";
-import GlobalFinancing from "./pages/GlobalFinancing";
-import Error from "./pages/Error";
-import LandingPageForNew from "./pages/LandingPageForNew";
-import InterestTable from "./pages/InterestTable";
-import ManualOnboard from "./pages/ManualOnboard";
-import DoItYourself from "./pages/DoItYourself";
-import DoItYourselfTable from "./pages/DoItYourselfTable";
+import { useState, Suspense, lazy } from "react";
+
+// Lazy load all page components for code splitting
+const Home = lazy(() => import("./pages/Home.jsx"));
+const LandingPageForNew = lazy(() => import("./pages/LandingPageForNew.jsx"));
+const ManualOnboard = lazy(() => import("./pages/ManualOnboard.jsx"));
+const EldaAi = lazy(() => import("./pages/EldaAi.jsx"));
+const CorporateProfile = lazy(() => import("./pages/CorporateProfile.jsx"));
+const GlobalFinancing = lazy(() => import("./pages/GlobalFinancing.jsx"));
+const RevolutionCommunity = lazy(() => import("./pages/RevolutionCommunity.jsx"));
+const Contact = lazy(() => import("./pages/Contact.jsx"));
+const Pricing = lazy(() => import("./pages/Pricing.jsx"));
+const PrivacyPolicy = lazy(() => import("./pages/PrivacyPolicy.jsx"));
+const Interest = lazy(() => import("./pages/Interest.jsx"));
+const SupportedSchools = lazy(() => import("./pages/SupportedSchools.jsx"));
+const UniversityAdmission = lazy(() => import("./pages/UniversityAdmission.jsx"));
+const Calculator = lazy(() => import("./pages/Calculator.jsx"));
+const NelfundFinancing = lazy(() => import("./pages/NelfundFinancing.jsx"));
+const FAQs = lazy(() => import("./pages/FAQs.tsx"));
+const OnboardTable = lazy(() => import("./pages/OnboardTable.jsx"));
+const InterestTable = lazy(() => import("./pages/InterestTable.jsx"));
+const WemaBank = lazy(() => import("./pages/Banks/Wema.jsx"));
+const UnionBank = lazy(() => import("./pages/Banks/Union.jsx"));
+const Ecobank = lazy(() => import("./pages/Banks/Ecobank.jsx"));
+const Sycamore = lazy(() => import("./pages/Banks/Sycamore.jsx"));
+const PolarisBank = lazy(() => import("./pages/Banks/Polaris.jsx"));
+const NIM = lazy(() => import("./pages/Banks/NIM.jsx"));
+const DoItYourself = lazy(() => import("./pages/DoItYourself.jsx"));
+const DoItYourselfTable = lazy(() => import("./pages/DoItYourselfTable.jsx"));
+const Error = lazy(() => import("./pages/Error.jsx"));
+
+// Loading component
+const LoadingFallback = () => (
+  <div className="flex items-center justify-center min-h-screen">
+    <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#DB251A]"></div>
+  </div>
+);
 
 function App() {
   const [showAfterFooter, setShowAfterFooter] = useState(false);
-  const [showAfterFooterTwo, setShowAfterFooterTwo] = useState(false);
 
   return (
     <>
       <BrowserRouter>
-        <Routes>
+        <Suspense fallback={<LoadingFallback />}>
+          <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/new-members" element={<LandingPageForNew />} />
           <Route path="/manual-onboard" element={<ManualOnboard />} />
@@ -86,6 +93,7 @@ function App() {
 
           <Route path="*" element={<Error />} />
         </Routes>
+        </Suspense>
         {showAfterFooter && (
           <AfterFooter
             customText={
@@ -113,43 +121,6 @@ function App() {
                 Proconnect – we do not lie, fabricate, or falsify information to
                 mislead our candidates and prospective customers. This statement
                 is a commitment to our timeless value of integrity and
-                forthrightness. Kindly note that we have a{" "}
-                <span className="font-bold">
-                  STRICT NO-REFUND POLICY in Proconnect.
-                </span>
-              </p>
-            }
-          />
-        )}
-        {showAfterFooterTwo && (
-          <AfterFooter
-            customText={
-              <p className="text leading-9 font-normal text-xl">
-                <span className="text-[#DB251A]">
-                  PUBLIC STATEMENT ON COMMITMENT TO TRANSPARENCY AT ALL TIMES:
-                </span>{" "}
-                Information in respect to school admission processing, earning
-                admission, or admission refusal, loan application, loan
-                approval, or loan refusal or fully accessing the value-added
-                services promoted in the Proconnect Global Undergraduate
-                Community including the terms and associated conditions to
-                continually accessing our services can change at a moment’s
-                notice – we do not determine them but simply apply processes
-                already instituted or updated by our partners or necessitated by
-                economic realities . Our Financial Institution Partners and
-                Management of the Universities in which our student loans are
-                applicable are the ultimate decider of policies that impacts our
-                admission and loan processing – Proconnect will always
-                communicate and clarify up-to-date information that concerns all
-                these processes but do note that changes happen in a moment’s
-                notice and these changes are implemented immediately, we are not
-                an advocacy group and we do not intermediate on behalf of
-                students to these institutions whose processes our services are
-                anchored upon, it is important to accommodate changes that can
-                happen in the course of your relationship with Proconnect – we
-                do not lie, fabricate, or falsify information to mislead our
-                candidates and prospective customers. This statement is a
-                commitment to our timeless value of integrity and
                 forthrightness. Kindly note that we have a{" "}
                 <span className="font-bold">
                   STRICT NO-REFUND POLICY in Proconnect.
