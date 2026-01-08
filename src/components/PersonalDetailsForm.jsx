@@ -13,7 +13,6 @@ export default function PersonalDetailsForm() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [errors, setErrors] = useState({});
   const [loading, setLoading] = useState(false);
-  const [recordId, setRecordId] = useState(null);
 
   const [formData, setFormData] = useState({
     full_name: "",
@@ -167,7 +166,7 @@ export default function PersonalDetailsForm() {
           flutterResponse.status !== "successful"
         ) {
           toast.error("Failed Transaction");
-          changePaymentStatus(dbRecordId, "failed"); // Use the passed ID
+          changePaymentStatus(dbRecordId, "failed");
         } else {
           // If payment successful, update payment status
           changePaymentStatus(dbRecordId, "paid"); // Use the passed ID
@@ -202,6 +201,7 @@ export default function PersonalDetailsForm() {
   const submitToDatabase = async () => {
     setLoading(true);
     try {
+      // eslint-disable-next-line no-unused-vars
       const { completed, ...restOfFormData } = formData;
       const dataToSubmit = {
         ...restOfFormData,
@@ -217,7 +217,6 @@ export default function PersonalDetailsForm() {
       } else {
         // Storing the ID from the database response
         const dbRecordId = response.data.id;
-        setRecordId(dbRecordId);
 
         // Process payment with the database ID
         processPayment(dbRecordId);
@@ -358,11 +357,11 @@ export default function PersonalDetailsForm() {
                 aria-invalid={errors.degree ? "true" : "false"}
               >
                 <option value="">Select your degree</option>
-                <option value="Bachelor's Degree (BSc)">
-                  Bachelor's Degree (BSc)
+                <option value="Bachelor&apos;s Degree (BSc)">
+                  Bachelor&apos;s Degree (BSc)
                 </option>
-                <option value="Master's Degree (MSc)">
-                  Master's Degree (MSc)
+                <option value="Master&apos;s Degree (MSc)">
+                  Master&apos;s Degree (MSc)
                 </option>
                 <option value="Doctorate (PhD)">Doctorate (PhD)</option>
               </select>
