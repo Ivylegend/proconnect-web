@@ -3,6 +3,7 @@ import Logo from "../assets/proconnect-logo-new.jpg";
 import { Link } from "react-router-dom";
 import {
   Menu,
+  X,
   DollarSign,
   Globe,
   Shield,
@@ -124,13 +125,80 @@ export default function NewHome() {
               </button>
             </div>
             <button
-              className="md:hidden p-2 rounded-lg hover:bg-gray-100"
+              className="md:hidden p-2 rounded-lg hover:bg-gray-100 transition-colors"
               onClick={() => setIsMenuOpen(!isMenuOpen)}
+              aria-label="Toggle menu"
             >
-              <Menu className="w-6 h-6 text-gray-900" />
+              {isMenuOpen ? (
+                <X className="w-6 h-6 text-gray-900" />
+              ) : (
+                <Menu className="w-6 h-6 text-gray-900" />
+              )}
             </button>
           </div>
         </div>
+        {/* Mobile Menu Dropdown */}
+        {isMenuOpen && (
+          <div className="md:hidden border-t border-gray-200 bg-white">
+            <div className="px-4 pt-2 pb-4 space-y-1">
+              <a
+                href="#home"
+                onClick={() => setIsMenuOpen(false)}
+                className="block px-4 py-3 text-base font-medium text-gray-600 hover:text-red-600 hover:bg-red-50 rounded-lg transition-colors"
+              >
+                Home
+              </a>
+              <a
+                href="#video"
+                onClick={() => setIsMenuOpen(false)}
+                className="block px-4 py-3 text-base font-medium text-gray-600 hover:text-red-600 hover:bg-red-50 rounded-lg transition-colors"
+              >
+                Video
+              </a>
+              <a
+                href="#loan-access"
+                onClick={() => setIsMenuOpen(false)}
+                className="block px-4 py-3 text-base font-medium text-gray-600 hover:text-red-600 hover:bg-red-50 rounded-lg transition-colors"
+              >
+                Loan Access
+              </a>
+              <a
+                href="#coverage"
+                onClick={() => setIsMenuOpen(false)}
+                className="block px-4 py-3 text-base font-medium text-gray-600 hover:text-red-600 hover:bg-red-50 rounded-lg transition-colors"
+              >
+                Coverage
+              </a>
+              <a
+                href="#service-fee"
+                onClick={() => setIsMenuOpen(false)}
+                className="block px-4 py-3 text-base font-medium text-gray-600 hover:text-red-600 hover:bg-red-50 rounded-lg transition-colors"
+              >
+                Service Fee
+              </a>
+              <a
+                href="#webinar"
+                onClick={() => setIsMenuOpen(false)}
+                className="block px-4 py-3 text-base font-medium text-gray-600 hover:text-red-600 hover:bg-red-50 rounded-lg transition-colors"
+              >
+                Webinar
+              </a>
+              <a
+                href="#contact"
+                onClick={() => setIsMenuOpen(false)}
+                className="block px-4 py-3 text-base font-medium text-red-600 hover:bg-red-50 rounded-lg transition-colors"
+              >
+                Contact
+              </a>
+              <button
+                onClick={() => setIsMenuOpen(false)}
+                className="w-full mt-2 bg-red-800 text-white px-6 py-3 rounded-lg font-medium hover:bg-red-900 transition-colors shadow-md"
+              >
+                Apply Now
+            </button>
+          </div>
+        </div>
+        )}
       </nav>
 
       {/* Hero Section */}
@@ -849,7 +917,7 @@ export default function NewHome() {
           <div className="flex items-center gap-2 md:gap-3 mb-8 md:mb-12 justify-center flex-wrap">
             <div className="w-10 h-10 md:w-12 md:h-12 bg-white rounded-full flex items-center justify-center text-red-700 text-lg md:text-xl font-bold shadow-md">
               7
-            </div>
+                </div>
             <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-center">
               Need Clarity Before You Commit?
             </h2>
@@ -898,14 +966,14 @@ export default function NewHome() {
               >
                 Register Now
               </a>
-            </div>
+                    </div>
             <div className="bg-yellow-400/20 backdrop-blur-sm rounded-xl p-5 md:p-6 lg:p-8 border-2 border-yellow-400/50">
               <div className="flex items-center gap-2 md:gap-3 mb-3 md:mb-4">
                 <Clock className="w-6 h-6 md:w-7 md:h-7 lg:w-8 lg:h-8 text-yellow-300" />
                 <p className="font-bold text-lg md:text-xl lg:text-2xl text-yellow-100">
                   Special Offer!
                 </p>
-              </div>
+                  </div>
               <p className="text-base md:text-lg lg:text-xl mb-2">
                 Meet the team, get real answers, and unlock up to 50% off your
                 service fee
@@ -927,11 +995,11 @@ export default function NewHome() {
           <div className="flex items-center gap-2 md:gap-3 mb-8 md:mb-12">
             <div className="w-10 h-10 md:w-12 md:h-12 bg-red-900 rounded-full flex items-center justify-center text-white text-lg md:text-xl font-bold shadow-md">
               8
-            </div>
+                    </div>
             <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900">
               Interest Rates & Repayment Benefits
             </h2>
-          </div>
+                  </div>
           <div className="max-w-5xl mx-auto space-y-6 md:space-y-8">
             <div className="bg-white border-2 border-red-200 rounded-xl p-5 md:p-6 lg:p-8 shadow-md">
               <div className="flex items-center gap-3 md:gap-4 mb-3 md:mb-4">
@@ -1020,7 +1088,7 @@ export default function NewHome() {
                 <span>Book Now</span>
                 <ExternalLink className="w-5 h-5" />
               </a>
-            </div>
+                    </div>
             <div className="bg-gradient-to-br from-blue-900 to-blue-950 rounded-xl p-5 md:p-6 lg:p-8 text-white shadow-xl">
               <Video className="w-8 h-8 md:w-10 md:h-10 lg:w-12 lg:h-12 mb-4 md:mb-6" />
               <h3 className="text-lg md:text-xl lg:text-2xl font-bold mb-3 md:mb-4">
@@ -1038,7 +1106,7 @@ export default function NewHome() {
                 <span>Watch Video</span>
                 <ExternalLink className="w-5 h-5" />
               </a>
-            </div>
+                  </div>
             <div className="bg-gradient-to-br from-red-500 to-red-700 rounded-xl p-5 md:p-6 lg:p-8 text-white shadow-xl">
               <Globe className="w-8 h-8 md:w-10 md:h-10 lg:w-12 lg:h-12 mb-4 md:mb-6" />
               <h3 className="text-lg md:text-xl lg:text-2xl font-bold mb-3 md:mb-4">
@@ -1056,9 +1124,9 @@ export default function NewHome() {
                 <span>Learn More</span>
                 <ExternalLink className="w-5 h-5" />
               </a>
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
       </section>
 
       {/* Final CTA Section */}
@@ -1291,3 +1359,4 @@ export default function NewHome() {
     </div>
   );
 }
+           
