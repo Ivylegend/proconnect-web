@@ -4,6 +4,7 @@ import AfterFooter from "./components/AfterFooter";
 import { useState, Suspense, lazy } from "react";
 
 // Lazy load all page components for code splitting
+const NewHome = lazy(() => import("./pages/NewHome.tsx"));
 const Home = lazy(() => import("./pages/Home.jsx"));
 const LandingPageForNew = lazy(() => import("./pages/LandingPageForNew.jsx"));
 const ManualOnboard = lazy(() => import("./pages/ManualOnboard.jsx"));
@@ -48,6 +49,7 @@ function App() {
         <Suspense fallback={<LoadingFallback />}>
           <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/home-new" element={<NewHome />} />
           <Route path="/new-members" element={<LandingPageForNew />} />
           <Route path="/manual-onboard" element={<ManualOnboard />} />
           <Route path="/elda-ai" element={<EldaAi />} />
