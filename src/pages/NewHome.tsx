@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Logo from "../assets/proconnect-logo-new.jpg";
 import { Link } from "react-router-dom";
+import EligibilityCheckModal from "../components/small-components/EligibilityCheckModal";
 import {
   Menu,
   X,
@@ -40,6 +41,7 @@ import {
 
 export default function NewHome() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isEligibilityModalOpen, setIsEligibilityModalOpen] = useState(false);
 
   // Smooth scroll for anchor links
   useEffect(() => {
@@ -120,7 +122,10 @@ export default function NewHome() {
               >
                 Contact
               </a>
-              <button className="bg-red-800 text-white px-6 py-2 rounded-lg font-medium hover:bg-red-900 transition-colors shadow-md">
+              <button
+                onClick={() => setIsEligibilityModalOpen(true)}
+                className="bg-red-800 text-white px-6 py-2 rounded-lg font-medium hover:bg-red-900 transition-colors shadow-md"
+              >
                 Apply Now
               </button>
             </div>
@@ -191,7 +196,10 @@ export default function NewHome() {
                 Contact
               </a>
               <button
-                onClick={() => setIsMenuOpen(false)}
+                onClick={() => {
+                  setIsMenuOpen(false);
+                  setIsEligibilityModalOpen(true);
+                }}
                 className="w-full mt-2 bg-red-800 text-white px-6 py-3 rounded-lg font-medium hover:bg-red-900 transition-colors shadow-md"
               >
                 Apply Now
@@ -274,7 +282,10 @@ export default function NewHome() {
                 ))}
               </div>
               <div className="flex flex-col sm:flex-row gap-3 md:gap-4 justify-center md:justify-start">
-                <button className="inline-flex items-center justify-center gap-2 bg-white text-red-800 px-4 py-2.5 md:px-6 md:py-3 lg:px-8 lg:py-4 rounded-lg font-bold text-sm md:text-base lg:text-lg hover:bg-red-50 transition-colors shadow-xl">
+                <button
+                  onClick={() => setIsEligibilityModalOpen(true)}
+                  className="inline-flex items-center justify-center gap-2 bg-white text-red-800 px-4 py-2.5 md:px-6 md:py-3 lg:px-8 lg:py-4 rounded-lg font-bold text-sm md:text-base lg:text-lg hover:bg-red-50 transition-colors shadow-xl"
+                >
                   Check Your Eligibility
                   <ArrowRight className="w-5 h-5" />
                 </button>
@@ -1218,10 +1229,7 @@ export default function NewHome() {
             </div>
             <div className="grid sm:grid-cols-2 gap-4 md:gap-6">
               <button
-                onClick={() => {
-                  const element = document.querySelector("#home");
-                  if (element) element.scrollIntoView({ behavior: "smooth" });
-                }}
+                onClick={() => setIsEligibilityModalOpen(true)}
                 className="flex items-center justify-center gap-2 bg-red-800 hover:bg-red-900 text-white font-bold py-3 px-4 md:py-4 md:px-5 lg:py-5 lg:px-6 rounded-lg transition-colors text-sm md:text-base lg:text-lg shadow-md"
               >
                 <span>Check Eligibility</span>
@@ -1280,11 +1288,7 @@ export default function NewHome() {
                 </li>
                 <li>
                   <button
-                    onClick={() => {
-                      const element = document.querySelector("#home");
-                      if (element)
-                        element.scrollIntoView({ behavior: "smooth" });
-                    }}
+                    onClick={() => setIsEligibilityModalOpen(true)}
                     className="hover:text-white transition-colors text-left"
                   >
                     Check Eligibility
@@ -1356,6 +1360,12 @@ export default function NewHome() {
         <Users className="w-4 h-4 md:w-5 md:h-5" />
         <span className="font-bold text-xs md:text-sm">Admin Portal</span>
       </button>
+
+      {/* Eligibility Check Modal */}
+      <EligibilityCheckModal
+        isOpen={isEligibilityModalOpen}
+        onClose={() => setIsEligibilityModalOpen(false)}
+      />
     </div>
   );
 }
