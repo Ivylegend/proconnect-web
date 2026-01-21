@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import Logo from "../assets/proconnect-logo-new.jpg";
 import { Link } from "react-router-dom";
 import EligibilityCheckModal from "../components/small-components/EligibilityCheckModal";
+import AdminPortalModal from "../components/small-components/AdminPortalModal";
 import {
   Menu,
   X,
@@ -42,6 +43,7 @@ import {
 export default function NewHome() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isEligibilityModalOpen, setIsEligibilityModalOpen] = useState(false);
+  const [isAdminPortalOpen, setIsAdminPortalOpen] = useState(false);
 
   // Smooth scroll for anchor links
   useEffect(() => {
@@ -1354,6 +1356,7 @@ export default function NewHome() {
 
       {/* Admin Portal Button */}
       <button
+        onClick={() => setIsAdminPortalOpen(true)}
         className="fixed bottom-3 right-3 md:bottom-4 md:right-4 bg-gradient-to-r from-gray-800 to-gray-900 text-white px-3 py-2 md:px-4 md:py-3 rounded-full shadow-2xl hover:from-gray-900 hover:to-black transition-all flex items-center gap-1.5 md:gap-2 z-40 border-2 border-gray-600"
         title="Sales Admin Portal"
       >
@@ -1365,6 +1368,12 @@ export default function NewHome() {
       <EligibilityCheckModal
         isOpen={isEligibilityModalOpen}
         onClose={() => setIsEligibilityModalOpen(false)}
+      />
+
+      {/* Admin Portal Modal */}
+      <AdminPortalModal
+        isOpen={isAdminPortalOpen}
+        onClose={() => setIsAdminPortalOpen(false)}
       />
     </div>
   );

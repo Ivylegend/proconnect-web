@@ -31,6 +31,7 @@ const PolarisBank = lazy(() => import("./pages/Banks/Polaris.jsx"));
 const NIM = lazy(() => import("./pages/Banks/NIM.jsx"));
 const DoItYourself = lazy(() => import("./pages/DoItYourself.jsx"));
 const DoItYourselfTable = lazy(() => import("./pages/DoItYourselfTable.jsx"));
+const Admin = lazy(() => import("./pages/Admin.tsx"));
 const Error = lazy(() => import("./pages/Error.jsx"));
 
 // Loading component
@@ -92,6 +93,9 @@ function App() {
           <Route path="/diy" element={<DoItYourself />} />
           {/* DIY TABLE*/}
           <Route path="/diy-table" element={<DoItYourselfTable />} />
+
+          {/* ADMIN */}
+          <Route path="/admin" element={<Admin />} />
 
           <Route path="*" element={<Error />} />
         </Routes>
