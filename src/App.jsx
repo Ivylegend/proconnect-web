@@ -31,7 +31,13 @@ const PolarisBank = lazy(() => import("./pages/Banks/Polaris.jsx"));
 const NIM = lazy(() => import("./pages/Banks/NIM.jsx"));
 const DoItYourself = lazy(() => import("./pages/DoItYourself.jsx"));
 const DoItYourselfTable = lazy(() => import("./pages/DoItYourselfTable.jsx"));
-const Admin = lazy(() => import("./pages/Admin.tsx"));
+const AdminLayout = lazy(() => import("./pages/admin/AdminLayout.tsx"));
+const AdminIndex = lazy(() => import("./pages/admin/index.tsx"));
+const Overview = lazy(() => import("./pages/admin/Overview.tsx"));
+const LeadsManagement = lazy(() => import("./pages/admin/LeadsManagement.tsx"));
+const Team = lazy(() => import("./pages/admin/Team.tsx"));
+const Zoom = lazy(() => import("./pages/admin/Zoom.tsx"));
+const Email = lazy(() => import("./pages/admin/Email.tsx"));
 const Error = lazy(() => import("./pages/Error.jsx"));
 
 // Loading component
@@ -95,7 +101,14 @@ function App() {
           <Route path="/diy-table" element={<DoItYourselfTable />} />
 
           {/* ADMIN */}
-          <Route path="/admin" element={<Admin />} />
+          <Route path="/admin" element={<AdminLayout />}>
+            <Route index element={<AdminIndex />} />
+            <Route path="overview" element={<Overview />} />
+            <Route path="leads" element={<LeadsManagement />} />
+            <Route path="team" element={<Team />} />
+            <Route path="zoom" element={<Zoom />} />
+            <Route path="email" element={<Email />} />
+          </Route>
 
           <Route path="*" element={<Error />} />
         </Routes>

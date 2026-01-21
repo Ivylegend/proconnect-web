@@ -292,7 +292,7 @@ export default function NewHome() {
                   <ArrowRight className="w-5 h-5" />
                 </button>
                 <a
-                  href="https://bit.ly/3KYuQtp"
+                  href="https://chat.whatsapp.com/FGukSSYIlCW94u5MnheDwL"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center justify-center gap-2 bg-blue-900/60 backdrop-blur-sm border-2 border-white/50 text-white px-4 py-2.5 md:px-6 md:py-3 lg:px-8 lg:py-4 rounded-lg font-bold text-sm md:text-base lg:text-lg hover:bg-blue-900/80 transition-colors"
@@ -338,22 +338,14 @@ export default function NewHome() {
           <div className="grid md:grid-cols-2 gap-12 items-stretch">
             <div className="relative flex flex-col h-full">
               <div className="aspect-video bg-gradient-to-br from-red-50 to-blue-50 rounded-2xl shadow-2xl flex items-center justify-center relative overflow-hidden flex-1">
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <img
-                    src="https://images.unsplash.com/photo-1660128357991-713518efae48?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxpbnRlcm5hdGlvbmFsJTIwc3R1ZGVudCUyMHN0dWR5aW5nJTIwbGlicmFyeXxlbnwxfHx8fDE3Njc2NzAyODZ8MA&ixlib=rb-4.1.0&q=80&w=1080"
-                    alt="International students studying"
-                    className="w-full h-full object-cover"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-br from-red-900/50 to-blue-900/50 flex items-center justify-center">
-                    <div className="w-20 h-20 bg-white rounded-full flex items-center justify-center cursor-pointer hover:scale-110 transition-transform shadow-xl">
-                      <PlayCircle className="w-12 h-12 text-red-600" />
-                    </div>
-                  </div>
-                </div>
+                <iframe
+                  src="https://drive.google.com/file/d/1Sw2dy_ZP7_RH_ZCw77zwdamKlFkRNl9C/preview"
+                  className="w-full h-full rounded-2xl"
+                  allow="autoplay"
+                  allowFullScreen
+                  title="Proconnect - Funding Your Dream Abroad"
+                ></iframe>
               </div>
-              <p className="text-center mt-4 text-gray-600 italic">
-                Upload your explainer video here
-              </p>
             </div>
             <div className="space-y-4 md:space-y-6 flex flex-col justify-center h-full">
               <div className="flex items-start gap-3 md:gap-4">
@@ -972,7 +964,7 @@ export default function NewHome() {
                 </div>
               </div>
               <a
-                href="https://bit.ly/study-and-work-in-17-countries"
+                href="https://us06web.zoom.us/j/85621342155?pwd=b0NQVmtHd2oxaW9ZSkF1ejZzR09HZz09"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="block w-full bg-white text-red-600 font-bold text-base md:text-lg lg:text-xl py-3 md:py-4 lg:py-5 rounded-lg text-center hover:bg-red-50 transition-colors shadow-xl"
@@ -1093,7 +1085,7 @@ export default function NewHome() {
                 Book an appointment to visit us
               </p>
               <a
-                href="https://bit.ly/proconnect-lagos-walk-ins"
+                href="https://calendar.google.com/calendar/appointments/schedules/AcZssZ2vQ0O8y6qHE9hm6et0Eg-Li6iUYKdT7ZmWKeEhEo-lnCUjdc8rmhlDbkDb2fDQjAo0o05zxd-m"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 bg-white text-red-600 px-4 py-2 md:px-6 md:py-3 rounded-lg font-semibold text-sm md:text-base hover:bg-red-50 transition-colors"
@@ -1238,7 +1230,7 @@ export default function NewHome() {
                 <ArrowRight className="w-5 h-5" />
               </button>
               <a
-                href="https://bit.ly/3KYuQtp"
+                href="https://chat.whatsapp.com/FGukSSYIlCW94u5MnheDwL"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center justify-center gap-2 bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-4 md:py-4 md:px-5 lg:py-5 lg:px-6 rounded-lg transition-colors text-sm md:text-base lg:text-lg shadow-md"
@@ -1315,7 +1307,7 @@ export default function NewHome() {
               <ul className="space-y-2 text-sm md:text-base text-gray-400">
                 <li>
                   <a
-                    href="https://bit.ly/3KYuQtp"
+                    href="https://chat.whatsapp.com/FGukSSYIlCW94u5MnheDwL"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="hover:text-white transition-colors"
@@ -1325,7 +1317,7 @@ export default function NewHome() {
                 </li>
                 <li>
                   <a
-                    href="https://bit.ly/study-and-work-in-17-countries"
+                    href="https://us06web.zoom.us/j/85621342155?pwd=b0NQVmtHd2oxaW9ZSkF1ejZzR09HZz09"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="hover:text-white transition-colors"
@@ -1335,7 +1327,7 @@ export default function NewHome() {
                 </li>
                 <li>
                   <a
-                    href="https://bit.ly/proconnect-lagos-walk-ins"
+                    href="https://calendar.google.com/calendar/appointments/schedules/AcZssZ2vQ0O8y6qHE9hm6et0Eg-Li6iUYKdT7ZmWKeEhEo-lnCUjdc8rmhlDbkDb2fDQjAo0o05zxd-m"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="hover:text-white transition-colors"

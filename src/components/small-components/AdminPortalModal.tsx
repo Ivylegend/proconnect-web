@@ -13,8 +13,8 @@ const AdminPortalModal = ({ isOpen, onClose }) => {
     setError("");
 
     if (password === "proconnect2026") {
-      // Successful login - navigate to admin page
-      navigate("/admin");
+      // Successful login - navigate to admin overview page
+      navigate("/admin/overview");
       onClose();
       setPassword("");
     } else {
@@ -98,7 +98,7 @@ const AdminPortalModal = ({ isOpen, onClose }) => {
 
           {/* Password Hint */}
           <p className="mt-6 text-xs md:text-sm text-gray-500 text-center">
-            Authorized personnel only • Password: proconnect2026
+            Authorized personnel only
           </p>
         </div>
       </div>
